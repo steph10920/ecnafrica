@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import About from "./pages/About";
+import Programs from "./pages/Programs";
 import Environment from "./pages/categories/Environment";
 import Health from "./pages/categories/Health";
 import FoodSecurity from "./pages/categories/FoodSecurity";
@@ -11,7 +13,12 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Main Pages */}
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/programs" element={<Programs />} />
+
+        {/* Categories */}
         <Route path="/categories/environment" element={<Environment />} />
         <Route path="/categories/health" element={<Health />} />
         <Route path="/categories/food-security" element={<FoodSecurity />} />
