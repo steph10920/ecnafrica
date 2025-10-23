@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 
 export default function Home() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [categoriesOpen, setCategoriesOpen] = useState(false);
 
-  // 🔹 Carousel images
   const slides = [
     "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1500&q=80",
     "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1500&q=80",
@@ -14,7 +14,6 @@ export default function Home() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // 🔹 Auto slide logic
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
@@ -27,15 +26,38 @@ export default function Home() {
       {/* 🔹 NAVBAR */}
       <header className="bg-white shadow-md fixed w-full z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          {/* Logo / Title */}
+          {/* Logo */}
           <h1 className="text-2xl font-bold text-blue-700">ECN AFRICA</h1>
 
           {/* Desktop Menu */}
-          <nav className="hidden md:flex space-x-6 text-gray-700 font-medium">
+          <nav className="hidden md:flex space-x-6 text-gray-700 font-medium relative">
             <a href="#" className="hover:text-blue-600">Home</a>
             <a href="#">About Us</a>
             <a href="#">Programs</a>
-            <a href="#">Gallery</a>
+
+            {/* Dropdown for Categories */}
+            <div
+              className="relative"
+              onMouseEnter={() => setCategoriesOpen(true)}
+              onMouseLeave={() => setCategoriesOpen(false)}
+            >
+              <button className="hover:text-blue-600 flex items-center gap-1">
+                Categories ▾
+              </button>
+
+              {categoriesOpen && (
+                <div className="absolute top-full mt-2 bg-white border rounded-md shadow-md w-64">
+                  <a href="#" className="block px-4 py-2 hover:bg-blue-50">Arts and Sports</a>
+                  <a href="#" className="block px-4 py-2 hover:bg-blue-50">Environment (14)</a>
+                  <a href="#" className="block px-4 py-2 hover:bg-blue-50">Food Security (15)</a>
+                  <a href="#" className="block px-4 py-2 hover:bg-blue-50">Health (8)</a>
+                  <a href="#" className="block px-4 py-2 hover:bg-blue-50">Human Rights (15)</a>
+                  <a href="#" className="block px-4 py-2 hover:bg-blue-50">Quality & Relevant Education (31)</a>
+                  <a href="#" className="block px-4 py-2 hover:bg-blue-50">Uncategorized (11)</a>
+                </div>
+              )}
+            </div>
+
             <a href="#">Blog/News</a>
             <a href="#">Contact Us</a>
           </nav>
@@ -67,7 +89,23 @@ export default function Home() {
             <a href="#" className="hover:text-blue-600">Home</a>
             <a href="#">About Us</a>
             <a href="#">Programs</a>
-            <a href="#">Gallery</a>
+
+            {/* Dropdown under Categories in Mobile */}
+            <details className="group">
+              <summary className="cursor-pointer font-medium hover:text-blue-600">
+                Categories
+              </summary>
+              <div className="pl-4 mt-2 space-y-1">
+                <a href="#" className="block text-gray-600 hover:text-blue-600">Arts and Sports</a>
+                <a href="#" className="block text-gray-600 hover:text-blue-600">Environment (14)</a>
+                <a href="#" className="block text-gray-600 hover:text-blue-600">Food Security (15)</a>
+                <a href="#" className="block text-gray-600 hover:text-blue-600">Health (8)</a>
+                <a href="#" className="block text-gray-600 hover:text-blue-600">Human Rights (15)</a>
+                <a href="#" className="block text-gray-600 hover:text-blue-600">Quality & Relevant Education (31)</a>
+                <a href="#" className="block text-gray-600 hover:text-blue-600">Uncategorized (11)</a>
+              </div>
+            </details>
+
             <a href="#">Blog/News</a>
             <a href="#">Contact Us</a>
           </nav>
@@ -87,10 +125,8 @@ export default function Home() {
           />
         ))}
 
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black/30"></div>
 
-        {/* Buttons */}
         <button
           onClick={() =>
             setCurrentIndex((i) => (i === 0 ? slides.length - 1 : i - 1))
@@ -108,7 +144,6 @@ export default function Home() {
           ❯
         </button>
 
-        {/* Dots */}
         <div className="absolute bottom-5 w-full flex justify-center gap-2">
           {slides.map((_, i) => (
             <button
@@ -121,13 +156,12 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Hero Text */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
           <h2 className="text-4xl md:text-6xl font-bold mb-4">
-            Empowering Children for a Better Future
+            ECN – elimu community network
           </h2>
           <p className="text-lg md:text-2xl mb-6">
-            Supporting street and needy children through education and care
+            African Education Inspiring Opportunities & Understanding
           </p>
           <a
             href="#"
@@ -140,7 +174,9 @@ export default function Home() {
 
       {/* 🔹 WELCOME SECTION */}
       <section className="max-w-6xl mx-auto px-6 py-16 text-center">
-        <h2 className="text-3xl font-bold text-blue-700 mb-4">Welcome to ECN Africa</h2>
+        <h2 className="text-3xl font-bold text-blue-700 mb-4">
+          Welcome to ECN Africa
+        </h2>
         <p className="text-gray-700 leading-relaxed">
           ECN Africa is dedicated to transforming lives of vulnerable and street children
           by providing education, mentorship, and holistic support. Together, we can
