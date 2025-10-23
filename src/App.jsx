@@ -1,16 +1,27 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import AboutUs from "./pages/About";
-import Programs from "./pages/Programs"; // ✅ Added import
+import React, { Suspense, lazy } from "react";
+
+// Lazy load pages
+const Home = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
+const Programs = lazy(() => import("./pages/Programs"));
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/programs" element={<Programs />} /> {/* ✅ Programs route */}
-      </Routes>
+      <Suspense
+        fallback={
+          <div className="flex items-center justify-center h-screen text-blue-700 text-xl animate-pulse">
+            Loading page...
+          </div>
+        }
+      >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/programs" element={<Programs />} />
+        </Routes>
+      </Suspense>
     </Router>
   );
 }

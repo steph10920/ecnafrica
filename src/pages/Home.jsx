@@ -1,23 +1,23 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // 🔹 Online background images
   const slides = [
-    "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1500&q=80",
     "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1500&q=80",
     "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=1500&q=80",
+    "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1500&q=80",
     "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1500&q=80",
-    "https://images.unsplash.com/photo-1522204501929-8b5d5d5f38b4?auto=format&fit=crop&w=1500&q=80",
   ];
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
-    }, 4000);
+    }, 5000);
     return () => clearInterval(timer);
   }, [slides.length]);
 
@@ -25,22 +25,46 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Navbar />
 
-      {/* 🔹 HERO SLIDER */}
-      <section className="relative w-full h-[85vh] mt-[72px] overflow-hidden">
+      {/* 🔹 HERO SLIDER SECTION */}
+      <section className="relative w-full h-[90vh] mt-[72px] overflow-hidden">
         {slides.map((src, i) => (
-          <img
+          <motion.img
             key={i}
             src={src}
             alt={`Slide ${i + 1}`}
+            loading="lazy"
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
               i === currentIndex ? "opacity-100" : "opacity-0"
             }`}
           />
         ))}
 
-        <div className="absolute inset-0 bg-black/30"></div>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/40"></div>
 
-        {/* Controls */}
+        {/* Text Overlay */}
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4"
+        >
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            Welcome to Elimu Community Network (ECN)
+          </h1>
+          <p className="text-lg md:text-2xl mb-6 max-w-3xl">
+            Promoting quality and inclusive education for all children — empowering communities through innovation, care, and lifelong learning.
+          </p>
+          <a
+            href="/programs"
+            className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-full shadow-lg hover:scale-105 hover:bg-gray-100 transition-transform"
+          >
+            Explore Our Programs
+          </a>
+        </motion.div>
+
+        {/* Navigation Arrows */}
         <button
           onClick={() =>
             setCurrentIndex((i) => (i === 0 ? slides.length - 1 : i - 1))
@@ -58,117 +82,96 @@ export default function Home() {
           ❯
         </button>
 
-        {/* Indicators */}
+        {/* Dots */}
         <div className="absolute bottom-5 w-full flex justify-center gap-2">
           {slides.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrentIndex(i)}
-              className={`w-3 h-3 rounded-full ${
-                i === currentIndex ? "bg-white" : "bg-gray-400"
+              className={`w-3 h-3 rounded-full transition-all ${
+                i === currentIndex ? "bg-white scale-110" : "bg-gray-400"
               }`}
             ></button>
           ))}
         </div>
-
-        {/* Hero Text */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
-          <h2 className="text-4xl md:text-6xl font-bold mb-4 animate-fadeIn">
-            ECN – Elimu Community Network
-          </h2>
-          <p className="text-lg md:text-2xl mb-6 animate-fadeIn delay-200">
-            African Education Inspiring Opportunities & Understanding
-          </p>
-          <Link
-            to="/about"
-            className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-md font-semibold transition duration-300"
-          >
-            Learn More
-          </Link>
-        </div>
       </section>
 
-      {/* 🔹 WELCOME SECTION */}
-      <section className="max-w-6xl mx-auto px-6 py-16 text-center">
-        <h2 className="text-3xl font-bold text-blue-700 mb-4">
-          Welcome to ECN Africa
-        </h2>
-        <p className="text-gray-700 leading-relaxed max-w-3xl mx-auto">
-          ECN Africa is dedicated to transforming the lives of vulnerable and
-          street children by providing education, mentorship, and holistic
-          support. Together, we can create a community where every child has
-          the opportunity to thrive.
-        </p>
-      </section>
-
-      {/* 🔹 MISSION CARDS */}
-      <section className="bg-white py-16">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-6 text-center">
-          {[
-            {
-              title: "Education for All",
-              text: "We believe every child deserves quality education to unlock their potential.",
-              icon: "🎓",
-            },
-            {
-              title: "Family Empowerment",
-              text: "Strengthening families through mentorship, care, and economic opportunities.",
-              icon: "🤝",
-            },
-            {
-              title: "Community Impact",
-              text: "Building resilient communities through inclusive programs and partnerships.",
-              icon: "🌍",
-            },
-          ].map((item, index) => (
-            <div
-              key={index}
-              className="p-8 rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2 bg-blue-50"
-            >
-              <div className="text-4xl mb-4">{item.icon}</div>
-              <h3 className="text-xl font-bold text-blue-700 mb-2">
-                {item.title}
-              </h3>
-              <p className="text-gray-700">{item.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 🔹 IMPACT COUNTERS */}
-      <section className="py-16 bg-blue-700 text-white text-center">
-        <h2 className="text-3xl font-bold mb-8">Our Impact</h2>
-        <div className="flex flex-wrap justify-center gap-12">
-          {[
-            { number: "500+", label: "Children Supported" },
-            { number: "200+", label: "Families Empowered" },
-            { number: "10+", label: "Counties Reached" },
-          ].map((item, index) => (
-            <div key={index}>
-              <h3 className="text-5xl font-bold">{item.number}</h3>
-              <p className="mt-2 text-lg">{item.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 🔹 CALL TO ACTION */}
-      <section className="py-20 text-center bg-green-50">
-        <h2 className="text-3xl font-bold text-blue-700 mb-4">
-          Join Our Mission
-        </h2>
-        <p className="text-gray-700 max-w-2xl mx-auto mb-6">
-          Be part of our vision to ensure that every child grows in a safe,
-          supportive, and nurturing environment. Your support makes the
-          difference.
-        </p>
-        <Link
-          to="/contact"
-          className="bg-green-600 hover:bg-green-700 px-8 py-3 rounded-lg text-white font-semibold transition"
+      {/* 🔹 ABOUT PREVIEW */}
+      <main className="max-w-6xl mx-auto px-6 py-20 space-y-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
         >
-          Get Involved
-        </Link>
-      </section>
+          <h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">
+            Who We Are
+          </h2>
+          <p className="text-gray-700 mb-4 leading-relaxed text-center">
+            ECN is a learning organization that supports vulnerable children and their families through education, advocacy, and community development.
+          </p>
+          <div className="flex justify-center">
+            <a
+              href="/about"
+              className="bg-blue-700 text-white px-5 py-3 rounded-full hover:bg-blue-800 transition-colors"
+            >
+              Learn More About Us
+            </a>
+          </div>
+        </motion.div>
+
+        {/* 🔹 PROGRAMS PREVIEW */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="grid md:grid-cols-3 gap-8"
+        >
+          {[
+            {
+              title: "Education",
+              desc: "Innovative learning opportunities for all children.",
+              img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=60",
+            },
+            {
+              title: "Child Protection",
+              desc: "Rescuing and reintegrating street-connected children into families.",
+              img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=60",
+            },
+            {
+              title: "Community Development",
+              desc: "Empowering families through health, food security, and conservation.",
+              img: "https://images.unsplash.com/photo-1497339100210-9e87df79c218?auto=format&fit=crop&w=800&q=60",
+            },
+          ].map((program, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.05 }}
+              className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition-shadow"
+            >
+              <img
+                src={program.img}
+                alt={program.title}
+                loading="lazy"
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-semibold text-blue-700 mb-3">
+                  {program.title}
+                </h3>
+                <p className="text-gray-700 mb-3">{program.desc}</p>
+                <a
+                  href="/programs"
+                  className="text-blue-600 font-semibold hover:underline"
+                >
+                  Learn More →
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </motion.section>
+      </main>
 
       <Footer />
     </div>
