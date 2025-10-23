@@ -1,29 +1,24 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React, { Suspense, lazy } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Environment from "./pages/categories/Environment";
+import Health from "./pages/categories/Health";
+import FoodSecurity from "./pages/categories/FoodSecurity";
+import HumanRights from "./pages/categories/HumanRights";
+import ArtsAndSports from "./pages/categories/ArtsAndSports";
+import QualityEducation from "./pages/categories/QualityEducation";
 
-// Lazy load pages
-const Home = lazy(() => import("./pages/Home"));
-const About = lazy(() => import("./pages/About"));
-const Programs = lazy(() => import("./pages/Programs"));
-
-function App() {
+export default function App() {
   return (
-    <Router>
-      <Suspense
-        fallback={
-          <div className="flex items-center justify-center h-screen text-blue-700 text-xl animate-pulse">
-            Loading page...
-          </div>
-        }
-      >
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/programs" element={<Programs />} />
-        </Routes>
-      </Suspense>
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/categories/environment" element={<Environment />} />
+        <Route path="/categories/health" element={<Health />} />
+        <Route path="/categories/food-security" element={<FoodSecurity />} />
+        <Route path="/categories/human-rights" element={<HumanRights />} />
+        <Route path="/categories/arts-and-sports" element={<ArtsAndSports />} />
+        <Route path="/categories/quality-education" element={<QualityEducation />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
