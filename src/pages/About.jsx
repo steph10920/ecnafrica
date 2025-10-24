@@ -25,6 +25,20 @@ export default function About() {
         <p className="text-gray-700 mb-4">
           <strong>Elimu</strong> in Swahili means <strong>EDUCATION</strong>.
         </p>
+        <h1 className="text-2xl font-semibold text-green-700 mt-8 mb-2">Our Approach</h1>
+
+        <p className="text-gray-700 mb-4">
+          <strong>Listen. Learn. Lead.</strong>
+        </p>
+        <p className="text-gray-700 mb-4">
+          Our strength lies in listening deeply to communities, learning collaboratively, and leading with compassion.
+          We adopt a strength-based approach that values local wisdom and creativity while promoting gender equality and inclusivity.
+          Through innovation, we convert challenges into opportunities and lessons into leadership.
+          Education is not merely what we do, but it is how we empower Africa to design her own sustainable future.
+          <br></br>
+          <strong>“The future belongs to those who prepare for it today.”</strong>
+
+        </p>
 
         <h2 className="text-2xl font-semibold text-green-700 mt-8 mb-2">Our Vision</h2>
         <p className="text-gray-700 mb-4">
