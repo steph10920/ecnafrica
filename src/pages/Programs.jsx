@@ -142,7 +142,7 @@ export default function Programs() {
       <section className="w-full max-w-4xl mb-12">
         <div className="sticky top-0 bg-green-100 py-3 px-4 rounded-md shadow-sm">
           <h2 className="text-xl font-semibold text-green-800">
-            B. EDUCATION SUPPORT PROGRAMS
+            B.	CHILD/YOUTH PROTECTION AND EDUCATION ALTERNATIVES
           </h2>
         </div>
 
@@ -153,17 +153,74 @@ export default function Programs() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
+          <h2>Nafasi Programme: Creating Spaces and Opportunities for Change</h2>
+          <p>“Every child has a right to be safe, to learn, and to dream.”</p>
+          <h2>What is Nafasi?</h2>
           <p>
-            ECN supports children from needy backgrounds to access education
-            through school sponsorships, provision of learning materials, and
-            mentorship programs. We believe that education is a powerful tool
-            for breaking the cycle of poverty and empowering the next
-            generation.
+           Nafasi is a Swahili word meaning “space” and “opportunity.”
+            It is also the name of ECN’s transformative social programme dedicated to reducing the number of children, youth, and families living on the streets by using education as a pathway to dignity, empowerment, and lasting change.
+           </p>
+           <br></br>
+          <p>
+            Through the Nafasi Programme, ECN journeys with street-connected children and youth by meeting them where they are, listening to their stories, and walking beside them as they discover spaces and opportunities to survive, learn, and thrive.
+          </p>
+          <br></br>
+          <p>
+            From the Streets to Safe Spaces
+          </p>
+          <br></br>
+          <p>
+            Nafasi begins with compassion and curiosity.
+Our teams conduct mobile street outreach, building trust and helping children and youth identify safe survival options. From there, we guide them into rehabilitation, learning opportunities, and eventually family or community reintegration.
           </p>
           <p>
-            Our mentorship and after-school initiatives provide academic and
-            emotional support to help students excel both in school and in life.
+            The journey follows three stages:
           </p>
+          <ul>
+            <li>1.	Rescue/Survival – Offering immediate safety, care, and emotional support on the streets.</li>
+            <li>2.	Rehabilitation – Providing counseling, basic education, and psychosocial support in transitional spaces.</li>
+            <li>3.	Reintegration – Supporting family reunification and access to long-term educational and vocational pathways.</li>
+          </ul>
+          <p>
+            Each step is guided by our belief that; education is the bridge between vulnerability and opportunity.
+          </p>
+          <p>
+            “Education is not a way to escape poverty; it is a way of fighting it.”
+            <strong>— Julius Nyerere</strong>
+          </p>
+          <br></br>
+          <p>
+            Programme Objectives:
+          </p>
+          <ul>
+            <li>1.  <strong>To strengthen social protection systems</strong> for children and youth living on the streets, safeguarding their rights and wellbeing.</li>
+            <li>2.	<strong>To increase sustainable reintegration</strong> through family-based care and access to education, skills training, and livelihood opportunities.</li>
+          </ul>
+          <p>Key Activities</p>
+          <ul>
+            <li>
+          <strong>Street Work:</strong> Identification and assessment of
+          street-connected children and youth, providing immediate assistance
+          and pathways to reintegration.
+        </li>
+        <li>
+          <strong>Street Teams and Safe Learning Spaces:</strong> Formation of
+          creative and inclusive street teams engaged in arts, sports, and
+          mentorship as tools for behaviour transformation and leadership
+          development.
+        </li>
+        <li>
+          <strong>Mobile Street Schools — Learning Without Walls:</strong>{" "}
+          Establishment of a mobile street school as a safe, open, and flexible
+          learning space where children and youth explore their talents,
+          strengthen their self-esteem, and discover the joy of learning.
+        </li>
+        <li>
+          <strong>Toolkits for Self-Reliance:</strong> Provision of work
+          trollies and tool kits that help youth transition from street life to
+          self-employment and community contribution.
+        </li>
+          </ul>
         </motion.div>
       </section>
 
