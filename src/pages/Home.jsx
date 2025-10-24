@@ -54,7 +54,7 @@ export default function Home() {
             Welcome to Elimu Community Network (ECN)
           </h1>
           <p className="text-lg md:text-2xl mb-6 max-w-3xl">
-            Promoting quality and inclusive education for all children — empowering communities through innovation, care, and lifelong learning.
+            African Education Inspiring Opportunities & Understanding
           </p>
           <a
             href="/programs"
