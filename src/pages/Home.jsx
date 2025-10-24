@@ -56,7 +56,7 @@ export default function Home() {
           </p>
           <a
             href="/programs"
-            className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-full shadow-lg hover:scale-105 hover:bg-gray-100 transition-transform"
+            className="bg-white text-green-700 font-semibold px-6 py-3 rounded-full shadow-lg hover:scale-105 hover:bg-gray-100 transition-transform"
           >
             Explore Our Programs
           </a>
@@ -67,7 +67,7 @@ export default function Home() {
           onClick={() =>
             setCurrentIndex((i) => (i === 0 ? slides.length - 1 : i - 1))
           }
-          className="absolute left-5 top-1/2 transform -translate-y-1/2 bg-white/60 hover:bg-white text-blue-700 rounded-full p-2"
+          className="absolute left-5 top-1/2 transform -translate-y-1/2 bg-white/60 hover:bg-white text-green-700 rounded-full p-2"
         >
           ❮
         </button>
@@ -75,7 +75,7 @@ export default function Home() {
           onClick={() =>
             setCurrentIndex((i) => (i === slides.length - 1 ? 0 : i + 1))
           }
-          className="absolute right-5 top-1/2 transform -translate-y-1/2 bg-white/60 hover:bg-white text-blue-700 rounded-full p-2"
+          className="absolute right-5 top-1/2 transform -translate-y-1/2 bg-white/60 hover:bg-white text-green-700 rounded-full p-2"
         >
           ❯
         </button>
@@ -102,16 +102,22 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">
+          <h2 className="text-3xl font-bold text-green-700 mb-6 text-center">
             Who We Are
           </h2>
           <p className="text-gray-700 mb-4 leading-relaxed text-center">
-            ECN is a learning organization that supports vulnerable children and their families through education, advocacy, and community development.
+            <strong>Elimu Community Network (ECN)</strong> is a non-governmental learning organization founded in Kenya in 2012.
+            We believe that education is not just a pathway out of poverty but a foundation of freedom, dignity, and transformation.
+            Our name, <strong>Elimu</strong>, means <strong>Education</strong> in Swahili which is the single word that defines our purpose:
+            <br></br>
+            <strong>“To use education as a strategic tool for the emancipation of children, youth, and women, enabling them to lead fulfilling and productive lives.
+            “Education is the most powerful weapon which you can use to change the world.”
+            — Nelson Mandela</strong>
           </p>
           <div className="flex justify-center">
             <a
               href="/about"
-              className="bg-blue-700 text-white px-5 py-3 rounded-full hover:bg-blue-800 transition-colors"
+              className="bg-green-700 text-white px-5 py-3 rounded-full hover:bg-green-800 transition-colors"
             >
               Learn More About Us
             </a>
@@ -155,13 +161,13 @@ export default function Home() {
                 className="w-full h-48 object-cover"
               />
               <div className="p-6 text-center">
-                <h3 className="text-xl font-semibold text-blue-700 mb-3">
+                <h3 className="text-xl font-semibold text-green-700 mb-3">
                   {program.title}
                 </h3>
                 <p className="text-gray-700 mb-3">{program.desc}</p>
                 <a
                   href="/programs"
-                  className="text-blue-600 font-semibold hover:underline"
+                  className="text-green-600 font-semibold hover:underline"
                 >
                   Learn More →
                 </a>

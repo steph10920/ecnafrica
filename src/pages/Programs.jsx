@@ -43,7 +43,7 @@ export default function Programs() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-4xl font-bold text-blue-700 text-center"
+          className="text-4xl font-bold text-green-700 text-center"
         >
           Our Programmes
         </motion.h1>
@@ -57,7 +57,7 @@ export default function Programs() {
             viewport={{ once: true }}
             className="space-y-4 bg-white rounded-2xl p-6 shadow hover:shadow-lg transition-shadow"
           >
-            <h2 className="text-2xl font-semibold text-blue-700">{program.title}</h2>
+            <h2 className="text-2xl font-semibold text-green-700">{program.title}</h2>
             <p className="text-gray-700 leading-relaxed">{program.body}</p>
           </motion.section>
         ))}

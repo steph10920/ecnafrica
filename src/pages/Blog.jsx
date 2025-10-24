@@ -23,7 +23,7 @@ export default function Blog() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <section className="max-w-7xl mx-auto px-6 py-12 flex-1">
-        <h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">
+        <h2 className="text-3xl font-bold text-green-700 mb-6 text-center">
           Latest News & Updates
         </h2>
 
@@ -45,7 +45,7 @@ export default function Blog() {
                 </h3>
                 <p className="text-gray-500 text-sm mb-3">{post.date}</p>
                 <p className="text-gray-700 mb-4">{post.excerpt}</p>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition">
+                <button className="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition">
                   Read More
                 </button>
               </div>

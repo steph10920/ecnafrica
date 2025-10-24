@@ -64,13 +64,13 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center space-x-6 text-gray-700 font-medium relative">
-          <Link to="/" className={`hover:text-blue-600 text-xl ${location.pathname === "/" ? "text-blue-700 font-semibold" : ""}`}>Home</Link>
-          <Link to="/about" className={`hover:text-blue-600 text-xl ${location.pathname === "/about" ? "text-blue-700 font-semibold" : ""}`}>About Us</Link>
-          <Link to="/programs" className={`hover:text-blue-600 text-xl ${location.pathname === "/programs" ? "text-blue-700 font-semibold" : ""}`}>Programs</Link>
+          <Link to="/" className={`hover:text-green-600 text-xl ${location.pathname === "/" ? "text-green-700 font-semibold" : ""}`}>Home</Link>
+          <Link to="/about" className={`hover:text-green-600 text-xl ${location.pathname === "/about" ? "text-green-700 font-semibold" : ""}`}>About Us</Link>
+          <Link to="/programs" className={`hover:text-green-600 text-xl ${location.pathname === "/programs" ? "text-green-700 font-semibold" : ""}`}>Programs</Link>
 
           {/* Categories Dropdown */}
           <div className="relative" onMouseEnter={() => setCategoriesOpen(true)} onMouseLeave={() => setCategoriesOpen(false)}>
-            <button className="hover:text-blue-600 flex items-center gap-1 text-xl">Categories ▾</button>
+            <button className="hover:text-green-600 flex items-center gap-1 text-xl">Categories ▾</button>
             <AnimatePresence>
               {categoriesOpen && (
                 <motion.div
@@ -89,15 +89,15 @@ export default function Navbar() {
                     ["quality-education","Quality Education"],
                     ["uncategorized","Uncategorized"]
                   ].map(([path, label]) => (
-                    <Link key={path} to={`/categories/${path}`} className="block px-3 py-2 text-xl hover:bg-blue-50">{label}</Link>
+                    <Link key={path} to={`/categories/${path}`} className="block px-3 py-2 text-xl hover:bg-green-50">{label}</Link>
                   ))}
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
 
-          <Link to="/blog" className={`hover:text-blue-600 text-xl ${location.pathname === "/blog" ? "text-blue-700 font-semibold" : ""}`}>Blog</Link>
-          <Link to="/contact" className={`hover:text-blue-600 text-xl ${location.pathname === "/contact" ? "text-blue-700 font-semibold" : ""}`}>Contact</Link>
+          <Link to="/blog" className={`hover:text-green-600 text-xl ${location.pathname === "/blog" ? "text-green-700 font-semibold" : ""}`}>Blog</Link>
+          <Link to="/contact" className={`hover:text-green-600 text-xl ${location.pathname === "/contact" ? "text-green-700 font-semibold" : ""}`}>Contact</Link>
 
           {/* Desktop Search */}
           <form onSubmit={handleSearchSubmit} className="ml-4">
@@ -106,13 +106,13 @@ export default function Navbar() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search..."
-              className="px-3 py-2 rounded-md border border-gray-300 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-3 py-2 rounded-md border border-gray-300 text-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             />
           </form>
         </nav>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden text-blue-700 text-2xl focus:outline-none" onClick={() => setMobileOpen(!mobileOpen)}>
+        <button className="md:hidden text-green-700 text-2xl focus:outline-none" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? "✕" : "☰"}
         </button>
       </div>
@@ -127,12 +127,12 @@ export default function Navbar() {
             transition={{ duration: 0.3 }}
             className="md:hidden bg-white shadow-md flex flex-col space-y-2 px-4 py-3 text-lg"
           >
-            <Link to="/" onClick={handleNavClick} className="hover:text-blue-600 text-lg">Home</Link>
-            <Link to="/about" onClick={handleNavClick} className="hover:text-blue-600 text-lg">About Us</Link>
-            <Link to="/programs" onClick={handleNavClick} className="hover:text-blue-600 text-lg">Programs</Link>
+            <Link to="/" onClick={handleNavClick} className="hover:text-green-600 text-lg">Home</Link>
+            <Link to="/about" onClick={handleNavClick} className="hover:text-green-600 text-lg">About Us</Link>
+            <Link to="/programs" onClick={handleNavClick} className="hover:text-green-600 text-lg">Programs</Link>
 
             <details className="group">
-              <summary className="cursor-pointer font-medium hover:text-blue-600 text-lg">Categories ▾</summary>
+              <summary className="cursor-pointer font-medium hover:text-green-600 text-lg">Categories ▾</summary>
               <div className="pl-3 mt-1 space-y-1">
                 {[
                   ["arts-and-sports","Arts and Sports"],
@@ -143,13 +143,13 @@ export default function Navbar() {
                   ["quality-education","Quality Education"],
                   ["uncategorized","Uncategorized"]
                 ].map(([path, label]) => (
-                  <Link key={path} to={`/categories/${path}`} onClick={handleNavClick} className="block hover:text-blue-600 text-lg">{label}</Link>
+                  <Link key={path} to={`/categories/${path}`} onClick={handleNavClick} className="block hover:text-green-600 text-lg">{label}</Link>
                 ))}
               </div>
             </details>
 
-            <Link to="/blog" onClick={handleNavClick} className="hover:text-blue-600 text-lg">Blog</Link>
-            <Link to="/contact" onClick={handleNavClick} className="hover:text-blue-600 text-lg">Contact</Link>
+            <Link to="/blog" onClick={handleNavClick} className="hover:text-green-600 text-lg">Blog</Link>
+            <Link to="/contact" onClick={handleNavClick} className="hover:text-green-600 text-lg">Contact</Link>
 
             {/* Mobile Search */}
             <form onSubmit={handleSearchSubmit} className="mt-2">
@@ -158,7 +158,7 @@ export default function Navbar() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search..."
-                className="w-full px-3 py-2 rounded-md border border-gray-300 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 rounded-md border border-gray-300 text-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               />
             </form>
           </motion.div>

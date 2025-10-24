@@ -6,7 +6,14 @@ export default function Contact() {
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-1 flex flex-col items-center justify-center px-6 text-center">
-        <h1 className="text-3xl font-bold text-blue-700 mb-4">Contact Us</h1>
+        <h1 className="text-3xl font-bold text-green-700 mb-4">Where We Work</h1>
+        <p>We reach across Kenya through regional hubs that reflect the diversity and vibrancy of our people:</p>
+        <h2 className="text-2xl font-semibold text-green-700 mt-8 mb-2">Regions</h2>
+        <ul className="text-gray-700 list-disc list-inside mb-4">
+          <li>Nairobi region: Nairobi, Kajiado, Machakos, Kiambu</li>
+          <li>Coastal region: Mombasa, Kilifi, Kwale, Tana River</li>
+          <li>Western region: Busia, Kakamega, Vihiga, Kisumu</li>
+        </ul>
 
         <div className="text-gray-700 space-y-2">
           <p><strong>ECN - EDUCATION AFRICA</strong></p>
@@ -16,7 +23,7 @@ export default function Contact() {
             Email:{" "}
             <a
               href="mailto:info@elimucommunitynet.org"
-              className="text-blue-600 hover:underline"
+              className="text-green-600 hover:underline"
             >
               info@elimucommunitynet.org
             </a>
@@ -27,7 +34,7 @@ export default function Contact() {
               href="https://elimucommunitynet.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
+              className="text-green-600 hover:underline"
             >
               elimucommunitynet.org
             </a>
