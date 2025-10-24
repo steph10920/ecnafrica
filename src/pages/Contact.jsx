@@ -7,13 +7,15 @@ export default function Contact() {
     <div className="min-h-screen flex flex-col">
       <main className="flex-1 flex flex-col items-center justify-center px-6 text-center">
         <h1 className="text-3xl font-bold text-green-700 mb-4">Where We Work</h1>
-        <p>We reach across Kenya through regional hubs that reflect the diversity and vibrancy of our people:</p>
+        <p>We reach across Kenya through regional hubs that reflect the diversity and vibrancy of our people</p>
+        <br></br>
         <h2 className="text-2xl font-semibold text-green-700 mt-8 mb-2">Regions</h2>
         <ul className="text-gray-700 list-disc list-inside mb-4">
           <li>Nairobi region: Nairobi, Kajiado, Machakos, Kiambu</li>
           <li>Coastal region: Mombasa, Kilifi, Kwale, Tana River</li>
           <li>Western region: Busia, Kakamega, Vihiga, Kisumu</li>
         </ul>
+        <br></br>
 
         <div className="text-gray-700 space-y-2">
           <p><strong>ECN - EDUCATION AFRICA</strong></p>

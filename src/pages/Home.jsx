@@ -52,7 +52,7 @@ export default function Home() {
             Welcome to Elimu Community Network (ECN)
           </h1>
           <p className="text-lg md:text-2xl mb-6 max-w-3xl">
-            African Education Inspiring Opportunities & Understanding
+            <strong>Education for Transformation. Innovation for Sustainable Futures.</strong>
           </p>
           <a
             href="/programs"
