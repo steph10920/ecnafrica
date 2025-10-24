@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer";
+import StrategicFocus from "../components/StrategicFocus"; // ✅ Import Strategic Focus
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,7 +25,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-gray-50">
       
       {/* 🔹 HERO SLIDER SECTION */}
-      <section className="relative w-full h-[90vh] overflow-hidden"> {/* ← removed mt-[72px] */}
+      <section className="relative w-full h-[90vh] overflow-hidden">
         {slides.map((src, i) => (
           <motion.img
             key={i}
@@ -37,10 +38,8 @@ export default function Home() {
           />
         ))}
 
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black/40"></div>
 
-        {/* Text Overlay */}
         <motion.div
           key={currentIndex}
           initial={{ opacity: 0, y: 20 }}
@@ -52,7 +51,9 @@ export default function Home() {
             Welcome to Elimu Community Network (ECN)
           </h1>
           <p className="text-lg md:text-2xl mb-6 max-w-3xl">
-            <strong>Education for Transformation. Innovation for Sustainable Futures.</strong>
+            <strong>
+              Education for Transformation. Innovation for Sustainable Futures.
+            </strong>
           </p>
           <a
             href="/programs"
@@ -106,13 +107,19 @@ export default function Home() {
             Who We Are
           </h2>
           <p className="text-gray-700 mb-4 leading-relaxed text-center">
-            <strong>Elimu Community Network (ECN)</strong> is a non-governmental learning organization founded in Kenya in 2012.
-            We believe that education is not just a pathway out of poverty but a foundation of freedom, dignity, and transformation.
-            Our name, <strong>Elimu</strong>, means <strong>Education</strong> in Swahili which is the single word that defines our purpose:
-            <br></br>
-            <strong>“To use education as a strategic tool for the emancipation of children, youth, and women, enabling them to lead fulfilling and productive lives.
-            “Education is the most powerful weapon which you can use to change the world.”
-            — Nelson Mandela</strong>
+            <strong>Elimu Community Network (ECN)</strong> is a non-governmental
+            learning organization founded in Kenya in 2012. We believe that
+            education is not just a pathway out of poverty but a foundation of
+            freedom, dignity, and transformation. Our name,{" "}
+            <strong>Elimu</strong>, means <strong>Education</strong> in Swahili
+            which is the single word that defines our purpose:
+            <br />
+            <strong>
+              “To use education as a strategic tool for the emancipation of
+              children, youth, and women, enabling them to lead fulfilling and
+              productive lives. “Education is the most powerful weapon which you
+              can use to change the world.” — Nelson Mandela
+            </strong>
           </p>
           <div className="flex justify-center">
             <a
@@ -175,6 +182,9 @@ export default function Home() {
             </motion.div>
           ))}
         </motion.section>
+
+        {/* ✅ Added Strategic Focus Section */}
+        <StrategicFocus />
       </main>
 
       <Footer />

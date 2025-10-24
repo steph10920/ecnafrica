@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/NavBar"; // Only one global navbar
+import Navbar from "./components/NavBar"; // ✅ Correct path
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Programs from "./pages/Programs";
@@ -11,6 +11,7 @@ import ArtsAndSports from "./pages/categories/ArtsAndSports";
 import QualityEducation from "./pages/categories/QualityEducation";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import StrategicFocus from "./components/StrategicFocus"; // ✅ Corrected
 
 export default function App() {
   return (
@@ -29,6 +30,9 @@ export default function App() {
           <Route path="/categories/quality-education" element={<QualityEducation />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
+
+          {/* ✅ Add a route for Strategic Focus if needed */}
+          <Route path="/strategic-focus" element={<StrategicFocus />} />
         </Routes>
       </div>
     </BrowserRouter>
