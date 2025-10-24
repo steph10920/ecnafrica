@@ -384,6 +384,7 @@ export default function Programs() {
             <h2 className="text-xl font-semibold text-green-800">
               C.	IMARA WOMEN: Building Strength through Knowledge and Innovation
             </h2>
+            <p><strong>Imara</strong> means <strong>“strong” and “resilient”</strong> in Swahili</p>
           </div>
 
           <motion.div
@@ -394,16 +395,85 @@ export default function Programs() {
             transition={{ duration: 0.6 }}
           >
             <p>
-              ECN promotes environmental awareness and sustainable practices
-              through community tree planting, waste management campaigns, and
-              training on climate-smart agriculture. Our goal is to foster a
-              generation that values and protects nature.
+              Education, Enterprise, and Empowerment for Sustainable Families
+              <br></br>
+              “When you educate a woman, you educate a nation.”
+              — African Proverb
+
             </p>
             <p>
-              We partner with schools, local groups, and government agencies to
-              implement conservation projects that ensure a cleaner and greener
-              environment for all.
+              At Elimu Community Network (ECN), we believe that empowering women through education and innovation is key to unlocking the full potential of families and communities.
+              Our Women Empowerment Programme integrates economic inclusion, psychosocial wellbeing, and continuous learning to create sustainable change from the inside out.
             </p>
+            <p>
+              This initiative recognizes that a woman’s empowerment journey begins with self-discovery, is strengthened through education, and matures through active participation in the local economy.
+              When women are equipped with knowledge, confidence, and opportunity, they become drivers of transformation by nurturing resilient families and building stronger, more equitable communities.
+            </p>
+            <h2>Programme Goal</h2>
+            <p>
+              To enhance the economic, educational, and psychosocial wellbeing of women through education-based empowerment, community savings models, and microenterprise development that promote family sustainability and community resilience.
+            </p>
+            <h2>Three Strategic Pillars:</h2>
+            <ul>
+              <li><strong>1.  Psychosocial and Family Wellbeing</strong>
+              <p>Our approach begins with the woman; her mind, emotions, and relationships.
+              We provide mental health and psychosocial support (MHPSS) through group therapy sessions, peer mentorship, and family-focused counseling.
+              </p>
+              <p>These interventions build self-worth, confidence, and emotional resilience that are essential foundations for leadership, learning, and entrepreneurship.</p>
+              <p>“Education is not the filling of a pail, but the lighting of a fire.” <strong>— W.B. Yeats</strong></p>
+              </li>
+              <li><strong>2.  Economic Empowerment through Education and Innovation</strong>
+              <p>At the heart of the programme lies a learning-based model that links education directly with income generation.
+              </p>
+              <p>Through structured trainings, women acquire practical skills in entrepreneurship, innovation, and financial literacy, empowering them to design microenterprises that respond to real community needs.</p>
+              </li>
+            </ul>
+            <p>Core Components</p>
+            <ul>
+              <li>
+                <strong>•	Village Savings and Loan Associations (VSLA):</strong><p>Women are organized into self-managed savings and lending groups that promote financial inclusion, mutual accountability, and community solidarity.
+                Each group saves regularly, issues small loans for income-generating activities, and collectively reinvests in local opportunities.
+                </p>
+              </li>
+              <li><strong>•	Microenterprise and Innovation Training:</strong><p>Women receive practical business education on topics such as idea generation, market research, cost management, product diversification, and digital literacy.
+              Special emphasis is placed on “innovation for the generations” by equipping women to identify local problems and create scalable, sustainable solutions.
+              </p>
+              </li>
+              <li><strong>•	Business Incubation and Peer Mentorship:</strong><p>ECN supports emerging women entrepreneurs through mentorship, access to local markets, and partnerships with financial institutions and private-sector players.
+              Peer learning circles encourage women to share experiences and co-create new business models.
+              </p>
+              </li>
+            </ul>
+            <ul>
+              <li><strong>3.  Active Participation in Local Economies and Community Leadership</strong>
+              <p>Empowered women are not just beneficiaries, they are leaders and innovators in their local economies.
+              The programme promotes their participation in local markets, cooperatives, and community enterprises, amplifying their voices in economic decision-making.
+              </p>
+              <p>Through continuous education, we help women move beyond subsistence livelihoods toward productive, dignified, and sustainable engagement in their communities.
+              “When women rise, families prosper and communities flourish.”
+              </p>
+              <p>The Role of Education</p>
+              <p>
+                <p>Education is the foundation of empowerment in this model.</p>
+                <p>It equips women not only with knowledge and skills but also with the mindset to innovate, collaborate, and lead. Through functional literacy classes, financial education, and leadership training, women become lifelong learners who are capable of navigating change and shaping their futures.</p>
+                <p>Each training session, dialogue circle, and mentorship engagement reinforces the idea that education is both a right and a tool for liberation.</p>
+                <p>“The empowered woman is not just self-reliant, she is a catalyst for generational transformation.”</p>
+                <h2>Our Distinctive Approach</h2>
+                <p>hat sets this programme apart is our individualized accompaniment model.
+                Each woman receives personalized support within group-based learning environments that nurture both independence and interdependence.
+                The result is a holistic ecosystem where women’s wellbeing, family development, and community resilience grow together sustainably and inclusively.</p>
+                <h2>Join the Movement</h2>
+                <p>Empowered women create empowered families and empowered families build resilient nations.
+                Through education, savings, and innovation, ECN is helping women move from vulnerability to visibility, from survival to success.</p>
+                <p><strong>Call to Action Buttons:</strong></p>
+                <ul>
+                  <li>•	Learn, save, and grow with others.</li>
+                  <li>•	Sponsor a woman-led business or training.</li>
+                  <li>•	Collaborate to expand access to women’s education and financial inclusion.</li>
+                </ul>
+                </p>
+              </li>
+            </ul>
           </motion.div>
         </section>
       </div>
