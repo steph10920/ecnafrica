@@ -1,16 +1,12 @@
 import React, { Suspense, lazy } from "react";
 
-const Navbar = lazy(() => import("../components/NavBar"));
 const Footer = lazy(() => import("../components/Footer"));
 
 export default function About() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Suspense fallback={<div className="text-center py-4 text-gray-500">Loading navbar...</div>}>
-        <Navbar />
-      </Suspense>
-
-      <main className="max-w-6xl mx-auto px-6 py-16 animate-fade-in">
+      {/* 🔹 Main Content */}
+      <main className="max-w-6xl mx-auto px-6 py-8 space-y-16 animate-fade-in">
         <h1 className="text-3xl md:text-4xl font-bold text-blue-700 mb-6">About ECN</h1>
 
         <p className="text-gray-700 mb-4">

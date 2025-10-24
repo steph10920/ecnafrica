@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Empowering Street-Connected Children Through Education",
+    "date": "2025-09-15",
+    "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+    "excerpt": "Learn how ECN is transforming the lives of street-connected children through the Nairobi Street School initiative.",
+    "content": "ECN’s Nairobi Street School provides safe learning environments for children in street situations, promoting inclusion and empowerment through innovative education."
+  },
+  {
+    "id": 2,
+    "title": "Community Action for a Healthier Tomorrow",
+    "date": "2025-08-20",
+    "image": "https://images.unsplash.com/photo-1509099836639-18ba1795216d",
+    "excerpt": "Discover how our health awareness programs are improving community well-being across Kenya.",
+    "content": "Our community health initiatives address pressing local needs — from malaria prevention to hygiene education — fostering stronger, healthier families."
+  },
+  {
+    "id": 3,
+    "title": "Advocating for Every Child’s Right to Learn",
+    "date": "2025-07-10",
+    "image": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c",
+    "excerpt": "ECN continues to champion child rights through policy advocacy and community engagement.",
+    "content": "Through consistent advocacy, ECN collaborates with county leaders to influence education and child protection policies, ensuring every child gets a fair chance to learn."
+  }
+]

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
 
 export default function Home() {
@@ -23,10 +22,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Navbar />
-
+      
       {/* 🔹 HERO SLIDER SECTION */}
-      <section className="relative w-full h-[90vh] mt-[72px] overflow-hidden">
+      <section className="relative w-full h-[90vh] overflow-hidden"> {/* ← removed mt-[72px] */}
         {slides.map((src, i) => (
           <motion.img
             key={i}

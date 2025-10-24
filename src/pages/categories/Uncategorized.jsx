@@ -1,13 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Navbar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 
 export default function Uncategorized() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Navbar />
-
+      
       <section className="relative bg-gray-700 text-white py-32 text-center overflow-hidden">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
           <h1 className="text-5xl font-bold mb-6">Uncategorized</h1>

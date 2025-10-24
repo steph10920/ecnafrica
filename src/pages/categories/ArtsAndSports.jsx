@@ -1,14 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Navbar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 
 export default function ArtsAndSports() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Navbar />
-
-      <section className="relative bg-pink-600 text-white py-32 text-center overflow-hidden">
+          <section className="relative bg-pink-600 text-white py-32 text-center overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
