@@ -296,14 +296,93 @@ export default function Programs() {
               “When we educate a child, we do not just change a life — we change
               a generation.” <strong>- Mobile street school</strong>
             </p>
-          </motion.div>
+            <br></br>
+            <p>
+              Nafasi is founded on the belief that education liberates potential.
+              It helps children and youth rediscover their identity, rebuild confidence, and reimagine their place in the world.
+              Our “mobile street school” is not confined by walls because it travels where the children are, creating learning experiences rooted in real life and inspired by their strengths, talents, and dreams.
+              Through mentorship, creativity, and structured support, each child learns that their circumstances do not define their destiny.
+            </p>
+            <p>
+              “The child who is not embraced by the village will burn it down to feel its warmth.”
+              <strong>— African Proverb</strong>
+            </p>
+            <p>Join the Journey</p>
+            <p>Every week, ECN’s Nafasi team takes to the streets of Nairobi and surrounding communities not only to rescue but to reimagine education as a tool for healing and empowerment.
+            This is not charity, it is partnership in transformation.
+            </p>
+            <p>
+              “Education is the key to unlock the golden door of freedom.”
+                <strong> George Washington Carver</strong>
+            </p>
+            <h2>Call to Action:</h2>
+            <p>
+              Join us in this beautiful journey of discovering and expanding learning spaces where every child finds their Nafasi; their space, their opportunity, their future.
+            </p>
+            <h2>Sports for Transformation</h2>
+            <p>Empowering vulnerable Youth through Play, Purpose, and Participation</p>
+            <p>“Sport has the power to change the world. It has the power to inspire and unite people in a way that little else does.”
+            <strong>— Nelson Mandela</strong>
+            </p>
+            <p>
+              At Elimu Community Network (ECN), we believe that street and village sports are more than games. They are a classroom without walls, a bridge from vulnerability to self-discovery.
+              Through sports-based learning, we use football, athletics, and creative games as transformative tools to engage youth, build life skills, promote discipline, and open pathways to education and sustainable livelihoods.
+            </p>
+            <h2>Specific Objective</h2>
+            <p>
+              To empower village and street-connected youth through structured sports and life-skills education, enhancing their social inclusion, psychosocial wellbeing, and access to education and livelihood opportunities.
+            </p>
+            <h2>Key Activities</h2>
+            <ul>
+              <li>
+                <strong>1.	Formation of Street Sports Clubs</strong> 
+                <p>Establish safe and inclusive street and village sports clubs where youth meet regularly to play, learn, and grow together.
+                Sessions combine football, athletics, and team challenges with structured life-skills lessons on teamwork, communication, leadership, and self-control.
+                </p>
+              </li>
+              <li>
+                <strong>2.	Street and village Sports Tournaments and Talent Days</strong> 
+                <p>EOrganize quarterly community tournaments and “Talent Days” that showcase the abilities of participating youth.
+                  These events foster team spirit, reduce stigma, and connect youth to education, vocational training, and mentorship opportunities.
+                </p>
+              </li>
+              <li>
+                <strong>3.  Peer Coaching and Leadership Development</strong> 
+                <p>Identify and train outstanding participants as peer coaches and youth mentors.
+                They become positive role models, leading younger players, facilitating learning circles, and organizing community clean-up or advocacy events that promote peace and social responsibility.
+                </p>
+              </li>
+            </ul>
+            <h2>Achievements</h2>
+            <ul>
+              <li>
+                <strong>1.	Youth Empowerment and Re-engagement</strong> 
+                <p>Over 70% of participating youth demonstrated improved confidence, teamwork, and emotional regulation, with many re-engaging in education, training, or family life.
+                </p>
+              </li>
+              <li>
+                <strong>2.	Social Inclusion and Community Cohesion</strong> 
+                <p>Street and village sports activities reduced social stigma and strengthened community bonds, transforming how local residents perceive and support vulnerable youth.
+                </p>
+              </li>
+              <li>
+                <strong>3.	Pathways to Opportunity</strong> 
+                <p>Through mentorship, talent development, and educational linkages, participating youth accessed new opportunities — from school re-entry and vocational training to employment and microenterprise in the sports value chain.
+                </p>
+              </li>
+            </ul>
+            <p>
+              “When youth play, they learn. When they learn, they lead. And when they lead, communities transform.”
+              <strong>— Elimu Community Network</strong>
+            </p>
+            </motion.div>
         </section>
 
         {/* Section C */}
         <section className="w-full max-w-4xl mb-12">
           <div className="sticky top-0 bg-green-100 py-3 px-4 rounded-md shadow-sm">
             <h2 className="text-xl font-semibold text-green-800">
-              C. ENVIRONMENTAL CONSERVATION AND SUSTAINABILITY
+              C.	IMARA WOMEN: Building Strength through Knowledge and Innovation
             </h2>
           </div>
 
