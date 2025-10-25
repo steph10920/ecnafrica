@@ -4,13 +4,13 @@ import Footer from "../components/Footer";
 import educationImg from "../assets/education.jpg";
 import childProtectionImg from "../assets/child-protection.jpg";
 import communityImg from "../assets/community.jpg";
-import StrategicFocus from "../components/StrategicFocus"; // ✅ Import Strategic Focus
-
+import StrategicFocus from "../components/StrategicFocus";
+import img1 from "../assets/img1.jpg";
+import img2 from "../assets/img2.jpg";
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // 🔹 Online background images for hero slider
   const slides = [
     "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1500&q=80",
     "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=1500&q=80",
@@ -18,7 +18,6 @@ export default function Home() {
     "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1500&q=80",
   ];
 
-  // 🔁 Auto-slide effect
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
@@ -27,9 +26,9 @@ export default function Home() {
   }, [slides.length]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      {/* 🔹 HERO SLIDER SECTION */}
-      <section className="relative w-full h-[90vh] overflow-hidden">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
+      {/* 🔹 HERO SECTION */}
+      <section className="relative w-full h-screen overflow-hidden">
         {slides.map((src, i) => (
           <motion.img
             key={i}
@@ -42,37 +41,37 @@ export default function Home() {
           />
         ))}
 
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
 
         <motion.div
           key={currentIndex}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4"
+          className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">
             Welcome to Elimu Community Network (ECN)
           </h1>
-          <p className="text-lg md:text-2xl mb-6 max-w-3xl">
+          <p className="text-lg md:text-2xl mb-8 max-w-3xl leading-relaxed">
             <strong>
               Education for Transformation. Innovation for Sustainable Futures.
             </strong>
           </p>
           <a
             href="/programs"
-            className="bg-white text-green-700 font-semibold px-6 py-3 rounded-full shadow-lg hover:scale-105 hover:bg-gray-100 transition-transform"
+            className="bg-white text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-2xl hover:scale-105 transition-all"
           >
             Explore Our Programs
           </a>
         </motion.div>
 
-        {/* Navigation Arrows */}
+        {/* Arrows */}
         <button
           onClick={() =>
             setCurrentIndex((i) => (i === 0 ? slides.length - 1 : i - 1))
           }
-          className="absolute left-5 top-1/2 transform -translate-y-1/2 bg-white/60 hover:bg-white text-green-700 rounded-full p-2"
+          className="absolute left-5 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white text-green-700 rounded-full p-3 shadow-md"
         >
           ❮
         </button>
@@ -80,99 +79,94 @@ export default function Home() {
           onClick={() =>
             setCurrentIndex((i) => (i === slides.length - 1 ? 0 : i + 1))
           }
-          className="absolute right-5 top-1/2 transform -translate-y-1/2 bg-white/60 hover:bg-white text-green-700 rounded-full p-2"
+          className="absolute right-5 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white text-green-700 rounded-full p-3 shadow-md"
         >
           ❯
         </button>
 
         {/* Dots */}
-        <div className="absolute bottom-5 w-full flex justify-center gap-2">
+        <div className="absolute bottom-6 w-full flex justify-center gap-2">
           {slides.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrentIndex(i)}
               className={`w-3 h-3 rounded-full transition-all ${
-                i === currentIndex ? "bg-white scale-110" : "bg-gray-400"
+                i === currentIndex ? "bg-white scale-125" : "bg-gray-400"
               }`}
             />
           ))}
         </div>
       </section>
 
-      {/* 🔹 ABOUT PREVIEW (Modernized with Images) */}
-      <main className="max-w-6xl mx-auto px-6 py-20 space-y-16">
+      {/* 🔹 ABOUT SECTION */}
+      <main className="max-w-7xl mx-auto px-6 py-24 space-y-24">
         <motion.section
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="bg-white rounded-2xl shadow-lg overflow-hidden grid md:grid-cols-2 gap-10 p-8 md:p-12 items-center"
+          className="bg-white rounded-3xl shadow-xl overflow-hidden grid md:grid-cols-2 gap-10 p-10 items-center border border-green-100"
         >
           {/* Left side: images */}
           <div className="space-y-4">
-            <a
-              href="https://unsplash.com/photos/3TLl_97HNJo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block overflow-hidden rounded-xl group"
-            >
+            <div className="overflow-hidden rounded-2xl group">
               <img
-                src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=1200&auto=format&fit=crop"
+                src={img1}
                 alt="Children learning in class"
-                className="w-full h-56 md:h-64 object-cover transform group-hover:scale-105 transition duration-500"
+                className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-700"
               />
-            </a>
-            <a
-              href="https://unsplash.com/photos/1K8pIbIrhkQ"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block overflow-hidden rounded-xl group"
-            >
+            </div>
+            <div className="overflow-hidden rounded-2xl group">
               <img
-                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop"
+                src={img2}
                 alt="Community education workshop"
-                className="w-full h-56 md:h-64 object-cover transform group-hover:scale-105 transition duration-500"
+                className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-700"
               />
-            </a>
+            </div>
           </div>
 
-          {/* Right side: content */}
-          <div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-green-700 mb-4 text-center md:text-left">
+          {/* Right side: text */}
+          <div className="space-y-5">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-green-700">
               Who We Are
             </h2>
-
-            <p className="text-gray-700 leading-relaxed mb-4">
-              <strong>Elimu Community Network (ECN)</strong> is a <strong>non-governmental learning
-               organization</strong> founded in Kenya in 2012. We exist to redefine education 
-               not merely as classroom learning, but as <strong>a living, dynamic force for emancipation, 
-               innovation, and community resilience</strong>. We believe that education is not just a pathway 
-               out of poverty but a foundation of <strong>freedom, dignity, and transformation</strong>.
+            <p className="text-gray-700 leading-relaxed">
+              <strong>Elimu Community Network (ECN)</strong> is a{" "}
+              <strong>non-governmental learning organization</strong> founded in
+              Kenya in 2012. We exist to redefine education not merely as
+              classroom learning, but as{" "}
+              <strong>
+                a living, dynamic force for emancipation, innovation, and
+                community resilience
+              </strong>
+              . We believe that education is not just a pathway out of poverty
+              but a foundation of <strong>freedom, dignity, and transformation</strong>.
             </p>
-            <br></br>
-           <p> Our name, Elimu, means Education in Swahili which is the single word that defines our purpose:</p>
-            <blockquote className="border-l-4 border-green-300 pl-4 italic text-gray-600 mb-4">
+            <p className="text-gray-700">
+              Our name, <strong>Elimu</strong>, means <strong>Education</strong>{" "}
+              in Swahili which is the single word that defines our purpose:
+            </p>
+            <blockquote className="border-l-4 border-green-400 pl-4 italic text-gray-600">
               “To use education as a strategic tool for the emancipation of
               children, youth, and women, enabling them to lead fulfilling and
               productive lives.”
             </blockquote>
-
-            <p className="text-gray-700 mb-4">
-              At ECN, we believe that education must be relevant, contextual, and transformative by being 
-              rooted in the realities of our people and responsive to the changing needs of society. We 
-              champion education that not only informs but transforms; that not only prepares individuals 
-              for work but empowers them to create work and solutions that uplift communities.
+            <p className="text-gray-700">
+              At ECN, we believe that education must be relevant, contextual,
+              and transformative by being rooted in the realities of our people
+              and responsive to the changing needs of society. We champion
+              education that not only informs but transforms; that not only
+              prepares individuals for work but empowers them to create work and
+              solutions that uplift communities.
             </p>
-
-            <p className="text-gray-800 font-semibold mb-6">
+            <p className="text-gray-800 font-semibold">
               “Education is the most powerful weapon which you can use to change
               the world.” — Nelson Mandela
             </p>
-
-            <div className="flex justify-center md:justify-start">
+            <div>
               <a
                 href="/about"
-                className="bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition-colors"
+                className="inline-block bg-green-700 text-white px-8 py-3 rounded-full hover:bg-green-800 transition-all font-semibold shadow-md hover:shadow-xl"
               >
                 Learn More About Us
               </a>
@@ -184,9 +178,9 @@ export default function Home() {
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-3 gap-10"
         >
           {[
             {
@@ -208,19 +202,18 @@ export default function Home() {
             <motion.div
               key={index}
               whileHover={{ scale: 1.05 }}
-              className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition-shadow"
+              className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all border border-green-100"
             >
               <img
                 src={program.img}
                 alt={program.title}
-                loading="lazy"
-                className="w-full h-48 object-cover"
+                className="w-full h-56 object-cover"
               />
-              <div className="p-6 text-center">
-                <h3 className="text-xl font-semibold text-green-700 mb-3">
+              <div className="p-6 text-center space-y-3">
+                <h3 className="text-xl font-semibold text-green-700">
                   {program.title}
                 </h3>
-                <p className="text-gray-700 mb-3">{program.desc}</p>
+                <p className="text-gray-700">{program.desc}</p>
                 <a
                   href="/programs"
                   className="text-green-600 font-semibold hover:underline"
@@ -232,7 +225,7 @@ export default function Home() {
           ))}
         </motion.section>
 
-        {/* ✅ Strategic Focus Section */}
+        {/* ✅ STRATEGIC FOCUS SECTION */}
         <StrategicFocus />
       </main>
 
