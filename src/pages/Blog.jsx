@@ -9,14 +9,16 @@ export default function Blog() {
       title: "Empowering Communities Through Education",
       date: "October 10, 2025",
       image: "https://source.unsplash.com/800x400/?education,children",
-      excerpt: "Learn how ECN Africa is helping marginalized children access quality education.",
+      excerpt:
+        "Learn how ECN Africa is helping marginalized children access quality education.",
     },
     {
       id: 2,
       title: "Green Future: Environmental Awareness Program",
       date: "September 22, 2025",
       image: "https://source.unsplash.com/800x400/?environment,trees",
-      excerpt: "Our environmental campaigns inspire communities to protect their natural resources.",
+      excerpt:
+        "Our environmental campaigns inspire communities to protect their natural resources.",
     },
   ];
 
@@ -52,9 +54,26 @@ export default function Blog() {
             </div>
           ))}
         </div>
+
+        {/* Source attribution */}
+        <p className="text-center text-sm text-gray-500 mt-10">
+          Source:{" "}
+          <a
+            href="https://share.google/qz9Mieg8XUyQZeHp5"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-green-600 hover:underline"
+          >
+            Amref Health Africa
+          </a>
+        </p>
       </section>
 
-      <Suspense fallback={<div className="text-center py-4 text-gray-500">Loading footer...</div>}>
+      <Suspense
+        fallback={
+          <div className="text-center py-4 text-gray-500">Loading footer...</div>
+        }
+      >
         <Footer />
       </Suspense>
     </div>

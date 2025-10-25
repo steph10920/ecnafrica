@@ -7,16 +7,14 @@ import communityImg from "../assets/community.jpg";
 import StrategicFocus from "../components/StrategicFocus";
 import img1 from "../assets/img1.jpg";
 import img2 from "../assets/img2.jpg";
+import slide1 from "../assets/slide1.jpeg";
+import slide2 from "../assets/slide2.jpeg";
+import slide3 from "../assets/slide3.jpeg";
+import slide4 from "../assets/slide4.jpeg";
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const slides = [
-    "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1500&q=80",
-    "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=1500&q=80",
-    "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1500&q=80",
-    "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1500&q=80",
-  ];
+  const slides = [slide1, slide2, slide3, slide4];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -28,20 +26,28 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
       {/* 🔹 HERO SECTION */}
-      <section className="relative w-full h-screen overflow-hidden">
+      <section className="relative w-full h-[75vh] md:h-[85vh] overflow-hidden">
         {slides.map((src, i) => (
           <motion.img
             key={i}
             src={src}
             alt={`Slide ${i + 1}`}
-            loading="lazy"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            loading="eager"
+            decoding="async"
+            initial={{ scale: 1 }}
+            animate={{ scale: i === currentIndex ? 1.03 : 1 }}
+            transition={{ duration: 8, ease: "easeOut" }}
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
               i === currentIndex ? "opacity-100" : "opacity-0"
             }`}
+            style={{
+              backfaceVisibility: "hidden",
+              willChange: "transform, opacity",
+            }}
           />
         ))}
 
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-black/20" />
 
         <motion.div
           key={currentIndex}
@@ -140,7 +146,8 @@ export default function Home() {
                 community resilience
               </strong>
               . We believe that education is not just a pathway out of poverty
-              but a foundation of <strong>freedom, dignity, and transformation</strong>.
+              but a foundation of{" "}
+              <strong>freedom, dignity, and transformation</strong>.
             </p>
             <p className="text-gray-700">
               Our name, <strong>Elimu</strong>, means <strong>Education</strong>{" "}
