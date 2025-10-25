@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer";
+import educationImg from "../assets/education.jpg";
+import childProtectionImg from "../assets/child-protection.jpg";
+import communityImg from "../assets/community.jpg";
 import StrategicFocus from "../components/StrategicFocus"; // ✅ Import Strategic Focus
+
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // 🔹 Online background images
+  // 🔹 Online background images for hero slider
   const slides = [
     "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1500&q=80",
     "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=1500&q=80",
@@ -14,6 +18,7 @@ export default function Home() {
     "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1500&q=80",
   ];
 
+  // 🔁 Auto-slide effect
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
@@ -23,7 +28,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      
       {/* 🔹 HERO SLIDER SECTION */}
       <section className="relative w-full h-[90vh] overflow-hidden">
         {slides.map((src, i) => (
@@ -38,7 +42,7 @@ export default function Home() {
           />
         ))}
 
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/40" />
 
         <motion.div
           key={currentIndex}
@@ -90,46 +94,91 @@ export default function Home() {
               className={`w-3 h-3 rounded-full transition-all ${
                 i === currentIndex ? "bg-white scale-110" : "bg-gray-400"
               }`}
-            ></button>
+            />
           ))}
         </div>
       </section>
 
-      {/* 🔹 ABOUT PREVIEW */}
+      {/* 🔹 ABOUT PREVIEW (Modernized with Images) */}
       <main className="max-w-6xl mx-auto px-6 py-20 space-y-16">
-        <motion.div
+        <motion.section
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          className="bg-white rounded-2xl shadow-lg overflow-hidden grid md:grid-cols-2 gap-10 p-8 md:p-12 items-center"
         >
-          <h2 className="text-3xl font-bold text-green-700 mb-6 text-center">
-            Who We Are
-          </h2>
-          <p className="text-gray-700 mb-4 leading-relaxed text-center">
-            <strong>Elimu Community Network (ECN)</strong> is a non-governmental
-            learning organization founded in Kenya in 2012. We believe that
-            education is not just a pathway out of poverty but a foundation of
-            freedom, dignity, and transformation. Our name,{" "}
-            <strong>Elimu</strong>, means <strong>Education</strong> in Swahili
-            which is the single word that defines our purpose:
-            <br />
-            <strong>
-              “To use education as a strategic tool for the emancipation of
-              children, youth, and women, enabling them to lead fulfilling and
-              productive lives. “Education is the most powerful weapon which you
-              can use to change the world.” — Nelson Mandela
-            </strong>
-          </p>
-          <div className="flex justify-center">
+          {/* Left side: images */}
+          <div className="space-y-4">
             <a
-              href="/about"
-              className="bg-green-700 text-white px-5 py-3 rounded-full hover:bg-green-800 transition-colors"
+              href="https://unsplash.com/photos/3TLl_97HNJo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block overflow-hidden rounded-xl group"
             >
-              Learn More About Us
+              <img
+                src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=1200&auto=format&fit=crop"
+                alt="Children learning in class"
+                className="w-full h-56 md:h-64 object-cover transform group-hover:scale-105 transition duration-500"
+              />
+            </a>
+            <a
+              href="https://unsplash.com/photos/1K8pIbIrhkQ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block overflow-hidden rounded-xl group"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop"
+                alt="Community education workshop"
+                className="w-full h-56 md:h-64 object-cover transform group-hover:scale-105 transition duration-500"
+              />
             </a>
           </div>
-        </motion.div>
+
+          {/* Right side: content */}
+          <div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-green-700 mb-4 text-center md:text-left">
+              Who We Are
+            </h2>
+
+            <p className="text-gray-700 leading-relaxed mb-4">
+              <strong>Elimu Community Network (ECN)</strong> is a <strong>non-governmental learning
+               organization</strong> founded in Kenya in 2012. We exist to redefine education 
+               not merely as classroom learning, but as <strong>a living, dynamic force for emancipation, 
+               innovation, and community resilience</strong>. We believe that education is not just a pathway 
+               out of poverty but a foundation of <strong>freedom, dignity, and transformation</strong>.
+            </p>
+            <br></br>
+           <p> Our name, Elimu, means Education in Swahili which is the single word that defines our purpose:</p>
+            <blockquote className="border-l-4 border-green-300 pl-4 italic text-gray-600 mb-4">
+              “To use education as a strategic tool for the emancipation of
+              children, youth, and women, enabling them to lead fulfilling and
+              productive lives.”
+            </blockquote>
+
+            <p className="text-gray-700 mb-4">
+              At ECN, we believe that education must be relevant, contextual, and transformative by being 
+              rooted in the realities of our people and responsive to the changing needs of society. We 
+              champion education that not only informs but transforms; that not only prepares individuals 
+              for work but empowers them to create work and solutions that uplift communities.
+            </p>
+
+            <p className="text-gray-800 font-semibold mb-6">
+              “Education is the most powerful weapon which you can use to change
+              the world.” — Nelson Mandela
+            </p>
+
+            <div className="flex justify-center md:justify-start">
+              <a
+                href="/about"
+                className="bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition-colors"
+              >
+                Learn More About Us
+              </a>
+            </div>
+          </div>
+        </motion.section>
 
         {/* 🔹 PROGRAMS PREVIEW */}
         <motion.section
@@ -143,17 +192,17 @@ export default function Home() {
             {
               title: "Education",
               desc: "Innovative learning opportunities for all children.",
-              img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=60",
+              img: educationImg,
             },
             {
               title: "Child Protection",
               desc: "Rescuing and reintegrating street-connected children into families.",
-              img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=60",
+              img: childProtectionImg,
             },
             {
               title: "Community Development",
               desc: "Empowering families through health, food security, and conservation.",
-              img: "https://images.unsplash.com/photo-1497339100210-9e87df79c218?auto=format&fit=crop&w=800&q=60",
+              img: communityImg,
             },
           ].map((program, index) => (
             <motion.div
@@ -183,7 +232,7 @@ export default function Home() {
           ))}
         </motion.section>
 
-        {/* ✅ Added Strategic Focus Section */}
+        {/* ✅ Strategic Focus Section */}
         <StrategicFocus />
       </main>
 
