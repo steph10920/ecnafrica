@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
       {/* 🔹 HERO SECTION */}
-      <section className="relative w-full h-[50vh] sm:h-[60vh] md:h-[85vh] overflow-hidden">
+      <section className="relative w-full h-[60vh] sm:h-[65vh] md:h-[85vh] overflow-hidden">
         {slides.map((src, i) => (
           <motion.img
             key={i}
@@ -40,33 +40,28 @@ export default function Home() {
             className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
               i === currentIndex ? "opacity-100" : "opacity-0"
             }`}
-            style={{
-              backfaceVisibility: "hidden",
-              willChange: "transform, opacity",
-            }}
+            style={{ backfaceVisibility: "hidden", willChange: "transform, opacity" }}
           />
         ))}
 
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-black/30" />
 
         <motion.div
           key={currentIndex}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6"
+          className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4 sm:px-6"
         >
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">
+          <h1 className="text-2xl sm:text-4xl md:text-6xl font-extrabold mb-3 sm:mb-4 drop-shadow-lg leading-snug">
             Welcome to Elimu Community Network (ECN)
           </h1>
-          <p className="text-lg md:text-2xl mb-8 max-w-3xl leading-relaxed">
-            <strong>
-              Education for Transformation. Innovation for Sustainable Futures.
-            </strong>
+          <p className="text-base sm:text-lg md:text-2xl mb-6 sm:mb-8 max-w-2xl sm:max-w-3xl leading-relaxed">
+            <strong>Education for Transformation. Innovation for Sustainable Futures.</strong>
           </p>
           <a
             href="/programs"
-            className="bg-white text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-2xl hover:scale-105 transition-all"
+            className="bg-white text-green-700 font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-full shadow-lg hover:shadow-2xl hover:scale-105 transition-all text-sm sm:text-base"
           >
             Explore Our Programs
           </a>
@@ -77,7 +72,7 @@ export default function Home() {
           onClick={() =>
             setCurrentIndex((i) => (i === 0 ? slides.length - 1 : i - 1))
           }
-          className="absolute left-5 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white text-green-700 rounded-full p-3 shadow-md"
+          className="absolute left-3 sm:left-5 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white text-green-700 rounded-full p-2 sm:p-3 shadow-md"
         >
           ❮
         </button>
@@ -85,18 +80,18 @@ export default function Home() {
           onClick={() =>
             setCurrentIndex((i) => (i === slides.length - 1 ? 0 : i + 1))
           }
-          className="absolute right-5 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white text-green-700 rounded-full p-3 shadow-md"
+          className="absolute right-3 sm:right-5 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white text-green-700 rounded-full p-2 sm:p-3 shadow-md"
         >
           ❯
         </button>
 
         {/* Dots */}
-        <div className="absolute bottom-6 w-full flex justify-center gap-2">
+        <div className="absolute bottom-4 sm:bottom-6 w-full flex justify-center gap-2">
           {slides.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrentIndex(i)}
-              className={`w-3 h-3 rounded-full transition-all ${
+              className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all ${
                 i === currentIndex ? "bg-white scale-125" : "bg-gray-400"
               }`}
             />
@@ -105,38 +100,33 @@ export default function Home() {
       </section>
 
       {/* 🔹 ABOUT SECTION */}
-      <main className="max-w-7xl mx-auto px-6 py-24 space-y-24">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 space-y-16 sm:space-y-24">
         <motion.section
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="bg-white rounded-3xl shadow-xl overflow-hidden grid md:grid-cols-2 gap-10 p-10 items-center border border-green-100"
+          className="bg-white rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 p-6 sm:p-10 items-center border border-green-100"
         >
-          {/* Left side: images */}
+          {/* Left: images */}
           <div className="space-y-4">
-            <div className="overflow-hidden rounded-2xl group">
-              <img
-                src={img1}
-                alt="Children learning in class"
-                className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-700"
-              />
-            </div>
-            <div className="overflow-hidden rounded-2xl group">
-              <img
-                src={img2}
-                alt="Community education workshop"
-                className="w-full h-64 object-cover transform group-hover:scale-110 transition duration-700"
-              />
-            </div>
+            {[img1, img2].map((img, i) => (
+              <div key={i} className="overflow-hidden rounded-2xl group">
+                <img
+                  src={img}
+                  alt={`About ECN image ${i + 1}`}
+                  className="w-full h-56 sm:h-64 object-cover transform group-hover:scale-110 transition duration-700"
+                />
+              </div>
+            ))}
           </div>
 
-          {/* Right side: text */}
-          <div className="space-y-5">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-green-700">
+          {/* Right: text */}
+          <div className="space-y-4 sm:space-y-5 text-gray-700">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-green-700">
               Who We Are
             </h2>
-            <p className="text-gray-700 leading-relaxed">
+            <p>
               <strong>Elimu Community Network (ECN)</strong> is a{" "}
               <strong>non-governmental learning organization</strong> founded in
               Kenya in 2012. We exist to redefine education not merely as
@@ -145,26 +135,21 @@ export default function Home() {
                 a living, dynamic force for emancipation, innovation, and
                 community resilience
               </strong>
-              . We believe that education is not just a pathway out of poverty
-              but a foundation of{" "}
-              <strong>freedom, dignity, and transformation</strong>.
+              .
             </p>
-            <p className="text-gray-700">
+            <p>
               Our name, <strong>Elimu</strong>, means <strong>Education</strong>{" "}
-              in Swahili which is the single word that defines our purpose:
+              in Swahili, defining our purpose:
             </p>
-            <blockquote className="border-l-4 border-green-400 pl-4 italic text-gray-600">
+            <blockquote className="border-l-4 border-green-400 pl-3 sm:pl-4 italic text-gray-600">
               “To use education as a strategic tool for the emancipation of
               children, youth, and women, enabling them to lead fulfilling and
               productive lives.”
             </blockquote>
-            <p className="text-gray-700">
-              At ECN, we believe that education must be relevant, contextual,
-              and transformative by being rooted in the realities of our people
-              and responsive to the changing needs of society. We champion
-              education that not only informs but transforms; that not only
-              prepares individuals for work but empowers them to create work and
-              solutions that uplift communities.
+            <p>
+              We champion education that not only informs but transforms — that
+              not only prepares individuals for work but empowers them to create
+              work and solutions that uplift communities.
             </p>
             <p className="text-gray-800 font-semibold">
               “Education is the most powerful weapon which you can use to change
@@ -173,7 +158,7 @@ export default function Home() {
             <div>
               <a
                 href="/about"
-                className="inline-block bg-green-700 text-white px-8 py-3 rounded-full hover:bg-green-800 transition-all font-semibold shadow-md hover:shadow-xl"
+                className="inline-block bg-green-700 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full hover:bg-green-800 transition-all font-semibold shadow-md hover:shadow-xl text-sm sm:text-base"
               >
                 Learn More About Us
               </a>
@@ -187,7 +172,7 @@ export default function Home() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-10"
+          className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10"
         >
           {[
             {
@@ -208,22 +193,22 @@ export default function Home() {
           ].map((program, index) => (
             <motion.div
               key={index}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.03 }}
               className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all border border-green-100"
             >
               <img
                 src={program.img}
                 alt={program.title}
-                className="w-full h-56 object-cover"
+                className="w-full h-48 sm:h-56 object-cover"
               />
-              <div className="p-6 text-center space-y-3">
-                <h3 className="text-xl font-semibold text-green-700">
+              <div className="p-5 sm:p-6 text-center space-y-2 sm:space-y-3">
+                <h3 className="text-lg sm:text-xl font-semibold text-green-700">
                   {program.title}
                 </h3>
-                <p className="text-gray-700">{program.desc}</p>
+                <p className="text-gray-700 text-sm sm:text-base">{program.desc}</p>
                 <a
                   href="/programs"
-                  className="text-green-600 font-semibold hover:underline"
+                  className="text-green-600 font-semibold hover:underline text-sm sm:text-base"
                 >
                   Learn More →
                 </a>
