@@ -3,6 +3,7 @@ import React, { useState, Suspense, lazy } from "react";
 const Footer = lazy(() => import("../components/Footer"));
 
 export default function Contact() {
+  // --- Job listings data ---
   const jobListings = [
     {
       id: 1,
@@ -14,24 +15,24 @@ export default function Contact() {
       shortDescription:
         "We are seeking a qualified ICT Officer to support our IT infrastructure, ensure network stability, and manage system security.",
       description:
-        "The ICT Officer provides technical support across the organization, manages servers/networks, deploys and maintains software, implements security best practices and supports staff with IT-related issues. The role works closely with program and admin teams to ensure smooth digital operations.",
+        "The ICT Officer provides technical support across the organization, manages servers/networks, deploys and maintains software, implements security best practices, and supports staff with IT-related issues. The role ensures smooth digital operations across all ECN programs.",
       responsibilities: [
-        "Manage and maintain local networks, servers and cloud services.",
+        "Manage and maintain local networks, servers, and cloud services.",
         "Provide day-to-day technical support to staff and troubleshoot hardware/software issues.",
         "Ensure backups, disaster recovery plans, and cybersecurity measures are in place.",
         "Maintain website and basic integrations with third-party services.",
-        "Train staff on digital tools, data security and safe online practices.",
+        "Train staff on digital tools, data security, and safe online practices.",
       ],
       qualifications: [
-        "Degree or diploma in IT, Computer Science or related field.",
-        "Minimum 2 years experience in IT support / system administration.",
-        "Familiarity with Linux/Windows servers, routers, firewalls and cloud services.",
+        "Degree or diploma in IT, Computer Science, or related field.",
+        "Minimum 2 years of experience in IT support or system administration.",
+        "Familiarity with Linux/Windows servers, routers, firewalls, and cloud services.",
         "Good communication skills and ability to train non-technical staff.",
       ],
       benefits:
-        "Medical cover, pension contributions, flexible working arrangements and opportunities for professional development.",
+        "Medical cover, pension contributions, flexible working arrangements, and opportunities for professional development.",
       howToApply:
-        "Click Apply to complete the short form and upload a CV (PDF). Only shortlisted candidates will be contacted.",
+        "Click Apply to complete the short form and upload your CV (PDF). Only shortlisted candidates will be contacted.",
     },
     {
       id: 2,
@@ -43,22 +44,22 @@ export default function Contact() {
       shortDescription:
         "The Program Coordinator will oversee community-based education initiatives, manage field officers, and ensure effective reporting.",
       description:
-        "The Program Coordinator will lead design and implementation of ECN’s education projects in the region. The coordinator supervises field staff, ensures high-quality programming, monitors progress against targets, manages stakeholder relationships and prepares timely reports for donors and leadership.",
+        "The Program Coordinator will lead the design and implementation of ECN’s education projects. They supervise field staff, ensure quality programming, monitor progress against targets, manage stakeholder relationships, and prepare timely reports for donors and leadership.",
       responsibilities: [
-        "Plan, implement and supervise education activities and school-based programs.",
+        "Plan, implement, and supervise education activities and school-based programs.",
         "Manage and mentor field staff and volunteers.",
         "Monitor program quality and collect data for reporting and learning.",
-        "Coordinate with local stakeholders, schools and government offices.",
+        "Coordinate with local stakeholders, schools, and government offices.",
         "Support proposal writing and contribute to program improvement.",
       ],
       qualifications: [
-        "Bachelor’s degree in Education, Development Studies or related field.",
-        "3+ years experience managing community education or development programs.",
+        "Bachelor’s degree in Education, Development Studies, or related field.",
+        "3+ years of experience managing community education or development programs.",
         "Strong monitoring & evaluation skills and excellent written English.",
         "Ability to travel regularly and work with diverse communities.",
       ],
       benefits:
-        "Field allowances, travel reimbursement, training and opportunities to lead research partnerships.",
+        "Field allowances, travel reimbursement, training, and opportunities to lead research partnerships.",
       howToApply:
         "Complete the Apply form and upload your CV and a one-page cover letter (PDF). Shortlisted candidates will be notified by email.",
     },
@@ -70,7 +71,6 @@ export default function Contact() {
   const openDetails = (job) => {
     setSelectedJob(job);
     setModalMode("details");
-    // lock body scroll when modal open
     document.body.style.overflow = "hidden";
   };
 
@@ -86,6 +86,7 @@ export default function Contact() {
     document.body.style.overflow = "";
   };
 
+  // --- MAIN PAGE ---
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
       <main className="flex-1 flex flex-col items-center justify-start px-6 pt-28 text-center">
@@ -100,7 +101,7 @@ export default function Contact() {
           solutions that are rooted in context and driven by compassion.
         </p>
 
-        {/* Regions */}
+        {/* Regional Hubs */}
         <section className="bg-white shadow-lg rounded-3xl p-8 md:p-12 max-w-3xl w-full border border-green-100 mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-green-700 mb-6">
             Our Regional Hubs
@@ -118,7 +119,7 @@ export default function Contact() {
           </ul>
         </section>
 
-        {/* Jobs */}
+        {/* JOB LISTINGS */}
         <section className="w-full max-w-6xl mb-16">
           <h2 className="text-3xl font-extrabold text-green-700 mb-8 text-center">
             Job Opportunities
@@ -148,14 +149,12 @@ export default function Contact() {
                   <button
                     onClick={() => openDetails(job)}
                     className="flex-1 bg-green-700 text-white px-4 py-2 rounded-xl hover:bg-green-800 transition"
-                    aria-label={`See details for ${job.title}`}
                   >
                     See Details
                   </button>
                   <button
                     onClick={() => openApply(job)}
                     className="flex-1 border border-green-700 text-green-700 px-4 py-2 rounded-xl hover:bg-green-700 hover:text-white transition"
-                    aria-label={`Apply for ${job.title}`}
                   >
                     Apply
                   </button>
@@ -165,67 +164,68 @@ export default function Contact() {
           </div>
         </section>
 
-        {/* Modal(s): Details or Apply */}
+        {/* DETAILS MODAL */}
         {selectedJob && modalMode === "details" && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div
               className="absolute inset-0 bg-black/50"
               onClick={closeModal}
-              aria-hidden
             />
             <div className="relative bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-auto max-h-[90vh]">
-              <div className="p-6 sm:p-8">
+              <div className="p-6 sm:p-8 relative">
                 <button
                   onClick={closeModal}
                   className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
-                  aria-label="Close details"
                 >
                   ✕
                 </button>
 
-                <header className="mb-4">
-                  <h3 className="text-2xl font-bold text-green-700">
-                    {selectedJob.title}
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    {selectedJob.location} • {selectedJob.type} • Closes:{" "}
-                    {selectedJob.closingDate}
+                <h3 className="text-2xl font-bold text-green-700 mb-2">
+                  {selectedJob.title}
+                </h3>
+                <p className="text-sm text-gray-600 mb-1">
+                  {selectedJob.location} • {selectedJob.type} • Closes:{" "}
+                  {selectedJob.closingDate}
+                </p>
+                <p className="text-sm text-gray-600 mb-3">
+                  <strong>Salary:</strong> {selectedJob.salaryRange}
+                </p>
+
+                <div className="text-left text-gray-700 space-y-4">
+                  <section>
+                    <h4 className="font-semibold mb-2">About the Role</h4>
+                    <p>{selectedJob.description}</p>
+                  </section>
+
+                  <section>
+                    <h4 className="font-semibold mb-2">Key Responsibilities</h4>
+                    <ul className="list-disc list-inside space-y-1">
+                      {selectedJob.responsibilities.map((r, i) => (
+                        <li key={i}>{r}</li>
+                      ))}
+                    </ul>
+                  </section>
+
+                  <section>
+                    <h4 className="font-semibold mb-2">
+                      Qualifications & Skills
+                    </h4>
+                    <ul className="list-disc list-inside space-y-1">
+                      {selectedJob.qualifications.map((q, i) => (
+                        <li key={i}>{q}</li>
+                      ))}
+                    </ul>
+                  </section>
+
+                  <p>
+                    <strong>Benefits:</strong> {selectedJob.benefits}
                   </p>
-                  <p className="text-sm text-gray-600 mt-1">
-                    <strong>Salary:</strong> {selectedJob.salaryRange}
+                  <p>
+                    <strong>How to Apply:</strong> {selectedJob.howToApply}
                   </p>
-                </header>
+                </div>
 
-                <section className="mb-4 text-gray-700">
-                  <h4 className="font-semibold mb-2">About the Role</h4>
-                  <p className="mb-3">{selectedJob.description}</p>
-
-                  <h4 className="font-semibold mb-2">Key Responsibilities</h4>
-                  <ul className="list-disc list-inside mb-3">
-                    {selectedJob.responsibilities.map((r, idx) => (
-                      <li key={idx} className="text-gray-700">
-                        {r}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <h4 className="font-semibold mb-2">Qualifications & Skills</h4>
-                  <ul className="list-disc list-inside mb-3">
-                    {selectedJob.qualifications.map((q, idx) => (
-                      <li key={idx} className="text-gray-700">
-                        {q}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <h4 className="font-semibold mb-2">Benefits</h4>
-                  <p className="mb-3">{selectedJob.benefits}</p>
-
-                  <h4 className="font-semibold mb-2">How to Apply</h4>
-                  <p className="mb-3">{selectedJob.howToApply}</p>
-                </section>
-
-                <div className="flex gap-3 justify-end">
+                <div className="flex justify-end gap-3 mt-6">
                   <button
                     onClick={() => openApply(selectedJob)}
                     className="bg-green-700 text-white px-4 py-2 rounded-xl hover:bg-green-800 transition"
@@ -244,18 +244,17 @@ export default function Contact() {
           </div>
         )}
 
+        {/* APPLY MODAL */}
         {selectedJob && modalMode === "apply" && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div
               className="absolute inset-0 bg-black/50"
               onClick={closeModal}
-              aria-hidden
             />
             <div className="relative bg-white w-full max-w-xl rounded-2xl shadow-2xl overflow-auto max-h-[90vh] p-6 sm:p-8">
               <button
                 onClick={closeModal}
                 className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
-                aria-label="Close apply form"
               >
                 ✕
               </button>
@@ -267,18 +266,37 @@ export default function Contact() {
                 {selectedJob.location} • {selectedJob.type}
               </p>
 
+              {/* APPLICATION FORM */}
               <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
-                  // TODO: integrate backend or email sending endpoint
-                  alert("Application submitted successfully!");
+                  const formData = new FormData(e.target);
+                  formData.append("jobTitle", selectedJob.title);
+
+                  try {
+                    const res = await fetch("http://localhost:5000/apply", {
+                      method: "POST",
+                      body: formData,
+                    });
+
+                    const result = await res.json();
+                    if (result.success) {
+                      alert("✅ Application sent successfully!");
+                    } else {
+                      alert("❌ Failed to send application. Please try again.");
+                    }
+                  } catch (err) {
+                    console.error(err);
+                    alert("⚠️ Could not connect to the server.");
+                  }
+
                   closeModal();
                 }}
                 className="space-y-4 text-left"
               >
                 <div>
                   <label className="block text-gray-700 font-medium mb-1">
-                    Full name
+                    Full Name
                   </label>
                   <input
                     name="name"
@@ -390,7 +408,7 @@ export default function Contact() {
           </div>
         )}
 
-        {/* Contact info restored */}
+        {/* CONTACT INFO */}
         <section className="bg-green-700 text-white rounded-3xl shadow-xl p-10 md:p-12 max-w-3xl w-full space-y-3 mb-20">
           <h2 className="text-2xl md:text-3xl font-semibold mb-4">
             Contact Us
@@ -419,7 +437,7 @@ export default function Contact() {
           <p>
             Website:{" "}
             <a
-              href="https://elimucommunitynet.org"
+              href="https://sashioya65@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
               className="underline font-medium hover:text-green-200 transition-colors"
@@ -430,7 +448,10 @@ export default function Contact() {
         </section>
       </main>
 
-      <Suspense fallback={<div className="text-center py-4 text-gray-500">Loading footer...</div>}>
+      {/* Footer */}
+      <Suspense
+        fallback={<div className="text-center py-4 text-gray-500">Loading footer...</div>}
+      >
         <Footer />
       </Suspense>
     </div>
