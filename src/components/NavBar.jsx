@@ -64,10 +64,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
-        <button
-          onClick={() => handleNavClick("/")}
-          className="flex items-center gap-2"
-        >
+        <button onClick={() => handleNavClick("/")} className="flex items-center gap-2">
           <img
             src={Logo}
             alt="ECN Africa Logo"
@@ -84,6 +81,8 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center space-x-8 text-gray-800 font-medium">
           <button onClick={() => handleNavClick("/")} className="hover:text-green-600">Home</button>
           <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600">Programs</button>
+
+          {/* Categories dropdown */}
           <div
             className="relative"
             onMouseEnter={() => setCategoriesOpen(true)}
@@ -112,6 +111,7 @@ export default function Navbar() {
               )}
             </AnimatePresence>
           </div>
+
           <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600">Blog</button>
           <button onClick={() => handleNavClick("/about")} className="hover:text-green-600">About Us</button>
           <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600">Contact</button>
@@ -135,7 +135,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu Horizontal */}
+      {/* Mobile Menu Vertical */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -143,21 +143,21 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white shadow-lg border-t border-gray-200 overflow-x-auto whitespace-nowrap px-4 py-3 flex items-center gap-4 z-40"
+            className="md:hidden bg-white shadow-lg border-t border-gray-200 flex flex-col items-start px-4 py-4 gap-2 z-40"
           >
-            <button onClick={() => handleNavClick("/")} className="hover:text-green-600 flex items-center gap-1">
+            <button onClick={() => handleNavClick("/")} className="hover:text-green-600 flex items-center gap-2">
               <Home size={18} /> Home
             </button>
 
-            <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600 flex items-center gap-1">
+            <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600 flex items-center gap-2">
               <BookOpen size={18} /> Programs
             </button>
 
-            {/* Categories dropdown */}
-            <div className="relative">
+            {/* Categories dropdown vertical */}
+            <div className="relative w-full">
               <button
                 onClick={() => setCategoriesOpen(!categoriesOpen)}
-                className="hover:text-green-600 flex items-center gap-1"
+                className="w-full hover:text-green-600 flex items-center justify-between gap-2 py-2 border-b border-gray-200"
               >
                 <Globe2 size={18} /> Categories ▾
               </button>
@@ -167,13 +167,13 @@ export default function Navbar() {
                     initial={{ opacity: 0, y: -5 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -5 }}
-                    className="absolute top-full mt-2 left-0 bg-white border rounded-lg shadow-lg w-56 z-50 overflow-hidden"
+                    className="bg-white border rounded-lg shadow-md mt-1 w-full overflow-hidden flex flex-col"
                   >
                     {categories.map(([path, label]) => (
                       <button
                         key={path}
                         onClick={() => handleNavClick(`/categories/${path}`)}
-                        className="block w-full text-left px-4 py-2 hover:bg-green-50 hover:text-green-700 transition"
+                        className="px-4 py-2 hover:bg-green-50 hover:text-green-700 w-full text-left"
                       >
                         {label}
                       </button>
@@ -183,28 +183,28 @@ export default function Navbar() {
               </AnimatePresence>
             </div>
 
-            <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600 flex items-center gap-1">
+            <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600 flex items-center gap-2">
               <FileText size={18} /> Blog
             </button>
 
-            <button onClick={() => handleNavClick("/about")} className="hover:text-green-600 flex items-center gap-1">
+            <button onClick={() => handleNavClick("/about")} className="hover:text-green-600 flex items-center gap-2">
               <Users2 size={18} /> About Us
             </button>
 
-            <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600 flex items-center gap-1">
+            <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600 flex items-center gap-2">
               <Globe2 size={18} /> Contact
             </button>
 
-            {/* Search Box */}
-            <form onSubmit={handleSearchSubmit} className="flex items-center border border-gray-300 rounded-md overflow-hidden ml-2 px-2">
+            {/* Mobile Search */}
+            <form onSubmit={handleSearchSubmit} className="w-full flex items-center border border-gray-300 rounded-md overflow-hidden mt-2">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search..."
-                className="w-full px-2 py-1 text-sm focus:outline-none"
+                className="w-full px-2 py-1 focus:outline-none text-sm"
               />
-              <button type="submit" className="text-green-700 px-1">
+              <button type="submit" className="px-2 text-green-700">
                 <Search size={18} />
               </button>
             </form>
