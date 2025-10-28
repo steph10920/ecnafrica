@@ -34,7 +34,7 @@ export default function Navbar() {
     const query = searchQuery.trim().toLowerCase();
     if (!query) return;
 
-    const result = searchMap.find((item) => query.includes(item.keyword));
+    const result = searchMap.find((item) => query.keyword.includes(query));
     if (result) handleNavClick(result.page);
     else alert("No matching page or section found!");
     setSearchQuery("");
@@ -64,7 +64,10 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
-        <button onClick={() => handleNavClick("/")} className="flex items-center gap-2">
+        <button
+          onClick={() => handleNavClick("/")}
+          className="flex items-center gap-2"
+        >
           <img
             src={Logo}
             alt="ECN Africa Logo"
@@ -79,10 +82,14 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center space-x-8 text-gray-800 font-medium">
-          <button onClick={() => handleNavClick("/")} className="hover:text-green-600">Home</button>
-          <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600">Programs</button>
+          <button onClick={() => handleNavClick("/")} className="hover:text-green-600">
+            Home
+          </button>
+          <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600">
+            Programs
+          </button>
 
-          {/* Categories dropdown */}
+          {/* Desktop Categories Dropdown */}
           <div
             className="relative"
             onMouseEnter={() => setCategoriesOpen(true)}
@@ -115,6 +122,7 @@ export default function Navbar() {
           <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600">Blog</button>
           <button onClick={() => handleNavClick("/about")} className="hover:text-green-600">About Us</button>
           <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600">Contact</button>
+
           <form onSubmit={handleSearchSubmit} className="ml-4">
             <input
               type="text"
@@ -143,37 +151,36 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white shadow-lg border-t border-gray-200 flex flex-col items-start px-4 py-4 gap-2 z-40"
+            className="md:hidden flex flex-col bg-white shadow-lg border-t border-gray-200 z-40 w-full"
           >
-            <button onClick={() => handleNavClick("/")} className="hover:text-green-600 flex items-center gap-2">
+            <button onClick={() => handleNavClick("/")} className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200">
               <Home size={18} /> Home
             </button>
-
-            <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600 flex items-center gap-2">
+            <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200">
               <BookOpen size={18} /> Programs
             </button>
 
-            {/* Categories dropdown vertical */}
-            <div className="relative w-full">
+            {/* Mobile Categories Dropdown */}
+            <div className="flex flex-col w-full">
               <button
                 onClick={() => setCategoriesOpen(!categoriesOpen)}
-                className="w-full hover:text-green-600 flex items-center justify-between gap-2 py-2 border-b border-gray-200"
+                className="flex items-center justify-between gap-2 w-full hover:text-green-600 px-4 py-3 border-b border-gray-200"
               >
                 <Globe2 size={18} /> Categories ▾
               </button>
               <AnimatePresence>
                 {categoriesOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -5 }}
-                    className="bg-white border rounded-lg shadow-md mt-1 w-full overflow-hidden flex flex-col"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="overflow-hidden flex flex-col"
                   >
                     {categories.map(([path, label]) => (
                       <button
                         key={path}
                         onClick={() => handleNavClick(`/categories/${path}`)}
-                        className="px-4 py-2 hover:bg-green-50 hover:text-green-700 w-full text-left"
+                        className="px-6 py-2 hover:bg-green-50 hover:text-green-700 text-left"
                       >
                         {label}
                       </button>
@@ -183,26 +190,24 @@ export default function Navbar() {
               </AnimatePresence>
             </div>
 
-            <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600 flex items-center gap-2">
+            <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200">
               <FileText size={18} /> Blog
             </button>
-
-            <button onClick={() => handleNavClick("/about")} className="hover:text-green-600 flex items-center gap-2">
+            <button onClick={() => handleNavClick("/about")} className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200">
               <Users2 size={18} /> About Us
             </button>
-
-            <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600 flex items-center gap-2">
+            <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200">
               <Globe2 size={18} /> Contact
             </button>
 
             {/* Mobile Search */}
-            <form onSubmit={handleSearchSubmit} className="w-full flex items-center border border-gray-300 rounded-md overflow-hidden mt-2">
+            <form onSubmit={handleSearchSubmit} className="flex items-center border border-gray-300 rounded-md overflow-hidden m-4">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search..."
-                className="w-full px-2 py-1 focus:outline-none text-sm"
+                className="w-full px-2 py-2 text-sm focus:outline-none"
               />
               <button type="submit" className="px-2 text-green-700">
                 <Search size={18} />
