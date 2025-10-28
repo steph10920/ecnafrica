@@ -53,7 +53,6 @@ export default function Navbar() {
     ["health", "Health"],
     ["human-rights", "Human Rights"],
     ["quality-education", "Quality Education"],
-    ["uncategorized", "Uncategorized"],
   ];
 
   return (
