@@ -53,7 +53,6 @@ export default function Programs() {
           </div>
 
           {/* --- Original content unchanged --- */}
-          {/* All your paragraphs, lists, and text remain exactly as written */}
           <motion.div
             className="mt-4 text-gray-700 leading-relaxed space-y-3"
             initial={{ opacity: 0, y: 40 }}
@@ -61,7 +60,7 @@ export default function Programs() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            {/* ✅ No text edited below */}
+            {/* ✅ text edited below */}
             <p>Education for a Greener and Sustainable Future</p>
             <p>
               The environment is in us, not outside of us. The trees are our

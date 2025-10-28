@@ -11,10 +11,11 @@ import childProtectionImg from "../assets/child-protection.jpg";
 import communityImg from "../assets/community.jpg";
 import img1 from "../assets/img1.jpg";
 import img2 from "../assets/img2.jpg";
-import slide1 from "../assets/slide1.jpg";
-import slide2 from "../assets/slide2.jpg";
-import slide3 from "../assets/slide3.jpg";
-import slide4 from "../assets/slide4.jpg";
+import slide1 from "../assets/education.jpg";
+import slide2 from "../assets/child-protection.jpg";
+import slide3 from "../assets/women_empowerment.jpg";
+import slide4 from "../assets/img1.jpg";
+import slide5 from "../assets/slide1.jpg";
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -39,6 +40,11 @@ export default function Home() {
     {
       img: slide4,
       title: "Sustainable Innovation",
+      desc: "Driving change through education and collaboration.",
+    },
+    {
+      img: slide5,
+      title: "Promoting Sports",
       desc: "Driving change through education and collaboration.",
     },
   ];
@@ -159,21 +165,29 @@ export default function Home() {
               Who We Are
             </h2>
             <p>
-              <strong>Elimu Community Network (ECN)</strong> is a{" "}
-              <strong>non-governmental learning organization</strong> founded in
-              Kenya in 2012. We exist to redefine education not merely as
-              classroom learning, but as{" "}
-              <strong>
-                a living, dynamic force for emancipation, innovation, and
-                community resilience
-              </strong>
-              .
+              Elimu Community Network (ECN) is a non-governmental learning organization founded 
+              in Kenya in 2012. We exist to redefine education not merely as classroom learning, 
+              but as a living, dynamic force for emancipation, innovation, and community resilience. 
+              We believe that education is not just a pathway out of poverty but a foundation of 
+              , dignity, and transformation.
+            </p>
+            <p className="text-gray-800 font-semibold">
+              Our name, Elimu, means Education in Swahili which is the single word that defines our purpose:
             </p>
             <blockquote className="border-l-4 border-green-500 pl-4 italic text-gray-600">
               “To use education as a strategic tool for the emancipation of
               children, youth, and women, enabling them to lead fulfilling and
               productive lives.”
             </blockquote>
+            
+            <p>
+              At ECN, we believe that education must be relevant, contextual, and 
+              transformative by being rooted in the realities of our people and responsive 
+              to the changing needs of society. We champion education that not only informs 
+              but transforms; that not only prepares individuals for work but empowers them 
+              to create work and solutions that uplift communities.
+            </p>
+           
             <p className="text-gray-800 font-semibold">
               “Education is the most powerful weapon which you can use to change
               the world.” — Nelson Mandela

@@ -8,10 +8,12 @@ import CountUp from "react-countup";
 // --- Assets ---
 import footballImg1 from "../../assets/football1.jpg";
 import footballImg2 from "../../assets/football2.jpg";
+import footballImg3 from "../../assets/sports1.jpg";
+import footballImg4 from "../../assets/slide1.jpg";
 import footballVideo from "../../assets/football.mp4";
 import slide1 from "../../assets/slide1.jpg";
 import slide2 from "../../assets/slide2.jpg";
-import slide3 from "../../assets/slide3.jpg";
+import slide3 from "../../assets/community.jpg";
 import slide4 from "../../assets/slide4.jpg";
 
 export default function ArtsAndSports() {
@@ -97,6 +99,22 @@ export default function ArtsAndSports() {
           />
           <motion.img
             src={footballImg2}
+            alt="Youth football practice"
+            className="rounded-2xl shadow-lg object-cover w-full h-96"
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.3 }}
+          />
+        </div>
+        <div className="grid md:grid-cols-2 gap-6 mb-10">
+          <motion.img
+            src={footballImg3}
+            alt="Football training session"
+            className="rounded-2xl shadow-lg object-cover w-full h-96"
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.3 }}
+          />
+          <motion.img
+            src={footballImg4}
             alt="Youth football practice"
             className="rounded-2xl shadow-lg object-cover w-full h-96"
             whileHover={{ scale: 1.03 }}
