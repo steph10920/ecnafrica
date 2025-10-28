@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search } from "lucide-react"; // Correct icon
+import { Search, Home, BookOpen, Globe2, Users2, FileText } from "lucide-react";
 import Logo from "../assets/ecnlogo.jpg";
 
 export default function Navbar() {
@@ -82,22 +82,14 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center space-x-8 text-gray-800 font-medium">
-          <button onClick={() => handleNavClick("/")} className="hover:text-green-600">
-            Home
-          </button>
-          <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600">
-            Programs
-          </button>
-
-          {/* Categories Dropdown */}
+          <button onClick={() => handleNavClick("/")} className="hover:text-green-600">Home</button>
+          <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600">Programs</button>
           <div
             className="relative"
             onMouseEnter={() => setCategoriesOpen(true)}
             onMouseLeave={() => setCategoriesOpen(false)}
           >
-            <button className="flex items-center gap-1 hover:text-green-600">
-              Categories ▾
-            </button>
+            <button className="flex items-center gap-1 hover:text-green-600">Categories ▾</button>
             <AnimatePresence>
               {categoriesOpen && (
                 <motion.div
@@ -120,12 +112,9 @@ export default function Navbar() {
               )}
             </AnimatePresence>
           </div>
-
           <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600">Blog</button>
           <button onClick={() => handleNavClick("/about")} className="hover:text-green-600">About Us</button>
           <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600">Contact</button>
-
-          {/* Desktop Search Box */}
           <form onSubmit={handleSearchSubmit} className="ml-4">
             <input
               type="text"
@@ -146,7 +135,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Horizontal */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -154,43 +143,68 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white shadow-lg border-t border-gray-200 flex flex-col px-4 py-4 space-y-2"
+            className="md:hidden bg-white shadow-lg border-t border-gray-200 overflow-x-auto whitespace-nowrap px-4 py-3 flex items-center gap-4 z-40"
           >
-            <button onClick={() => handleNavClick("/")} className="hover:text-green-600">Home</button>
-            <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600">Programs</button>
+            <button onClick={() => handleNavClick("/")} className="hover:text-green-600 flex items-center gap-1">
+              <Home size={18} /> Home
+            </button>
 
-            {/* Categories dropdown inline */}
-            <details className="group w-full">
-              <summary className="cursor-pointer hover:text-green-600 py-2 border-b border-gray-200">
-                Categories ▾
-              </summary>
-              <div className="mt-2 flex flex-col space-y-1 pl-4">
-                {categories.map(([path, label]) => (
-                  <button
-                    key={path}
-                    onClick={() => handleNavClick(`/categories/${path}`)}
-                    className="hover:text-green-600 text-left"
+            <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600 flex items-center gap-1">
+              <BookOpen size={18} /> Programs
+            </button>
+
+            {/* Categories dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setCategoriesOpen(!categoriesOpen)}
+                className="hover:text-green-600 flex items-center gap-1"
+              >
+                <Globe2 size={18} /> Categories ▾
+              </button>
+              <AnimatePresence>
+                {categoriesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    className="absolute top-full mt-2 left-0 bg-white border rounded-lg shadow-lg w-56 z-50 overflow-hidden"
                   >
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </details>
+                    {categories.map(([path, label]) => (
+                      <button
+                        key={path}
+                        onClick={() => handleNavClick(`/categories/${path}`)}
+                        className="block w-full text-left px-4 py-2 hover:bg-green-50 hover:text-green-700 transition"
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
-            <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600">Blog</button>
-            <button onClick={() => handleNavClick("/about")} className="hover:text-green-600">About Us</button>
-            <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600">Contact</button>
+            <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600 flex items-center gap-1">
+              <FileText size={18} /> Blog
+            </button>
 
-            {/* Mobile Search */}
-            <form onSubmit={handleSearchSubmit} className="mt-2 flex items-center border border-gray-300 rounded-md overflow-hidden">
+            <button onClick={() => handleNavClick("/about")} className="hover:text-green-600 flex items-center gap-1">
+              <Users2 size={18} /> About Us
+            </button>
+
+            <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600 flex items-center gap-1">
+              <Globe2 size={18} /> Contact
+            </button>
+
+            {/* Search Box */}
+            <form onSubmit={handleSearchSubmit} className="flex items-center border border-gray-300 rounded-md overflow-hidden ml-2 px-2">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search..."
-                className="w-full px-3 py-2 text-sm focus:outline-none"
+                className="w-full px-2 py-1 text-sm focus:outline-none"
               />
-              <button type="submit" className="px-2 text-green-700">
+              <button type="submit" className="text-green-700 px-1">
                 <Search size={18} />
               </button>
             </form>
