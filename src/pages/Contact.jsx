@@ -442,7 +442,7 @@ export default function Contact() {
               rel="noopener noreferrer"
               className="underline font-medium hover:text-green-200 transition-colors"
             >
-              elimucommunitynet.org
+              ecnafrica.org
             </a>
           </p>
         </section>
