@@ -61,8 +61,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
       {/* 🔹 HERO SECTION */}
-      <section className="relative w-full min-h-[90vh] sm:min-h-[100vh] md:min-h-screen overflow-hidden">
-
+      <section className="relative w-full h-[65vh] sm:h-[75vh] md:h-[90vh] overflow-hidden">
         {slides.map((slide, i) => (
           <motion.img
             key={i}

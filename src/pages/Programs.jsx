@@ -394,7 +394,7 @@ export default function Programs() {
         </section>
 
         {/* Section C */}
-        <section id="eduwomen" className="w-full max-w-4xl mb-12">
+        <section id="women" className="w-full max-w-4xl mb-12">
           <div className="sticky top-0 bg-green-100 py-3 px-4 rounded-md shadow-sm">
             <h2 className="text-xl font-semibold text-green-800">
               C. IMARA WOMEN: Building Strength through Knowledge and Innovation

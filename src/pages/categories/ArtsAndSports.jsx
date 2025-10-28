@@ -68,7 +68,7 @@ export default function ArtsAndSports() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Building Champions On and Off the Field ⚽
+          Building Champions On and Off the Field
         </motion.h2>
         <p className="text-lg leading-relaxed mb-4">
           Our sports initiatives at <strong>ECN Education Africa</strong> focus on football as a tool for personal and community transformation. 
@@ -83,7 +83,7 @@ export default function ArtsAndSports() {
       {/* Football Media */}
       <section className="max-w-6xl mx-auto py-12 px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-green-700 text-center mb-8">
-          Football in Action ⚽
+          Football in Action
         </h2>
 
         {/* Images */}
@@ -137,15 +137,15 @@ export default function ArtsAndSports() {
 
         <div className="grid md:grid-cols-3 gap-8 text-center max-w-6xl mx-auto">
           <div>
-            <CountUp end={800} duration={3} className="text-5xl font-bold" />
+            <CountUp end={800} duration={4} className="text-5xl font-bold" />
             <p className="text-lg mt-2">Children Trained</p>
           </div>
           <div>
-            <CountUp end={150} duration={3} className="text-5xl font-bold" />
+            <CountUp end={150} duration={4} className="text-5xl font-bold" />
             <p className="text-lg mt-2">Football Matches Played</p>
           </div>
           <div>
-            <CountUp end={60} duration={3} className="text-5xl font-bold" />
+            <CountUp end={60} duration={4} className="text-5xl font-bold" />
             <p className="text-lg mt-2">Communities Engaged</p>
           </div>
         </div>

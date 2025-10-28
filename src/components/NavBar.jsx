@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Search } from "lucide-react"; // ✅ Correct icon
 import Logo from "../assets/ecnlogo.jpg"; // Adjust path if needed
 
 export default function Navbar() {
@@ -15,7 +16,6 @@ export default function Navbar() {
     else window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
-  // Search logic
   const searchMap = [
     { keyword: "home", page: "/" },
     { keyword: "about", page: "/about" },
@@ -64,7 +64,10 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
-        <button onClick={() => handleNavClick("/")} className="flex items-center gap-2">
+        <button
+          onClick={() => handleNavClick("/")}
+          className="flex items-center gap-2"
+        >
           <img
             src={Logo}
             alt="ECN Africa Logo"
@@ -82,8 +85,10 @@ export default function Navbar() {
           <button onClick={() => handleNavClick("/")} className="hover:text-green-600">
             Home
           </button>
-
-          <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600">
+          <button
+            onClick={() => handleNavClick("/programs")}
+            className="hover:text-green-600"
+          >
             Programs
           </button>
 
@@ -129,7 +134,7 @@ export default function Navbar() {
             Contact
           </button>
 
-          {/* Search Box */}
+          {/* Desktop Search Box */}
           <form onSubmit={handleSearchSubmit} className="ml-4">
             <input
               type="text"
@@ -163,13 +168,12 @@ export default function Navbar() {
             <button onClick={() => handleNavClick("/")} className="hover:text-green-600">
               Home
             </button>
-
             <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600">
               Programs
             </button>
 
-            <details className="group text-center">
-              <summary className="cursor-pointer hover:text-green-600">
+            <details className="group text-center w-3/4">
+              <summary className="cursor-pointer hover:text-green-600 py-2 border-b border-gray-200">
                 Categories ▾
               </summary>
               <div className="mt-2 space-y-2">
@@ -177,7 +181,7 @@ export default function Navbar() {
                   <button
                     key={path}
                     onClick={() => handleNavClick(`/categories/${path}`)}
-                    className="block w-full hover:text-green-600"
+                    className="block w-full hover:text-green-600 text-left px-4"
                   >
                     {label}
                   </button>
@@ -196,14 +200,17 @@ export default function Navbar() {
             </button>
 
             {/* Mobile Search */}
-            <form onSubmit={handleSearchSubmit} className="w-3/4 mt-4">
+            <form onSubmit={handleSearchSubmit} className="w-3/4 mt-4 flex items-center border border-gray-300 rounded-md overflow-hidden">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search..."
-                className="w-full px-4 py-2 rounded-md border border-gray-300 text-center text-base focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full px-4 py-2 text-base focus:outline-none"
               />
+              <button type="submit" className="px-3 text-green-700">
+                <Search />
+              </button>
             </form>
           </motion.div>
         )}
