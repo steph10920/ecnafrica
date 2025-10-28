@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search } from "lucide-react"; // ✅ Correct icon
-import Logo from "../assets/ecnlogo.jpg"; // Adjust path if needed
+import { Search } from "lucide-react"; 
+import Logo from "../assets/ecnlogo.jpg"; 
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -85,14 +85,10 @@ export default function Navbar() {
           <button onClick={() => handleNavClick("/")} className="hover:text-green-600">
             Home
           </button>
-          <button
-            onClick={() => handleNavClick("/programs")}
-            className="hover:text-green-600"
-          >
+          <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600">
             Programs
           </button>
 
-          {/* Categories Dropdown */}
           <div
             className="relative"
             onMouseEnter={() => setCategoriesOpen(true)}
@@ -134,7 +130,6 @@ export default function Navbar() {
             Contact
           </button>
 
-          {/* Desktop Search Box */}
           <form onSubmit={handleSearchSubmit} className="ml-4">
             <input
               type="text"
@@ -159,59 +154,60 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -100, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden fixed inset-0 bg-white/95 backdrop-blur-md shadow-lg flex flex-col items-center justify-center space-y-5 text-lg font-medium text-gray-800 z-40"
+            className="md:hidden fixed inset-0 bg-white/95 backdrop-blur-md shadow-lg z-40 overflow-y-auto"
           >
-            <button onClick={() => handleNavClick("/")} className="hover:text-green-600">
-              Home
-            </button>
-            <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600">
-              Programs
-            </button>
-
-            <details className="group text-center w-3/4">
-              <summary className="cursor-pointer hover:text-green-600 py-2 border-b border-gray-200">
-                Categories ▾
-              </summary>
-              <div className="mt-2 space-y-2">
-                {categories.map(([path, label]) => (
-                  <button
-                    key={path}
-                    onClick={() => handleNavClick(`/categories/${path}`)}
-                    className="block w-full hover:text-green-600 text-left px-4"
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </details>
-
-            <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600">
-              Blog
-            </button>
-            <button onClick={() => handleNavClick("/about")} className="hover:text-green-600">
-              About Us
-            </button>
-            <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600">
-              Contact
-            </button>
-
-            {/* Mobile Search */}
-            <form onSubmit={handleSearchSubmit} className="w-3/4 mt-4 flex items-center border border-gray-300 rounded-md overflow-hidden">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search..."
-                className="w-full px-4 py-2 text-base focus:outline-none"
-              />
-              <button type="submit" className="px-3 text-green-700">
-                <Search />
+            <div className="flex flex-col items-center pt-24 pb-12 space-y-5 text-lg font-medium text-gray-800">
+              <button onClick={() => handleNavClick("/")} className="hover:text-green-600">
+                Home
               </button>
-            </form>
+              <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600">
+                Programs
+              </button>
+
+              <details className="group text-center w-3/4">
+                <summary className="cursor-pointer hover:text-green-600 py-2 border-b border-gray-200">
+                  Categories ▾
+                </summary>
+                <div className="mt-2 space-y-2">
+                  {categories.map(([path, label]) => (
+                    <button
+                      key={path}
+                      onClick={() => handleNavClick(`/categories/${path}`)}
+                      className="block w-full hover:text-green-600 text-left px-4"
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </details>
+
+              <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600">
+                Blog
+              </button>
+              <button onClick={() => handleNavClick("/about")} className="hover:text-green-600">
+                About Us
+              </button>
+              <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600">
+                Contact
+              </button>
+
+              <form onSubmit={handleSearchSubmit} className="w-3/4 mt-4 flex items-center border border-gray-300 rounded-md overflow-hidden">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search..."
+                  className="w-full px-4 py-2 text-base focus:outline-none"
+                />
+                <button type="submit" className="px-3 text-green-700">
+                  <Search />
+                </button>
+              </form>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
