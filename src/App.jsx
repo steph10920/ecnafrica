@@ -23,7 +23,8 @@ import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import { jobs } from "./pages/Jobs";
 
-// 🔹 Vercel Speed Insights (React)
+// 🔹 Vercel Analytics & Speed Insights
+import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 export default function App() {
@@ -49,7 +50,10 @@ export default function App() {
         </Routes>
       </div>
 
-      {/* 🔹 Speed Insights visible only in development */}
+      {/* 🔹 Vercel Analytics */}
+      <Analytics />
+
+      {/* 🔹 Speed Insights (only in development) */}
       {process.env.NODE_ENV === "development" && (
         <div className="fixed bottom-4 right-4 z-50">
           <SpeedInsights
