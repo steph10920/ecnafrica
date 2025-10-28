@@ -10,7 +10,7 @@ export default function Contact() {
       title: "ICT Officer",
       location: "Nairobi, Kenya",
       type: "Full-Time",
-      closingDate: "December 15, 2025",
+      closingDate: /*"December 15, 2025"*/"closed",
       salaryRange: "KES 70,000 - 120,000 (negotiable)",
       shortDescription:
         "We are seeking a qualified ICT Officer to support our IT infrastructure, ensure network stability, and manage system security.",
@@ -39,7 +39,7 @@ export default function Contact() {
       title: "Program Coordinator – Education",
       location: "Kakamega, Kenya",
       type: "12-month Contract",
-      closingDate: "November 30, 2025",
+      closingDate: /*"November 30, 2025",*/"closed",
       salaryRange: "KES 60,000 - 90,000 (depending on experience)",
       shortDescription:
         "The Program Coordinator will oversee community-based education initiatives, manage field officers, and ensure effective reporting.",
