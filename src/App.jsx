@@ -23,6 +23,9 @@ import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import { jobs } from "./pages/Jobs"; // ✅ Correct import (named export)
 
+// 🔹 Vercel Speed Insights
+import { SpeedInsights } from "@vercel/speed-insights/react";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -54,6 +57,15 @@ export default function App() {
           {/* 🔹 Contact Page (with Jobs data) */}
           <Route path="/contact" element={<Contact jobs={jobs} />} /> {/* ✅ Pass jobs as props */}
         </Routes>
+      </div>
+
+      {/* 🔹 Vercel Speed Insights */}
+      <div className="fixed bottom-4 right-4 z-50">
+        <SpeedInsights
+          url="https://ecnafrica.org" // Your deployed site URL
+          device="desktop" // or "mobile" / "all"
+          theme="light"
+        />
       </div>
     </BrowserRouter>
   );

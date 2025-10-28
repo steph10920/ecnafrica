@@ -437,7 +437,7 @@ export default function Contact() {
           <p>
             Website:{" "}
             <a
-              href="https://sashioya65@gmail.com"
+              href="https://ecnafrica.org"
               target="_blank"
               rel="noopener noreferrer"
               className="underline font-medium hover:text-green-200 transition-colors"
