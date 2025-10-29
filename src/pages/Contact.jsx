@@ -11,7 +11,7 @@ export default function Contact() {
       location: "Nairobi, Kenya",
       type: "Full-Time",
       closingDate: /*"December 15, 2025"*/"closed",
-      salaryRange: "KES 70,000 - 120,000 (negotiable)",
+      salaryRange: " (negotiable)",
       shortDescription:
         "We are seeking a qualified ICT Officer to support our IT infrastructure, ensure network stability, and manage system security.",
       description:
@@ -40,7 +40,7 @@ export default function Contact() {
       location: "Kakamega, Kenya",
       type: "12-month Contract",
       closingDate: /*"November 30, 2025",*/"closed",
-      salaryRange: "KES 60,000 - 90,000 (depending on experience)",
+      salaryRange: " (depending on experience)",
       shortDescription:
         "The Program Coordinator will oversee community-based education initiatives, manage field officers, and ensure effective reporting.",
       description:
@@ -124,7 +124,7 @@ export default function Contact() {
           <h2 className="text-3xl font-extrabold text-green-700 mb-8 text-center">
             Job Opportunities
           </h2>
-
+          
           <div className="grid md:grid-cols-2 gap-8">
             {jobListings.map((job) => (
               <article
@@ -428,10 +428,19 @@ export default function Contact() {
           <p>
             Email:{" "}
             <a
-              href="mailto:info@elimucommunitynet.org"
+              href="mailto:info.ecnafrica@gmail.com"
               className="underline font-medium hover:text-green-200 transition-colors"
             >
-              info@elimucommunitynet.org
+              info.ecnafrica@gmail.com
+            </a>
+          </p>
+          <p>
+            Email:{" "}
+            <a
+              href="mailto:education.ecnafrica@gmail.com"
+              className="underline font-medium hover:text-green-200 transition-colors"
+            >
+              education.ecnafrica@gmail.com
             </a>
           </p>
           <p>
