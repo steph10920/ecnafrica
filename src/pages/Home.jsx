@@ -200,6 +200,61 @@ export default function Home() {
             </a>
           </div>
         </motion.section>
+        {/* 🔹 EDUCATIONAL FUNDAMENTALS SECTION */}
+        <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="bg-gradient-to-br from-green-50 via-white to-green-100 rounded-3xl shadow-2xl border border-green-100 p-10 sm:p-14 space-y-10"
+        >
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-green-700 text-center mb-8">
+          Our Educational Fundamentals
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="bg-white/90 rounded-2xl shadow-lg p-8 border border-green-100 hover:shadow-2xl hover:-translate-y-2 transition">
+            <h3 className="text-xl font-bold text-green-700 mb-4">
+              Education that is Culturally Grounded and Life-Sustaining
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              We believe that education should equip individuals to meet their basic
+              human needs—food security, clothing, housing, and health—using knowledge
+              that is locally meaningful and culturally appropriate. Our programs
+              integrate practical learning, indigenous knowledge, and community-based
+              innovations that help families not only survive but thrive.
+            </p>
+          </div>
+
+          <div className="bg-white/90 rounded-2xl shadow-lg p-8 border border-green-100 hover:shadow-2xl hover:-translate-y-2 transition">
+            <h3 className="text-xl font-bold text-green-700 mb-4">
+              Education that Catalyzes Innovation and Economic Participation
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              We promote education that connects learning with livelihood. By linking
+              entrepreneurship, research, and technology, ECN transforms knowledge
+              into innovation that drives local economic growth. Our education model
+              nurtures creativity and curiosity by cultivating problem solvers and
+              innovators who shape Africa’s future.
+            </p>
+          </div>
+
+          <div className="bg-white/90 rounded-2xl shadow-lg p-8 border border-green-100 hover:shadow-2xl hover:-translate-y-2 transition">
+            <h3 className="text-xl font-bold text-green-700 mb-4">
+              Education that Cultivates Visionary and Ethical Leadership
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              We aspire for sustainable development that begins with values-based
+              leadership. Our model nurtures leaders who can mobilize resources,
+              champion justice, and promote environmental conservation. Through
+              mentorship, civic learning, and life-skills education, ECN cultivates
+              visionary citizens who are socially responsible and committed to the
+              common good.
+            </p>
+          </div>
+        </div>
+        </motion.section>
+
 
         {/* 🔹 IMPACT COUNTERS SECTION */}
         <motion.section
