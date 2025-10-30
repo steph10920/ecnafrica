@@ -3,6 +3,10 @@ import { motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import Footer from "../components/Footer";
+import ImpactPhoto1 from "../assets/community-impact1.jpg";
+import ImpactPhoto2 from "../assets/community-impact2.jpg";
+
+
 
 export default function Programs() {
   const [showTopBtn, setShowTopBtn] = useState(false);
@@ -44,456 +48,394 @@ export default function Programs() {
           PROGRAMMES
         </motion.h1>
 
-        {/* Section A */}
-        <section id="community-development" className="w-full max-w-4xl mb-12">
-          <div className="sticky top-0 bg-green-100 py-3 px-4 rounded-md shadow-sm">
-            <h2 className="text-xl font-semibold text-green-800">
-              A. COMMUNITY DEVELOPMENT & ENVIRONMENTAL STEWARDSHIP
-            </h2>
+       {/* 🔹 COMMUNITY DEVELOPMENT SECTION */}
+<motion.section
+  id="community-development"
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8 }}
+  viewport={{ once: true }}
+  className="bg-gradient-to-br from-green-50 via-white to-green-100 rounded-3xl shadow-2xl border border-green-100 p-10 sm:p-14 space-y-10"
+>
+   <h2 className="text-2xl sm:text-3xl font-bold text-green-700">
+      A.	GREEN CLASSROOMS FOR COMMUNITY RESILIENCE: EDUCATION FOR A GREENER AND SUSTAINABLE FUTURE
+    </h2>
+
+  {/* --- Green Classrooms for Community Resilience --- */}
+  <div className="space-y-6">
+      <p className="text-gray-700 leading-relaxed">
+      The <span className="font-semibold">Green Classrooms</span> initiative connects environmental education with community action. It teaches 
+      children and families to protect nature while meeting daily needs through sustainable practices 
+      like tree planting, recycling, and water conservation.
+    </p>
+    <p className="text-gray-700 leading-relaxed">
+      Each classroom becomes a living lab where students learn how trees prevent soil erosion, improve rainfall, and provide food and medicine. 
+      In Busia’s flood-prone Budalangi area, ECN-led tree planting projects have reduced flooding and improved soil fertility — turning 
+      vulnerability into opportunity.
+      <br></br>
+      Through partnerships with schools and local governments, ECN integrates environmental literacy into school curricula, nurturing young 
+      eco-leaders who care for both people and the planet.
+    </p>
+    <blockquote className="border-l-4 border-green-500 pl-4 italic text-green-600">
+      “The environment is in us, not outside of us. The trees are our lungs, the rivers our bloodstream. We are all interconnected.” — Wangari Maathai
+    </blockquote>
+    <h3 className="text-1xl sm:text-1xl font-bold text-black-700">
+     WHY TREES?
+    </h3>
+    <blockquote className="border-l-4 border-green-500 pl-4 italic text-green-600">
+      “Trees exhale for us so that we can inhale them to stay alive. Can we ever forget that? Let us love trees with every breath we take until we perish.” — Munia Khan
+    </blockquote>
+     <p className="text-gray-700 leading-relaxed">
+      At Elimu Community Network (ECN), trees represent more than nature. They symbolize life, learning, and liberation.
+      <br></br>
+      Through our tree planting initiatives, we blend environmental conservation with education, helping communities understand that sustainability begins with knowledge 
+      and grows through collective action.
+    </p>
+    <p className="text-gray-700 leading-relaxed">
+      Tree planting with ECN is a learning journey. It brings together children, youth, women, and families to care for the earth while cultivating skills, values, 
+      and unity. It is one of the simplest yet most profound ways to teach communities how education and nature together can transform lives.
+    </p>
+    <h3 className="text-1xl sm:text-1xl font-bold text-black-700">
+     WHAT TREE PLANTING ACHIEVES
+    </h3>
+    <p className="text-gray-700 leading-relaxed">
+      Tree planting promotes development in our communities and contributes to climate resilience by:
+    </p>
+    <ul className="list-disc pl-8 text-gray-700 leading-relaxed space-y-2">
+      <li>
+        <span className="font-semibold">Building community unity:</span>Bringing people together with a shared goal of creating greener spaces.
+      </li>
+      <li>
+        <span className="font-semibold">Improving air quality and rainfall :</span>Trees breathe life into our planet by producing clean oxygen and restoring natural cycles.
+      </li>
+      <li>
+        <span className="font-semibold">Protecting soil and preventing floods:</span>Strong roots reduce erosion and safeguard farmlands and homes.
+      </li>
+      <li>
+        <span className="font-semibold">Supporting livelihoods:</span>Providing fruits, herbs, and medicines that enhance nutrition and health.
+      </li>
+      <li>
+        <span className="font-semibold">Protecting biodiversity:</span>creating habitats for birds, insects, and wildlife essential to ecosystem balance.
+      </li>
+    </ul>
+    <blockquote className="border-l-4 border-green-500 pl-4 italic text-green-600">
+      “The best time to plant a tree was 20 years ago. The second-best time is now.”— African Proverb
+    </blockquote>
+
+    <p className="text-gray-700 leading-relaxed">
+      Green Classrooms are therefore not only centers of learning but also incubators of
+      climate resilience, nurturing a generation that can respond creatively to the
+      challenges of a changing planet.
+    </p>
+    <p className="text-1xl sm:text-1xl font-bold text-green-700">
+      Join Our Green Movement
+      <br></br>
+      LEARNING THROUGH ACTION
+    </p>
+    <p className="text-gray-700 leading-relaxed">
+      At ECN, tree planting doubles as an educational experience where learning meets action.
+      Our school-based activities inspire young minds to understand the power of small actions in shaping 
+      a sustainable future.
+    </p>
+    <p className="sm:text-1xl text-green-700 leading-relaxed">
+      Objective:
+      <br></br>
+      To teach children and communities the importance of environmental care and tree planting.
+    </p>
+    <p className="text-gray-700 leading-relaxed">
+      Materials Needed: Seedlings, charts, watering cans.
+      <br></br>
+      Time Required: 15 minutes
+      <br></br>
+      Simple Learning Activity:
+    </p>
+    <ol className="list-decimal pl-8 text-gray-700 leading-relaxed space-y-2">
+      <li>
+        <span className="font-semibold">Begin with a discussion on why trees are important.</span>
+      </li>
+      <li>
+        <span className="font-semibold">Have children draw or write the steps for tree planting on colorful charts.</span>
+      </li>
+      <li>
+        <span className="font-semibold">Add inspiring phrases like “Trees and Children for the Future!” and display them publicly.</span>
+      </li>
+      <li>
+        <span className="font-semibold">Prepare the planting site, dig holes, and plant the seedlings carefully.</span>
+      </li>
+      <li>
+        <span className="font-semibold">Water, protect, and nurture the trees, while celebrating teamwork and responsibility.</span>
+      </li>
+    </ol>
+    <blockquote className="border-l-4 border-green-500 pl-4 italic text-green-600">
+      “When children plant trees, they are planting hope for generations to come.”
+    </blockquote>
+    <p>Partner with us in Starting a School Green Club </p>
+    <h3 className="text-1xl sm:text-1xl font-bold text-black-700">
+     COMMUNITY IMPACT
+    </h3>
+    <p className="text-gray-700 leading-relaxed">
+      Across ECN’s regions from Nairobi’s urban schools to Busia’s flood-prone plains, 
+      tree planting has become a symbol of education in action. In Budalangi, Busia County, 
+      our initiatives engage local communities in planting trees to reduce flooding, restore 
+      soil health, and create sustainable livelihoods.
+    </p>
+    <div className="flex flex-wrap justify-center gap-6 mt-6">
+        {/* Before Image */}
+        <div className="relative w-40 h-40 md:w-48 md:h-48">
+          <img
+            src={ImpactPhoto1}
+            alt="Before: Flooded landscapes"
+            className="w-full h-full object-cover rounded-xl shadow-md"
+          />
+          <div className="absolute bottom-2 left-2 bg-black/60 text-white text-sm px-2 py-1 rounded-md">
+            Before: Flooded landscapes
           </div>
+        </div>
 
-          {/* --- Original content unchanged --- */}
-          <motion.div
-            className="mt-4 text-gray-700 leading-relaxed space-y-3"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            {/* ✅ text edited below */}
-            <p>Education for a Greener and Sustainable Future</p>
-            <p>
-              The environment is in us, not outside of us. The trees are our
-              lungs, the rivers our bloodstream. We are all interconnected.”
-              <strong>— Wangari Maathai</strong>
-            </p>
-            <p>
-              WHY TREES?
-              <br />
-              “Trees exhale for us so that we can inhale them to stay alive. Can
-              we ever forget that? Let us love trees with every breath we take
-              until we perish.” — Munia Khan
-            </p>
-            <p>
-              At Elimu Community Network (ECN), trees represent more than
-              nature. They symbolize life, learning, and liberation. Through our
-              tree planting initiatives, we blend environmental conservation
-              with education, helping communities understand that sustainability
-              begins with knowledge and grows through collective action.
-            </p>
-            <p>
-              Tree planting with ECN is a learning journey. It brings together
-              children, youth, women, and families to care for the earth while
-              cultivating skills, values, and unity. It is one of the simplest
-              yet most profound ways to teach communities how education and
-              nature together can transform lives.
-            </p>
-            <p>
-              <strong>WHAT TREE PLANTING ACHIEVES</strong>
-            </p>
-            <p>
-              Tree planting promotes development in our communities and
-              contributes to climate resilience by:
-            </p>
-            <ul className="list-disc list-inside text-gray-700 mb-4 space-y-1">
-              <li>
-                Building community unity – bringing people together with a
-                shared goal of creating greener spaces.
-              </li>
-              <li>
-                Improving air quality and rainfall – trees breathe life into our
-                planet by producing clean oxygen and restoring natural cycles.
-              </li>
-              <li>
-                Protecting soil and preventing floods – strong roots reduce
-                erosion and safeguard farmlands and homes.
-              </li>
-              <li>
-                Supporting livelihoods – providing fruits, herbs, and medicines
-                that enhance nutrition and health.
-              </li>
-              <li>
-                Protecting biodiversity – creating habitats for birds, insects,
-                and wildlife essential to ecosystem balance.
-              </li>
-            </ul>
-            <p>
-              “The best time to plant a tree was 20 years ago. The second-best
-              time is now.” — African Proverb
-            </p>
-            <p>Join Our Green Movement </p>
-            <h2>LEARNING THROUGH ACTION</h2>
-            <p>
-              At ECN, tree planting doubles as an educational experience where
-              learning meets action. Our school-based activities inspire young
-              minds to understand the power of small actions in shaping a
-              sustainable future.
-            </p>
-            <h3>Objective:</h3>
-            <p>
-              To teach children and communities the importance of environmental
-              care and tree planting.
-              <br />
-              Materials Needed:
-              <br />
-              Seedlings, charts, watering cans.
-              <br />
-              Time Required:
-            </p>
-            <p>Simple Learning Activity:</p>
-            <ul>
-              <li>1. Begin with a discussion on why trees are important.</li>
-              <li>
-                2. Have children draw or write the steps for tree planting on
-                colorful charts.
-              </li>
-              <li>
-                3. Add inspiring phrases like “Trees and Children for the
-                Future!” and display them publicly.
-              </li>
-              <li>
-                4. Prepare the planting site, dig holes, and plant the seedlings
-                carefully.
-              </li>
-              <li>
-                5. Water, protect, and nurture the trees, while celebrating
-                teamwork and responsibility.
-              </li>
-            </ul>
-            <p>
-              “When children plant trees, they are planting hope for generations
-              to come.”
-            </p>
-            <p>Partner with us in Starting a School Green Club </p>
-            <h2>COMMUNITY IMPACT</h2>
-            <p>
-              Across ECN’s regions from Nairobi’s urban schools to Busia’s
-              flood-prone plains, tree planting has become a symbol of education
-              in action. In Budalangi, Busia County, our initiatives engage
-              local communities in planting trees to reduce flooding, restore
-              soil health, and create sustainable livelihoods.
-            </p>
-            <p>Images coming soon</p>
-            <p>
-              This initiative exemplifies how education can drive environmental
-              innovation by turning community challenges into opportunities for
-              growth and resilience.
-            </p>
-            <h2>EDUCATION AS THE ROOT OF SUSTAINABILITY</h2>
-            <p>
-              For ECN, education is the seed and sustainability is the harvest.
-              Tree planting symbolizes the harmony between learning and living
-              and a reminder that informed communities are empowered
-              communities.
-            </p>
-            <p>
-              “When we plant trees, we plant the seeds of peace and hope.”
-              <strong>— Wangari Maathai</strong>
-            </p>
-            <p>
-              Through these efforts, ECN aims to cultivate not just forests, but
-              a culture of environmental consciousness, where children, youth,
-              and women lead Africa’s green transformation.
-            </p>
-            <p>Be Part of Our Eco-Education Movement</p>
-            <p>
-              “Growing Education. Growing Africa.” <br />
-              “He who learns, teaches.” <strong>— Ethiopian Proverb</strong>
-            </p>
-          </motion.div>
-        </section>
-
-        {/* Section B */}
-        <section id="child-protection" className="w-full max-w-4xl mb-12">
-          <div className="sticky top-0 bg-green-100 py-3 px-4 rounded-md shadow-sm">
-            <h2 className="text-xl font-semibold text-green-800">
-              B. CHILD/YOUTH PROTECTION AND EDUCATION ALTERNATIVES
-            </h2>
+        {/* After Image */}
+        <div className="relative w-40 h-40 md:w-48 md:h-48">
+          <img
+            src={ImpactPhoto2}
+            alt="After: Thriving green belts with mature trees"
+            className="w-full h-full object-cover rounded-xl shadow-md"
+          />
+          <div className="absolute bottom-2 left-2 bg-black/60 text-white text-sm px-2 py-1 rounded-md">
+            After: Thriving green belts with mature trees
           </div>
+        </div>
+      </div>
+      <p className="text-gray-700 leading-relaxed">
+      This initiative exemplifies how education can drive environmental innovation by turning community 
+      challenges into opportunities for growth and resilience.
+    </p>
+    <h3 className="text-1xl sm:text-1xl font-bold text-black-700">
+     EDUCATION AS THE ROOT OF SUSTAINABILITY
+    </h3>
+    <p className="text-gray-700 leading-relaxed">
+      For ECN, education is the seed and sustainability is the harvest. Tree planting symbolizes the harmony 
+      between learning and living and a reminder that informed communities are empowered communities.
+    </p>
+    <blockquote className="border-l-4 border-green-500 pl-4 italic text-green-600">
+      “When we plant trees, we plant the seeds of peace and hope.”— Wangari Maathai
+    </blockquote>
+    <p className="text-gray-700 leading-relaxed">
+      Through these efforts, ECN aims to cultivate not just forests, but a culture of environmental 
+      consciousness, where children, youth, and women lead Africa’s green transformation.
+      <br></br>
+      Be Part of Our Eco-Education Movement 
+      <br></br>
+      <span className="font-semibold">“Growing Education. Growing Africa.”</span>
+    </p>
+    <h3 className="text-1xl sm:text-1xl font-bold text-black-700">
+     Urban Green Minds: Turning Waste into Worth
+     </h3>
+      <p className="italic text-black-600">
+      Empowering Street Youth to Clean, Create, and Conserve
+    </p>
+    <h3 className="text-1xl sm:text-1xl font-bold text-black-700">
+    Where Others See Waste, We See Potential
+     </h3>
+    <p className="text-gray-700 leading-relaxed">
+      Every day, the streets of our cities fill with waste — plastic
+       bottles, discarded paper, and forgotten metal. But to the street 
+       youth of Kenya, this isn’t just trash.
+       <br></br>
+       It’s a chance to learn, to earn, and to lead.
+    </p>
+     <p className="text-gray-700 leading-relaxed">
+      Urban Green Minds is a transformative ECN initiative that turns the 
+      challenges of urban waste into opportunities for education, innovation, and sustainable livelihoods.
+      <br></br>
+      It’s where environmental conservation meets youth empowerment, and where learning takes place not 
+      only in classrooms but on the streets themselves.
+    </p>
+    <p className="text-gray-700 leading-relaxed">
+      Learning to Clean the City and the Future
+      <br></br>
+      At the heart of Urban Green Minds is one simple belief:
+      <br></br>
+      <strong>Education changes everything, even how we see waste.</strong>
+    </p>
+    <p className="text-gray-700 leading-relaxed">
+      Through fun, hands-on lessons, street-connected youth discover how the waste that clutters their
+      communities can become a source of income, creativity, and pride.
+      <br></br>
+      From sorting plastics to understanding pollution, they learn the science of waste — and how caring
+       for the environment begins with small, everyday actions.
+    </p>
+    <h3 className="text-1xl sm:text-1xl font-bold text-black-700">
+    Technology that Transforms
+     </h3>
+     <p className="text-gray-700 leading-relaxed">
+      This isn’t yesterday’s waste collection. It’s smart, tech-driven recycling for the future.
+      Using solar-powered learning hubs, youth access digital tools and apps to map waste hotspots,
+      organize collection routes, and connect with recycling centres. They explore how AI and simple
+      sensors can sort materials faster and how 3D printing can give plastic a second life.
+        <br></br>
+      Its innovation powered by curiosity, technology, and hope
+    </p>
+    <h3 className="text-1xl sm:text-1xl font-bold text-black-700">
+    Recycling for Dignity and Jobs
+     </h3>
+     <p className="text-gray-700 leading-relaxed">
+      Every item recycled tells a new story not just of cleaner cities,
+      but of restored dignity. Youth teams transform waste into products that sell:
+    </p>
+    <ul className="list-decimal pl-8 text-gray-700 leading-relaxed space-y-2">
+      <li>Art pieces from plastics and metals</li>
+      <li>Bags made from old banners and fabric scraps.</li>
+    </ul>
+    <p className="text-gray-700 leading-relaxed">
+      These become green businesses, creating income while saving the planet. 
+      It’s where education meets enterprise, and survival meets sustainability.
+    </p>
+    <h3 className="text-1xl sm:text-1xl font-bold text-black-700">
+    Changing the Culture, One Street at a Time
+     </h3>
+     <p className="text-gray-700 leading-relaxed">
+      Urban Green Minds is not only cleaning up waste, it’s cleaning up perceptions.
+      It teaches that every person and every piece of waste has value.
+      <br></br>
+      Through music, street art, and public campaigns, the youth become ambassadors of change, 
+      inspiring entire neighbourhoods to rethink their habits and embrace recycling as a way of life.
+      <br></br>
+      <strong>“We don’t just collect waste — we collect hope, innovation, and community pride.”</strong>
+    </p>
+    <p className="text-1xl sm:text-1xl font-bold text-black-700">
+    Our Impact Goals:
+     </p>
+     <ul className="list-disc pl-8 text-gray-700 leading-relaxed space-y-2">
+      <li>Train 100 street-connected youth in sustainable waste management and recycling.</li>
+      <li>Establish 10 youth-led green enterprises across Nairobi, Kisumu, and Mombasa.</li>
+      <li>Reduce urban waste pollution while creating dignified green jobs.</li>
+      <li>Cultivate a culture of recycling that drives cleaner, safer, and more inclusive cities.</li>
+    </ul>
+    <h3 className="text-1xl sm:text-1xl font-bold text-black-700">
+    Our Vision
+     </h3>
+     <p className="text-gray-700 leading-relaxed">
+      We imagine a future where no youth is left behind and no waste goes to waste.
+      A future where education fuels creativity, and where the streets themselves become 
+      classrooms for learning, invention, and environmental stewardship.
+      <br></br>
+      At ECN, we believe that the youth who once lived from waste can now live for the planet 
+      and lead the green revolution of tomorrow.
+    </p>
+    <blockquote className="border-l-4 border-green-500 pl-4 italic text-green-600">
+      “When we teach the youth to recycle, we don’t just save the city — we save their future.” — Elimu Community Network
+    </blockquote>
+    <p className="text-1xl sm:text-1xl font-bold text-black-700">
+    Be Part of the Change
+     </p>
+     <p className="text-gray-700 leading-relaxed">
+      Join us in empowering street youth to build cleaner cities and greener futures.
+      Partner, volunteer, or support the Urban Green Minds programme where every act of recycling becomes a lesson in dignity, innovation, and hope.
+    </p> 
+  </div>
+  {/* --- B.	Nafasi Learning Programme --- */}
+  <div className="space-y-6 pt-10 border-t border-green-200">
+    <h3 className="text-2xl sm:text-3xl font-bold text-green-700">
+      B.	Nafasi Learning Programme: Creating Spaces and Opportunities for Change
+    </h3>
+   <p className="text-gray-700 leading-relaxed">
+      The Nafasi Learning Programme supports street-connected children 
+      and youth to reclaim their right to education, protection, and dignity. 
+      ‘Nafasi’ which means space or opportunity in Swahili, reflects our belief 
+      that every young person deserves a chance to learn and to belong.
+      <br></br>
+      Through mobile street schools, creative arts, and sports for transformation, 
+      ECN builds pathways from the street to structured learning environments. 
+      The programme integrates psychosocial care, family reintegration, and vocational 
+      training to empower youth toward independence.
+      <br></br>
+      Each child’s story begins in struggle but evolves through education from survival 
+      to learning, from learning to leadership. One example is a group of former street 
+      boys in Nairobi who, after completing ECN’s vocational program, now operate a community 
+      transport service using trollies that supports their families and funds younger children’s school fees.
+      <br></br>
+      Through the Nafasi Programme, ECN journeys with street-connected children and youth by meeting them where 
+      they are, listening to their stories, and walking beside them as they discover spaces and opportunities to survive, learn, and thrive.
+    </p> 
+    <p className="text-gray-700 leading-relaxed">
+     Through the Nafasi Programme, ECN journeys with street-connected children and youth by meeting them where they are, listening to their stories, 
+     and walking beside them as they discover spaces and opportunities to survive, learn, and thrive.
+     <br></br>
+     <strong>“Every child has a right to be safe, to learn, and to dream.”</strong>
+    </p>
+    <h3 className="text-1xl sm:text-1xl font-bold text-black-700">
+    From the Streets to Safe Spaces
+     </h3>
+    <p className="text-gray-700 leading-relaxed">
+     Nafasi begins with compassion and curiosity. Our teams conduct mobile street outreach, building trust and helping children and youth identify 
+     safe survival options. From there, we guide them into rehabilitation, learning opportunities, and eventually family or community reintegration.
+     <br></br>
+     The journey follows three stages:
+    </p>
+    <ol className="list-decimal pl-8 text-gray-700 leading-relaxed space-y-2">
+      <li>
+        <span className="font-semibold">Rescue/Survival </span>Offering immediate safety, care, and emotional support on the streets.
+      </li>
+      <li>
+        <span className="font-semibold">Rehabilitation</span>Providing counselling, basic education, and psychosocial support in transitional spaces.
+      </li>
+      <li>
+        <span className="font-semibold">Foster and kinship care</span>Support for short-term placement of children into foster families
+      </li>
+      <li>
+        <span className="font-semibold">Reintegration</span>Supporting family reunification and access to long-term educational and vocational pathways.
+      </li>      
+    </ol>
+    <p className="text-gray-700 leading-relaxed">
+     Each step is guided by our belief that; education is the bridge between vulnerability and opportunity.
+    </p>
+    <blockquote className="border-l-4 border-green-500 pl-4 italic text-green-600">
+     “Education is not a way to escape poverty; it is a way of fighting it.” — Julius Nyerere
+    </blockquote>
+    <h3 className="text-1xl sm:text-1xl font-bold text-black-700">
+    Programme Objectives:
+     </h3>
+     <ol className="list-decimal pl-8 text-gray-700 leading-relaxed space-y-2">
+      <li>
+        <span className="font-semibold">To strengthen social protection systems  </span>for children and youth living on the streets/ vulnerability by safeguarding their rights and wellbeing.
+      </li>
+      <li>
+        <span className="font-semibold">To increase sustainable reintegration </span>through family-based care and access to education, skills training, and livelihood opportunities.
+      </li>       
+    </ol>
+    <p className="text-gray-700 leading-relaxed">
+     Key activities:
+    </p>
+    <ul className="list-disc pl-8 text-gray-700 leading-relaxed space-y-2">
+      <li>
+        <span className="font-semibold">Street Work:</span>Identification and assessment of street-connected children and youth, providing immediate assistance and pathways to reintegration.
+      </li>
+      <li>
+        <span className="font-semibold">Street Teams and Safe Learning Spaces:</span>Formation of creative and inclusive street teams engaged in arts, sports, and mentorship as tools for behaviour transformation and leadership development.
+      </li>
+      <li>
+        <span className="font-semibold">Mobile School — Learning Without Walls:</span>: Establishment of a mobile street school as a safe, open, and flexible learning space where children and youth explore their talents, strengthen their self-esteem, and discover the joy of learning.
+      </li>
+      <li>
+        <span className="font-semibold">Toolkits for Self-Reliance:</span>Provision of work trollies and tool kits that help youth transition from street life to self-employment and community contribution.
+      </li>       
+    </ul>
+    <p className="text-black-700 leading-relaxed">
+     “When we educate a child, we do not just change a life — we change a generation.”
+    </p>
 
-          {/* --- Unchanged text here too --- */}
-          <motion.div
-            className="mt-4 text-gray-700 leading-relaxed space-y-3"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            {/* ✅ Text preserved */}
-            <h2>Nafasi Programme: Creating Spaces and Opportunities for Change</h2>
-            <p>“Every child has a right to be safe, to learn, and to dream.”</p>
-            <h2>What is Nafasi?</h2>
-            <p>
-              Nafasi is a Swahili word meaning “space” and “opportunity.” It is
-              also the name of ECN’s transformative social programme dedicated
-              to reducing the number of children, youth, and families living on
-              the streets by using education as a pathway to dignity,
-              empowerment, and lasting change.
-            </p>
-            <p>
-              Through the Nafasi Programme, ECN journeys with street-connected
-              children and youth by meeting them where they are, listening to
-              their stories, and walking beside them as they discover spaces and
-              opportunities to survive, learn, and thrive.
-            </p>
-            <p>From the Streets to Safe Spaces</p>
-            <p>
-              Nafasi begins with compassion and curiosity. Our teams conduct
-              mobile street outreach, building trust and helping children and
-              youth identify safe survival options. From there, we guide them
-              into rehabilitation, learning opportunities, and eventually family
-              or community reintegration.
-            </p>
-            <p>The journey follows three stages:</p>
-            <ul>
-              <li>
-                1. Rescue/Survival – Offering immediate safety, care, and
-                emotional support on the streets.
-              </li>
-              <li>
-                2. Rehabilitation – Providing counseling, basic education, and
-                psychosocial support in transitional spaces.
-              </li>
-              <li>
-                3. Reintegration – Supporting family reunification and access to
-                long-term educational and vocational pathways.
-              </li>
-            </ul>
-            <p>
-              Each step is guided by our belief that; education is the bridge
-              between vulnerability and opportunity.
-            </p>
-            <p>
-              “Education is not a way to escape poverty; it is a way of fighting
-              it.” <strong>— Julius Nyerere</strong>
-            </p>
-            <p>Programme Objectives:</p>
-            <ul>
-              <li>
-                1. <strong>To strengthen social protection systems</strong> for
-                children and youth living on the streets, safeguarding their
-                rights and wellbeing.
-              </li>
-              <li>
-                2. <strong>To increase sustainable reintegration</strong> through
-                family-based care and access to education, skills training, and
-                livelihood opportunities.
-              </li>
-            </ul>
-            <p>Key Activities</p>
-            <ul>
-              <li>
-                <strong>Street Work:</strong> Identification and assessment of
-                street-connected children and youth, providing immediate
-                assistance and pathways to reintegration.
-              </li>
-              <li>
-                <strong>Street Teams and Safe Learning Spaces:</strong> Formation
-                of creative and inclusive street teams engaged in arts, sports,
-                and mentorship as tools for behaviour transformation and
-                leadership development.
-              </li>
-              <li>
-                <strong>Mobile Street Schools — Learning Without Walls:</strong>{" "}
-                Establishment of a mobile street school as a safe, open, and
-                flexible learning space where children and youth explore their
-                talents, strengthen their self-esteem, and discover the joy of
-                learning.
-              </li>
-              <li>
-                <strong>Toolkits for Self-Reliance:</strong> Provision of work
-                trollies and tool kits that help youth transition from street
-                life to self-employment and community contribution.
-              </li>
-            </ul>
-            <p>
-              “When we educate a child, we do not just change a life — we change
-              a generation.” <strong>- Mobile street school</strong>
-            </p>
-            <br></br>
-            <p>
-              Nafasi is founded on the belief that education liberates potential.
-              It helps children and youth rediscover their identity, rebuild confidence, and reimagine their place in the world.
-              Our “mobile street school” is not confined by walls because it travels where the children are, creating learning experiences rooted in real life and inspired by their strengths, talents, and dreams.
-              Through mentorship, creativity, and structured support, each child learns that their circumstances do not define their destiny.
-            </p>
-            <p>
-              “The child who is not embraced by the village will burn it down to feel its warmth.”
-              <strong>— African Proverb</strong>
-            </p>
-            <p>Join the Journey</p>
-            <p>Every week, ECN’s Nafasi team takes to the streets of Nairobi and surrounding communities not only to rescue but to reimagine education as a tool for healing and empowerment.
-            This is not charity, it is partnership in transformation.
-            </p>
-            <p>
-              “Education is the key to unlock the golden door of freedom.”
-                <strong> George Washington Carver</strong>
-            </p>
-            <h2>Call to Action:</h2>
-            <p>
-              Join us in this beautiful journey of discovering and expanding learning spaces where every child finds their Nafasi; their space, their opportunity, their future.
-            </p>
-            <h2>Sports for Transformation</h2>
-            <p>Empowering vulnerable Youth through Play, Purpose, and Participation</p>
-            <p>“Sport has the power to change the world. It has the power to inspire and unite people in a way that little else does.”
-            <strong>— Nelson Mandela</strong>
-            </p>
-            <p>
-              At Elimu Community Network (ECN), we believe that street and village sports are more than games. They are a classroom without walls, a bridge from vulnerability to self-discovery.
-              Through sports-based learning, we use football, athletics, and creative games as transformative tools to engage youth, build life skills, promote discipline, and open pathways to education and sustainable livelihoods.
-            </p>
-            <h2>Specific Objective</h2>
-            <p>
-              To empower village and street-connected youth through structured sports and life-skills education, enhancing their social inclusion, psychosocial wellbeing, and access to education and livelihood opportunities.
-            </p>
-            <h2>Key Activities</h2>
-            <ul>
-              <li>
-                <strong>1.	Formation of Street Sports Clubs</strong> 
-                <p>Establish safe and inclusive street and village sports clubs where youth meet regularly to play, learn, and grow together.
-                Sessions combine football, athletics, and team challenges with structured life-skills lessons on teamwork, communication, leadership, and self-control.
-                </p>
-              </li>
-              <li>
-                <strong>2.	Street and village Sports Tournaments and Talent Days</strong> 
-                <p>EOrganize quarterly community tournaments and “Talent Days” that showcase the abilities of participating youth.
-                  These events foster team spirit, reduce stigma, and connect youth to education, vocational training, and mentorship opportunities.
-                </p>
-              </li>
-              <li>
-                <strong>3.  Peer Coaching and Leadership Development</strong> 
-                <p>Identify and train outstanding participants as peer coaches and youth mentors.
-                They become positive role models, leading younger players, facilitating learning circles, and organizing community clean-up or advocacy events that promote peace and social responsibility.
-                </p>
-              </li>
-            </ul>
-            <h2>Achievements</h2>
-            <ul>
-              <li>
-                <strong>1.	Youth Empowerment and Re-engagement</strong> 
-                <p>Over 70% of participating youth demonstrated improved confidence, teamwork, and emotional regulation, with many re-engaging in education, training, or family life.
-                </p>
-              </li>
-              <li>
-                <strong>2.	Social Inclusion and Community Cohesion</strong> 
-                <p>Street and village sports activities reduced social stigma and strengthened community bonds, transforming how local residents perceive and support vulnerable youth.
-                </p>
-              </li>
-              <li>
-                <strong>3.	Pathways to Opportunity</strong> 
-                <p>Through mentorship, talent development, and educational linkages, participating youth accessed new opportunities — from school re-entry and vocational training to employment and microenterprise in the sports value chain.
-                </p>
-              </li>
-            </ul>
-            <p>
-              “When youth play, they learn. When they learn, they lead. And when they lead, communities transform.”
-              <strong>— Elimu Community Network</strong>
-            </p>
-            </motion.div>
-        </section>
 
-        {/* Section C */}
-        <section id="women" className="w-full max-w-4xl mb-12">
-          <div className="sticky top-0 bg-green-100 py-3 px-4 rounded-md shadow-sm">
-            <h2 className="text-xl font-semibold text-green-800">
-              C. IMARA WOMEN: Building Strength through Knowledge and Innovation
-            </h2>
-            <p>
-              <strong>Imara</strong> means <strong>“strong” and “resilient”</strong> in
-              Swahili
-            </p>
-          </div>
+   
 
-          {/* --- Your Imara Women text unchanged --- */}
-          <motion.div
-            className="mt-4 text-gray-700 leading-relaxed space-y-3"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <p>
-              Education, Enterprise, and Empowerment for Sustainable Families
-              <br></br>
-              “When you educate a woman, you educate a nation.”
-              — African Proverb
 
-            </p>
-            <p>
-              At Elimu Community Network (ECN), we believe that empowering women through education and innovation is key to unlocking the full potential of families and communities.
-              Our Women Empowerment Programme integrates economic inclusion, psychosocial wellbeing, and continuous learning to create sustainable change from the inside out.
-            </p>
-            <p>
-              This initiative recognizes that a woman’s empowerment journey begins with self-discovery, is strengthened through education, and matures through active participation in the local economy.
-              When women are equipped with knowledge, confidence, and opportunity, they become drivers of transformation by nurturing resilient families and building stronger, more equitable communities.
-            </p>
-            <h2>Programme Goal</h2>
-            <p>
-              To enhance the economic, educational, and psychosocial wellbeing of women through education-based empowerment, community savings models, and microenterprise development that promote family sustainability and community resilience.
-            </p>
-            <h2>Three Strategic Pillars:</h2>
-            <ul>
-              <li><strong>1.  Psychosocial and Family Wellbeing</strong>
-              <p>Our approach begins with the woman; her mind, emotions, and relationships.
-              We provide mental health and psychosocial support (MHPSS) through group therapy sessions, peer mentorship, and family-focused counseling.
-              </p>
-              <p>These interventions build self-worth, confidence, and emotional resilience that are essential foundations for leadership, learning, and entrepreneurship.</p>
-              <p>“Education is not the filling of a pail, but the lighting of a fire.” <strong>— W.B. Yeats</strong></p>
-              </li>
-              <li><strong>2.  Economic Empowerment through Education and Innovation</strong>
-              <p>At the heart of the programme lies a learning-based model that links education directly with income generation.
-              </p>
-              <p>Through structured trainings, women acquire practical skills in entrepreneurship, innovation, and financial literacy, empowering them to design microenterprises that respond to real community needs.</p>
-              </li>
-            </ul>
-            <p>Core Components</p>
-            <ul>
-              <li>
-                <strong>•	Village Savings and Loan Associations (VSLA):</strong><p>Women are organized into self-managed savings and lending groups that promote financial inclusion, mutual accountability, and community solidarity.
-                Each group saves regularly, issues small loans for income-generating activities, and collectively reinvests in local opportunities.
-                </p>
-              </li>
-              <li><strong>•	Microenterprise and Innovation Training:</strong><p>Women receive practical business education on topics such as idea generation, market research, cost management, product diversification, and digital literacy.
-              Special emphasis is placed on “innovation for the generations” by equipping women to identify local problems and create scalable, sustainable solutions.
-              </p>
-              </li>
-              <li><strong>•	Business Incubation and Peer Mentorship:</strong><p>ECN supports emerging women entrepreneurs through mentorship, access to local markets, and partnerships with financial institutions and private-sector players.
-              Peer learning circles encourage women to share experiences and co-create new business models.
-              </p>
-              </li>
-            </ul>
-            <ul>
-              <li><strong>3.  Active Participation in Local Economies and Community Leadership</strong>
-              <p>Empowered women are not just beneficiaries, they are leaders and innovators in their local economies.
-              The programme promotes their participation in local markets, cooperatives, and community enterprises, amplifying their voices in economic decision-making.
-              </p>
-              <p>Through continuous education, we help women move beyond subsistence livelihoods toward productive, dignified, and sustainable engagement in their communities.
-              “When women rise, families prosper and communities flourish.”
-              </p>
-              <p>The Role of Education</p>
-              <p>
-                <p>Education is the foundation of empowerment in this model.</p>
-                <p>It equips women not only with knowledge and skills but also with the mindset to innovate, collaborate, and lead. Through functional literacy classes, financial education, and leadership training, women become lifelong learners who are capable of navigating change and shaping their futures.</p>
-                <p>Each training session, dialogue circle, and mentorship engagement reinforces the idea that education is both a right and a tool for liberation.</p>
-                <p>“The empowered woman is not just self-reliant, she is a catalyst for generational transformation.”</p>
-                <h2>Our Distinctive Approach</h2>
-                <p>hat sets this programme apart is our individualized accompaniment model.
-                Each woman receives personalized support within group-based learning environments that nurture both independence and interdependence.
-                The result is a holistic ecosystem where women’s wellbeing, family development, and community resilience grow together sustainably and inclusively.</p>
-                <h2>Join the Movement</h2>
-                <p>Empowered women create empowered families and empowered families build resilient nations.
-                Through education, savings, and innovation, ECN is helping women move from vulnerability to visibility, from survival to success.</p>
-                <p><strong>Call to Action Buttons:</strong></p>
-                <ul>
-                  <li>•	Learn, save, and grow with others.</li>
-                  <li>•	Sponsor a woman-led business or training.</li>
-                  <li>•	Collaborate to expand access to women’s education and financial inclusion.</li>
-                </ul>
-                </p>
-              </li>
-            </ul>
-          </motion.div>
-        </section>
+
+
+
+
+
+
+
+  </div>
+</motion.section>
       </div>
 
       {/* Scroll to Top */}
