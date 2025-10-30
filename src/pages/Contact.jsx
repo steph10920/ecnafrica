@@ -425,35 +425,17 @@ export default function Contact() {
               +254 720 576 794
             </a>
           </p>
+          
           <p>
             Email:{" "}
             <a
-              href="mailto:info.ecnafrica@gmail.com"
+              href="mailto:education.ecnafrica.org"
               className="underline font-medium hover:text-green-200 transition-colors"
             >
-              info.ecnafrica@gmail.com
+              education.ecnafrica.org
             </a>
           </p>
-          <p>
-            Email:{" "}
-            <a
-              href="mailto:education.ecnafrica@gmail.com"
-              className="underline font-medium hover:text-green-200 transition-colors"
-            >
-              education.ecnafrica@gmail.com
-            </a>
-          </p>
-          <p>
-            Website:{" "}
-            <a
-              href="https://ecnafrica.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline font-medium hover:text-green-200 transition-colors"
-            >
-              ecnafrica.org
-            </a>
-          </p>
+          
         </section>
       </main>
 

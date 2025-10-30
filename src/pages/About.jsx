@@ -171,10 +171,10 @@ export default function About() {
           <p className="text-gray-700 leading-relaxed">
             Contact us at{" "}
             <a
-              href="mailto:info.ecnafrica@gmail.com"
+              href="mailto:education@ecnafrica.org"
               className="text-green-600 underline hover:text-green-800 transition-colors"
             >
-              info.ecnafrica@gmail.com
+              education@ecnafrica.org
             </a>{" "}
             or visit{" "}
             <a
