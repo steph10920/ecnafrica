@@ -429,10 +429,10 @@ export default function Contact() {
           <p>
             Email:{" "}
             <a
-              href="mailto:education.ecnafrica.org"
+              href="mailto:education@ecnafrica.org"
               className="underline font-medium hover:text-green-200 transition-colors"
             >
-              education.ecnafrica.org
+              education@ecnafrica.org
             </a>
           </p>
           
