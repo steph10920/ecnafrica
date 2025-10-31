@@ -12,8 +12,8 @@ export default function Programs() {
       color: "from-green-100 to-green-300",
     },
     {
-      title: "Urban Green Minds",
-      subtitle: "Turning Waste into Worth",
+      title: "Nafasi Learning Programme: Creating Spaces and Opportunities for Change",
+      subtitle: "Creating Spaces and Opportunities for Change",
       path: "/programs/urban-green-minds",
       color: "from-blue-100 to-blue-300",
     },
