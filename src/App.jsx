@@ -7,6 +7,12 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Programs from "./pages/Programs";
 
+// 🔹 Program Subpages
+import GreenClassrooms from "./pages/GreenClassrooms";
+import UrbanGreenMinds from "./pages/UrbanGreenMinds";
+import NafasiLearning from "./pages/Nafasi";
+import BlueHorizons from "./pages/BlueHorizons";
+
 // 🔹 Category Pages
 import Environment from "./pages/categories/Environment";
 import Health from "./pages/categories/Health";
@@ -35,17 +41,30 @@ export default function App() {
 
       <div className="pt-20">
         <Routes>
+          {/* 🔹 Main Pages */}
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/programs" element={<Programs />} />
+
+          {/* 🔹 Program Subpages */}
+          <Route path="/programs/green-classrooms" element={<GreenClassrooms />} />
+          <Route path="/programs/urban-green-minds" element={<UrbanGreenMinds />} />
+          <Route path="/programs/nafasi-learning" element={<NafasiLearning />} />
+          <Route path="/programs/blue-horizons" element={<BlueHorizons />} />
+
+          {/* 🔹 Category Pages */}
           <Route path="/categories/environment" element={<Environment />} />
           <Route path="/categories/health" element={<Health />} />
           <Route path="/categories/food-security" element={<FoodSecurity />} />
           <Route path="/categories/human-rights" element={<HumanRights />} />
           <Route path="/categories/arts-and-sports" element={<ArtsAndSports />} />
           <Route path="/categories/quality-education" element={<QualityEducation />} />
+
+          {/* 🔹 Blog Pages */}
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogPost />} />
+
+          {/* 🔹 Contact */}
           <Route path="/contact" element={<Contact jobs={jobs} />} />
         </Routes>
       </div>
@@ -53,11 +72,11 @@ export default function App() {
       {/* 🔹 Vercel Analytics */}
       <Analytics />
 
-      {/* 🔹 Speed Insights (only in development) */}
+      {/* 🔹 Speed Insights (development only) */}
       {process.env.NODE_ENV === "development" && (
         <div className="fixed bottom-4 right-4 z-50">
           <SpeedInsights
-            url="https://ecnafrica.org" // Your deployed site URL
+            url="https://ecnafrica.org"
             device="desktop"
             theme="light"
           />
