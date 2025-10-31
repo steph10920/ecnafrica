@@ -85,7 +85,7 @@ export default function Navbar() {
             Home
           </button>
           <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600">
-            Programs
+            Programmes
           </button>
 
           {/* Desktop Categories Dropdown */}
