@@ -9,7 +9,7 @@ import Programs from "./pages/Programs";
 
 // 🔹 Program Subpages
 import GreenClassrooms from "./pages/GreenClassrooms";
-import UrbanGreenMinds from "./pages/UrbanGreenMinds";
+import NafasiProgramme from "./pages/NafasiProgramme";
 import NafasiLearning from "./pages/Nafasi";
 import BlueHorizons from "./pages/BlueHorizons";
 
@@ -48,7 +48,8 @@ export default function App() {
 
           {/* 🔹 Program Subpages */}
           <Route path="/programs/green-classrooms" element={<GreenClassrooms />} />
-          <Route path="/programs/urban-green-minds" element={<UrbanGreenMinds />} />
+          <Route path="/programs/nafasiprogramme" element={<NafasiProgramme />} />
+
           <Route path="/programs/nafasi-learning" element={<NafasiLearning />} />
           <Route path="/programs/blue-horizons" element={<BlueHorizons />} />
 

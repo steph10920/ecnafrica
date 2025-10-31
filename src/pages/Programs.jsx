@@ -14,12 +14,12 @@ export default function Programs() {
     {
       title: "Nafasi Learning Programme: Creating Spaces and Opportunities for Change",
       subtitle: "Creating Spaces and Opportunities for Change",
-      path: "/programs/urban-green-minds",
+      path: "/programs/NafasiProgramme",
       color: "from-blue-100 to-blue-300",
     },
     {
-      title: "Nafasi Learning Programme",
-      subtitle: "Creating Spaces and Opportunities for Change",
+      title: " IMARA WOMEN: Building Strength through Knowledge and Innovation",
+      subtitle: "Imara means “strong” or “resilient” in Swahili",
       path: "/programs/nafasi-learning",
       color: "from-yellow-100 to-yellow-300",
     },
