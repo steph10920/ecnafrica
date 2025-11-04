@@ -1,6 +1,13 @@
 import React, { Suspense, lazy, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, Globe2, HeartHandshake, Users2, Mail, Send, CheckCircle } from "lucide-react";
+import {
+  BookOpen,
+  Globe2,
+  HeartHandshake,
+  Mail,
+  Send,
+  CheckCircle,
+} from "lucide-react";
 
 const Footer = lazy(() => import("../components/Footer"));
 
@@ -34,12 +41,8 @@ export default function About() {
       if (data.success) {
         setResult("✅ Thank you! Your feedback has been sent successfully.");
         event.target.reset();
-        setShowModal(true); // ✅ Show modal on success
-
-        // Auto-close modal after 4 seconds
-        setTimeout(() => {
-          setShowModal(false);
-        }, 4000);
+        setShowModal(true);
+        setTimeout(() => setShowModal(false), 4000);
       } else {
         console.error("Error:", data);
         setResult("❌ Something went wrong. Please try again.");
@@ -59,7 +62,9 @@ export default function About() {
         <section>
           <div className="flex items-center gap-2 mb-4">
             <BookOpen className="text-green-700" size={28} />
-            <h1 className="text-3xl md:text-4xl font-bold text-green-700">About ECN</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-green-700">
+              About ECN
+            </h1>
           </div>
 
           <p className="text-gray-700 mb-4 leading-relaxed">
@@ -81,7 +86,9 @@ export default function About() {
         <section>
           <div className="flex items-center gap-2 mb-4">
             <HeartHandshake className="text-green-700" size={28} />
-            <h2 className="text-2xl font-semibold text-green-700">Our Approach</h2>
+            <h2 className="text-2xl font-semibold text-green-700">
+              Our Approach
+            </h2>
           </div>
 
           <p className="text-gray-700 mb-4 leading-relaxed">
@@ -117,13 +124,24 @@ export default function About() {
         <section>
           <div className="flex items-center gap-2 mb-4">
             <HeartHandshake className="text-green-700" size={28} />
-            <h2 className="text-2xl font-semibold text-green-700">Our Core Values</h2>
+            <h2 className="text-2xl font-semibold text-green-700">
+              Our Core Values
+            </h2>
           </div>
           <ul className="list-disc list-inside text-gray-700 space-y-1">
-            <li><strong>Courage:</strong> We believe in transformation through education.</li>
-            <li><strong>Integrity:</strong> We act transparently and responsibly.</li>
-            <li><strong>Creativity:</strong> We innovate for impact.</li>
-            <li><strong>Collaboration:</strong> We grow stronger together.</li>
+            <li>
+              <strong>Courage:</strong> We believe in transformation through
+              education.
+            </li>
+            <li>
+              <strong>Integrity:</strong> We act transparently and responsibly.
+            </li>
+            <li>
+              <strong>Creativity:</strong> We innovate for impact.
+            </li>
+            <li>
+              <strong>Collaboration:</strong> We grow stronger together.
+            </li>
           </ul>
         </section>
 
@@ -133,7 +151,9 @@ export default function About() {
         <section>
           <div className="flex items-center gap-2 mb-4">
             <Mail className="text-green-700" size={28} />
-            <h2 className="text-2xl font-semibold text-green-700">Get in Touch</h2>
+            <h2 className="text-2xl font-semibold text-green-700">
+              Get in Touch
+            </h2>
           </div>
           <p className="text-gray-700 leading-relaxed">
             Contact us at{" "}
@@ -158,7 +178,7 @@ export default function About() {
 
         <Divider />
 
-        {/* ---------- FEEDBACK FORM (Web3Forms) ---------- */}
+        {/* ---------- FEEDBACK FORM ---------- */}
         <section className="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-green-100">
           <h2 className="text-2xl font-semibold text-green-700 mb-4 flex items-center gap-2">
             <Send size={22} className="text-green-700" /> Share Your Feedback
@@ -180,6 +200,13 @@ export default function About() {
               name="email"
               placeholder="Your Email"
               required
+              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-600 outline-none"
+            />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Your Phone Number (optional)"
+              pattern="[0-9+\-\s()]*"
               className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-600 outline-none"
             />
             <textarea
