@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Home, BookOpen, Globe2, Users2, FileText } from "lucide-react";
+import {
+  Search,
+  Home,
+  BookOpen,
+  Globe2,
+  Users2,
+  FileText,
+  ChevronDown,
+} from "lucide-react";
 import Logo from "../assets/ecnlogo.jpg";
 
 export default function Navbar() {
@@ -62,7 +70,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-        {/* Logo */}
+        {/* 🔹 Logo */}
         <button
           onClick={() => handleNavClick("/")}
           className="flex items-center gap-2"
@@ -79,7 +87,7 @@ export default function Navbar() {
           </span>
         </button>
 
-        {/* Desktop Menu */}
+        {/* 🔹 Desktop Menu */}
         <nav className="hidden md:flex items-center space-x-8 text-gray-800 font-semibold">
           <button onClick={() => handleNavClick("/")} className="hover:text-green-600">
             Home
@@ -88,13 +96,15 @@ export default function Navbar() {
             Programmes
           </button>
 
-          {/* Desktop Categories Dropdown */}
+          {/* 🔹 Desktop Dropdown */}
           <div
             className="relative"
             onMouseEnter={() => setCategoriesOpen(true)}
             onMouseLeave={() => setCategoriesOpen(false)}
           >
-            <button className="flex items-center gap-1 hover:text-green-600">Categories ▾</button>
+            <button className="flex items-center gap-1 hover:text-green-600">
+              Categories <ChevronDown size={16} className="mt-0.5" />
+            </button>
             <AnimatePresence>
               {categoriesOpen && (
                 <motion.div
@@ -118,10 +128,17 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
 
-          <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600">Blog/News</button>
-          <button onClick={() => handleNavClick("/about")} className="hover:text-green-600">About Us</button>
-          <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600">Contact</button>
+          <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600">
+            Blog/News
+          </button>
+          <button onClick={() => handleNavClick("/about")} className="hover:text-green-600">
+            About Us
+          </button>
+          <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600">
+            Contact
+          </button>
 
+          {/* 🔹 Desktop Search */}
           <form onSubmit={handleSearchSubmit} className="ml-4">
             <input
               type="text"
@@ -133,7 +150,7 @@ export default function Navbar() {
           </form>
         </nav>
 
-        {/* Mobile Menu Button */}
+        {/* 🔹 Mobile Menu Button */}
         <button
           className="md:hidden text-green-700 text-3xl focus:outline-none"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -142,7 +159,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu Vertical */}
+      {/* 🔹 Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -159,21 +176,30 @@ export default function Navbar() {
               <BookOpen size={18} /> Programs
             </button>
 
-            {/* Mobile Categories Dropdown */}
-            <div className="flex flex-col w-full">
+            {/* 🔹 Mobile Categories Dropdown (fixed spacing & animated arrow) */}
+            <div className="w-full">
               <button
                 onClick={() => setCategoriesOpen(!categoriesOpen)}
-                className="flex items-center justify-between gap-2 w-full hover:text-green-600 px-4 py-3 border-b border-gray-200"
+                className="flex items-center justify-between w-full text-left hover:text-green-600 px-4 py-3 border-b border-gray-200"
               >
-                <Globe2 size={18} /> Categories ▾
+                <div className="flex items-center gap-2">
+                  <Globe2 size={18} /> Categories
+                </div>
+                <motion.div
+                  animate={{ rotate: categoriesOpen ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ChevronDown size={16} />
+                </motion.div>
               </button>
+
               <AnimatePresence>
                 {categoriesOpen && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="overflow-hidden flex flex-col"
+                    className="overflow-hidden flex flex-col border-b border-gray-200"
                   >
                     {categories.map(([path, label]) => (
                       <button
@@ -199,8 +225,11 @@ export default function Navbar() {
               <Globe2 size={18} /> Contact
             </button>
 
-            {/* Mobile Search */}
-            <form onSubmit={handleSearchSubmit} className="flex items-center border border-gray-300 rounded-md overflow-hidden m-4">
+            {/* 🔹 Mobile Search */}
+            <form
+              onSubmit={handleSearchSubmit}
+              className="flex items-center border border-gray-300 rounded-md overflow-hidden m-4"
+            >
               <input
                 type="text"
                 value={searchQuery}
