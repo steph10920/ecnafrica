@@ -52,7 +52,7 @@ export default function Contact() {
         "Excellent leadership, coordination, and reporting skills.",
         "Ability to work independently and travel within the region.",
       ],
-      apply: "Interested applicants should submit a cover letter and CV to careers@ecnafrica.org by 15th December 2025.",
+      apply: "Interested applicants should submit a cover letter and CV to hr@ecnafrica.org by 15th December 2025.",
     },
   ];
 
