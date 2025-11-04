@@ -138,7 +138,7 @@ export default function Home() {
       </section>
 
       {/* 🔹 ABOUT + IMPACT + PROGRAMS */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-20 space-y-24">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-20 space-y-2">
         {/* ABOUT SECTION */}
         <motion.section
           initial={{ opacity: 0, y: 60 }}
@@ -160,7 +160,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="space-y-5 text-gray-700">
+          <div className="space-y-2 text-gray-700">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-green-700">
               Who We Are
             </h2>
