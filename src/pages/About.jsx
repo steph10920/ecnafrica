@@ -1,9 +1,14 @@
-import React, { Suspense, lazy } from "react";
-import { BookOpen, Globe2, HeartHandshake, Users2, Mail } from "lucide-react"; // Lucide icons
+import React, { Suspense, lazy, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { BookOpen, Globe2, HeartHandshake, Users2, Mail, Send, CheckCircle } from "lucide-react";
 
 const Footer = lazy(() => import("../components/Footer"));
 
 export default function About() {
+  const [result, setResult] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   const Divider = () => (
     <div className="flex items-center gap-2 my-8">
       <div className="h-[2px] w-10 bg-green-600 rounded"></div>
@@ -11,9 +16,44 @@ export default function About() {
     </div>
   );
 
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    setResult("");
+
+    const formData = new FormData(event.target);
+    formData.append("access_key", "8991a49f-f857-4c3d-a172-389b3202ddbc");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setResult("✅ Thank you! Your feedback has been sent successfully.");
+        event.target.reset();
+        setShowModal(true); // ✅ Show modal on success
+
+        // Auto-close modal after 4 seconds
+        setTimeout(() => {
+          setShowModal(false);
+        }, 4000);
+      } else {
+        console.error("Error:", data);
+        setResult("❌ Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Network Error:", error);
+      setResult("⚠️ Network error. Please check your connection.");
+    }
+
+    setLoading(false);
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      {/* 🔹 Main Content */}
       <main className="max-w-6xl mx-auto px-6 py-12 space-y-14 animate-fade-in">
         {/* ---------- INTRODUCTION ---------- */}
         <section>
@@ -37,7 +77,7 @@ export default function About() {
 
         <Divider />
 
-        {/* ---------- OUR APPROACH ---------- */}
+        {/* ---------- APPROACH ---------- */}
         <section>
           <div className="flex items-center gap-2 mb-4">
             <HeartHandshake className="text-green-700" size={28} />
@@ -51,17 +91,13 @@ export default function About() {
             We listen deeply to communities, learn collaboratively, and lead
             with compassion. Our strength-based approach values local wisdom and
             creativity while promoting gender equality, inclusivity, and
-            innovation. Education is not just what we do — it’s how we build
-            empowered, resilient communities across Africa.
+            innovation.
           </p>
-          <blockquote className="border-l-4 border-green-600 pl-4 italic text-gray-600">
-            “The future belongs to those who prepare for it today.” — Malcolm X
-          </blockquote>
         </section>
 
         <Divider />
 
-        {/* ---------- IMPACT & SUSTAINABILITY ---------- */}
+        {/* ---------- IMPACT ---------- */}
         <section>
           <div className="flex items-center gap-2 mb-4">
             <Globe2 className="text-green-700" size={28} />
@@ -71,41 +107,7 @@ export default function About() {
           </div>
           <p className="text-gray-700 mb-4 leading-relaxed">
             Since its founding, ECN has reached over{" "}
-            <strong>10,000 children, youth, and women</strong> across Kenya
-            through education, psychosocial care, and economic empowerment.
-            Our programmes have led to reduced street involvement among children
-            and youth, stronger family units, and increased household income from
-            women-led enterprises.
-          </p>
-          <p className="text-gray-700 mb-4 leading-relaxed">
-            We measure success not just by numbers but by transformation — a
-            mother feeding her family with income from her business, a child
-            re-enrolled in school, or a community turning barren land into a
-            thriving green space.
-          </p>
-        </section>
-
-        <Divider />
-
-        {/* ---------- FUTURE VISION ---------- */}
-        <section>
-          <div className="flex items-center gap-2 mb-4">
-            <Users2 className="text-green-700" size={28} />
-            <h2 className="text-2xl font-semibold text-green-700">
-              The Future We Envision
-            </h2>
-          </div>
-          <p className="text-gray-700 mb-4 leading-relaxed">
-            Over the next five years, ECN will expand its Learning and
-            Innovation initiatives across Kenya, deepen applied research
-            partnerships, and strengthen youth and women networks that drive
-            community-led transformation.
-          </p>
-          <p className="text-gray-700 mb-4 leading-relaxed">
-            Our vision is to see education act as a cornerstone for peace,
-            productivity, and sustainable development in Africa. We invite
-            partners, donors, and educators to join us in keeping education at
-            the heart of Africa’s prosperity and peace.
+            <strong>10,000 children, youth, and women</strong> across Kenya.
           </p>
         </section>
 
@@ -118,45 +120,10 @@ export default function About() {
             <h2 className="text-2xl font-semibold text-green-700">Our Core Values</h2>
           </div>
           <ul className="list-disc list-inside text-gray-700 space-y-1">
-            <li>
-              <strong>Courage:</strong> We dare to believe that education can
-              rewrite destinies.
-            </li>
-            <li>
-              <strong>Integrity:</strong> We act with transparency and uphold
-              trust.
-            </li>
-            <li>
-              <strong>Creativity:</strong> We innovate for lasting impact.
-            </li>
-            <li>
-              <strong>Grit:</strong> We persist where others might give up.
-            </li>
-            <li>
-              <strong>Collaboration:</strong> We grow stronger together.
-            </li>
-          </ul>
-        </section>
-
-        <Divider />
-
-        {/* ---------- REGIONS ---------- */}
-        <section>
-          <div className="flex items-center gap-2 mb-4">
-            <Globe2 className="text-green-700" size={28} />
-            <h2 className="text-2xl font-semibold text-green-700">Where We Work</h2>
-          </div>
-          <ul className="list-disc list-inside text-gray-700 space-y-1">
-            <li>
-              <strong>Nairobi Region:</strong> Nairobi, Kajiado, Machakos,
-              Kiambu
-            </li>
-            <li>
-              <strong>Coastal Region:</strong> Mombasa, Kilifi, Kwale, Tana River
-            </li>
-            <li>
-              <strong>Western Region:</strong> Busia, Kakamega, Vihiga, Kisumu
-            </li>
+            <li><strong>Courage:</strong> We believe in transformation through education.</li>
+            <li><strong>Integrity:</strong> We act transparently and responsibly.</li>
+            <li><strong>Creativity:</strong> We innovate for impact.</li>
+            <li><strong>Collaboration:</strong> We grow stronger together.</li>
           </ul>
         </section>
 
@@ -172,28 +139,106 @@ export default function About() {
             Contact us at{" "}
             <a
               href="mailto:education@ecnafrica.org"
-              className="text-green-600 underline hover:text-green-800 transition-colors"
+              className="text-green-600 underline hover:text-green-800"
             >
               education@ecnafrica.org
             </a>{" "}
-            or visit{" "}
+            or visit our{" "}
             <a
               href="https://www.facebook.com/elimucommunitynetwork/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-green-600 underline hover:text-green-800 transition-colors"
+              className="text-green-600 underline hover:text-green-800"
             >
-              our Facebook page
+              Facebook page
             </a>
             .
           </p>
         </section>
+
+        <Divider />
+
+        {/* ---------- FEEDBACK FORM (Web3Forms) ---------- */}
+        <section className="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-green-100">
+          <h2 className="text-2xl font-semibold text-green-700 mb-4 flex items-center gap-2">
+            <Send size={22} className="text-green-700" /> Share Your Feedback
+          </h2>
+          <p className="text-gray-600 mb-6">
+            We’d love to hear your thoughts! Please share your ideas, suggestions, or experiences with ECN.
+          </p>
+
+          <form onSubmit={onSubmit} className="space-y-4">
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              required
+              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-600 outline-none"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              required
+              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-600 outline-none"
+            />
+            <textarea
+              name="message"
+              placeholder="Your Feedback"
+              required
+              rows="5"
+              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-600 outline-none resize-none"
+            ></textarea>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className={`w-full flex justify-center items-center gap-2 bg-green-700 text-white font-semibold px-6 py-3 rounded-lg transition-all ${
+                loading ? "opacity-70 cursor-not-allowed" : "hover:bg-green-800"
+              }`}
+            >
+              {loading ? "Sending..." : "Submit Feedback"}
+            </button>
+          </form>
+        </section>
       </main>
 
+      {/* ---------- FEEDBACK SUCCESS MODAL ---------- */}
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50"
+            onClick={() => setShowModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-white rounded-2xl shadow-lg p-8 w-[90%] md:w-[400px] text-center"
+            >
+              <CheckCircle size={60} className="text-green-600 mx-auto mb-4" />
+              <h3 className="text-2xl font-semibold text-green-700 mb-2">
+                Thank You!
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Your feedback has been received successfully. We appreciate your input!
+              </p>
+              <button
+                onClick={() => setShowModal(false)}
+                className="bg-green-700 text-white px-5 py-2 rounded-lg hover:bg-green-800 transition"
+              >
+                Close
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* ---------- FOOTER ---------- */}
-      <Suspense
-        fallback={<div className="text-center py-4 text-gray-500">Loading footer...</div>}
-      >
+      <Suspense fallback={<div className="text-center py-4 text-gray-500">Loading footer...</div>}>
         <Footer />
       </Suspense>
     </div>
