@@ -12,9 +12,9 @@ import {
 const Footer = lazy(() => import("../components/Footer"));
 
 export default function About() {
-  const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [userName, setUserName] = useState("");
 
   const Divider = () => (
     <div className="flex items-center gap-2 my-8">
@@ -26,10 +26,13 @@ export default function About() {
   const onSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-    setResult("");
 
     const formData = new FormData(event.target);
-    formData.append("access_key", "8991a49f-f857-4c3d-a172-389b3202ddbc");
+    const name = formData.get("name");
+    setUserName(name);
+
+    // ✅ Add your access key
+    formData.append("access_key", "74a6f829-9dac-4e22-bf1a-bcd3e916f4d7");
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -38,21 +41,21 @@ export default function About() {
       });
 
       const data = await response.json();
+      console.log("Web3Forms Response:", data);
+
       if (data.success) {
-        setResult("✅ Thank you! Your feedback has been sent successfully.");
         event.target.reset();
         setShowModal(true);
-        setTimeout(() => setShowModal(false), 4000);
+        setTimeout(() => setShowModal(false), 5000);
       } else {
-        console.error("Error:", data);
-        setResult("❌ Something went wrong. Please try again.");
+        alert("⚠️ Submission failed. Please check your access key or form setup.");
       }
     } catch (error) {
-      console.error("Network Error:", error);
-      setResult("⚠️ Network error. Please check your connection.");
+      console.error("Submission Error:", error);
+      alert("❌ Network error — please check your internet connection.");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
@@ -187,7 +190,7 @@ export default function About() {
             We’d love to hear your thoughts! Please share your ideas, suggestions, or experiences with ECN.
           </p>
 
-          <form onSubmit={onSubmit} className="space-y-4">
+          <form onSubmit={onSubmit} className="space-y-4" id="feedback-form">
             <input
               type="text"
               name="name"
@@ -230,7 +233,7 @@ export default function About() {
         </section>
       </main>
 
-      {/* ---------- FEEDBACK SUCCESS MODAL ---------- */}
+      {/* ---------- SUCCESS MODAL ---------- */}
       <AnimatePresence>
         {showModal && (
           <motion.div
@@ -248,7 +251,7 @@ export default function About() {
             >
               <CheckCircle size={60} className="text-green-600 mx-auto mb-4" />
               <h3 className="text-2xl font-semibold text-green-700 mb-2">
-                Thank You!
+                Thank You{userName ? `, ${userName}` : ""}!
               </h3>
               <p className="text-gray-600 mb-4">
                 Your feedback has been received successfully. We appreciate your input!
