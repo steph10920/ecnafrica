@@ -1,112 +1,83 @@
 import React, { useState, Suspense, lazy } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 
 const Footer = lazy(() => import("../components/Footer"));
 
 export default function Contact() {
-  // --- Job listings data ---
+  const [selectedJob, setSelectedJob] = useState(null);
+
   const jobListings = [
     {
       id: 1,
       title: "ICT Officer",
       location: "Nairobi, Kenya",
       type: "Full-Time",
-      closingDate: /*"December 15, 2025"*/"closed",
-      salaryRange: " (negotiable)",
-      shortDescription:
-        "We are seeking a qualified ICT Officer to support our IT infrastructure, ensure network stability, and manage system security.",
-      description:
-        "The ICT Officer provides technical support across the organization, manages servers/networks, deploys and maintains software, implements security best practices, and supports staff with IT-related issues. The role ensures smooth digital operations across all ECN programs.",
+      closingDate: "CLOSED",
+      salaryRange: "KES (Negotiable)",
+      aboutRole:
+        "We are seeking an experienced ICT Officer to ensure smooth IT operations, manage infrastructure, and enhance digital capacity across our regional offices.",
       responsibilities: [
-        "Manage and maintain local networks, servers, and cloud services.",
-        "Provide day-to-day technical support to staff and troubleshoot hardware/software issues.",
-        "Ensure backups, disaster recovery plans, and cybersecurity measures are in place.",
-        "Maintain website and basic integrations with third-party services.",
-        "Train staff on digital tools, data security, and safe online practices.",
+        "Maintain and troubleshoot computer systems, servers, and networks.",
+        "Implement data backup, cybersecurity, and system upgrades.",
+        "Provide IT support and user training to staff.",
+        "Collaborate with program teams to digitize workflows.",
       ],
       qualifications: [
-        "Degree or diploma in IT, Computer Science, or related field.",
-        "Minimum 2 years of experience in IT support or system administration.",
-        "Familiarity with Linux/Windows servers, routers, firewalls, and cloud services.",
-        "Good communication skills and ability to train non-technical staff.",
+        "Bachelor’s degree in IT, Computer Science, or related field.",
+        "3+ years of IT support or systems admin experience.",
+        "Knowledge of networking, cloud services, and database management.",
+        "Strong problem-solving and communication skills.",
       ],
-      benefits:
-        "Medical cover, pension contributions, flexible working arrangements, and opportunities for professional development.",
-      howToApply:
-        "Click Apply to complete the short form and upload your CV (PDF). Only shortlisted candidates will be contacted.",
+      apply: "Send your CV and cover letter to hr@ecnafrica.org with the subject line ‘ICT Officer Application’. Only shortlisted candidates will be contacted.",
     },
     {
       id: 2,
       title: "Program Coordinator – Education",
       location: "Kakamega, Kenya",
       type: "12-month Contract",
-      closingDate: /*"November 30, 2025",*/"closed",
-      salaryRange: " (depending on experience)",
-      shortDescription:
-        "The Program Coordinator will oversee community-based education initiatives, manage field officers, and ensure effective reporting.",
-      description:
-        "The Program Coordinator will lead the design and implementation of ECN’s education projects. They supervise field staff, ensure quality programming, monitor progress against targets, manage stakeholder relationships, and prepare timely reports for donors and leadership.",
+      closingDate: "CLOSED",
+      salaryRange: "KES  (Depending on experience)",
+      aboutRole:
+        "The Program Coordinator will lead education initiatives in Western Kenya, manage field officers, oversee budgets, and strengthen school partnerships.",
       responsibilities: [
-        "Plan, implement, and supervise education activities and school-based programs.",
-        "Manage and mentor field staff and volunteers.",
-        "Monitor program quality and collect data for reporting and learning.",
-        "Coordinate with local stakeholders, schools, and government offices.",
-        "Support proposal writing and contribute to program improvement.",
+        "Coordinate implementation of education programs across counties.",
+        "Supervise field staff and ensure timely project reporting.",
+        "Monitor progress and evaluate impact against project goals.",
+        "Engage with partners, schools, and community stakeholders.",
       ],
       qualifications: [
-        "Bachelor’s degree in Education, Development Studies, or related field.",
-        "3+ years of experience managing community education or development programs.",
-        "Strong monitoring & evaluation skills and excellent written English.",
-        "Ability to travel regularly and work with diverse communities.",
+        "Bachelor’s degree in Education, Social Sciences, or related field.",
+        "At least 4 years’ experience managing community education projects.",
+        "Excellent leadership, coordination, and reporting skills.",
+        "Ability to work independently and travel within the region.",
       ],
-      benefits:
-        "Field allowances, travel reimbursement, training, and opportunities to lead research partnerships.",
-      howToApply:
-        "Complete the Apply form and upload your CV and a one-page cover letter (PDF). Shortlisted candidates will be notified by email.",
+      apply: "Interested applicants should submit a cover letter and CV to careers@ecnafrica.org by 15th December 2025.",
     },
   ];
 
-  const [selectedJob, setSelectedJob] = useState(null);
-  const [modalMode, setModalMode] = useState(null); // "details" or "apply"
-
-  const openDetails = (job) => {
-    setSelectedJob(job);
-    setModalMode("details");
-    document.body.style.overflow = "hidden";
-  };
-
-  const openApply = (job) => {
-    setSelectedJob(job);
-    setModalMode("apply");
-    document.body.style.overflow = "hidden";
-  };
-
-  const closeModal = () => {
-    setSelectedJob(null);
-    setModalMode(null);
-    document.body.style.overflow = "";
-  };
-
-  // --- MAIN PAGE ---
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
-      <main className="flex-1 flex flex-col items-center justify-start px-6 pt-28 text-center">
-        {/* Header */}
-        <h1 className="text-4xl md:text-5xl font-extrabold text-green-700 mb-6">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex flex-col">
+      {/* --- Page Header --- */}
+      <header className="text-center mt-20 mb-12">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-green-700 tracking-tight">
           Where We Work
         </h1>
-        <p className="max-w-2xl text-gray-700 text-lg leading-relaxed mb-12">
-          We reach communities across Kenya through regional hubs that embody
-          the diversity, resilience, and creativity of our people. Our regional
-          teams collaborate with local leaders, schools, and families to design
-          solutions that are rooted in context and driven by compassion.
+        <p className="mt-4 text-gray-700 text-lg max-w-2xl mx-auto leading-relaxed">
+          We partner with communities across Kenya to create impact that is local,
+          sustainable, and community-driven. Explore our regional presence and
+          opportunities to join our mission.
         </p>
+      </header>
 
-        {/* Regional Hubs */}
-        <section className="bg-white shadow-lg rounded-3xl p-8 md:p-12 max-w-3xl w-full border border-green-100 mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-green-700 mb-6">
+      {/* --- Content Layout --- */}
+      <div className="flex flex-col lg:flex-row justify-center items-start gap-10 px-6 lg:px-16 pb-20 mx-auto w-full max-w-7xl">
+        {/* --- Main Section --- */}
+        <section className="flex-1 bg-white/70 backdrop-blur-md shadow-xl rounded-3xl p-10 border border-green-100">
+          <h2 className="text-2xl md:text-3xl font-bold text-green-700 mb-6 text-center">
             Our Regional Hubs
           </h2>
-          <ul className="text-gray-700 text-lg text-left list-disc list-inside space-y-2">
+          <ul className="text-gray-700 text-lg list-disc list-inside space-y-3">
             <li>
               <strong>Nairobi Region:</strong> Nairobi, Kajiado, Machakos, Kiambu
             </li>
@@ -117,331 +88,140 @@ export default function Contact() {
               <strong>Western Region:</strong> Busia, Kakamega, Vihiga, Kisumu
             </li>
           </ul>
+
+          {/* --- Contact Card --- */}
+          <div className="mt-12 bg-green-700 text-white rounded-3xl p-8 md:p-10 shadow-lg">
+            <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
+            <p className="text-lg font-medium">ECN – Education Africa</p>
+            <p className="text-sm mt-1">P.O BOX 1234-00200, Nairobi, Kenya</p>
+            <p className="mt-2">
+              Tel:{" "}
+              <a href="tel:+254724178817" className="hover:underline">
+                +254 724 178 817
+              </a>{" "}
+              /{" "}
+              <a href="tel:+254720576794" className="hover:underline">
+                +254 720 576 794
+              </a>
+            </p>
+            <p className="mt-2">
+              Email:{" "}
+              <a
+                href="mailto:education@ecnafrica.org"
+                className="underline hover:text-green-200"
+              >
+                education@ecnafrica.org
+              </a>
+            </p>
+          </div>
         </section>
 
-        {/* JOB LISTINGS */}
-        <section className="w-full max-w-6xl mb-16">
-          <h2 className="text-3xl font-extrabold text-green-700 mb-8 text-center">
+        {/* --- Jobs Section --- */}
+        <aside className="w-full lg:w-1/3 bg-white/70 backdrop-blur-md shadow-xl rounded-3xl border border-green-100 p-8">
+          <h2 className="text-2xl font-bold text-green-700 mb-6 text-center">
             Job Opportunities
           </h2>
-          
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="flex flex-col gap-6">
             {jobListings.map((job) => (
-              <article
+              <motion.div
                 key={job.id}
-                className="bg-white p-6 rounded-2xl shadow-lg border border-green-100 hover:shadow-2xl transition-shadow flex flex-col justify-between"
+                whileHover={{ scale: 1.02 }}
+                className="border border-green-100 rounded-2xl p-6 bg-white shadow-sm hover:shadow-md transition"
               >
-                <div>
-                  <h3 className="text-2xl font-semibold text-green-700 mb-2">
-                    {job.title}
-                  </h3>
-                  <p className="text-gray-600 mb-1">
-                    <strong>Location:</strong> {job.location}
-                  </p>
-                  <p className="text-gray-600 mb-2">
-                    <strong>Type:</strong> {job.type} •{" "}
-                    <strong>Closes:</strong> {job.closingDate}
-                  </p>
-                  <p className="text-gray-700 mb-4">{job.shortDescription}</p>
-                </div>
-
-                <div className="flex gap-4 mt-4">
-                  <button
-                    onClick={() => openDetails(job)}
-                    className="flex-1 bg-green-700 text-white px-4 py-2 rounded-xl hover:bg-green-800 transition"
-                  >
-                    See Details
-                  </button>
-                  <button
-                    onClick={() => openApply(job)}
-                    className="flex-1 border border-green-700 text-green-700 px-4 py-2 rounded-xl hover:bg-green-700 hover:text-white transition"
-                  >
-                    Apply
-                  </button>
-                </div>
-              </article>
+                <h3 className="text-lg font-semibold text-green-700 mb-1">
+                  {job.title}
+                </h3>
+                <p className="text-gray-600 text-sm mb-1">
+                  {job.location} | {job.type}
+                </p>
+                <p className="text-gray-600 text-sm mb-1">
+                  {job.salaryRange}
+                </p>
+                <p className="text-gray-600 text-sm mb-2">
+                  Closing Date: <strong>{job.closingDate}</strong>
+                </p>
+                <p className="text-gray-700 text-sm mt-2 line-clamp-3">
+                  {job.aboutRole}
+                </p>
+                <button
+                  onClick={() => setSelectedJob(job)}
+                  className="mt-4 w-full bg-green-700 text-white py-2 rounded-xl hover:bg-green-800 transition font-medium"
+                >
+                  See Details
+                </button>
+              </motion.div>
             ))}
           </div>
-        </section>
+        </aside>
+      </div>
 
-        {/* DETAILS MODAL */}
-        {selectedJob && modalMode === "details" && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <div
-              className="absolute inset-0 bg-black/50"
-              onClick={closeModal}
-            />
-            <div className="relative bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-auto max-h-[90vh]">
-              <div className="p-6 sm:p-8 relative">
-                <button
-                  onClick={closeModal}
-                  className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
-                >
-                  ✕
-                </button>
-
-                <h3 className="text-2xl font-bold text-green-700 mb-2">
-                  {selectedJob.title}
-                </h3>
-                <p className="text-sm text-gray-600 mb-1">
-                  {selectedJob.location} • {selectedJob.type} • Closes:{" "}
-                  {selectedJob.closingDate}
-                </p>
-                <p className="text-sm text-gray-600 mb-3">
-                  <strong>Salary:</strong> {selectedJob.salaryRange}
-                </p>
-
-                <div className="text-left text-gray-700 space-y-4">
-                  <section>
-                    <h4 className="font-semibold mb-2">About the Role</h4>
-                    <p>{selectedJob.description}</p>
-                  </section>
-
-                  <section>
-                    <h4 className="font-semibold mb-2">Key Responsibilities</h4>
-                    <ul className="list-disc list-inside space-y-1">
-                      {selectedJob.responsibilities.map((r, i) => (
-                        <li key={i}>{r}</li>
-                      ))}
-                    </ul>
-                  </section>
-
-                  <section>
-                    <h4 className="font-semibold mb-2">
-                      Qualifications & Skills
-                    </h4>
-                    <ul className="list-disc list-inside space-y-1">
-                      {selectedJob.qualifications.map((q, i) => (
-                        <li key={i}>{q}</li>
-                      ))}
-                    </ul>
-                  </section>
-
-                  <p>
-                    <strong>Benefits:</strong> {selectedJob.benefits}
-                  </p>
-                  <p>
-                    <strong>How to Apply:</strong> {selectedJob.howToApply}
-                  </p>
-                </div>
-
-                <div className="flex justify-end gap-3 mt-6">
-                  <button
-                    onClick={() => openApply(selectedJob)}
-                    className="bg-green-700 text-white px-4 py-2 rounded-xl hover:bg-green-800 transition"
-                  >
-                    Apply Now
-                  </button>
-                  <button
-                    onClick={closeModal}
-                    className="border border-gray-300 px-4 py-2 rounded-xl hover:bg-gray-50 transition"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* APPLY MODAL */}
-        {selectedJob && modalMode === "apply" && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <div
-              className="absolute inset-0 bg-black/50"
-              onClick={closeModal}
-            />
-            <div className="relative bg-white w-full max-w-xl rounded-2xl shadow-2xl overflow-auto max-h-[90vh] p-6 sm:p-8">
+      {/* --- Job Details Modal --- */}
+      <AnimatePresence>
+        {selectedJob && (
+          <motion.div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="relative bg-white rounded-3xl shadow-2xl p-8 w-full max-w-2xl overflow-y-auto max-h-[90vh]"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+            >
               <button
-                onClick={closeModal}
+                onClick={() => setSelectedJob(null)}
                 className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
               >
-                ✕
+                <X size={20} />
               </button>
 
               <h3 className="text-2xl font-bold text-green-700 mb-2">
-                Apply for {selectedJob.title}
+                {selectedJob.title}
               </h3>
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-gray-600 text-sm mb-1">
                 {selectedJob.location} • {selectedJob.type}
               </p>
+              <p className="text-gray-600 text-sm mb-1">
+                {selectedJob.salaryRange}
+              </p>
+              <p className="text-gray-600 text-sm mb-4">
+                Closing Date: {selectedJob.closingDate}
+              </p>
 
-              {/* APPLICATION FORM */}
-              <form
-                onSubmit={async (e) => {
-                  e.preventDefault();
-                  const formData = new FormData(e.target);
-                  formData.append("jobTitle", selectedJob.title);
+              <p className="text-gray-700 mb-4">{selectedJob.aboutRole}</p>
 
-                  try {
-                    const res = await fetch("http://localhost:5000/apply", {
-                      method: "POST",
-                      body: formData,
-                    });
+              <h4 className="font-semibold text-green-700 mb-2">
+                Key Responsibilities
+              </h4>
+              <ul className="list-disc list-inside text-gray-700 space-y-1 mb-4">
+                {selectedJob.responsibilities.map((task, index) => (
+                  <li key={index}>{task}</li>
+                ))}
+              </ul>
 
-                    const result = await res.json();
-                    if (result.success) {
-                      alert("✅ Application sent successfully!");
-                    } else {
-                      alert("❌ Failed to send application. Please try again.");
-                    }
-                  } catch (err) {
-                    console.error(err);
-                    alert("⚠️ Could not connect to the server.");
-                  }
+              <h4 className="font-semibold text-green-700 mb-2">
+                Qualifications
+              </h4>
+              <ul className="list-disc list-inside text-gray-700 space-y-1 mb-4">
+                {selectedJob.qualifications.map((req, index) => (
+                  <li key={index}>{req}</li>
+                ))}
+              </ul>
 
-                  closeModal();
-                }}
-                className="space-y-4 text-left"
-              >
-                <div>
-                  <label className="block text-gray-700 font-medium mb-1">
-                    Full Name
-                  </label>
-                  <input
-                    name="name"
-                    required
-                    className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-green-600"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-gray-700 font-medium mb-1">
-                      Email
-                    </label>
-                    <input
-                      name="email"
-                      type="email"
-                      required
-                      className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-green-600"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-gray-700 font-medium mb-1">
-                      Phone
-                    </label>
-                    <input
-                      name="phone"
-                      type="tel"
-                      required
-                      className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-green-600"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-gray-700 font-medium mb-1">
-                      Education Level
-                    </label>
-                    <select
-                      name="education"
-                      required
-                      className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-green-600"
-                    >
-                      <option value="">Select</option>
-                      <option>Diploma</option>
-                      <option>Bachelor’s Degree</option>
-                      <option>Master’s Degree</option>
-                      <option>PhD</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-gray-700 font-medium mb-1">
-                      Experience (Years)
-                    </label>
-                    <input
-                      name="experience"
-                      type="number"
-                      min="0"
-                      required
-                      className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-green-600"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-gray-700 font-medium mb-1">
-                    Upload CV (PDF, max 5MB)
-                  </label>
-                  <input
-                    name="cv"
-                    type="file"
-                    accept=".pdf"
-                    required
-                    className="w-full border border-gray-300 rounded-xl px-3 py-2 cursor-pointer"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-gray-700 font-medium mb-1">
-                    Upload Cover Letter (PDF, optional)
-                  </label>
-                  <input
-                    name="coverLetter"
-                    type="file"
-                    accept=".pdf"
-                    className="w-full border border-gray-300 rounded-xl px-3 py-2 cursor-pointer"
-                  />
-                </div>
-
-                <div className="flex gap-3">
-                  <button
-                    type="submit"
-                    className="flex-1 bg-green-700 text-white font-semibold py-3 rounded-xl hover:bg-green-800 transition"
-                  >
-                    Submit Application
-                  </button>
-                  <button
-                    type="button"
-                    onClick={closeModal}
-                    className="flex-1 border border-gray-300 py-3 rounded-xl hover:bg-gray-50 transition"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
+              <h4 className="font-semibold text-green-700 mb-2">How to Apply</h4>
+              <p className="text-gray-700 leading-relaxed">
+                {selectedJob.apply}
+              </p>
+            </motion.div>
+          </motion.div>
         )}
+      </AnimatePresence>
 
-        {/* CONTACT INFO */}
-        <section className="bg-green-700 text-white rounded-3xl shadow-xl p-10 md:p-12 max-w-3xl w-full space-y-3 mb-20">
-          <h2 className="text-2xl md:text-3xl font-semibold mb-4">
-            Contact Us
-          </h2>
-          <p className="text-lg font-medium tracking-wide">ECN – Education Africa</p>
-          <p>P.O BOX 1234-00200, Nairobi, Kenya</p>
-          <p>
-            Tel:{" "}
-            <a href="tel:+254724178817" className="hover:underline">
-              +254 724 178 817
-            </a>{" "}
-            /{" "}
-            <a href="tel:+254720576794" className="hover:underline">
-              +254 720 576 794
-            </a>
-          </p>
-          
-          <p>
-            Email:{" "}
-            <a
-              href="mailto:education@ecnafrica.org"
-              className="underline font-medium hover:text-green-200 transition-colors"
-            >
-              education@ecnafrica.org
-            </a>
-          </p>
-          
-        </section>
-      </main>
-
-      {/* Footer */}
+      {/* --- Footer --- */}
       <Suspense
-        fallback={<div className="text-center py-4 text-gray-500">Loading footer...</div>}
+        fallback={<div className="text-center py-4 text-gray-500">Loading...</div>}
       >
         <Footer />
       </Suspense>

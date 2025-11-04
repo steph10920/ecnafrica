@@ -80,7 +80,7 @@ export default function Navbar() {
         </button>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center space-x-8 text-gray-800 font-medium">
+        <nav className="hidden md:flex items-center space-x-8 text-gray-800 font-semibold">
           <button onClick={() => handleNavClick("/")} className="hover:text-green-600">
             Home
           </button>

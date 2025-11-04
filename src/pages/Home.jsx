@@ -255,66 +255,13 @@ export default function Home() {
         </div>
         </motion.section>
 
-
-        {/* 🔹 IMPACT COUNTERS SECTION */}
-        <motion.section
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="relative overflow-hidden rounded-3xl shadow-2xl"
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1581092795360-fd1ca4e0c95b?auto=format&fit=crop&w=1920&q=80')",
-            }}
-          />
-          <div className="absolute inset-0 bg-green-900/70 backdrop-blur-sm" />
-
-          <div className="relative text-center text-white py-20 px-6">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-10 drop-shadow-lg">
-              Our Impact
-            </h2>
-            <p className="max-w-3xl mx-auto text-lg mb-12 text-gray-200">
-              Every number represents a life changed, a dream nurtured, and a
-              community strengthened through the power of education and
-              compassion.
-            </p>
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
-              {[
-                { label: "Children Reached", value: 1500 },
-                { label: "Families Empowered", value: 300 },
-                { label: "Schools Partnered", value: 25 },
-                { label: "Volunteers Engaged", value: 120 },
-              ].map((stat, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 200 }}
-                  className="bg-white/10 border border-white/20 rounded-2xl p-6 shadow-lg hover:shadow-2xl backdrop-blur-md"
-                >
-                  <h3 className="text-5xl font-extrabold text-white drop-shadow-md">
-                    <CountUp end={stat.value} duration={3} />+
-                  </h3>
-                  <p className="text-gray-200 mt-3 font-medium tracking-wide">
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.section>
-
         {/* 🔹 PROGRAMS SECTION */}
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="relative overflow-hidden py-20"
+          className="relative overflow-hidden py-20 rounded-3xl shadow-2xl"
         >
           <div
             className="absolute inset-0 bg-cover bg-center"
@@ -388,6 +335,57 @@ export default function Home() {
 
         {/* ✅ STRATEGIC FOCUS */}
         <StrategicFocus />
+         {/* 🔹 IMPACT COUNTERS SECTION */}
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="relative overflow-hidden rounded-3xl shadow-2xl"
+        >
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage:
+                "url('https://images.unsplash.com/photo-1581092795360-fd1ca4e0c95b?auto=format&fit=crop&w=1920&q=80')",
+            }}
+          />
+          <div className="absolute inset-0 bg-green-900/70 backdrop-blur-sm" />
+
+          <div className="relative text-center text-white py-20 px-6">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-10 drop-shadow-lg">
+              Our Impact
+            </h2>
+            <p className="max-w-3xl mx-auto text-lg mb-12 text-gray-200">
+              Every number represents a life changed, a dream nurtured, and a
+              community strengthened through the power of education and
+              compassion.
+            </p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
+              {[
+                { label: "Children Reached", value: 1500 },
+                { label: "Families Empowered", value: 300 },
+                { label: "Schools Partnered", value: 25 },
+                { label: "Volunteers Engaged", value: 120 },
+              ].map((stat, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 200 }}
+                  className="bg-white/10 border border-white/20 rounded-2xl p-6 shadow-lg hover:shadow-2xl backdrop-blur-md"
+                >
+                  <h3 className="text-5xl font-extrabold text-white drop-shadow-md">
+                    <CountUp end={stat.value} duration={5} />+
+                  </h3>
+                  <p className="text-gray-200 mt-3 font-medium tracking-wide">
+                    {stat.label}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
       </main>
 
       {/* Scroll-to-Top */}

@@ -6,29 +6,43 @@ const Footer = lazy(() => import("../components/Footer"));
 export default function Blog() {
   const featured = {
     id: "featured",
-    title: "Building Brighter Futures Through Learning",
-    date: "October 20, 2025",
-    image: "https://source.unsplash.com/1600x800/?students,education",
+    title: "Empowering Africa Through Education and Opportunity",
+    date: "October 25, 2025",
+    image: "https://source.unsplash.com/1600x800/?education,africa,students",
     excerpt:
-      "At ECN Africa, education is more than a right — it’s a pathway to empowerment. Discover how our community programs are transforming lives and inspiring hope for generations to come.",
+      "Education is the cornerstone of progress. At ECN Africa, we’re working to build a continent where every child has access to quality learning, every youth has the skills to thrive, and every community has the opportunity to grow sustainably.",
   };
 
   const posts = [
     {
       id: 1,
-      title: "Empowering Communities Through Education",
+      title: "Transforming Rural Education Through Digital Learning",
       date: "October 10, 2025",
-      image: "https://source.unsplash.com/800x400/?education,children",
+      closing: "Applications open until November 30, 2025",
+      image: "https://source.unsplash.com/800x400/?elearning,school,africa",
       excerpt:
-        "Discover how ECN Africa is transforming lives by ensuring that marginalized children gain access to quality education and lifelong learning opportunities.",
+        "Our Digital Learning Initiative bridges the gap for learners in remote areas through low-cost tablets, offline learning kits, and teacher mentorship programs designed to enhance digital literacy and student engagement.",
+      link: "/blog/digital-learning",
     },
     {
       id: 2,
-      title: "Green Future: Environmental Awareness Program",
+      title: "Green Classrooms: Empowering Schools to Go Sustainable",
       date: "September 22, 2025",
-      image: "https://source.unsplash.com/800x400/?environment,trees",
+      closing: "Ongoing program — Volunteer with us!",
+      image: "https://source.unsplash.com/800x400/?green,trees,classroom",
       excerpt:
-        "Our environmental initiatives mobilize communities to safeguard natural resources and embrace sustainable practices for a cleaner, healthier future.",
+        "Through the Green Classrooms Project, ECN Africa supports schools in adopting eco-friendly practices — from tree planting and waste recycling to energy-efficient classrooms powered by solar innovation.",
+      link: "/blog/green-classrooms",
+    },
+    {
+      id: 3,
+      title: "Youth Employment Program: Bridging the Skills Gap",
+      date: "August 15, 2025",
+      closing: "Recruitment closes December 5, 2025",
+      image: "https://source.unsplash.com/800x400/?youth,training,africa",
+      excerpt:
+        "In partnership with local industries, our Youth Employment Program equips young people with practical ICT and entrepreneurship skills, connecting them to sustainable employment and mentorship opportunities.",
+      link: "/blog/youth-employment",
     },
   ];
 
@@ -62,10 +76,10 @@ export default function Blog() {
       {/* 📰 Blog Section */}
       <section className="max-w-7xl mx-auto px-6 py-16 flex-1">
         <h2 className="text-3xl font-bold text-green-700 mb-10 text-center">
-          Latest News & Updates
+          Latest Stories & Opportunities
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-10">
+        <div className="grid md:grid-cols-3 gap-10">
           {posts.map((post) => (
             <article
               key={post.id}
@@ -81,12 +95,15 @@ export default function Blog() {
                 <h3 className="text-2xl font-semibold text-gray-800 mb-2">
                   {post.title}
                 </h3>
-                <p className="text-sm text-gray-500 mb-4 italic">{post.date}</p>
+                <p className="text-sm text-gray-500 mb-1 italic">{post.date}</p>
+                <p className="text-sm text-green-600 font-medium mb-4">
+                  {post.closing}
+                </p>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   {post.excerpt}
                 </p>
                 <Link
-                  to={`/blog/${post.id}`}
+                  to={post.link}
                   className="inline-block bg-green-600 text-white px-5 py-2 rounded-full font-medium hover:bg-green-700 transition"
                 >
                   Read More
