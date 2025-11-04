@@ -118,7 +118,7 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
 
-          <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600">Blog</button>
+          <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600">Blog/News</button>
           <button onClick={() => handleNavClick("/about")} className="hover:text-green-600">About Us</button>
           <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600">Contact</button>
 
@@ -190,7 +190,7 @@ export default function Navbar() {
             </div>
 
             <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200">
-              <FileText size={18} /> Blog
+              <FileText size={18} /> Blog/News
             </button>
             <button onClick={() => handleNavClick("/about")} className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200">
               <Users2 size={18} /> About Us
