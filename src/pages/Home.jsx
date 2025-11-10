@@ -8,7 +8,7 @@ import CountUp from "react-countup";
 
 import educationImg from "../assets/education.jpg";
 import childProtectionImg from "../assets/child-protection.jpg";
-import communityImg from "../assets/community.jpg";
+import communityImg from "../assets/community.png";
 import img1 from "../assets/img1.jpg";
 import img2 from "../assets/img2.jpg";
 import slide1 from "../assets/education.jpg";
@@ -67,7 +67,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
       {/* 🔹 HERO SECTION */}
-      <section className="relative w-full h-[65vh] sm:h-[75vh] md:h-[90vh] overflow-hidden">
+      <section className="relative w-full h-[100vh] sm:h-[100vh] md:h-[100vh] overflow-hidden">
         {slides.map((slide, i) => (
           <motion.img
             key={i}
@@ -78,7 +78,8 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: i === currentIndex ? 1 : 0 }}
             transition={{ duration: 1.2, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+            className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 [image-rendering:crisp-edges] sm:[image-rendering:high-quality]"
+
           />
         ))}
 
