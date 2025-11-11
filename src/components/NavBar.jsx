@@ -10,41 +10,61 @@ import {
   ChevronDown,
 } from "lucide-react";
 import Logo from "../assets/ecnlogo.jpg";
+import { searchMap } from "../data/searchMap"; // external search map
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [categoriesOpen, setCategoriesOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const handleNavClick = (path = null) => {
     setMobileOpen(false);
     setCategoriesOpen(false);
+    setSuggestions([]);
     if (path) window.location.href = path;
     else window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
-  const searchMap = [
-    { keyword: "home", page: "/" },
-    { keyword: "about", page: "/about" },
-    { keyword: "vision", page: "/about#vision" },
-    { keyword: "mission", page: "/about#mission" },
-    { keyword: "programs", page: "/programs" },
-    { keyword: "education", page: "/programs#education" },
-    { keyword: "child protection", page: "/programs#child-protection" },
-    { keyword: "community", page: "/programs#community" },
-    { keyword: "blog", page: "/blog" },
-    { keyword: "contact", page: "/contact" },
-  ];
+  // ✅ Search logic with relevance and highlights
+  useEffect(() => {
+    if (!searchQuery) {
+      setSuggestions([]);
+      return;
+    }
+
+    const query = searchQuery.toLowerCase();
+
+    const matches = searchMap
+      .map((item) => {
+        const matchedKeywords = item.keywords.filter((keyword) =>
+          keyword.toLowerCase().includes(query)
+        );
+        if (matchedKeywords.length === 0) return null;
+
+        // relevance: startsWith = 2, includes = 1
+        const score = matchedKeywords.reduce(
+          (acc, k) => acc + (k.toLowerCase().startsWith(query) ? 2 : 1),
+          0
+        );
+
+        return { ...item, score, matchedKeywords };
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 5); // show top 5 matches
+
+    setSuggestions(matches);
+  }, [searchQuery]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    const query = searchQuery.trim().toLowerCase();
-    if (!query) return;
-
-    const result = searchMap.find((item) => query.keyword.includes(query));
-    if (result) handleNavClick(result.page);
-    else alert("No matching page or section found!");
+    if (suggestions.length > 0) {
+      handleNavClick(suggestions[0].page);
+    } else {
+      alert("No matching page or section found!");
+    }
     setSearchQuery("");
   };
 
@@ -88,7 +108,7 @@ export default function Navbar() {
         </button>
 
         {/* 🔹 Desktop Menu */}
-        <nav className="hidden md:flex items-center space-x-8 text-gray-800 font-semibold">
+        <nav className="hidden md:flex items-center space-x-8 text-gray-800 font-semibold relative">
           <button onClick={() => handleNavClick("/")} className="hover:text-green-600">
             Home
           </button>
@@ -96,7 +116,7 @@ export default function Navbar() {
             Programmes
           </button>
 
-          {/* 🔹 Desktop Dropdown */}
+          {/* Desktop Dropdown */}
           <div
             className="relative"
             onMouseEnter={() => setCategoriesOpen(true)}
@@ -139,15 +159,45 @@ export default function Navbar() {
           </button>
 
           {/* 🔹 Desktop Search */}
-          <form onSubmit={handleSearchSubmit} className="ml-4">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search..."
-              className="px-3 py-2 rounded-md border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-            />
-          </form>
+          <div className="ml-4 relative">
+            <form onSubmit={handleSearchSubmit}>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search..."
+                className="px-3 py-2 rounded-md border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+              />
+            </form>
+
+            {/* Suggestions Dropdown */}
+            {suggestions.length > 0 && (
+              <div className="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-md mt-1 shadow-lg z-50 max-h-60 overflow-y-auto">
+                {suggestions.map((item, i) => (
+                  <button
+                    key={i}
+                    onClick={() => handleNavClick(item.page)}
+                    className="w-full text-left px-4 py-2 hover:bg-green-50 hover:text-green-700 transition"
+                  >
+                    {item.keywords.map((keyword, idx) => {
+                      const index = keyword.toLowerCase().indexOf(searchQuery.toLowerCase());
+                      if (index === -1) return <span key={idx}>{keyword}</span>;
+
+                      return (
+                        <span key={idx}>
+                          {keyword.slice(0, index)}
+                          <span className="bg-green-200 text-green-900 font-semibold">
+                            {keyword.slice(index, index + searchQuery.length)}
+                          </span>
+                          {keyword.slice(index + searchQuery.length)}
+                        </span>
+                      );
+                    })}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </nav>
 
         {/* 🔹 Mobile Menu Button */}
@@ -169,14 +219,20 @@ export default function Navbar() {
             transition={{ duration: 0.3 }}
             className="md:hidden flex flex-col bg-white shadow-lg border-t border-gray-200 z-40 w-full"
           >
-            <button onClick={() => handleNavClick("/")} className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200">
+            <button
+              onClick={() => handleNavClick("/")}
+              className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200"
+            >
               <Home size={18} /> Home
             </button>
-            <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200">
+            <button
+              onClick={() => handleNavClick("/programs")}
+              className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200"
+            >
               <BookOpen size={18} /> Programs
             </button>
 
-            {/* 🔹 Mobile Categories Dropdown (fixed spacing & animated arrow) */}
+            {/* Mobile Categories Dropdown */}
             <div className="w-full">
               <button
                 onClick={() => setCategoriesOpen(!categoriesOpen)}
@@ -215,32 +271,67 @@ export default function Navbar() {
               </AnimatePresence>
             </div>
 
-            <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200">
+            <button
+              onClick={() => handleNavClick("/blog")}
+              className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200"
+            >
               <FileText size={18} /> Blog/News
             </button>
-            <button onClick={() => handleNavClick("/about")} className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200">
+            <button
+              onClick={() => handleNavClick("/about")}
+              className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200"
+            >
               <Users2 size={18} /> About Us
             </button>
-            <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200">
+            <button
+              onClick={() => handleNavClick("/contact")}
+              className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200"
+            >
               <Globe2 size={18} /> Contact
             </button>
 
-            {/* 🔹 Mobile Search */}
-            <form
-              onSubmit={handleSearchSubmit}
-              className="flex items-center border border-gray-300 rounded-md overflow-hidden m-4"
-            >
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search..."
-                className="w-full px-2 py-2 text-sm focus:outline-none"
-              />
-              <button type="submit" className="px-2 text-green-700">
-                <Search size={18} />
-              </button>
-            </form>
+            {/* Mobile Search with top 5 suggestions */}
+            <div className="relative m-4">
+              <form onSubmit={handleSearchSubmit} className="flex items-center border border-gray-300 rounded-md overflow-hidden">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search..."
+                  className="w-full px-2 py-2 text-sm focus:outline-none"
+                />
+                <button type="submit" className="px-2 text-green-700">
+                  <Search size={18} />
+                </button>
+              </form>
+
+              {suggestions.length > 0 && (
+                <div className="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-md mt-1 shadow-lg z-50 max-h-60 overflow-y-auto">
+                  {suggestions.map((item, i) => (
+                    <button
+                      key={i}
+                      onClick={() => handleNavClick(item.page)}
+                      className="w-full text-left px-4 py-2 hover:bg-green-50 hover:text-green-700 transition"
+                    >
+                      {item.keywords.map((keyword, idx) => {
+                        const index = keyword.toLowerCase().indexOf(searchQuery.toLowerCase());
+                        if (index === -1) return <span key={idx}>{keyword}</span>;
+
+                        return (
+                          <span key={idx}>
+                            {keyword.slice(0, index)}
+                            <span className="bg-green-200 text-green-900 font-semibold">
+                              {keyword.slice(index, index + searchQuery.length)}
+                            </span>
+                            {keyword.slice(index + searchQuery.length)}
+                          </span>
+                        );
+                      })}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
