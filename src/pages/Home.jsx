@@ -165,8 +165,6 @@ export default function Home() {
   </div>
 </section>
 
-
-
       {/* 🔹 ABOUT + IMPACT + PROGRAMS */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-20 space-y-2">
         {/* ABOUT SECTION */}
