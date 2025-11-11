@@ -6,12 +6,12 @@ import StrategicFocus from "../components/StrategicFocus";
 import { ArrowUp } from "lucide-react";
 import CountUp from "react-countup";
 
-import educationImg from "../assets/education.jpg";
+import educationImg from "../assets/education.png";
 import childProtectionImg from "../assets/child-protection.jpg";
 import communityImg from "../assets/community.png";
 import img1 from "../assets/img1.jpg";
 import img2 from "../assets/img2.jpg";
-import slide1 from "../assets/education.jpg";
+import slide1 from "../assets/education.png";
 import slide2 from "../assets/child-protection.jpg";
 import slide3 from "../assets/women_empowerment.jpg";
 import slide4 from "../assets/img1.jpg";
@@ -45,7 +45,7 @@ export default function Home() {
     {
       img: slide5,
       title: "Promoting Sports",
-      desc: "Driving change through education and collaboration.",
+      desc: "Boosting talent, teamwork, and healthy living.",
     },
   ];
 
@@ -116,7 +116,7 @@ export default function Home() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-      className="text-base sm:text-xl md:text-2xl mb-8 max-w-3xl leading-relaxed text-gray-100"
+      className="text-base sm:text-xl md:text-2xl mb-8 max-w-3xl leading-relaxed text-green-100"
     >
       {slides[currentIndex].desc}
     </motion.p>
