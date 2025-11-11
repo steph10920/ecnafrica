@@ -41,7 +41,7 @@ export default function Programs() {
           className="text-4xl sm:text-5xl font-extrabold text-green-700 mb-6 text-center tracking-tight"
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.5 }}
         >
           Our Programmes
         </motion.h1>
