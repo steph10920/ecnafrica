@@ -380,39 +380,48 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-green-900/70 backdrop-blur-sm" />
 
-          <div className="relative text-center text-white py-20 px-6">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-10 drop-shadow-lg">
-              Our Impact
-            </h2>
-            <p className="max-w-3xl mx-auto text-lg mb-12 text-gray-200">
-              Every number represents a life changed, a dream nurtured, and a
-              community strengthened through the power of education and
-              compassion.
-            </p>
+          <div className="relative text-center py-20 px-6 bg-gradient-to-br from-emerald-700 via-green-600 to-emerald-800 text-white overflow-hidden">
+        {/* Decorative background circles */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-10 left-10 w-40 h-40 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-10 right-10 w-60 h-60 bg-emerald-400/20 rounded-full blur-3xl animate-pulse"></div>
+        </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
-              {[
-                { label: "Children Reached", value: 1500 },
-                { label: "Families Empowered", value: 300 },
-                { label: "Schools Partnered", value: 25 },
-                { label: "Volunteers Engaged", value: 120 },
-              ].map((stat, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 200 }}
-                  className="bg-white/10 border border-white/20 rounded-2xl p-6 shadow-lg hover:shadow-2xl backdrop-blur-md"
-                >
-                  <h3 className="text-5xl font-extrabold text-white drop-shadow-md">
-                    <CountUp end={stat.value} duration={5} />+
-                  </h3>
-                  <p className="text-gray-200 mt-3 font-medium tracking-wide">
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+        {/* Section Heading */}
+        <h2 className="relative text-3xl sm:text-4xl font-extrabold mb-6 drop-shadow-lg tracking-wide">
+          Our Impact
+        </h2>
+        <p className="relative max-w-2xl mx-auto text-lg sm:text-xl mb-14 text-gray-100 leading-relaxed">
+          Every number represents a life changed, a dream nurtured, and a
+          community strengthened through the power of education and compassion.
+        </p>
+
+        {/* Impact Stats */}
+        <div className="relative grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-10">
+          {[
+            { label: "Children Reached", value: 1500 },
+            { label: "Families Empowered", value: 300 },
+            { label: "Schools Partnered", value: 25 },
+            { label: "Volunteers Engaged", value: 120 },
+          ].map((stat, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 200 }}
+              className="bg-white/10 border border-white/20 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl hover:bg-white/20 backdrop-blur-xl transform transition duration-300"
+            >
+              <h3 className="text-4xl sm:text-5xl font-extrabold text-white drop-shadow-lg">
+                <CountUp end={stat.value} duration={50} />+
+              </h3>
+              <p className="text-gray-200 mt-3 sm:mt-4 font-medium tracking-wide text-sm sm:text-base">
+                {stat.label}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
         </motion.section>
       </main>
 
