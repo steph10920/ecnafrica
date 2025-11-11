@@ -67,7 +67,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
       {/* 🔹 HERO SECTION */}
-      <section className="relative w-full h-[100vh] sm:h-[100vh] md:h-[100vh] overflow-hidden">
+      <section className="relative w-full h-[100vh] overflow-hidden">
         {slides.map((slide, i) => (
           <motion.img
             key={i}
@@ -75,21 +75,30 @@ export default function Home() {
             alt={`Slide ${i + 1}`}
             loading="eager"
             decoding="async"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: i === currentIndex ? 1 : 0 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 [image-rendering:crisp-edges] sm:[image-rendering:high-quality]"
-
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{
+              opacity: i === currentIndex ? 1 : 0,
+              scale: i === currentIndex ? 1 : 1.1, // zoom subtlely out or in
+            }}
+            transition={{ duration: 1.6, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-[2000ms]"
+            style={{
+              imageRendering: "auto",
+              filter: i === currentIndex ? "brightness(1.05)" : "brightness(0.8)",
+            }}
           />
         ))}
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/50 backdrop-blur-[1px]" />
+        {/* Subtle gradient overlay (no blur) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/50" />
 
+        {/* Text Overlay */}
         <motion.div
           key={currentIndex}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          exit={{ opacity: 0, y: -30 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
           className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6"
         >
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-3 sm:mb-5 drop-shadow-2xl leading-snug tracking-tight">
@@ -100,18 +109,18 @@ export default function Home() {
           </p>
           <a
             href="/programs"
-            className="bg-white/90 text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-white hover:scale-105 transition-all duration-300 backdrop-blur-md"
+            className="bg-white/90 text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-white hover:scale-105 transition-all duration-300"
           >
             Explore Our Programs
           </a>
         </motion.div>
 
-        {/* Navigation arrows */}
+        {/* Navigation Arrows */}
         <button
           onClick={() =>
             setCurrentIndex((i) => (i === 0 ? slides.length - 1 : i - 1))
           }
-          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white text-green-700 rounded-full p-2 sm:p-3 shadow-md hover:scale-110 transition"
+          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-green-700 rounded-full p-2 sm:p-3 shadow-md hover:scale-110 transition"
         >
           ❮
         </button>
@@ -119,12 +128,12 @@ export default function Home() {
           onClick={() =>
             setCurrentIndex((i) => (i === slides.length - 1 ? 0 : i + 1))
           }
-          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white text-green-700 rounded-full p-2 sm:p-3 shadow-md hover:scale-110 transition"
+          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-green-700 rounded-full p-2 sm:p-3 shadow-md hover:scale-110 transition"
         >
           ❯
         </button>
 
-        {/* Slide dots */}
+        {/* Slide Dots */}
         <div className="absolute bottom-6 w-full flex justify-center gap-2">
           {slides.map((_, i) => (
             <button
