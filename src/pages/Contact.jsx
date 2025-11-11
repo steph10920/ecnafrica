@@ -37,7 +37,7 @@ export default function Contact() {
       location: "Kakamega, Kenya",
       type: "12-month Contract",
       closingDate: "CLOSED",
-      salaryRange: "KES  (Depending on experience)",
+      salaryRange: "KES (Depending on experience)",
       aboutRole:
         "The Program Coordinator will lead education initiatives in Western Kenya, manage field officers, oversee budgets, and strengthen school partnerships.",
       responsibilities: [
@@ -58,39 +58,54 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex flex-col">
-      {/* --- Page Header --- */}
+      {/* 🔹 Page Header */}
       <header className="text-center mt-20 mb-12">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-green-700 tracking-tight">
+        <motion.h1
+          className="text-4xl md:text-5xl font-extrabold text-green-700 tracking-tight"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
           Where We Work
-        </h1>
-        <p className="mt-4 text-gray-700 text-lg max-w-2xl mx-auto leading-relaxed">
-          We partner with communities across Kenya to create impact that is local,
-          sustainable, and community-driven. Explore our regional presence and
-          opportunities to join our mission.
-        </p>
+        </motion.h1>
+        <motion.p
+          className="mt-4 text-gray-700 text-lg max-w-2xl mx-auto leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+        >
+          We partner with communities across Kenya to create impact that is
+          local, sustainable, and community-driven. Explore our regional
+          presence and opportunities to join our mission.
+        </motion.p>
       </header>
 
-      {/* --- Content Layout --- */}
+      {/* 🔹 Main Layout */}
       <div className="flex flex-col lg:flex-row justify-center items-start gap-10 px-6 lg:px-16 pb-20 mx-auto w-full max-w-7xl">
-        {/* --- Main Section --- */}
-        <section className="flex-1 bg-white/70 backdrop-blur-md shadow-xl rounded-3xl p-10 border border-green-100">
-          <h2 className="text-2xl md:text-3xl font-bold text-green-700 mb-6 text-center">
+        {/* 🌍 Regional Hubs */}
+        <section className="flex-1 bg-white/80 backdrop-blur-xl shadow-2xl rounded-3xl p-10 border border-green-100 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-40 h-40 bg-green-200 rounded-full blur-3xl opacity-30"></div>
+          <div className="absolute bottom-0 right-0 w-56 h-56 bg-emerald-300 rounded-full blur-3xl opacity-20"></div>
+
+          <h2 className="text-2xl md:text-3xl font-bold text-green-700 mb-6 text-center relative z-10">
             Our Regional Hubs
           </h2>
-          <ul className="text-gray-700 text-lg list-disc list-inside space-y-3">
+          <ul className="text-gray-700 text-lg list-disc list-inside space-y-3 relative z-10">
             <li>
-              <strong>Nairobi Region:</strong> Nairobi, Kajiado, Machakos, Kiambu
+              <strong>Nairobi Region:</strong> Nairobi, Kajiado, Machakos,
+              Kiambu
             </li>
             <li>
-              <strong>Coastal Region:</strong> Mombasa, Kilifi, Kwale, Tana River
+              <strong>Coastal Region:</strong> Mombasa, Kilifi, Kwale, Tana
+              River
             </li>
             <li>
               <strong>Western Region:</strong> Busia, Kakamega, Vihiga, Kisumu
             </li>
           </ul>
 
-          {/* --- Contact Card --- */}
-          <div className="mt-12 bg-green-700 text-white rounded-3xl p-8 md:p-10 shadow-lg">
+          {/* 📞 Contact Card */}
+          <div className="mt-12 bg-green-700 text-white rounded-3xl p-8 md:p-10 shadow-lg relative z-10">
             <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
             <p className="text-lg font-medium">ECN – Education Africa</p>
             <p className="text-sm mt-1">P.O BOX 1234-00200, Nairobi, Kenya</p>
@@ -116,8 +131,8 @@ export default function Contact() {
           </div>
         </section>
 
-        {/* --- Jobs Section --- */}
-        <aside className="w-full lg:w-1/3 bg-white/70 backdrop-blur-md shadow-xl rounded-3xl border border-green-100 p-8">
+        {/* 💼 Jobs Section */}
+        <aside className="w-full lg:w-1/3 bg-white/80 backdrop-blur-xl shadow-2xl rounded-3xl border border-green-100 p-8">
           <h2 className="text-2xl font-bold text-green-700 mb-6 text-center">
             Job Opportunities
           </h2>
@@ -125,8 +140,11 @@ export default function Contact() {
             {jobListings.map((job) => (
               <motion.div
                 key={job.id}
-                whileHover={{ scale: 1.02 }}
-                className="border border-green-100 rounded-2xl p-6 bg-white shadow-sm hover:shadow-md transition"
+                whileHover={{
+                  scale: 1.03,
+                  boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
+                }}
+                className="border border-green-100 rounded-2xl p-6 bg-white shadow-sm hover:shadow-lg transition-all"
               >
                 <h3 className="text-lg font-semibold text-green-700 mb-1">
                   {job.title}
@@ -134,9 +152,7 @@ export default function Contact() {
                 <p className="text-gray-600 text-sm mb-1">
                   {job.location} | {job.type}
                 </p>
-                <p className="text-gray-600 text-sm mb-1">
-                  {job.salaryRange}
-                </p>
+                <p className="text-gray-600 text-sm mb-1">{job.salaryRange}</p>
                 <p className="text-gray-600 text-sm mb-2">
                   Closing Date: <strong>{job.closingDate}</strong>
                 </p>
@@ -155,7 +171,7 @@ export default function Contact() {
         </aside>
       </div>
 
-      {/* --- Job Details Modal --- */}
+      {/* 🔹 Job Modal */}
       <AnimatePresence>
         {selectedJob && (
           <motion.div
@@ -219,9 +235,11 @@ export default function Contact() {
         )}
       </AnimatePresence>
 
-      {/* --- Footer --- */}
+      {/* 🔹 Footer */}
       <Suspense
-        fallback={<div className="text-center py-4 text-gray-500">Loading...</div>}
+        fallback={
+          <div className="text-center py-4 text-gray-500">Loading...</div>
+        }
       >
         <Footer />
       </Suspense>
