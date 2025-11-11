@@ -68,84 +68,108 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
       {/* 🔹 HERO SECTION */}
       <section className="relative w-full h-[100vh] overflow-hidden">
-        {slides.map((slide, i) => (
-          <motion.img
-            key={i}
-            src={slide.img}
-            alt={`Slide ${i + 1}`}
-            loading="eager"
-            decoding="async"
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{
-              opacity: i === currentIndex ? 1 : 0,
-              scale: i === currentIndex ? 1 : 1.1, // zoom subtlely out or in
-            }}
-            transition={{ duration: 1.6, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-[2000ms]"
-            style={{
-              imageRendering: "auto",
-              filter: i === currentIndex ? "brightness(1.05)" : "brightness(0.8)",
-            }}
-          />
-        ))}
+  {/* 🔹 Background Slides with Cinematic Zoom */}
+  {slides.map((slide, i) => (
+    <motion.img
+      key={i}
+      src={slide.img}
+      alt={`Slide ${i + 1}`}
+      loading="eager"
+      decoding="async"
+      initial={{ opacity: 0, scale: 1.05 }}
+      animate={{
+        opacity: i === currentIndex ? 1 : 0,
+        scale: i === currentIndex ? 1 : 1.1,
+      }}
+      transition={{ duration: 1.6, ease: "easeInOut" }}
+      className="absolute inset-0 w-full h-full object-cover object-center"
+      style={{
+        imageRendering: "auto",
+        filter: i === currentIndex ? "brightness(1.05)" : "brightness(0.85)",
+      }}
+    />
+  ))}
 
-        {/* Subtle gradient overlay (no blur) */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/50" />
+  {/* 🔹 Gradient Overlay (no blur) */}
+  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/50" />
 
-        {/* Text Overlay */}
-        <motion.div
-          key={currentIndex}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -30 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-          className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6"
-        >
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-3 sm:mb-5 drop-shadow-2xl leading-snug tracking-tight">
-            {slides[currentIndex].title}
-          </h1>
-          <p className="text-base sm:text-xl md:text-2xl mb-8 max-w-3xl leading-relaxed text-gray-100">
-            {slides[currentIndex].desc}
-          </p>
-          <a
-            href="/programs"
-            className="bg-white/90 text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-white hover:scale-105 transition-all duration-300"
-          >
-            Explore Our Programs
-          </a>
-        </motion.div>
+  {/* 🔹 Responsive Text Container */}
+  <motion.div
+    key={currentIndex}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.8 }}
+    className="absolute inset-0 flex flex-col items-center justify-center md:justify-center text-white text-center px-4 sm:px-6 md:px-12"
+  >
+    {/* On small screens, push text slightly down for better photo balance */}
+    <div className="relative w-full md:w-auto md:translate-y-0 translate-y-10 sm:translate-y-16 md:translate-y-0">
 
-        {/* Navigation Arrows */}
-        <button
-          onClick={() =>
-            setCurrentIndex((i) => (i === 0 ? slides.length - 1 : i - 1))
-          }
-          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-green-700 rounded-full p-2 sm:p-3 shadow-md hover:scale-110 transition"
-        >
-          ❮
-        </button>
-        <button
-          onClick={() =>
-            setCurrentIndex((i) => (i === slides.length - 1 ? 0 : i + 1))
-          }
-          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-green-700 rounded-full p-2 sm:p-3 shadow-md hover:scale-110 transition"
-        >
-          ❯
-        </button>
+      {/* Title */}
+      <motion.h1
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+        className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-3 sm:mb-5 drop-shadow-2xl leading-snug tracking-tight"
+      >
+        {slides[currentIndex].title}
+      </motion.h1>
 
-        {/* Slide Dots */}
-        <div className="absolute bottom-6 w-full flex justify-center gap-2">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentIndex(i)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                i === currentIndex ? "bg-white scale-125" : "bg-gray-400/70"
-              }`}
-            />
-          ))}
-        </div>
-      </section>
+      {/* Description */}
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+        className="text-base sm:text-lg md:text-2xl mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed text-gray-100"
+      >
+        {slides[currentIndex].desc}
+      </motion.p>
+
+      {/* CTA Button */}
+      <motion.a
+        href="/programs"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.9, duration: 0.6, ease: "easeOut" }}
+        className="inline-block bg-white/90 text-green-700 font-semibold px-6 sm:px-8 py-2.5 sm:py-3 rounded-full shadow-lg hover:bg-white hover:scale-105 transition-all duration-300 text-sm sm:text-base md:text-lg"
+      >
+        Explore Our Programs
+      </motion.a>
+    </div>
+  </motion.div>
+
+  {/* 🔹 Navigation Arrows */}
+  <button
+    onClick={() =>
+      setCurrentIndex((i) => (i === 0 ? slides.length - 1 : i - 1))
+    }
+    className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-green-700 rounded-full p-2 sm:p-3 shadow-md hover:scale-110 transition"
+  >
+    ❮
+  </button>
+  <button
+    onClick={() =>
+      setCurrentIndex((i) => (i === slides.length - 1 ? 0 : i + 1))
+    }
+    className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-green-700 rounded-full p-2 sm:p-3 shadow-md hover:scale-110 transition"
+  >
+    ❯
+  </button>
+
+  {/* 🔹 Slide Dots */}
+  <div className="absolute bottom-6 w-full flex justify-center gap-2">
+    {slides.map((_, i) => (
+      <button
+        key={i}
+        onClick={() => setCurrentIndex(i)}
+        className={`w-3 h-3 rounded-full transition-all ${
+          i === currentIndex ? "bg-white scale-125" : "bg-gray-400/70"
+        }`}
+      />
+    ))}
+  </div>
+</section>
+
 
       {/* 🔹 ABOUT + IMPACT + PROGRAMS */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-20 space-y-2">
