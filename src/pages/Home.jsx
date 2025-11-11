@@ -67,8 +67,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
       {/* 🔹 HERO SECTION */}
-      <section className="relative w-full h-[100vh] overflow-hidden">
-  {/* 🔹 Background Slides with Cinematic Zoom */}
+  <section className="relative w-full h-[100vh] overflow-hidden">
   {slides.map((slide, i) => (
     <motion.img
       key={i}
@@ -82,7 +81,7 @@ export default function Home() {
         scale: i === currentIndex ? 1 : 1.1,
       }}
       transition={{ duration: 1.6, ease: "easeInOut" }}
-      className="absolute inset-0 w-full h-full object-cover object-center"
+      className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-[2000ms]"
       style={{
         imageRendering: "auto",
         filter: i === currentIndex ? "brightness(1.05)" : "brightness(0.85)",
@@ -90,55 +89,51 @@ export default function Home() {
     />
   ))}
 
-  {/* 🔹 Gradient Overlay (no blur) */}
+  {/* Gradient overlay for text contrast */}
   <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/50" />
 
-  {/* 🔹 Responsive Text Container */}
+  {/* Text Overlay with staggered animation */}
   <motion.div
     key={currentIndex}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
     transition={{ duration: 0.8 }}
-    className="absolute inset-0 flex flex-col items-center justify-center md:justify-center text-white text-center px-4 sm:px-6 md:px-12"
+    className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6"
   >
-    {/* On small screens, push text slightly down for better photo balance */}
-    <div className="relative w-full md:w-auto md:translate-y-0 translate-y-10 sm:translate-y-16 md:translate-y-0">
+    {/* Title animation */}
+    <motion.h1
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+      className="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-3 sm:mb-5 drop-shadow-2xl leading-snug tracking-tight"
+    >
+      {slides[currentIndex].title}
+    </motion.h1>
 
-      {/* Title */}
-      <motion.h1
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-        className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-3 sm:mb-5 drop-shadow-2xl leading-snug tracking-tight"
-      >
-        {slides[currentIndex].title}
-      </motion.h1>
+    {/* Description animation */}
+    <motion.p
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+      className="text-base sm:text-xl md:text-2xl mb-8 max-w-3xl leading-relaxed text-gray-100"
+    >
+      {slides[currentIndex].desc}
+    </motion.p>
 
-      {/* Description */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-        className="text-base sm:text-lg md:text-2xl mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed text-gray-100"
-      >
-        {slides[currentIndex].desc}
-      </motion.p>
-
-      {/* CTA Button */}
-      <motion.a
-        href="/programs"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.9, duration: 0.6, ease: "easeOut" }}
-        className="inline-block bg-white/90 text-green-700 font-semibold px-6 sm:px-8 py-2.5 sm:py-3 rounded-full shadow-lg hover:bg-white hover:scale-105 transition-all duration-300 text-sm sm:text-base md:text-lg"
-      >
-        Explore Our Programs
-      </motion.a>
-    </div>
+    {/* Button animation */}
+    <motion.a
+      href="/programs"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 0.9, duration: 0.6, ease: "easeOut" }}
+      className="bg-white/90 text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-white hover:scale-105 transition-all duration-300"
+    >
+      Explore Our Programs
+    </motion.a>
   </motion.div>
 
-  {/* 🔹 Navigation Arrows */}
+  {/* Navigation Arrows */}
   <button
     onClick={() =>
       setCurrentIndex((i) => (i === 0 ? slides.length - 1 : i - 1))
@@ -156,7 +151,7 @@ export default function Home() {
     ❯
   </button>
 
-  {/* 🔹 Slide Dots */}
+  {/* Slide Dots */}
   <div className="absolute bottom-6 w-full flex justify-center gap-2">
     {slides.map((_, i) => (
       <button
@@ -169,6 +164,7 @@ export default function Home() {
     ))}
   </div>
 </section>
+
 
 
       {/* 🔹 ABOUT + IMPACT + PROGRAMS */}
