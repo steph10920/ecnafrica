@@ -8,7 +8,7 @@ import CountUp from "react-countup";
 // --- Assets ---
 import footballImg1 from "../../assets/football1.jpg";
 import footballImg2 from "../../assets/football2.jpg";
-import footballImg3 from "../../assets/sports1.jpg";
+import footballImg3 from "../../assets/sports1.png";
 import footballImg4 from "../../assets/slide1.jpg";
 import footballVideo from "../../assets/football.mp4";
 import slide1 from "../../assets/slide1.jpg";
