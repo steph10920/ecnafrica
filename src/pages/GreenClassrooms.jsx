@@ -72,7 +72,8 @@ export default function GreenClassrooms() {
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-800">
       {/* ✅ Hero Section */}
-      <section className="relative w-full h-[70vh] sm:h-[80vh] overflow-hidden">
+      <section className="relative w-full min-h-[70vh] sm:min-h-[80vh] overflow-hidden">
+
         <AnimatePresence>
           <motion.img
             key={currentSlide}

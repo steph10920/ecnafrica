@@ -284,82 +284,78 @@ export default function Home() {
         </motion.section>
 
         {/* 🔹 PROGRAMS SECTION */}
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="relative overflow-hidden py-20 rounded-3xl shadow-2xl"
+<motion.section
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  transition={{ duration: 0.8 }}
+  viewport={{ once: true }}
+  className="relative overflow-hidden py-20 rounded-3xl shadow-2xl bg-gradient-to-br from-green-50 via-white to-green-100"
+>
+  <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
+    <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-green-800 drop-shadow-lg">
+      Our Programs
+    </h2>
+    <p className="max-w-3xl mx-auto text-lg mb-12 text-gray-700">
+      ECN empowers communities through education, youth innovation, women empowerment, and sustainable development.
+    </p>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      {[
+        {
+          title: "GREEN CLASSROOMS FOR COMMUNITY RESILIENCE",
+          description: "Education for a Greener and Sustainable Future",
+          link: "/programs/green-classrooms",
+          color: "from-green-100 via-green-200 to-green-300",
+        },
+        {
+          title: "Nafasi Learning Programme",
+          description: "Creating Spaces and Opportunities for Change",
+          link: "/programs/NafasiProgramme",
+          color: "from-blue-100 via-blue-200 to-blue-300",
+        },
+        {
+          title: "IMARA WOMEN",
+          description: "Building Strength through Knowledge and Innovation",
+          link: "/programs/nafasi-learning",
+          color: "from-yellow-100 via-yellow-200 to-yellow-300",
+        },
+        {
+          title: "Blue Horizons",
+          description: "Youth for Sustainable Fishing and Innovation",
+          link: "/programs/blue-horizons",
+          color: "from-cyan-100 via-cyan-200 to-cyan-300",
+        },
+      ].map((program, i) => (
+        <motion.div
+          key={i}
+          whileHover={{
+            scale: 1.05,
+            y: -5,
+            boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
+          }}
+          transition={{ type: "spring", stiffness: 250 }}
+          className={`rounded-3xl bg-gradient-to-br ${program.color} p-6 flex flex-col items-center text-center relative overflow-hidden`}
         >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1920&q=80')",
-            }}
-          />
-          <div className="absolute inset-0 bg-emerald-900/70 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-white/20 backdrop-blur-[2px] opacity-0 hover:opacity-100 transition-all duration-500 rounded-3xl"></div>
 
-          <div className="relative z-10 text-center text-white px-6 max-w-6xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-10 drop-shadow-lg">
-              Our Programs
-            </h2>
-            <p className="max-w-3xl mx-auto text-lg mb-12 text-gray-200">
-              We focus on sustainable programs that uplift children, families,
-              and communities through education, empowerment, and inclusion.
-            </p>
+          <h3 className="text-xl sm:text-2xl font-bold text-green-800 mb-3 z-10">
+            {program.title}
+          </h3>
+          <p className="text-gray-700 mb-6 z-10 text-sm sm:text-base">
+            {program.description}
+          </p>
+          <a
+            href={program.link}
+            className="z-10 text-white bg-green-700 hover:bg-green-800 px-5 py-2.5 rounded-full text-sm sm:text-base font-semibold shadow-md hover:shadow-lg transition"
+          >
+            See Details →
+          </a>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</motion.section>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-              {[
-                {
-                  title: "Education for All",
-                  description:
-                    "Providing access to quality education for street and needy children across Kenya.",
-                  image: educationImg,
-                  link: "/programs#eduwomen",
-                },
-                {
-                  title: "Child Protection",
-                  description:
-                    "Rescuing and reintegrating street-connected children into families and communities.",
-                  image: childProtectionImg,
-                  link: "/programs#child-protection",
-                },
-                {
-                  title: "Community Development",
-                  description:
-                    "Empowering families through training, food security, and environmental conservation.",
-                  image: communityImg,
-                  link: "/programs#community-development",
-                },
-              ].map((program, i) => (
-                <Link
-                  to={program.link}
-                  key={i}
-                  className="relative overflow-hidden rounded-3xl shadow-lg group border border-white/10 backdrop-blur-md"
-                >
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                    style={{ backgroundImage: `url(${program.image})` }}
-                  />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-500" />
-                  <div className="relative z-10 p-8 flex flex-col justify-end h-64">
-                    <h3 className="text-2xl font-semibold mb-3">
-                      {program.title}
-                    </h3>
-                    <p className="text-gray-200 text-sm">
-                      {program.description}
-                    </p>
-                    <span className="mt-3 inline-block text-green-300 font-semibold underline underline-offset-4 hover:text-white transition">
-                      View Program →
-                    </span>
-                  </div>
-                  <div className="absolute -bottom-10 left-0 w-40 h-40 bg-emerald-400/20 blur-2xl rounded-full group-hover:opacity-100 opacity-0 transition-opacity duration-700" />
-                </Link>
-              ))}
-            </div>
-          </div>
-        </motion.section>
 
         {/* ✅ STRATEGIC FOCUS */}
         <StrategicFocus />
