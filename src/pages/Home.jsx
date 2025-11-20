@@ -16,6 +16,8 @@ import slide2 from "../assets/child-protection.jpg";
 import slide3 from "../assets/women_empowerment.jpg";
 import slide4 from "../assets/img1.jpg";
 import slide5 from "../assets/slide1.jpg";
+import greenclass from "../assets/trees4.jpg";
+
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,28 +26,33 @@ export default function Home() {
   const slides = [
     {
       img: slide1,
-      title: "Empowering Education",
-      desc: "Building resilient futures through learning and creativity.",
+      title: "Transforming Education Across Africa",
+      desc:
+        "Empowering learners, teachers and communities with practical skills and opportunities.",
     },
     {
       img: slide2,
-      title: "Child Protection",
-      desc: "Every child deserves safety, love, and opportunity.",
+      title: "Safe & Inclusive Learning",
+      desc:
+        "Protecting children, promoting wellbeing, and creating safe learning environments.",
     },
     {
       img: slide3,
-      title: "Community Development",
-      desc: "Empower. Engage. Transform communities sustainably.",
+      title: "Women & Youth Empowerment",
+      desc:
+        "Building leadership, entrepreneurship and digital skills for sustainable livelihoods.",
     },
     {
       img: slide4,
-      title: "Sustainable Innovation",
-      desc: "Driving change through education and collaboration.",
+      title: "Community-led Solutions",
+      desc:
+        "Local knowledge + partnership — sustainable change rooted in community strengths.",
     },
     {
       img: slide5,
-      title: "Promoting Sports",
-      desc: "Boosting talent, teamwork, and healthy living.",
+      title: "Sports & Wellbeing",
+      desc:
+        "Sport as a tool for life-skills, inclusion and holistic development.",
     },
   ];
 
@@ -57,380 +64,398 @@ export default function Home() {
   }, [slides.length]);
 
   useEffect(() => {
-    const toggleVisibility = () => setShowScrollTop(window.scrollY > 300);
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    const onScroll = () => setShowScrollTop(window.scrollY > 300);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleScrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const handleScrollTop = () =>
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+  // Impact numbers — replace with real data as needed
+  const impactStats = [
+    { label: "Learners Reached", value: 1500 },
+    { label: "Teachers Trained", value: 450 },
+    { label: "Schools Supported", value: 25 },
+    { label: "Volunteers Engaged", value: 120 },
+  ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
-      {/* 🔹 HERO SECTION */}
-  <section className="relative w-full h-[100vh] overflow-hidden">
-  {slides.map((slide, i) => (
-    <motion.img
-      key={i}
-      src={slide.img}
-      alt={`Slide ${i + 1}`}
-      loading="eager"
-      decoding="async"
-      initial={{ opacity: 0, scale: 1.05 }}
-      animate={{
-        opacity: i === currentIndex ? 1 : 0,
-        scale: i === currentIndex ? 1 : 1.1,
-      }}
-      transition={{ duration: 1.6, ease: "easeInOut" }}
-      className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-[2000ms]"
-      style={{
-        imageRendering: "auto",
-        filter: i === currentIndex ? "brightness(1.05)" : "brightness(0.85)",
-      }}
-    />
-  ))}
+    <div className="min-h-screen flex flex-col bg-white text-gray-800">
+      {/* HERO */}
+      <header className="relative w-full h-[85vh] md:h-[80vh] lg:h-[75vh] overflow-hidden">
+        {/* Background slides (accessible: aria-hidden) */}
+        <div className="absolute inset-0">
+          {slides.map((s, i) => (
+            <motion.img
+              key={i}
+              src={s.img}
+              alt={i === currentIndex ? s.title : ""}
+              aria-hidden={i === currentIndex ? "false" : "true"}
+              initial={{ opacity: 0, scale: 1.02 }}
+              animate={{
+                opacity: i === currentIndex ? 1 : 0,
+                scale: i === currentIndex ? 1 : 1.06,
+              }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              className="absolute inset-0 w-full h-full object-cover object-center"
+              style={{
+                filter: i === currentIndex ? "brightness(0.7)" : "brightness(0.65)",
+              }}
+              loading="lazy"
+            />
+          ))}
+        </div>
 
-  {/* Gradient overlay for text contrast */}
-  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/50" />
+        {/* Dark overlay for contrast */}
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/10 to-black/45"
+          aria-hidden="true"
+        />
 
-  {/* Text Overlay with staggered animation */}
-  <motion.div
-    key={currentIndex}
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    transition={{ duration: 0.8 }}
-    className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6"
-  >
-    {/* Title animation */}
-    <motion.h1
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-      className="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-3 sm:mb-5 drop-shadow-2xl leading-snug tracking-tight"
-    >
-      {slides[currentIndex].title}
-    </motion.h1>
+        {/* Content */}
+        <div className="relative z-10 max-w-6xl mx-auto px-6 h-full flex items-center">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-white text-left w-full md:w-3/4"
+          >
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight drop-shadow-lg">
+              {slides[currentIndex].title}
+            </h1>
 
-    {/* Description animation */}
-    <motion.p
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-      className="text-base sm:text-xl md:text-2xl mb-8 max-w-3xl leading-relaxed text-green-100"
-    >
-      {slides[currentIndex].desc}
-    </motion.p>
+            <p className="mt-4 text-base sm:text-lg md:text-xl max-w-3xl opacity-90">
+              {slides[currentIndex].desc}
+            </p>
 
-    {/* Button animation */}
-    <motion.a
-      href="/programs"
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: 0.9, duration: 0.6, ease: "easeOut" }}
-      className="bg-white/90 text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-white hover:scale-105 transition-all duration-300"
-    >
-      Explore Our Programs
-    </motion.a>
-  </motion.div>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                to="/programs"
+                className="inline-flex items-center justify-center bg-white text-green-800 font-semibold px-5 py-3 rounded-full shadow hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white/50"
+                aria-label="Explore ECN Programs"
+              >
+                Explore Programs
+              </Link>
 
-  {/* Navigation Arrows */}
-  <button
-    onClick={() =>
-      setCurrentIndex((i) => (i === 0 ? slides.length - 1 : i - 1))
-    }
-    className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-green-700 rounded-full p-2 sm:p-3 shadow-md hover:scale-110 transition"
-  >
-    ❮
-  </button>
-  <button
-    onClick={() =>
-      setCurrentIndex((i) => (i === slides.length - 1 ? 0 : i + 1))
-    }
-    className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-green-700 rounded-full p-2 sm:p-3 shadow-md hover:scale-110 transition"
-  >
-    ❯
-  </button>
+              <a
+                href="/donate"
+                className="inline-flex items-center justify-center bg-transparent border border-white/70 text-white font-semibold px-5 py-3 rounded-full hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50"
+                aria-label="Donate to ECN"
+              >
+                Donate
+              </a>
+            </div>
 
-  {/* Slide Dots */}
-  <div className="absolute bottom-6 w-full flex justify-center gap-2">
-    {slides.map((_, i) => (
-      <button
-        key={i}
-        onClick={() => setCurrentIndex(i)}
-        className={`w-3 h-3 rounded-full transition-all ${
-          i === currentIndex ? "bg-white scale-125" : "bg-gray-400/70"
-        }`}
+            <div className="mt-6 text-sm text-white/80 max-w-xl">
+              <p>
+                ECN Education Africa partners with local schools, teachers and
+                communities to create inclusive, practical and sustainable learning opportunities.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Slide controls (keyboard accessible) */}
+        <div className="absolute left-4 top-1/2 -translate-y-1/2 md:left-8">
+          <button
+            onClick={() =>
+              setCurrentIndex((i) => (i === 0 ? slides.length - 1 : i - 1))
+            }
+            aria-label="Previous slide"
+            className="bg-white/90 text-green-800 p-2 rounded-full shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
+          >
+            ❮
+          </button>
+        </div>
+        <div className="absolute right-4 top-1/2 -translate-y-1/2 md:right-8">
+          <button
+            onClick={() =>
+              setCurrentIndex((i) => (i === slides.length - 1 ? 0 : i + 1))
+            }
+            aria-label="Next slide"
+            className="bg-white/90 text-green-800 p-2 rounded-full shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
+          >
+            ❯
+          </button>
+        </div>
+
+        {/* Dots */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentIndex(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`w-3 h-3 rounded-full transition-transform ${
+                i === currentIndex ? "bg-white scale-125" : "bg-white/40"
+              }`}
+            />
+          ))}
+        </div>
+      </header>
+
+      {/* MAIN CONTENT */}
+      <main className="flex-1">
+        <div className="max-w-7xl mx-auto px-6 py-16 space-y-12">
+          {/* About (concise, prominent) */}
+          <section
+            className="bg-white rounded-3xl shadow-lg p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+            aria-labelledby="about-heading"
+          >
+            <div className="space-y-4">
+              <h2 id="about-heading" className="text-2xl md:text-3xl font-extrabold text-green-800">
+                Who We Are
+              </h2>
+              <p className="text-gray-700 leading-relaxed">
+                Elimu Community Network (ECN) is an African-led organization founded in Kenya (2012),
+                working to expand quality, contextual and inclusive education that empowers learners,
+                teachers and communities. Our model blends practical learning, digital skills, and
+                community-led solutions to create lasting opportunity.
+              </p>
+
+              <blockquote className="border-l-4 border-green-200 pl-4 text-gray-600 italic">
+                “Education must be relevant, liberatory and rooted in community realities.”
+              </blockquote>
+
+              <div className="flex gap-3 mt-4">
+                <Link
+                  to="/about"
+                  className="inline-block bg-green-700 text-white px-5 py-2 rounded-full font-semibold shadow hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-200"
+                >
+                  Learn More
+                </Link>
+                <Link
+                  to="/get-involved"
+                  className="inline-block border border-green-700 text-green-700 px-5 py-2 rounded-full font-semibold hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-200"
+                >
+                  Get Involved
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <img
+                src={img1}
+                alt="Learners in a classroom"
+                className="w-full h-40 object-cover rounded-2xl shadow-sm"
+                loading="lazy"
+              />
+              <img
+                src={img2}
+                alt="Community school activity"
+                className="w-full h-40 object-cover rounded-2xl shadow-sm"
+                loading="lazy"
+              />
+            </div>
+          </section>
+{/* Programmes (NEW, MATCHING OFFICIAL PROGRAMS) */}
+<section aria-labelledby="programs-heading">
+  <div className="text-center mb-8">
+    <h3 id="programs-heading" className="text-2xl md:text-3xl font-bold text-green-800">
+      Our Programmes
+    </h3>
+    <p className="max-w-2xl mx-auto text-gray-600 mt-2">
+      ECN Education Africa delivers impactful programmes designed to strengthen learning,
+      empower youth, and build resilient community-driven education systems across Africa.
+    </p>
+  </div>
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+    {/* Green Classrooms */}
+    <article className="rounded-2xl bg-white border p-6 shadow-sm hover:shadow-lg transition">
+      <img
+        src={greenclass}
+        alt="Green Classrooms Programme"
+        className="w-full h-36 object-cover rounded-lg mb-4"
+        loading="lazy"
       />
-    ))}
+      <h4 className="font-semibold text-lg text-green-800">Green Classrooms</h4>
+      <p className="mt-2 text-gray-600 text-sm">
+        Education for a greener, sustainable future — community-driven learning for climate resilience.
+      </p>
+      <Link
+        to="/programs/green-classrooms"
+        className="mt-4 inline-block text-green-700 font-semibold"
+      >
+        Learn more →
+      </Link>
+    </article>
+
+    {/* Nafasi Learning Programme */}
+    <article className="rounded-2xl bg-white border p-6 shadow-sm hover:shadow-lg transition">
+      <img
+        src={childProtectionImg}
+        alt="Nafasi Learning Programme"
+        className="w-full h-36 object-cover rounded-lg mb-4"
+        loading="lazy"
+      />
+      <h4 className="font-semibold text-lg text-green-800">Nafasi Learning Programme</h4>
+      <p className="mt-2 text-gray-600 text-sm">
+        Creating safe learning spaces, mentoring, digital skills and youth-driven innovation.
+      </p>
+      <Link
+        to="/programs/NafasiProgramme"
+        className="mt-4 inline-block text-green-700 font-semibold"
+      >
+        Learn more →
+      </Link>
+    </article>
+
+    {/* IMARA Women */}
+    <article className="rounded-2xl bg-white border p-6 shadow-sm hover:shadow-lg transition">
+      <img
+        src={slide3}
+        alt="IMARA Women Programme"
+        className="w-full h-36 object-cover rounded-lg mb-4"
+        loading="lazy"
+      />
+      <h4 className="font-semibold text-lg text-green-800">IMARA Women</h4>
+      <p className="mt-2 text-gray-600 text-sm">
+        Strengthening women’s leadership, economic agency, and innovation through knowledge.
+      </p>
+      <Link
+        to="/programs/imara-women"
+        className="mt-4 inline-block text-green-700 font-semibold"
+      >
+        Learn more →
+      </Link>
+    </article>
+
+    {/* Blue Horizons */}
+    <article className="rounded-2xl bg-white border p-6 shadow-sm hover:shadow-lg transition">
+      <img
+        src={img1}
+        alt="IMARA Women Programme"
+        className="w-full h-36 object-cover rounded-lg mb-4"
+        loading="lazy"
+      />
+      <h4 className="font-semibold text-lg text-green-800">Blue Horizons</h4>
+      <p className="mt-2 text-gray-600 text-sm">
+        Youth-led sustainable fishing, marine conservation and innovation for coastal communities.
+      </p>
+      <Link
+        to="/programs/blue-horizons"
+        className="mt-4 inline-block text-green-700 font-semibold"
+      >
+        Learn more →
+      </Link>
+    </article>
+
   </div>
 </section>
 
-      {/* 🔹 ABOUT + IMPACT + PROGRAMS */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-20 space-y-2">
-        {/* ABOUT SECTION */}
-        <motion.section
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl grid grid-cols-1 md:grid-cols-2 gap-10 p-8 sm:p-12 border border-green-100"
-        >
-          <div className="space-y-5">
-            {[img1, img2].map((img, i) => (
-              <div key={i} className="overflow-hidden rounded-2xl group">
-                <motion.img
-                  whileHover={{ scale: 1.08 }}
-                  src={img}
-                  alt={`About ECN image ${i + 1}`}
-                  className="w-full h-60 sm:h-72 object-cover transition duration-700"
+
+          {/* Strategic Focus (component preserved) */}
+          <StrategicFocus />
+
+          {/* Impact counters (prominent, accessible) */}
+          <section
+            className="rounded-3xl overflow-hidden"
+            aria-labelledby="impact-heading"
+          >
+            <div className="bg-gradient-to-br from-emerald-700 via-green-700 to-emerald-800 text-white py-12 px-6">
+              <div className="max-w-6xl mx-auto text-center space-y-4">
+                <h3 id="impact-heading" className="text-2xl md:text-3xl font-extrabold">
+                  Our Impact
+                </h3>
+                <p className="max-w-2xl mx-auto text-gray-100/90">
+                  Numbers below represent learners, teachers and communities whose lives have been
+                  touched by ECN programmes. These are real people with real progress.
+                </p>
+
+                <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
+                  {impactStats.map((s, i) => (
+                    <div
+                      key={i}
+                      className="bg-white/10 rounded-xl p-6 backdrop-blur-sm border border-white/10"
+                      role="group"
+                      aria-label={`${s.label}: ${s.value}`}
+                    >
+                      <div className="text-3xl md:text-4xl font-extrabold">
+                        <CountUp end={s.value} duration={2.5} separator="," />+
+                      </div>
+                      <div className="mt-2 text-sm md:text-base text-gray-100">
+                        {s.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Story / Testimonial */}
+          <section className="bg-white rounded-3xl shadow p-8 md:p-12">
+            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h4 className="text-2xl font-bold text-green-800">A story of change</h4>
+                <p className="mt-4 text-gray-700">
+                  When Amina joined ECN's Nafasi Learning Programme she had limited access to learning
+                  resources. After a year of tailored mentoring, digital-skills classes and a
+                  community-supported micro-project, she is now mentoring other learners and working
+                  with a local cooperative to start a small business. Stories like Amina's are why we
+                  do this work.
+                </p>
+                <Link
+                  to="/stories"
+                  className="inline-block mt-6 bg-green-700 text-white px-5 py-2 rounded-full font-semibold shadow hover:bg-green-800"
+                >
+                  Read more stories
+                </Link>
+              </div>
+              <div>
+                <img
+                  src={img1}
+                  alt="A student participating in ECN programme"
+                  className="w-full h-64 object-cover rounded-2xl shadow-sm"
+                  loading="lazy"
                 />
               </div>
-            ))}
-          </div>
+            </div>
+          </section>
 
-          <div className="space-y-2 text-gray-700">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-green-700">
-              Who We Are
-            </h2>
-            <p>
-              Elimu Community Network (ECN) is a non-governmental learning organization founded 
-              in Kenya in 2012. We exist to redefine education not merely as classroom learning, 
-              but as a living, dynamic force for emancipation, innovation, and community resilience. 
-              We believe that education is not just a pathway out of poverty but a foundation of 
-              , dignity, and transformation.
-            </p>
-            <p className="text-gray-800 font-semibold">
-              Our name, Elimu, means Education in Swahili which is the single word that defines our purpose:
-            </p>
-            <blockquote className="border-l-4 border-green-500 pl-4 italic text-gray-600">
-              “To use education as a strategic tool for the emancipation of
-              children, youth, and women, enabling them to lead fulfilling and
-              productive lives.”
-            </blockquote>
-            
-            <p>
-              At ECN, we believe that education must be relevant, contextual, and 
-              transformative by being rooted in the realities of our people and responsive 
-              to the changing needs of society. We champion education that not only informs 
-              but transforms; that not only prepares individuals for work but empowers them 
-              to create work and solutions that uplift communities.
-            </p>
-           
-            <p className="text-gray-800 font-semibold">
-              “Education is the most powerful weapon which you can use to change
-              the world.” — Nelson Mandela
-            </p>
-            <a
-              href="/about"
-              className="inline-block bg-green-700 text-white px-8 py-3 rounded-full hover:bg-green-800 transition-all font-semibold shadow-md hover:shadow-xl"
-            >
-              Learn More About Us
-            </a>
-          </div>
-        </motion.section>
-        {/* 🔹 EDUCATIONAL FUNDAMENTALS SECTION */}
-        <motion.section
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="bg-gradient-to-br from-green-50 via-white to-green-100 rounded-3xl shadow-2xl border border-green-100 p-10 sm:p-14 space-y-10"
-        >
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-green-700 text-center mb-8">
-          Our Educational Fundamentals
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          <div className="bg-white/90 rounded-2xl shadow-lg p-8 border border-green-100 hover:shadow-2xl hover:-translate-y-2 transition">
-            <h3 className="text-xl font-bold text-green-700 mb-4">
-              Education that is Culturally Grounded and Life-Sustaining
-            </h3>
-            <p className="text-gray-700 leading-relaxed">
-              We believe that education should equip individuals to meet their basic
-              human needs—food security, clothing, housing, and health—using knowledge
-              that is locally meaningful and culturally appropriate. Our programs
-              integrate practical learning, indigenous knowledge, and community-based
-              innovations that help families not only survive but thrive.
-            </p>
-          </div>
-
-          <div className="bg-white/90 rounded-2xl shadow-lg p-8 border border-green-100 hover:shadow-2xl hover:-translate-y-2 transition">
-            <h3 className="text-xl font-bold text-green-700 mb-4">
-              Education that Catalyzes Innovation and Economic Participation
-            </h3>
-            <p className="text-gray-700 leading-relaxed">
-              We promote education that connects learning with livelihood. By linking
-              entrepreneurship, research, and technology, ECN transforms knowledge
-              into innovation that drives local economic growth. Our education model
-              nurtures creativity and curiosity by cultivating problem solvers and
-              innovators who shape Africa’s future.
-            </p>
-          </div>
-
-          <div className="bg-white/90 rounded-2xl shadow-lg p-8 border border-green-100 hover:shadow-2xl hover:-translate-y-2 transition">
-            <h3 className="text-xl font-bold text-green-700 mb-4">
-              Education that Cultivates Visionary and Ethical Leadership
-            </h3>
-            <p className="text-gray-700 leading-relaxed">
-              We aspire for sustainable development that begins with values-based
-              leadership. Our model nurtures leaders who can mobilize resources,
-              champion justice, and promote environmental conservation. Through
-              mentorship, civic learning, and life-skills education, ECN cultivates
-              visionary citizens who are socially responsible and committed to the
-              common good.
-            </p>
-          </div>
+          {/* Call to Action strip */}
+          <section className="rounded-2xl py-8 px-6 bg-gradient-to-r from-green-600 to-emerald-600 text-white">
+            <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+              <div>
+                <h4 className="text-xl font-extrabold">Support ECN's work</h4>
+                <p className="mt-1 text-sm opacity-90">
+                  Your support helps scale programmes, train teachers and provide safe learning spaces.
+                </p>
+              </div>
+              <div className="flex gap-3">
+                <a
+                  href="/donate"
+                  className="inline-block bg-white text-green-800 px-4 py-2 rounded-full font-semibold shadow"
+                >
+                  Donate now
+                </a>
+                <Link
+                  to="/contact"
+                  className="inline-block border border-white/60 px-4 py-2 rounded-full font-semibold hover:bg-white/10"
+                >
+                  Volunteer & Partner
+                </Link>
+              </div>
+            </div>
+          </section>
         </div>
-        </motion.section>
-
-        {/* 🔹 PROGRAMS SECTION */}
-<motion.section
-  initial={{ opacity: 0 }}
-  whileInView={{ opacity: 1 }}
-  transition={{ duration: 0.8 }}
-  viewport={{ once: true }}
-  className="relative overflow-hidden py-20 rounded-3xl shadow-2xl bg-gradient-to-br from-green-50 via-white to-green-100"
->
-  <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
-    <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-green-800 drop-shadow-lg">
-      Our Programs
-    </h2>
-    <p className="max-w-3xl mx-auto text-lg mb-12 text-gray-700">
-      ECN empowers communities through education, youth innovation, women empowerment, and sustainable development.
-    </p>
-
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-      {[
-        {
-          title: "GREEN CLASSROOMS FOR COMMUNITY RESILIENCE",
-          description: "Education for a Greener and Sustainable Future",
-          link: "/programs/green-classrooms",
-          color: "from-green-100 via-green-200 to-green-300",
-        },
-        {
-          title: "Nafasi Learning Programme",
-          description: "Creating Spaces and Opportunities for Change",
-          link: "/programs/NafasiProgramme",
-          color: "from-blue-100 via-blue-200 to-blue-300",
-        },
-        {
-          title: "IMARA WOMEN",
-          description: "Building Strength through Knowledge and Innovation",
-          link: "/programs/nafasi-learning",
-          color: "from-yellow-100 via-yellow-200 to-yellow-300",
-        },
-        {
-          title: "Blue Horizons",
-          description: "Youth for Sustainable Fishing and Innovation",
-          link: "/programs/blue-horizons",
-          color: "from-cyan-100 via-cyan-200 to-cyan-300",
-        },
-      ].map((program, i) => (
-        <motion.div
-          key={i}
-          whileHover={{
-            scale: 1.05,
-            y: -5,
-            boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
-          }}
-          transition={{ type: "spring", stiffness: 250 }}
-          className={`rounded-3xl bg-gradient-to-br ${program.color} p-6 flex flex-col items-center text-center relative overflow-hidden`}
-        >
-          <div className="absolute inset-0 bg-white/20 backdrop-blur-[2px] opacity-0 hover:opacity-100 transition-all duration-500 rounded-3xl"></div>
-
-          <h3 className="text-xl sm:text-2xl font-bold text-green-800 mb-3 z-10">
-            {program.title}
-          </h3>
-          <p className="text-gray-700 mb-6 z-10 text-sm sm:text-base">
-            {program.description}
-          </p>
-          <a
-            href={program.link}
-            className="z-10 text-white bg-green-700 hover:bg-green-800 px-5 py-2.5 rounded-full text-sm sm:text-base font-semibold shadow-md hover:shadow-lg transition"
-          >
-            See Details →
-          </a>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</motion.section>
-
-
-        {/* ✅ STRATEGIC FOCUS */}
-        <StrategicFocus />
-         {/* 🔹 IMPACT COUNTERS SECTION */}
-        <motion.section
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="relative overflow-hidden rounded-3xl shadow-2xl"
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1581092795360-fd1ca4e0c95b?auto=format&fit=crop&w=1920&q=80')",
-            }}
-          />
-          <div className="absolute inset-0 bg-green-900/70 backdrop-blur-sm" />
-
-          <div className="relative text-center py-20 px-6 bg-gradient-to-br from-emerald-700 via-green-600 to-emerald-800 text-white overflow-hidden">
-        {/* Decorative background circles */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-10 left-10 w-40 h-40 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-60 h-60 bg-emerald-400/20 rounded-full blur-3xl animate-pulse"></div>
-        </div>
-
-        {/* Section Heading */}
-        <h2 className="relative text-3xl sm:text-4xl font-extrabold mb-6 drop-shadow-lg tracking-wide">
-          Our Impact
-        </h2>
-        <p className="relative max-w-2xl mx-auto text-lg sm:text-xl mb-14 text-gray-100 leading-relaxed">
-          Every number represents a life changed, a dream nurtured, and a
-          community strengthened through the power of education and compassion.
-        </p>
-
-        {/* Impact Stats */}
-        <div className="relative grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-10">
-          {[
-            { label: "Children Reached", value: 1500 },
-            { label: "Families Empowered", value: 300 },
-            { label: "Schools Partnered", value: 25 },
-            { label: "Volunteers Engaged", value: 120 },
-          ].map((stat, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 200 }}
-              className="bg-white/10 border border-white/20 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl hover:bg-white/20 backdrop-blur-xl transform transition duration-300"
-            >
-              <h3 className="text-4xl sm:text-5xl font-extrabold text-white drop-shadow-lg">
-                <CountUp end={stat.value} duration={50} />+
-              </h3>
-              <p className="text-gray-200 mt-3 sm:mt-4 font-medium tracking-wide text-sm sm:text-base">
-                {stat.label}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-        </motion.section>
       </main>
 
-      {/* Scroll-to-Top */}
+      {/* Scroll-to-top */}
       {showScrollTop && (
         <motion.button
           onClick={handleScrollTop}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="fixed bottom-6 right-6 bg-green-700 text-white p-3 rounded-full shadow-lg hover:bg-green-800 transition"
+          transition={{ duration: 0.24 }}
+          aria-label="Scroll to top"
+          className="fixed bottom-6 right-6 bg-green-700 text-white p-3 rounded-full shadow-lg hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-200"
         >
-          <ArrowUp size={22} />
+          <ArrowUp size={20} />
         </motion.button>
       )}
 
