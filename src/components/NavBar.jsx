@@ -10,7 +10,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import Logo from "../assets/ecnlogo.jpg";
-import { searchMap } from "../data/searchMap"; // external search map
+import { searchMap } from "../data/searchMap";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -27,7 +27,6 @@ export default function Navbar() {
     else window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
-  // ✅ Search logic with relevance and highlights
   useEffect(() => {
     if (!searchQuery) {
       setSuggestions([]);
@@ -43,7 +42,6 @@ export default function Navbar() {
         );
         if (matchedKeywords.length === 0) return null;
 
-        // relevance: startsWith = 2, includes = 1
         const score = matchedKeywords.reduce(
           (acc, k) => acc + (k.toLowerCase().startsWith(query) ? 2 : 1),
           0
@@ -53,7 +51,7 @@ export default function Navbar() {
       })
       .filter(Boolean)
       .sort((a, b) => b.score - a.score)
-      .slice(0, 5); // show top 5 matches
+      .slice(0, 5);
 
     setSuggestions(matches);
   }, [searchQuery]);
@@ -90,11 +88,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-        {/* 🔹 Logo */}
-        <button
-          onClick={() => handleNavClick("/")}
-          className="flex items-center gap-2"
-        >
+        <button onClick={() => handleNavClick("/")} className="flex items-center gap-2">
           <img
             src={Logo}
             alt="ECN Africa Logo"
@@ -107,11 +101,12 @@ export default function Navbar() {
           </span>
         </button>
 
-        {/* 🔹 Desktop Menu */}
+        {/* Desktop Menu */}
         <nav className="hidden md:flex items-center space-x-8 text-gray-800 font-semibold relative">
           <button onClick={() => handleNavClick("/")} className="hover:text-green-600">
             Home
           </button>
+
           <button onClick={() => handleNavClick("/programs")} className="hover:text-green-600">
             Programmes
           </button>
@@ -123,22 +118,22 @@ export default function Navbar() {
             onMouseLeave={() => setCategoriesOpen(false)}
           >
             <button className="flex items-center gap-1 hover:text-green-600">
-              Categories <ChevronDown size={16} className="mt-0.5" />
+              Categories <ChevronDown size={16} />
             </button>
+
             <AnimatePresence>
               {categoriesOpen && (
                 <motion.div
                   initial={{ opacity: 0, y: -5 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
-                  transition={{ duration: 0.2 }}
                   className="absolute top-full mt-2 bg-white border rounded-lg shadow-lg w-56 z-50 overflow-hidden"
                 >
                   {categories.map(([path, label]) => (
                     <button
                       key={path}
                       onClick={() => handleNavClick(`/categories/${path}`)}
-                      className="block w-full text-left px-4 py-2 hover:bg-green-50 hover:text-green-700 transition"
+                      className="block w-full text-left px-4 py-2 hover:bg-green-50 hover:text-green-700"
                     >
                       {label}
                     </button>
@@ -151,14 +146,24 @@ export default function Navbar() {
           <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600">
             Blog/News
           </button>
+
           <button onClick={() => handleNavClick("/about")} className="hover:text-green-600">
             About Us
           </button>
+
           <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600">
             Contact
           </button>
 
-          {/* 🔹 Desktop Search */}
+          {/* ⭐ NEW DONATE BUTTON */}
+          <button
+            onClick={() => handleNavClick("/donate")}
+            className="bg-green-600 text-white px-4 py-2 rounded-full shadow hover:bg-green-700 transition"
+          >
+            Donate
+          </button>
+
+          {/* Desktop Search */}
           <div className="ml-4 relative">
             <form onSubmit={handleSearchSubmit}>
               <input
@@ -170,19 +175,18 @@ export default function Navbar() {
               />
             </form>
 
-            {/* Suggestions Dropdown */}
+            {/* Suggestions */}
             {suggestions.length > 0 && (
-              <div className="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-md mt-1 shadow-lg z-50 max-h-60 overflow-y-auto">
+              <div className="absolute top-full left-0 right-0 bg-white border rounded-md mt-1 shadow-lg z-50 max-h-60 overflow-y-auto">
                 {suggestions.map((item, i) => (
                   <button
                     key={i}
                     onClick={() => handleNavClick(item.page)}
-                    className="w-full text-left px-4 py-2 hover:bg-green-50 hover:text-green-700 transition"
+                    className="w-full text-left px-4 py-2 hover:bg-green-50 hover:text-green-700"
                   >
                     {item.keywords.map((keyword, idx) => {
                       const index = keyword.toLowerCase().indexOf(searchQuery.toLowerCase());
                       if (index === -1) return <span key={idx}>{keyword}</span>;
-
                       return (
                         <span key={idx}>
                           {keyword.slice(0, index)}
@@ -200,51 +204,48 @@ export default function Navbar() {
           </div>
         </nav>
 
-        {/* 🔹 Mobile Menu Button */}
+        {/* Mobile Button */}
         <button
-          className="md:hidden text-green-700 text-3xl font-semibold focus:outline-none"
+          className="md:hidden text-green-700 text-3xl"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? "✕" : "☰"}
         </button>
       </div>
 
-      {/* 🔹 Mobile Menu */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden flex flex-col bg-white shadow-lg border-t border-gray-200 z-40 w-full"
+            className="md:hidden flex flex-col bg-white shadow-lg border-t border-gray-200"
           >
             <button
               onClick={() => handleNavClick("/")}
-              className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200"
+              className="flex items-center gap-2 px-4 py-3 border-b hover:text-green-600"
             >
               <Home size={18} /> Home
             </button>
+
             <button
               onClick={() => handleNavClick("/programs")}
-              className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200"
+              className="flex items-center gap-2 px-4 py-3 border-b hover:text-green-600"
             >
               <BookOpen size={18} /> Programs
             </button>
 
-            {/* Mobile Categories Dropdown */}
+            {/* Mobile Categories */}
             <div className="w-full">
               <button
                 onClick={() => setCategoriesOpen(!categoriesOpen)}
-                className="flex items-center justify-between w-full text-left hover:text-green-600 px-4 py-3 border-b border-gray-200"
+                className="flex items-center justify-between w-full px-4 py-3 border-b hover:text-green-600"
               >
                 <div className="flex items-center gap-2">
                   <Globe2 size={18} /> Categories
                 </div>
-                <motion.div
-                  animate={{ rotate: categoriesOpen ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                >
+                <motion.div animate={{ rotate: categoriesOpen ? 180 : 0 }}>
                   <ChevronDown size={16} />
                 </motion.div>
               </button>
@@ -255,13 +256,13 @@ export default function Navbar() {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="overflow-hidden flex flex-col border-b border-gray-200"
+                    className="overflow-hidden border-b"
                   >
                     {categories.map(([path, label]) => (
                       <button
                         key={path}
                         onClick={() => handleNavClick(`/categories/${path}`)}
-                        className="px-6 py-2 hover:bg-green-50 hover:text-green-700 text-left"
+                        className="px-6 py-2 hover:bg-green-50 text-left"
                       >
                         {label}
                       </button>
@@ -273,32 +274,45 @@ export default function Navbar() {
 
             <button
               onClick={() => handleNavClick("/blog")}
-              className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200"
+              className="flex items-center gap-2 px-4 py-3 border-b hover:text-green-600"
             >
               <FileText size={18} /> Blog/News
             </button>
+
             <button
               onClick={() => handleNavClick("/about")}
-              className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200"
+              className="flex items-center gap-2 px-4 py-3 border-b hover:text-green-600"
             >
               <Users2 size={18} /> About Us
             </button>
+
             <button
               onClick={() => handleNavClick("/contact")}
-              className="hover:text-green-600 flex items-center gap-2 px-4 py-3 border-b border-gray-200"
+              className="flex items-center gap-2 px-4 py-3 border-b hover:text-green-600"
             >
               <Globe2 size={18} /> Contact
             </button>
 
-            {/* Mobile Search with top 5 suggestions */}
+            {/* ⭐ NEW MOBILE DONATE BUTTON */}
+            <button
+              onClick={() => handleNavClick("/donate")}
+              className="flex items-center gap-2 px-4 py-3 border-b hover:text-green-600 font-semibold"
+            >
+              <Home size={18} /> Donate
+            </button>
+
+            {/* Mobile Search */}
             <div className="relative m-4">
-              <form onSubmit={handleSearchSubmit} className="flex items-center border border-gray-300 rounded-md overflow-hidden">
+              <form
+                onSubmit={handleSearchSubmit}
+                className="flex items-center border rounded-md overflow-hidden"
+              >
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search..."
-                  className="w-full px-2 py-2 text-sm focus:outline-none"
+                  className="w-full px-2 py-2 text-sm"
                 />
                 <button type="submit" className="px-2 text-green-700">
                   <Search size={18} />
@@ -306,21 +320,23 @@ export default function Navbar() {
               </form>
 
               {suggestions.length > 0 && (
-                <div className="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-md mt-1 shadow-lg z-50 max-h-60 overflow-y-auto">
+                <div className="absolute top-full left-0 right-0 bg-white border rounded-md shadow-lg mt-1 z-50">
                   {suggestions.map((item, i) => (
                     <button
                       key={i}
                       onClick={() => handleNavClick(item.page)}
-                      className="w-full text-left px-4 py-2 hover:bg-green-50 hover:text-green-700 transition"
+                      className="px-4 py-2 w-full text-left hover:bg-green-50"
                     >
                       {item.keywords.map((keyword, idx) => {
-                        const index = keyword.toLowerCase().indexOf(searchQuery.toLowerCase());
-                        if (index === -1) return <span key={idx}>{keyword}</span>;
-
+                        const index = keyword
+                          .toLowerCase()
+                          .indexOf(searchQuery.toLowerCase());
+                        if (index === -1)
+                          return <span key={idx}>{keyword}</span>;
                         return (
                           <span key={idx}>
                             {keyword.slice(0, index)}
-                            <span className="bg-green-200 text-green-900 font-semibold">
+                            <span className="bg-green-200 font-semibold">
                               {keyword.slice(index, index + searchQuery.length)}
                             </span>
                             {keyword.slice(index + searchQuery.length)}

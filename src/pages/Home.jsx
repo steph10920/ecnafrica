@@ -227,7 +227,7 @@ export default function Home() {
                   Learn More
                 </Link>
                 <Link
-                  to="/get-involved"
+                  to="/contact"
                   className="inline-block border border-green-700 text-green-700 px-5 py-2 rounded-full font-semibold hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-200"
                 >
                   Get Involved

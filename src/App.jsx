@@ -6,6 +6,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Programs from "./pages/Programs";
+import Donate from "./components/Donate";
 
 // 🔹 Program Subpages
 import GreenClassrooms from "./pages/GreenClassrooms";
@@ -45,6 +46,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/programs" element={<Programs />} />
+          <Route path="/donate" element={<Donate />} />
 
           {/* 🔹 Program Subpages */}
           <Route path="/programs/green-classrooms" element={<GreenClassrooms />} />
