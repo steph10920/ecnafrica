@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import LearningPhoto1 from "../assets/learning1.jpg";
 import LearningPhoto2 from "../assets/learning2.jpg";
 
-export default function Nafasi() {
+export default function Imarawomen() {
   const [showTopBtn, setShowTopBtn] = useState(false);
   const location = useLocation();
 

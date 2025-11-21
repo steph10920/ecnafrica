@@ -1,19 +1,31 @@
-import { Suspense, lazy, useState, useEffect } from "react";
+import { Suspense, lazy, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, BookOpen, Heart, Users } from "lucide-react";
 
 const Footer = lazy(() => import("../components/Footer"));
 
-// Stories.jsx
-// A single-file, production-ready React + Tailwind component for an ECN "Stories" page.
-// Features included:
-// - Dedicated Stories page layout
-// - Multiple real story entries (data-driven)
-// - Animated hero and section reveals (framer-motion)
-// - Auto-rotating carousel + manual controls
-// - Masonry-style gallery with modal "Read more"
-// - Icons (lucide-react) and subtle gradients
-// - Accessible keyboard controls for modal and carousel
+const StoryCard = ({ story, onReadMore }) => (
+  <motion.article
+    whileHover={{ y: -6 }}
+    className="bg-white rounded-2xl shadow-sm border border-green-50 overflow-hidden"
+  >
+    <img src={story.img} alt={story.title} className="w-full h-44 object-cover" />
+    <div className="p-4">
+      <div className="text-sm text-green-700 font-medium">{story.category}</div>
+      <h4 className="mt-2 font-semibold text-gray-800">{story.title}</h4>
+      <p className="mt-2 text-gray-600 text-sm">{story.excerpt}</p>
+      <div className="mt-4 flex items-center justify-between">
+        <button
+          onClick={() => onReadMore(story)}
+          className="text-sm text-green-700 font-medium"
+        >
+          Read more
+        </button>
+        <div className="text-xs text-gray-500">Impact: {story.impact.join(", ")}</div>
+      </div>
+    </div>
+  </motion.article>
+);
 
 export default function Stories() {
   const [stories] = useState([
@@ -21,10 +33,8 @@ export default function Stories() {
       id: "amina",
       title: "Amina's Journey: From Learner to Mentor",
       category: "Education",
-      excerpt:
-        "After joining the Nafasi Learning Programme Amina gained digital skills, mentoring experience and started a cooperative project that supports other learners.",
-      body:
-        "When Amina joined ECN's Nafasi Learning Programme she had limited access to learning resources. After a year of tailored mentoring, digital-skills classes and a community-supported micro-project, she is now mentoring other learners and working with a local cooperative to start a small business. Stories like Amina's are why we do this work.",
+      excerpt: "After joining the Nafasi Learning Programme Amina gained digital skills...",
+      body: "When Amina joined ECN's Nafasi Learning Programme she had limited access...",
       img: "https://source.unsplash.com/900x700/?africa,girl,education",
       impact: ["Mentor", "Micro-business", "Digital Skills"],
     },
@@ -32,10 +42,8 @@ export default function Stories() {
       id: "joseph",
       title: "Joseph: Youth Entrepreneurship",
       category: "Youth Empowerment",
-      excerpt:
-        "Joseph completed the Youth Employment Program and now runs a local ICT repair shop employing two other youths.",
-      body:
-        "Joseph joined our Youth Employment Program to learn ICT and entrepreneurship. Within six months he had built a thriving small business repairing phones and teaching others — now he employs two apprentices and partners with local schools for placements.",
+      excerpt: "Joseph completed the Youth Employment Program and now runs a local ICT repair shop...",
+      body: "Joseph joined our Youth Employment Program to learn ICT and entrepreneurship...",
       img: "https://source.unsplash.com/900x700/?young,man,africa,business",
       impact: ["Job Created", "Apprenticeship", "Community Partnership"],
     },
@@ -43,10 +51,8 @@ export default function Stories() {
       id: "faith",
       title: "Faith’s Green Classroom Initiative",
       category: "Environment",
-      excerpt:
-        "Faith led a project to create a school garden and recycling program, reducing waste and funding small school needs.",
-      body:
-        "Faith mobilized her peers to transform a disused school plot into a productive garden. The Green Classrooms Project provided seedlings, training and a waste-recycling plan. Proceeds now pay for school supplies and help fund lunchtime meals.",
+      excerpt: "Faith led a project to create a school garden and recycling program...",
+      body: "Faith mobilized her peers to transform a disused school plot into a productive garden...",
       img: "https://source.unsplash.com/900x700/?garden,school,africa",
       impact: ["Sustainability", "School Income", "Nutrition"],
     },
@@ -54,48 +60,47 @@ export default function Stories() {
       id: "mary",
       title: "Mary: Women in Tech Scholarship",
       category: "Women Empowerment",
-      excerpt:
-        "Mary received scholarships to attend a coding bootcamp — she now mentors girls in her county.",
-      body:
-        "Through our Women in Tech scholarships Mary completed a coding bootcamp and now mentors a cohort of girls in her county. Her startup recently won a small grant to scale a local educational app.",
+      excerpt: "Mary received scholarships to attend a coding bootcamp — she now mentors girls...",
+      body: "Through our Women in Tech scholarships Mary completed a coding bootcamp...",
       img: "https://source.unsplash.com/900x700/?women,coding,africa",
       impact: ["Scholarship", "Mentoring", "Startup Grant"],
     },
-    // add more entries as needed
   ]);
 
-  // carousel state
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [modal, setModal] = useState({ open: false, story: null });
-  const visible = stories.length > 0 ? stories[index % stories.length] : null;
+  const modalRef = useRef(null);
+  const visible = stories[index % stories.length];
 
+  // Auto carousel
   useEffect(() => {
     if (paused) return;
-    const t = setInterval(() => {
-      setIndex((i) => (i + 1) % stories.length);
-    }, 5000);
-    return () => clearInterval(t);
+    const timer = setInterval(() => setIndex(i => (i + 1) % stories.length), 5000);
+    return () => clearInterval(timer);
   }, [paused, stories.length]);
 
-  const openModal = (s) => {
-    setModal({ open: true, story: s });
+  // Keyboard controls
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === "Escape") closeModal();
+      if (e.key === "ArrowRight") setIndex(i => (i + 1) % stories.length);
+      if (e.key === "ArrowLeft") setIndex(i => (i - 1 + stories.length) % stories.length);
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [stories.length]);
+
+  const openModal = (story) => {
+    setModal({ open: true, story });
     document.body.style.overflow = "hidden";
+    setTimeout(() => modalRef.current?.focus(), 50); // Focus modal for accessibility
   };
+
   const closeModal = () => {
     setModal({ open: false, story: null });
     document.body.style.overflow = "auto";
   };
-
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "Escape") closeModal();
-      if (e.key === "ArrowRight") setIndex((i) => (i + 1) % stories.length);
-      if (e.key === "ArrowLeft") setIndex((i) => (i - 1 + stories.length) % stories.length);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [stories.length]);
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-50 via-white to-green-100">
@@ -125,16 +130,14 @@ export default function Stories() {
               <button className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full shadow">
                 <Heart size={16} /> Support a story
               </button>
-
               <button
                 className="inline-flex items-center gap-2 px-4 py-2 border rounded-full text-green-700 bg-white"
                 onClick={() => window.scrollTo({ top: 400, behavior: "smooth" })}
               >
                 <BookOpen size={16} /> Explore stories
               </button>
-
               <div className="ml-2 inline-flex items-center gap-2 text-sm text-gray-600">
-                <Users size={16} /> <span>4 stories • updated Nov 2025</span>
+                <Users size={16} /> <span>{stories.length} stories • updated Nov 2025</span>
               </div>
             </div>
           </div>
@@ -146,29 +149,24 @@ export default function Stories() {
             className="flex-1"
           >
             <div className="rounded-2xl overflow-hidden shadow-lg border border-green-100">
-              <img
-                src={visible?.img}
-                alt={visible?.title}
-                className="w-full h-72 object-cover"
-                loading="lazy"
-              />
+              <img src={visible?.img} alt={visible?.title} className="w-full h-72 object-cover" />
             </div>
           </motion.div>
         </div>
       </header>
 
-      {/* MAIN CONTENT */}
+      {/* MAIN */}
       <main className="max-w-7xl mx-auto px-6 pb-20 w-full">
-        {/* CAROUSEL + STORY PREVIEWS */}
+        {/* Featured + Carousel */}
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 space-y-6">
+            {/* Featured */}
             <div className="bg-white rounded-3xl shadow p-6 border border-green-100">
               <div className="flex items-start gap-6">
                 <div className="flex-1">
                   <h3 className="text-2xl font-semibold text-gray-800">Featured Story</h3>
                   <p className="text-sm text-green-700 font-medium mt-1">{visible?.category}</p>
                   <p className="mt-4 text-gray-700 leading-relaxed">{visible?.excerpt}</p>
-
                   <div className="mt-6 flex gap-3 items-center">
                     <button
                       onClick={() => openModal(visible)}
@@ -176,102 +174,63 @@ export default function Stories() {
                     >
                       Read Full Story
                     </button>
-
                     <button
-                      onClick={() => setPaused((p) => !p)}
+                      onClick={() => setPaused(p => !p)}
                       className="px-4 py-2 border rounded-full text-green-700 bg-white"
                     >
                       {paused ? "Resume" : "Pause"}
                     </button>
                   </div>
                 </div>
-
                 <div className="w-36">
                   <img src={visible?.img} alt="featured" className="w-full h-24 object-cover rounded-lg" />
                 </div>
               </div>
             </div>
 
-            {/* story cards grid */}
-            <div className="grid sm:grid-cols-2 gap-6 mt-6">
-              {stories.slice(0, 4).map((s) => (
-                <motion.article
-                  key={s.id}
-                  whileHover={{ y: -6 }}
-                  className="bg-white rounded-2xl shadow-sm border border-green-50 overflow-hidden"
-                >
-                  <img src={s.img} alt={s.title} className="w-full h-44 object-cover" />
-                  <div className="p-4">
-                    <div className="text-sm text-green-700 font-medium">{s.category}</div>
-                    <h4 className="mt-2 font-semibold text-gray-800">{s.title}</h4>
-                    <p className="mt-2 text-gray-600 text-sm">{s.excerpt}</p>
-                    <div className="mt-4 flex items-center justify-between">
-                      <button
-                        onClick={() => openModal(s)}
-                        className="text-sm text-green-700 font-medium"
-                      >
-                        Read more
-                      </button>
-                      <div className="text-xs text-gray-500">Impact: {s.impact.join(", ")}</div>
-                    </div>
-                  </div>
-                </motion.article>
+            {/* Grid of story cards */}
+            <div className="grid sm:grid-cols-2 gap-6">
+              {stories.slice(0, 4).map(story => (
+                <StoryCard key={story.id} story={story} onReadMore={openModal} />
               ))}
             </div>
           </div>
 
-          {/* Right column - animated gallery / indicators */}
+          {/* Sidebar */}
           <aside className="flex flex-col gap-6">
             <div className="bg-gradient-to-br from-green-600 to-emerald-600 text-green rounded-2xl p-6 shadow-lg">
               <h5 className="font-semibold">Impact Snapshot</h5>
               <p className="mt-2 text-sm">Quick view of recent achievements and fast facts.</p>
-
               <div className="mt-4 grid grid-cols-2 gap-3">
-                <div className="bg-white bg-opacity-10 rounded-lg p-3 text-center">
-                  <div className="text-2xl font-bold">120+</div>
-                  <div className="text-xs">Volunteers</div>
-                </div>
-                <div className="bg-white bg-opacity-10 rounded-lg p-3 text-center">
-                  <div className="text-2xl font-bold">4,500</div>
-                  <div className="text-xs">Learners reached</div>
-                </div>
-                <div className="bg-white bg-opacity-10 rounded-lg p-3 text-center">
-                  <div className="text-2xl font-bold">32</div>
-                  <div className="text-xs">Projects funded</div>
-                </div>
-                <div className="bg-white bg-opacity-10 rounded-lg p-3 text-center">
-                  <div className="text-2xl font-bold">98%</div>
-                  <div className="text-xs">Program satisfaction</div>
-                </div>
+                {[
+                  { label: "Volunteers", value: "120+" },
+                  { label: "Learners reached", value: "4,500" },
+                  { label: "Projects funded", value: "32" },
+                  { label: "Program satisfaction", value: "98%" },
+                ].map((item, i) => (
+                  <div key={i} className="bg-white bg-opacity-10 rounded-lg p-3 text-center">
+                    <div className="text-2xl font-bold">{item.value}</div>
+                    <div className="text-xs">{item.label}</div>
+                  </div>
+                ))}
               </div>
             </div>
 
+            {/* Gallery */}
             <div className="bg-white rounded-2xl shadow p-4 border border-green-100">
               <h6 className="text-sm font-semibold text-gray-800">Gallery</h6>
               <div className="mt-3 grid grid-cols-2 gap-2">
-                {stories.map((s) => (
-                  <button
-                    key={s.id}
-                    onClick={() => openModal(s)}
-                    className="overflow-hidden rounded-lg w-full h-28"
-                  >
+                {stories.map(s => (
+                  <button key={s.id} onClick={() => openModal(s)} className="overflow-hidden rounded-lg w-full h-28">
                     <img src={s.img} alt={s.title} className="w-full h-full object-cover transform hover:scale-105 transition" />
                   </button>
                 ))}
               </div>
-
               <div className="mt-4 flex items-center justify-between">
-                <button
-                  onClick={() => setIndex((i) => (i - 1 + stories.length) % stories.length)}
-                  className="inline-flex items-center gap-2 px-3 py-2 bg-white rounded-full border"
-                >
+                <button onClick={() => setIndex(i => (i - 1 + stories.length) % stories.length)} className="inline-flex items-center gap-2 px-3 py-2 bg-white rounded-full border">
                   <ArrowLeft size={16} /> Prev
                 </button>
-
-                <button
-                  onClick={() => setIndex((i) => (i + 1) % stories.length)}
-                  className="inline-flex items-center gap-2 px-3 py-2 bg-white rounded-full border"
-                >
+                <button onClick={() => setIndex(i => (i + 1) % stories.length)} className="inline-flex items-center gap-2 px-3 py-2 bg-white rounded-full border">
                   Next <ArrowRight size={16} />
                 </button>
               </div>
@@ -279,30 +238,16 @@ export default function Stories() {
           </aside>
         </section>
 
-        {/* FULL STORIES GRID */}
+        {/* Full Stories Grid */}
         <section className="mb-12">
           <h3 className="text-2xl font-bold text-green-800 mb-6">All Stories</h3>
-
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {stories.map((s) => (
-              <article key={s.id} className="bg-white rounded-2xl shadow-sm border border-green-50 overflow-hidden">
-                <img src={s.img} alt={s.title} className="w-full h-48 object-cover" />
-                <div className="p-4">
-                  <div className="text-xs text-green-700 font-medium">{s.category}</div>
-                  <h4 className="mt-2 font-semibold text-gray-800">{s.title}</h4>
-                  <p className="mt-2 text-gray-600 text-sm">{s.excerpt}</p>
-                  <div className="mt-4 flex items-center justify-between">
-                    <button onClick={() => openModal(s)} className="text-sm text-green-700 font-medium">Read more</button>
-                    <div className="text-xs text-gray-500">Impact: {s.impact.join(", ")}</div>
-                  </div>
-                </div>
-              </article>
-            ))}
+            {stories.map(s => <StoryCard key={s.id} story={s} onReadMore={openModal} />)}
           </div>
         </section>
       </main>
 
-      {/* MODAL */}
+      {/* Modal */}
       <AnimatePresence>
         {modal.open && (
           <motion.div
@@ -313,11 +258,13 @@ export default function Stories() {
           >
             <div className="absolute inset-0 bg-black/40" onClick={closeModal} />
             <motion.div
+              ref={modalRef}
+              tabIndex={-1}
               initial={{ y: 24, scale: 0.98 }}
               animate={{ y: 0, scale: 1 }}
               exit={{ y: 12, opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="bg-white rounded-2xl shadow-xl max-w-4xl w-full z-50 overflow-auto max-h-[90vh] border border-green-50"
+              className="bg-white rounded-2xl shadow-xl max-w-4xl w-full z-50 overflow-auto max-h-[90vh] border border-green-50 outline-none"
             >
               <div className="relative">
                 <img src={modal.story?.img} alt={modal.story?.title} className="w-full h-56 object-cover rounded-t-2xl" />
@@ -329,21 +276,23 @@ export default function Stories() {
                   ✕
                 </button>
               </div>
-
               <div className="p-6">
                 <div className="text-sm text-green-700 font-medium">{modal.story?.category}</div>
                 <h3 className="text-2xl font-semibold text-gray-800 mt-2">{modal.story?.title}</h3>
                 <p className="mt-4 text-gray-700 leading-relaxed">{modal.story?.body}</p>
-
                 <div className="mt-6 flex flex-wrap gap-2">
                   {modal.story?.impact.map((it, idx) => (
                     <span key={idx} className="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full">{it}</span>
                   ))}
                 </div>
-
                 <div className="mt-6 flex items-center gap-3">
                   <button className="px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full">Support</button>
-                  <button onClick={() => { closeModal(); setIndex(stories.findIndex(s => s.id === modal.story.id)); }} className="px-4 py-2 border rounded-full text-green-700">View in carousel</button>
+                  <button
+                    onClick={() => { closeModal(); setIndex(stories.findIndex(s => s.id === modal.story.id)); }}
+                    className="px-4 py-2 border rounded-full text-green-700"
+                  >
+                    View in carousel
+                  </button>
                 </div>
               </div>
             </motion.div>

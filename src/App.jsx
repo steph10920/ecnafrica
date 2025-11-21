@@ -52,7 +52,7 @@ export default function App() {
           <Route path="/programs/green-classrooms" element={<GreenClassrooms />} />
           <Route path="/programs/nafasiprogramme" element={<NafasiProgramme />} />
 
-          <Route path="/programs/nafasi-learning" element={<NafasiLearning />} />
+          <Route path="/programs/imara-women" element={<NafasiLearning />} />
           <Route path="/programs/blue-horizons" element={<BlueHorizons />} />
 
           {/* 🔹 Category Pages */}
