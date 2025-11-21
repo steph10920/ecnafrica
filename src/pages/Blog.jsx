@@ -222,7 +222,7 @@ export default function Stories() {
 
           {/* Right column - animated gallery / indicators */}
           <aside className="flex flex-col gap-6">
-            <div className="bg-gradient-to-br from-green-600 to-emerald-600 text-white rounded-2xl p-6 shadow-lg">
+            <div className="bg-gradient-to-br from-green-600 to-emerald-600 text-green rounded-2xl p-6 shadow-lg">
               <h5 className="font-semibold">Impact Snapshot</h5>
               <p className="mt-2 text-sm">Quick view of recent achievements and fast facts.</p>
 
