@@ -11,7 +11,7 @@ import Donate from "./components/Donate";
 // 🔹 Program Subpages
 import GreenClassrooms from "./pages/GreenClassrooms";
 import NafasiProgramme from "./pages/NafasiProgramme";
-import NafasiLearning from "./pages/Nafasi";
+import NafasiLearning from "./pages/imarawomen";
 import BlueHorizons from "./pages/BlueHorizons";
 
 // 🔹 Category Pages
