@@ -11,7 +11,7 @@ import Donate from "./components/Donate";
 // 🔹 Program Subpages
 import GreenClassrooms from "./pages/GreenClassrooms";
 import NafasiProgramme from "./pages/NafasiProgramme";
-import NafasiLearning from "./pages/imarawomen";
+import ImaraWomen from "./pages/imarawomen";
 import BlueHorizons from "./pages/BlueHorizons";
 
 // 🔹 Category Pages
@@ -52,7 +52,7 @@ export default function App() {
           <Route path="/programs/green-classrooms" element={<GreenClassrooms />} />
           <Route path="/programs/nafasiprogramme" element={<NafasiProgramme />} />
 
-          <Route path="/programs/imara-women" element={<NafasiLearning />} />
+          <Route path="/programs/imara-women" element={<ImaraWomen />} />
           <Route path="/programs/blue-horizons" element={<BlueHorizons />} />
 
           {/* 🔹 Category Pages */}
