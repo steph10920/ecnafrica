@@ -144,7 +144,7 @@ export default function Navbar() {
           </div>
 
           <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600">
-            Blog/News
+            Stories
           </button>
 
           <button onClick={() => handleNavClick("/about")} className="hover:text-green-600">
@@ -276,7 +276,7 @@ export default function Navbar() {
               onClick={() => handleNavClick("/blog")}
               className="flex items-center gap-2 px-4 py-3 border-b hover:text-green-600"
             >
-              <FileText size={18} /> Blog/News
+              <FileText size={18} /> Stories
             </button>
 
             <button
