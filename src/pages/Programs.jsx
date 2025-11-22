@@ -52,7 +52,7 @@ export default function Programs() {
       title:
         "Nafasi Learning Programme: Creating Spaces and Opportunities for Change",
       subtitle: "Creating Spaces and Opportunities for Change",
-      path: "/programs/imara-women",
+      path: "/programs/nafasiprogramme",
       color: "from-blue-100 via-blue-200 to-blue-300",
     },
     {
