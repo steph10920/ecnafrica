@@ -1,27 +1,37 @@
 import { Suspense, lazy, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, BookOpen, Heart, Users } from "lucide-react";
+import josephImg from "../assets/stories/joseph.jpg";
 
 const Footer = lazy(() => import("../components/Footer"));
 
+// Story card
 const StoryCard = ({ story, onReadMore }) => (
   <motion.article
-    whileHover={{ y: -6 }}
-    className="bg-white rounded-2xl shadow-sm border border-green-50 overflow-hidden"
+    whileHover={{ y: -5 }}
+    className="bg-white rounded-2xl shadow-md border border-green-100 overflow-hidden flex flex-col"
   >
-    <img src={story.img} alt={story.title} className="w-full h-44 object-cover" />
-    <div className="p-4">
-      <div className="text-sm text-green-700 font-medium">{story.category}</div>
-      <h4 className="mt-2 font-semibold text-gray-800">{story.title}</h4>
-      <p className="mt-2 text-gray-600 text-sm">{story.excerpt}</p>
-      <div className="mt-4 flex items-center justify-between">
+    <div className="h-48 w-full overflow-hidden rounded-t-2xl bg-gray-100 flex items-center justify-center">
+      <img
+        src={story.img}
+        alt={story.title}
+        className="w-full h-full object-cover"
+      />
+    </div>
+    <div className="p-5 flex-1 flex flex-col justify-between">
+      <div>
+        <div className="text-sm text-green-700 font-semibold">{story.category}</div>
+        <h4 className="mt-2 font-bold text-gray-900 text-lg">{story.title}</h4>
+        <p className="mt-2 text-gray-600 text-sm">{story.excerpt}</p>
+      </div>
+      <div className="mt-4 flex items-center justify-between text-xs text-gray-500">
         <button
           onClick={() => onReadMore(story)}
-          className="text-sm text-green-700 font-medium"
+          className="text-green-700 font-medium hover:underline"
         >
           Read more
         </button>
-        <div className="text-xs text-gray-500">Impact: {story.impact.join(", ")}</div>
+        <div>Impact: {story.impact.join(", ")}</div>
       </div>
     </div>
   </motion.article>
@@ -44,7 +54,7 @@ export default function Stories() {
       category: "Youth Empowerment",
       excerpt: "Joseph completed the Youth Employment Program and now runs a local ICT repair shop...",
       body: "Joseph joined our Youth Employment Program to learn ICT and entrepreneurship...",
-      img: "https://source.unsplash.com/900x700/?young,man,africa,business",
+      img: josephImg,
       impact: ["Job Created", "Apprenticeship", "Community Partnership"],
     },
     {
@@ -69,8 +79,9 @@ export default function Stories() {
 
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [modal, setModal] = useState({ open: false, story: null });
+  const [storyModal, setStoryModal] = useState({ open: false, story: null });
   const modalRef = useRef(null);
+
   const visible = stories[index % stories.length];
 
   // Auto carousel
@@ -83,7 +94,7 @@ export default function Stories() {
   // Keyboard controls
   useEffect(() => {
     const handleKey = (e) => {
-      if (e.key === "Escape") closeModal();
+      if (e.key === "Escape") closeStoryModal();
       if (e.key === "ArrowRight") setIndex(i => (i + 1) % stories.length);
       if (e.key === "ArrowLeft") setIndex(i => (i - 1 + stories.length) % stories.length);
     };
@@ -91,15 +102,20 @@ export default function Stories() {
     return () => window.removeEventListener("keydown", handleKey);
   }, [stories.length]);
 
-  const openModal = (story) => {
-    setModal({ open: true, story });
+  const openStoryModal = (story) => {
+    setStoryModal({ open: true, story });
     document.body.style.overflow = "hidden";
-    setTimeout(() => modalRef.current?.focus(), 50); // Focus modal for accessibility
+    setTimeout(() => modalRef.current?.focus(), 50);
   };
 
-  const closeModal = () => {
-    setModal({ open: false, story: null });
+  const closeStoryModal = () => {
+    setStoryModal({ open: false, story: null });
     document.body.style.overflow = "auto";
+  };
+
+  // --- SUPPORT HANDLER ---
+  const handleSupport = () => {
+    window.location.href = "/donate"; // Link to your existing donate page
   };
 
   return (
@@ -127,8 +143,11 @@ export default function Stories() {
             </motion.p>
 
             <div className="mt-6 flex flex-wrap gap-3 items-center">
-              <button className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full shadow">
-                <Heart size={16} /> Support a story
+              <button
+                onClick={handleSupport}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full shadow"
+              >
+                <Heart size={16} /> Support ECN
               </button>
               <button
                 className="inline-flex items-center gap-2 px-4 py-2 border rounded-full text-green-700 bg-white"
@@ -149,7 +168,12 @@ export default function Stories() {
             className="flex-1"
           >
             <div className="rounded-2xl overflow-hidden shadow-lg border border-green-100">
-              <img src={visible?.img} alt={visible?.title} className="w-full h-72 object-cover" />
+              <img
+                src={visible?.img}
+                alt={visible?.title}
+                className="w-full h-72 md:h-80 object-contain rounded-2xl border p-2"
+                loading="lazy"
+              />
             </div>
           </motion.div>
         </div>
@@ -157,10 +181,9 @@ export default function Stories() {
 
       {/* MAIN */}
       <main className="max-w-7xl mx-auto px-6 pb-20 w-full">
-        {/* Featured + Carousel */}
+        {/* Featured + Grid */}
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           <div className="lg:col-span-2 space-y-6">
-            {/* Featured */}
             <div className="bg-white rounded-3xl shadow p-6 border border-green-100">
               <div className="flex items-start gap-6">
                 <div className="flex-1">
@@ -169,7 +192,7 @@ export default function Stories() {
                   <p className="mt-4 text-gray-700 leading-relaxed">{visible?.excerpt}</p>
                   <div className="mt-6 flex gap-3 items-center">
                     <button
-                      onClick={() => openModal(visible)}
+                      onClick={() => openStoryModal(visible)}
                       className="px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full shadow"
                     >
                       Read Full Story
@@ -183,20 +206,23 @@ export default function Stories() {
                   </div>
                 </div>
                 <div className="w-36">
-                  <img src={visible?.img} alt="featured" className="w-full h-24 object-cover rounded-lg" />
+                  <img
+                    src={visible?.img}
+                    alt="featured"
+                    className="w-full h-24 object-cover rounded-lg"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
 
-            {/* Grid of story cards */}
             <div className="grid sm:grid-cols-2 gap-6">
               {stories.slice(0, 4).map(story => (
-                <StoryCard key={story.id} story={story} onReadMore={openModal} />
+                <StoryCard key={story.id} story={story} onReadMore={openStoryModal} />
               ))}
             </div>
           </div>
 
-          {/* Sidebar */}
           <aside className="flex flex-col gap-6">
             <div className="bg-gradient-to-br from-green-600 to-emerald-600 text-green rounded-2xl p-6 shadow-lg">
               <h5 className="font-semibold">Impact Snapshot</h5>
@@ -216,21 +242,35 @@ export default function Stories() {
               </div>
             </div>
 
-            {/* Gallery */}
             <div className="bg-white rounded-2xl shadow p-4 border border-green-100">
               <h6 className="text-sm font-semibold text-gray-800">Gallery</h6>
               <div className="mt-3 grid grid-cols-2 gap-2">
                 {stories.map(s => (
-                  <button key={s.id} onClick={() => openModal(s)} className="overflow-hidden rounded-lg w-full h-28">
-                    <img src={s.img} alt={s.title} className="w-full h-full object-cover transform hover:scale-105 transition" />
+                  <button
+                    key={s.id}
+                    onClick={() => openStoryModal(s)}
+                    className="overflow-hidden rounded-lg w-full h-32 sm:h-36 md:h-40"
+                  >
+                    <img
+                      src={s.img}
+                      alt={s.title}
+                      className="w-full h-full object-cover rounded-lg transition-transform duration-300 hover:scale-105"
+                      loading="lazy"
+                    />
                   </button>
                 ))}
               </div>
               <div className="mt-4 flex items-center justify-between">
-                <button onClick={() => setIndex(i => (i - 1 + stories.length) % stories.length)} className="inline-flex items-center gap-2 px-3 py-2 bg-white rounded-full border">
+                <button
+                  onClick={() => setIndex(i => (i - 1 + stories.length) % stories.length)}
+                  className="inline-flex items-center gap-2 px-3 py-2 bg-white rounded-full border"
+                >
                   <ArrowLeft size={16} /> Prev
                 </button>
-                <button onClick={() => setIndex(i => (i + 1) % stories.length)} className="inline-flex items-center gap-2 px-3 py-2 bg-white rounded-full border">
+                <button
+                  onClick={() => setIndex(i => (i + 1) % stories.length)}
+                  className="inline-flex items-center gap-2 px-3 py-2 bg-white rounded-full border"
+                >
                   Next <ArrowRight size={16} />
                 </button>
               </div>
@@ -238,25 +278,24 @@ export default function Stories() {
           </aside>
         </section>
 
-        {/* Full Stories Grid */}
         <section className="mb-12">
           <h3 className="text-2xl font-bold text-green-800 mb-6">All Stories</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {stories.map(s => <StoryCard key={s.id} story={s} onReadMore={openModal} />)}
+            {stories.map(s => <StoryCard key={s.id} story={s} onReadMore={openStoryModal} />)}
           </div>
         </section>
       </main>
 
-      {/* Modal */}
+      {/* Story Modal */}
       <AnimatePresence>
-        {modal.open && (
+        {storyModal.open && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
           >
-            <div className="absolute inset-0 bg-black/40" onClick={closeModal} />
+            <div className="absolute inset-0 bg-black/40" onClick={closeStoryModal} />
             <motion.div
               ref={modalRef}
               tabIndex={-1}
@@ -267,9 +306,14 @@ export default function Stories() {
               className="bg-white rounded-2xl shadow-xl max-w-4xl w-full z-50 overflow-auto max-h-[90vh] border border-green-50 outline-none"
             >
               <div className="relative">
-                <img src={modal.story?.img} alt={modal.story?.title} className="w-full h-56 object-cover rounded-t-2xl" />
+                <img
+                  src={storyModal.story?.img}
+                  alt={storyModal.story?.title}
+                  className="w-full h-56 md:h-72 object-contain rounded-t-2xl"
+                  loading="lazy"
+                />
                 <button
-                  onClick={closeModal}
+                  onClick={closeStoryModal}
                   className="absolute top-4 right-4 bg-white rounded-full p-2 shadow"
                   aria-label="Close modal"
                 >
@@ -277,18 +321,23 @@ export default function Stories() {
                 </button>
               </div>
               <div className="p-6">
-                <div className="text-sm text-green-700 font-medium">{modal.story?.category}</div>
-                <h3 className="text-2xl font-semibold text-gray-800 mt-2">{modal.story?.title}</h3>
-                <p className="mt-4 text-gray-700 leading-relaxed">{modal.story?.body}</p>
+                <div className="text-sm text-green-700 font-medium">{storyModal.story?.category}</div>
+                <h3 className="text-2xl font-semibold text-gray-800 mt-2">{storyModal.story?.title}</h3>
+                <p className="mt-4 text-gray-700 leading-relaxed">{storyModal.story?.body}</p>
                 <div className="mt-6 flex flex-wrap gap-2">
-                  {modal.story?.impact.map((it, idx) => (
+                  {storyModal.story?.impact.map((it, idx) => (
                     <span key={idx} className="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full">{it}</span>
                   ))}
                 </div>
                 <div className="mt-6 flex items-center gap-3">
-                  <button className="px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full">Support</button>
                   <button
-                    onClick={() => { closeModal(); setIndex(stories.findIndex(s => s.id === modal.story.id)); }}
+                    onClick={handleSupport}
+                    className="px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full"
+                  >
+                    Support ECN
+                  </button>
+                  <button
+                    onClick={() => { closeStoryModal(); setIndex(stories.findIndex(s => s.id === storyModal.story.id)); }}
                     className="px-4 py-2 border rounded-full text-green-700"
                   >
                     View in carousel

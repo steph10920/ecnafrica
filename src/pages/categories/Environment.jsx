@@ -151,7 +151,7 @@ export default function Environment() {
             sustainable practices across Africa.
           </p>
           <a
-            href="/get-involved"
+            href="/donate"
             className="inline-block bg-white text-green-700 font-semibold px-6 py-3 rounded-full shadow hover:bg-green-50 transition"
           >
             Volunteer & Donate

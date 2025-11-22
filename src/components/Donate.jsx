@@ -188,6 +188,8 @@ export default function Donate() {
 
       </div>
     </section>
+    
   );
+  
 }
 
