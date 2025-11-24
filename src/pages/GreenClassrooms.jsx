@@ -122,7 +122,7 @@ export default function GreenClassrooms() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          About the Initiative
+          Green Classrooms for Community Resilience
         </motion.h2>
 
         {/* Paragraph 1 with image */}
