@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import { ArrowUp } from "lucide-react";
 import { Helmet } from "react-helmet";
 
-// ✅ Import your local slide images
+// ✅ Slide images
 import Slide1 from "../assets/nafasi1.jpg";
 import Slide2 from "../assets/nafasi2.jpg";
 import Slide3 from "../assets/nafasi3.jpg";
@@ -13,9 +13,13 @@ export default function NafasiProgramme() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showTopBtn, setShowTopBtn] = useState(false);
 
-  const slides = [Slide1, Slide2, Slide3];
+  const slides = [
+    { src: Slide1, alt: "Children learning in mobile street school" },
+    { src: Slide2, alt: "Youth participating in sports activities" },
+    { src: Slide3, alt: "Street-connected youth empowerment program" },
+  ];
 
-  // 🔹 Auto-slide every 5 seconds
+  // Auto-slide every 5s
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -23,17 +27,14 @@ export default function NafasiProgramme() {
     return () => clearInterval(interval);
   }, []);
 
-  // 🔹 Show scroll-to-top button
+  // Show scroll-to-top
   useEffect(() => {
     const handleScroll = () => setShowTopBtn(window.scrollY > 300);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0 },
-  };
+  const fadeInUp = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } };
 
   const sections = [
     {
@@ -107,23 +108,22 @@ Achievements
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      {/* ✅ Add Helmet here */}
+    <div className="flex flex-col min-h-screen bg-gray-50">
       <Helmet>
-        <title>Elimu Community Network | ECN Africa</title>
+        <title>Elimu Community Network | Nafasi Programme</title>
         <meta
           name="description"
-          content="Learn about Elimu Community Network (ECN Africa), our mission, vision, and how we empower communities through education, innovation, and sustainable programs."
+          content="Learn about Elimu Community Network (ECN Africa) Nafasi Programme and how we empower street-connected children and youth through education, sports, and vocational training."
         />
       </Helmet>
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
-      {/* 🔹 Hero Slideshow */}
-      <div className="relative w-full h-[70vh] overflow-hidden">
+
+      {/* Hero Section */}
+      <div className="relative w-full h-[75vh] md:h-[80vh] overflow-hidden">
         <AnimatePresence>
           <motion.img
             key={currentSlide}
-            src={slides[currentSlide]}
-            alt="Nafasi Programme"
+            src={slides[currentSlide].src}
+            alt={slides[currentSlide].alt}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -131,9 +131,9 @@ Achievements
             className="absolute inset-0 w-full h-full object-cover"
           />
         </AnimatePresence>
-        <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-center text-white px-4">
+        <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-center px-4">
           <motion.h1
-            className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg"
+            className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg mb-4"
             initial="hidden"
             animate="visible"
             variants={fadeInUp}
@@ -141,46 +141,66 @@ Achievements
           >
             Nafasi Learning Programme
           </motion.h1>
-          <p className="max-w-2xl text-lg opacity-90">
-            Creating spaces and opportunities for every child to learn, belong,
-            and thrive.
-          </p>
+          <motion.p
+            className="max-w-3xl text-lg md:text-xl text-white opacity-90"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            Creating spaces and opportunities for every child to learn, belong, and thrive.
+          </motion.p>
+
+          {/* Slide Dots */}
+          <div className="absolute bottom-6 flex space-x-2">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentSlide(i)}
+                className={`w-3 h-3 rounded-full ${
+                  currentSlide === i ? "bg-green-700" : "bg-white bg-opacity-50"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* 🔹 Main Content Cards */}
-      <section className="max-w-6xl mx-auto py-16 px-6 space-y-10">
+      {/* Sections */}
+      <section className="max-w-6xl mx-auto py-16 px-6 space-y-12">
         {sections.map((section, index) => (
           <motion.div
             key={index}
             initial="hidden"
             whileInView="visible"
+            viewport={{ once: true }}
             variants={fadeInUp}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            className="bg-white shadow-lg rounded-2xl p-8 border-l-4 border-green-700"
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="bg-white shadow-lg rounded-2xl p-8 border-l-4 border-green-700 hover:shadow-2xl transition-shadow duration-300"
           >
-            <h2 className="text-2xl font-semibold text-green-700 mb-4">
+            <h2 className="text-2xl md:text-3xl font-semibold text-green-700 mb-4">
               {section.title}
             </h2>
-            <p className="whitespace-pre-line text-gray-700 leading-relaxed">
+            <p className="whitespace-pre-line text-gray-700 leading-relaxed text-lg">
               {section.content}
             </p>
           </motion.div>
         ))}
       </section>
 
-      {/* 🔹 Scroll to Top */}
+      {/* Scroll to Top */}
       {showTopBtn && (
-        <button
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: showTopBtn ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="fixed bottom-8 right-8 bg-green-700 text-white p-3 rounded-full shadow-lg hover:bg-green-800 transition duration-300 z-50"
         >
           <ArrowUp size={24} />
-        </button>
+        </motion.button>
       )}
 
       <Footer />
     </div>
-    </div>
-  );
+      );
 }
