@@ -13,10 +13,9 @@ import BeforePhoto from "../assets/community-before.jpg";
 import AfterPhoto from "../assets/community-after.jpg";
 import green1 from "../assets/greenclassroom1.jpg";
 import green2 from "../assets/greenclassroom3.jpg";
-
-
-
-
+import farm1 from "../assets/greenfarm1.jpg";
+import farm2 from "../assets/greenfarm2.jpg";
+import farm3 from "../assets/greenfarm3.jpg";
 export default function GreenClassrooms() {
   const [showTopBtn, setShowTopBtn] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -114,98 +113,123 @@ export default function GreenClassrooms() {
 
       {/* ✅ Project Overview */}
       <section className="py-12 px-6 sm:px-12 bg-green-50 text-gray-700">
-        <div className="max-w-5xl mx-auto text-center mb-12 space-y-4">
-          <motion.h2
-            className="text-3xl font-bold text-green-700 mb-4"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            About the Initiative
-          </motion.h2>
+      <div className="max-w-6xl mx-auto space-y-12">
+        {/* Section Title */}
+        <motion.h2
+          className="text-4xl font-bold text-green-700 text-center mb-8"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          About the Initiative
+        </motion.h2>
 
-          <p className="text-lg leading-relaxed">
+        {/* Paragraph 1 with image */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <p className="text-xl sm:text-1xl leading-relaxed">
             The Green Classrooms initiative connects environmental education with community 
             action. It teaches children and families to protect nature while meeting daily 
             needs through sustainable practices like tree planting, recycling, and water conservation.
           </p>
-          <p className="text-lg leading-relaxed">
+          <img 
+            src={farm1} 
+            alt="Children in green classroom" 
+            className="rounded-2xl shadow-lg w-full h-64 object-cover"
+          />
+        </div>
+
+        {/* Paragraph 2 with image */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <img 
+            src={farm2} 
+            alt="Tree planting activity" 
+            className="rounded-2xl shadow-lg w-full h-64 object-cover"
+          />
+          <p className="text-xl sm:text-1xl leading-relaxed">
             Each classroom becomes a living lab where students learn how trees prevent soil erosion, 
             improve rainfall, and provide food and medicine. In Busia’s flood-prone Budalangi area, 
             ECN-led tree planting projects have reduced flooding and improved soil fertility — turning 
             vulnerability into opportunity.
           </p>
-          <p className="text-lg leading-relaxed">
-            Through partnerships with schools and local governments, ECN integrates environmental literacy 
-            into school curricula, nurturing young eco-leaders who care for both people and the planet.
-          </p>
+        </div>
 
-          <blockquote className="border-l-4 border-green-500 pl-4 italic text-blue-700">
-            “The environment is in us, not outside of us. The trees are our lungs, the rivers our bloodstream. 
-            We are all interconnected.” — Wangari Maathai
-          </blockquote>
+        {/* Paragraph 3 */}
+        <p className="text-xl sm:text-1xl leading-relaxed">
+          Through partnerships with schools and local governments, ECN integrates environmental literacy 
+          into school curricula, nurturing young eco-leaders who care for both people and the planet.
+        </p>
 
-          <h3 className="text-xl font-semibold text-green-700 mt-6">WHY TREES?</h3>
-          <blockquote className="border-l-4 border-green-500 pl-4 italic text-blue-700 mb-6">
-            “Trees exhale for us so that we can inhale them to stay alive. Can we ever forget 
-            that? Let us love trees with every breath we take until we perish.” — Munia Khan
-          </blockquote>
+        {/* Quote 1 */}
+        <blockquote className="border-l-4 border-green-500 pl-4 italic text-blue-700 text-center md:text-left text-xl sm:text-1xl leading-relaxed">
+          “The environment is in us, not outside of us. The trees are our lungs, the rivers our bloodstream. 
+          We are all interconnected.” — Wangari Maathai
+        </blockquote>
 
-          <p className="text-lg leading-relaxed">
+        {/* WHY TREES section with image */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <p className="text-xl sm:text-1xl leading-relaxed">
             At Elimu Community Network (ECN), trees represent more than nature. They symbolize life, learning, 
             and liberation.<br />
             Through our tree planting initiatives, we blend environmental conservation with education, helping 
             communities understand that sustainability begins with knowledge and grows through collective action.
           </p>
-          <p className="text-lg leading-relaxed">
-            Tree planting with ECN is a learning journey. It brings together children, youth, women, and families 
-            to care for the earth while cultivating skills, values, and unity. It is one of the simplest yet most 
-            profound ways to teach communities how education and nature together can transform lives.
-          </p>
+          <img 
+            src={farm3} 
+            alt="Community tree planting" 
+            className="rounded-2xl shadow-lg w-full h-64 object-cover"
+          />
+        </div>
 
-          <h3 className="text-xl font-semibold text-green-700 mt-6">WHY TREES?</h3>
-          <p className="text-lg leading-relaxed">
-            Tree planting promotes development in our communities and contributes to climate resilience by:
-          </p>
+        <p className="text-xl sm:text-1xl leading-relaxed">
+          Tree planting with ECN is a learning journey. It brings together children, youth, women, and families 
+          to care for the earth while cultivating skills, values, and unity. It is one of the simplest yet most 
+          profound ways to teach communities how education and nature together can transform lives.
+        </p>
 
-          {/* ✅ Aligned bullet list */}
-          <ul className="text-lg leading-relaxed list-disc list-inside marker:text-green-700 text-left mx-auto max-w-3xl space-y-2">
+        <h3 className="text-xl font-semibold text-green-700 mt-6">WHY TREES?</h3>
+        <p className="text-xl sm:text-1xl leading-relaxed">
+          Tree planting promotes development in our communities and contributes to climate resilience by:
+        </p>
+
+        {/* Bullet list with small images */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <ul className="text-lg leading-relaxed list-disc list-inside marker:text-green-700 space-y-2">
             <li>
-              <span className="font-semibold">Building community unity: </span> 
-              Bringing people together with a shared goal of creating greener spaces.
+              <span className="font-semibold">Building community unity: </span> Bringing people together with a shared goal of creating greener spaces.
             </li>
             <li>
-              <span className="font-semibold">Improving air quality and rainfall: </span> 
-              Trees breathe life into our planet by producing clean oxygen and restoring natural cycles.
+              <span className="font-semibold">Improving air quality and rainfall: </span> Trees breathe life into our planet by producing clean oxygen and restoring natural cycles.
             </li>
             <li>
-              <span className="font-semibold">Protecting soil and preventing floods: </span> 
-              Strong roots reduce erosion and safeguard farmlands and homes.
-            </li>
-            <li>
-              <span className="font-semibold">Supporting livelihoods: </span> 
-              Providing fruits, herbs, and medicines that enhance nutrition and health.
-            </li>
-            <li>
-              <span className="font-semibold">Protecting biodiversity: </span> 
-              Creating habitats for birds, insects, and wildlife essential to ecosystem balance.
+              <span className="font-semibold">Protecting soil and preventing floods: </span> Strong roots reduce erosion and safeguard farmlands and homes.
             </li>
           </ul>
-
-          <blockquote className="pl-4 italic text-blue-700 mt-4">
-            “The best time to plant a tree was 20 years ago. The second-best time is now.” — African Proverb
-          </blockquote>
-
-          <div className="mt-6">
-            <a
-              href="/contact"
-              className="bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-xl transition duration-300"
-            >
-              Join Our Green Movement
-            </a>
-          </div>
+          <ul className="text-lg leading-relaxed list-disc list-inside marker:text-green-700 space-y-2">
+            <li>
+              <span className="font-semibold">Supporting livelihoods: </span> Providing fruits, herbs, and medicines that enhance nutrition and health.
+            </li>
+            <li>
+              <span className="font-semibold">Protecting biodiversity: </span> Creating habitats for birds, insects, and wildlife essential to ecosystem balance.
+            </li>
+          </ul>
         </div>
+
+        <blockquote className="pl-4 italic text-blue-700 mt-4 text-center md:text-left">
+          “The best time to plant a tree was 20 years ago. The second-best time is now.” — African Proverb
+        </blockquote>
+
+        <div className="mt-6 text-center">
+          <a
+            href="/contact"
+            className="bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-xl transition duration-300"
+          >
+            Join Our Green Movement
+          </a>
+        </div>
+      </div>
+    </section>
+
 
         {/* 🌱 Dual Cards Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mt-10">
@@ -451,8 +475,8 @@ export default function GreenClassrooms() {
             </div>
             </motion.div>
 
-            </div>      
-      </section>
+            </div> 
+            </div>     
 
       {/* ✅ Additional Content */}
       <section className="py-12 px-6 sm:px-12 bg-white">
@@ -523,6 +547,6 @@ export default function GreenClassrooms() {
       )}
       <Footer />
     </div>
-    </div>
+   
   );
 }
