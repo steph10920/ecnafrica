@@ -2,6 +2,10 @@ import { Suspense, lazy, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, BookOpen, Heart, Users } from "lucide-react";
 import josephImg from "../assets/stories/joseph.jpg";
+import maryImg from "../assets/stories/mary.jpg";
+import eugineImg from "../assets/stories/eugine.jpg";
+import opiyoImg from "../assets/stories/opiyo.jpg";
+
 
 const Footer = lazy(() => import("../components/Footer"));
 
@@ -40,12 +44,12 @@ const StoryCard = ({ story, onReadMore }) => (
 export default function Stories() {
   const [stories] = useState([
     {
-      id: "amina",
-      title: "Amina's Journey: From Learner to Mentor",
+      id: "Eugine",
+      title: "Eugine: From Learner to Leader",
       category: "Education",
-      excerpt: "After joining the Nafasi Learning Programme Amina gained digital skills...",
-      body: "When Amina joined ECN's Nafasi Learning Programme she had limited access...",
-      img: "https://source.unsplash.com/900x700/?africa,girl,education",
+      excerpt: "After joining the Blue Horizon Programme, Eugine gained fishing and net making skills...",
+      body: "Eugine joined our Blue Horizon Programme eager to learn new skills that could help his community...",
+      img: eugineImg,
       impact: ["Mentor", "Micro-business", "Digital Skills"],
     },
     {
@@ -58,21 +62,21 @@ export default function Stories() {
       impact: ["Job Created", "Apprenticeship", "Community Partnership"],
     },
     {
-      id: "faith",
-      title: "Faith’s Green Classroom Initiative",
+      id: "Mary",
+      title: "Mary’s journey through flooded roads",
       category: "Environment",
-      excerpt: "Faith led a project to create a school garden and recycling program...",
-      body: "Faith mobilized her peers to transform a disused school plot into a productive garden...",
-      img: "https://source.unsplash.com/900x700/?garden,school,africa",
+      excerpt: "Mary led the community in building flood-resilient pathways to school...",
+      body: "Mary noticed that during the rainy season many children struggled to reach school...",
+      img: maryImg,
       impact: ["Sustainability", "School Income", "Nutrition"],
     },
     {
-      id: "mary",
-      title: "Mary: Women in Tech Scholarship",
-      category: "Women Empowerment",
-      excerpt: "Mary received scholarships to attend a coding bootcamp — she now mentors girls...",
-      body: "Through our Women in Tech scholarships Mary completed a coding bootcamp...",
-      img: "https://source.unsplash.com/900x700/?women,coding,africa",
+      id: "Opiyo",
+      title: "Opiyo: The Great Fisherman",
+      category: "Environment",
+      excerpt: "Opiyo transformed his fishing practices to be more sustainable...",
+      body: "Having grown up in a fishing community, Opiyo skilled in traditional fishing methods...",
+      img: opiyoImg,
       impact: ["Scholarship", "Mentoring", "Startup Grant"],
     },
   ]);
