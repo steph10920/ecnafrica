@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import Footer from "../components/Footer";
 import LearningPhoto1 from "../assets/learning1.jpg";
 import LearningPhoto2 from "../assets/learning2.jpg";
+import { Helmet } from "react-helmet"; // ✅ Added for SEO
 
 export default function Imarawomen() {
   const [showTopBtn, setShowTopBtn] = useState(false);
@@ -26,6 +27,15 @@ export default function Imarawomen() {
   };
 
   return (
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      {/* ✅ Add Helmet here */}
+      <Helmet>
+        <title>Elimu Community Network | ECN Africa</title>
+        <meta
+          name="description"
+          content="Learn about Elimu Community Network (ECN Africa), our mission, vision, and how we empower communities through education, innovation, and sustainable programs."
+        />
+      </Helmet>
     <div className="bg-gray-50 min-h-screen">
       {/* 🔹 Hero Section */}
       <section className="relative bg-gradient-to-r from-blue-800 to-blue-600 text-white py-24 px-6 text-center">
@@ -208,6 +218,7 @@ export default function Imarawomen() {
       )}
 
       <Footer />
+    </div>
     </div>
   );
 }

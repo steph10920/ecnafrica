@@ -1,6 +1,6 @@
-<title>Elimu Community Network | ECN Africa</title>
 import React, { Suspense, lazy, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet"; // ✅ Import Helmet
 import {
   BookOpen,
   Globe2,
@@ -60,6 +60,15 @@ export default function About() {
   };
 
   return (
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      {/* ✅ Add Helmet here */}
+      <Helmet>
+        <title>Elimu Community Network | ECN Africa</title>
+        <meta
+          name="description"
+          content="Learn about Elimu Community Network (ECN Africa), our mission, vision, and how we empower communities through education, innovation, and sustainable programs."
+        />
+      </Helmet>
     <div className="min-h-screen flex flex-col bg-gray-50">
       <main className="max-w-6xl mx-auto px-6 py-12 space-y-14 animate-fade-in">
         {/* ---------- INTRODUCTION ---------- */}
@@ -272,6 +281,7 @@ export default function About() {
       <Suspense fallback={<div className="text-center py-4 text-gray-500">Loading footer...</div>}>
         <Footer />
       </Suspense>
+    </div>
     </div>
   );
 }

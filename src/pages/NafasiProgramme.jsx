@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Footer from "../components/Footer";
 import { ArrowUp } from "lucide-react";
+import { Helmet } from "react-helmet";
 
 // ✅ Import your local slide images
 import Slide1 from "../assets/nafasi1.jpg";
@@ -106,6 +107,15 @@ Achievements
   ];
 
   return (
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      {/* ✅ Add Helmet here */}
+      <Helmet>
+        <title>Elimu Community Network | ECN Africa</title>
+        <meta
+          name="description"
+          content="Learn about Elimu Community Network (ECN Africa), our mission, vision, and how we empower communities through education, innovation, and sustainable programs."
+        />
+      </Helmet>
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
       {/* 🔹 Hero Slideshow */}
       <div className="relative w-full h-[70vh] overflow-hidden">
@@ -170,6 +180,7 @@ Achievements
       )}
 
       <Footer />
+    </div>
     </div>
   );
 }

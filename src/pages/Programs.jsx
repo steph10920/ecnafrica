@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer";
+import { Helmet } from "react-helmet"; // ✅ Added for SEO
 
 // Reusable Program Card component (entire card clickable)
 function ProgramCard({ program }) {
@@ -87,6 +88,15 @@ export default function Programs() {
   };
 
   return (
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      {/* ✅ Add Helmet here */}
+      <Helmet>
+        <title>Elimu Community Network | ECN Africa</title>
+        <meta
+          name="description"
+          content="Learn about Elimu Community Network (ECN Africa), our mission, vision, and how we empower communities through education, innovation, and sustainable programs."
+        />
+      </Helmet>
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-white via-green-50 to-green-100">
       <div className="flex-grow flex flex-col items-center justify-start px-4 sm:px-8 py-14">
         {/* Page Title */}
@@ -126,6 +136,7 @@ export default function Programs() {
       </div>
 
       <Footer />
+    </div>
     </div>
   );
 }

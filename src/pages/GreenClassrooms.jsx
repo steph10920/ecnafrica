@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import Footer from "../components/Footer";
+import { Helmet } from "react-helmet"; // ✅ Added for SEO
 
 // ✅ Local images (hero slides)
 import Slide1 from "../assets/greenclassroom1.jpg";
@@ -70,6 +71,15 @@ export default function GreenClassrooms() {
   ];
 
   return (
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      {/* ✅ Add Helmet here */}
+      <Helmet>
+        <title>Elimu Community Network | ECN Africa</title>
+        <meta
+          name="description"
+          content="Learn about Elimu Community Network (ECN Africa), our mission, vision, and how we empower communities through education, innovation, and sustainable programs."
+        />
+      </Helmet>
     <div className="flex flex-col min-h-screen bg-white text-gray-800">
       {/* ✅ Hero Section */}
       <section className="relative w-full min-h-[70vh] sm:min-h-[80vh] overflow-hidden">
@@ -512,6 +522,7 @@ export default function GreenClassrooms() {
         </button>
       )}
       <Footer />
+    </div>
     </div>
   );
 }

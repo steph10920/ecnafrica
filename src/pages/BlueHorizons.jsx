@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet"; // ✅ Added for SEO
 import Footer from "../components/Footer";
 import FishingPhoto1 from "../assets/fishing1.jpg";
 import FishingPhoto2 from "../assets/fishing2.jpg";
@@ -27,6 +28,15 @@ export default function BlueHorizons() {
 
   return (
     <div className="bg-gray-50 min-h-screen">
+      {/* ✅ SEO */}
+      <Helmet>
+        <title>Blue Horizons | Elimu Community Network (ECN Africa)</title>
+        <meta
+          name="description"
+          content="Blue Horizons by Elimu Community Network empowers youth in Busia County to transform Lake Victoria’s fishing industry through sustainable practices, technology, and entrepreneurship."
+        />
+      </Helmet>
+
       {/* 🔹 Hero Section */}
       <section className="relative bg-gradient-to-r from-sky-800 to-sky-600 text-white py-24 px-6 text-center">
         <motion.h1
@@ -61,15 +71,15 @@ export default function BlueHorizons() {
             an uncertain future. Most have dropped out of school, struggling to survive through precarious 
             fishing, often caught in cycles of poverty, drug abuse, and disease.
           </p>
-          <p>
-            Yet, beneath these challenges lies something powerful, Their potential.
+          <p className="leading-relaxed">
+            Yet, beneath these challenges lies something powerful: their potential.
           </p>
           <p className="leading-relaxed">
             At Elimu Community Network (ECN), we believe that when young people are given the tools to learn, 
             innovate, and lead, they can turn survival into sustainability and despair into discovery.
           </p>
           <p className="leading-relaxed">
-            That’s why we launched Blue Horizons.  A ground breaking youth initiative designed to reshape the 
+            That’s why we launched Blue Horizons — a groundbreaking youth initiative designed to reshape the 
             fishing industry through education, technology, and entrepreneurship.
           </p>
           <h2 className="text-2xl font-semibold text-sky-700 mb-3">
@@ -80,8 +90,8 @@ export default function BlueHorizons() {
             Through hands-on learning and mentorship, the program explores the entire fishing value chain, from sustainable 
             practices to high-tech solutions and business creation.<br />
             Our approach blends traditional wisdom with modern technology, creating a model of learning that is both relevant and transformative.
-          </p>           
-         </motion.div>
+          </p>
+        </motion.div>
 
         {/* Our Approach */}
         <motion.div
@@ -95,32 +105,20 @@ export default function BlueHorizons() {
           </h2>
           <ul className="list-disc list-inside space-y-3 pl-2">
             <li>
-              <strong>Sustainable Fishing Education:</strong><br /> We train youth on eco-friendly fishing 
-              practices, lake conservation, and community stewardship.
-            They learn to protect biodiversity, use the right tools, and safeguard the lake’s ecosystem by 
-            ensuring that fishing today does not destroy tomorrow.<br />
-            “We teach them to fish but also to think, innovate, and sustain.”
+              <strong>Sustainable Fishing Education:</strong> We train youth on eco-friendly fishing 
+              practices, lake conservation, and community stewardship. They learn to protect biodiversity, use the right tools, and safeguard the lake’s ecosystem.<br />
+              “We teach them to fish but also to think, innovate, and sustain.”
             </li>
             <li>
-              <strong>Technology Meets Tradition: </strong><br /> At our solar-powered digital training hub in Runyu 
-              Village, young people gain essential ICT and AI skills.
-                They learn how to use data and technology to map fish resources, improve marketing, and apply artificial 
-                intelligence in managing fisheries.<br />
-                From digital literacy to AI for aquaculture, this is where the future of fishing goes smart.
+              <strong>Technology Meets Tradition:</strong> At our solar-powered digital training hub in Runyu 
+              Village, young people gain essential ICT and AI skills. They learn how to use data and technology to map fish resources, improve marketing, and apply artificial 
+              intelligence in managing fisheries.
             </li>
             <li>
-              <strong>Value Addition and Entrepreneurship</strong><br /> Fishing is more than catching fish, it’s about creating value.<br />
-            Youth are trained to process, dry, and package fish sustainably, while also exploring innovative by-products like fish oil, 
-            animal feed, and organic fertilizer.<br />  
-            They also receive coaching in entrepreneurship, cooperative formation, and financial literacy, turning their skills into sustainable businesses.
-
+              <strong>Value Addition and Entrepreneurship:</strong> Youth are trained to process, dry, and package fish sustainably, while exploring innovative by-products like fish oil, animal feed, and organic fertilizer. They also receive coaching in entrepreneurship, cooperative formation, and financial literacy.
             </li>
             <li>
-              <strong>Connecting to Markets</strong><br /> ECN builds market linkages between youth-led enterprises and major cities like 
-              Kisumu, Nairobi, and Mombasa.<br />   
-            Future phases will expand across Uganda and Tanzania, building a vibrant East African network of young innovators in the blue economy.<br />    
-            This is how local talent becomes regional impact.
-
+              <strong>Connecting to Markets:</strong> ECN builds market linkages between youth-led enterprises and major cities like Kisumu, Nairobi, and Mombasa. Future phases will expand across Uganda and Tanzania, building a vibrant East African network of young innovators in the blue economy.
             </li>
           </ul>
         </motion.div>
@@ -140,18 +138,18 @@ export default function BlueHorizons() {
             <li>Support creation of 5 youth-led enterprises along the fishing value chain.</li>
             <li>Promote environmental stewardship and responsible use of Lake Victoria’s resources.</li>
             <li>Reduce unemployment, drug use, and illegal fishing through meaningful livelihoods.</li>
-        </ol> 
-          
+          </ol>
+
           <div className="grid md:grid-cols-2 gap-6">
             <img
               src={FishingPhoto1}
               alt="Youth engaged in sustainable fishing"
-              className="rounded-2xl shadow-md"
+              className="w-full h-64 object-cover rounded-2xl shadow-md"
             />
             <img
               src={FishingPhoto2}
               alt="Marine conservation and training"
-              className="rounded-2xl shadow-md"
+              className="w-full h-64 object-cover rounded-2xl shadow-md"
             />
           </div>
         </motion.div>
@@ -164,9 +162,7 @@ export default function BlueHorizons() {
           transition={{ duration: 0.8 }}
           className="bg-sky-100 p-6 rounded-2xl border-l-4 border-sky-700 shadow-sm"
         >
-            <h2 className="text-2xl font-semibold text-sky-700 mb-3">
-            Why It Matters
-          </h2>
+          <h2 className="text-2xl font-semibold text-sky-700 mb-3">Why It Matters</h2>
           <p className="italic text-sky-800 text-lg">
             Every fish caught, every app coded, every business started becomes a ripple of change.<br />
             Blue Horizons is more than a program; it’s a movement.<br />
@@ -174,7 +170,7 @@ export default function BlueHorizons() {
             to one of Africa’s greatest natural treasures.
           </p>
           <p className="text-right font-semibold text-sky-700 mt-2">
-            “Teach a youth to fish wisely, and you feed generations while saving the lake.” — ECN– Elimu Community Network (ECN)
+            “Teach a youth to fish wisely, and you feed generations while saving the lake.” — ECN
           </p>
         </motion.div>
 
@@ -190,9 +186,7 @@ export default function BlueHorizons() {
             Join the Blue Horizons Movement
           </h3>
           <p className="mb-6">
-            Partner with us to power the next generation of innovators, entrepreneurs, and lake stewards.<br />
-            Together, we can build a sustainable blue economy one where education, technology, and opportunity meet at the water’s edge.
-
+            Partner with us to power the next generation of innovators, entrepreneurs, and lake stewards.
           </p>
           <a
             href="/contact"

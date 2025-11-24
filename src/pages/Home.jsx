@@ -1,4 +1,3 @@
-<title>Elimu Community Network | ECN Africa</title>
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -6,6 +5,7 @@ import Footer from "../components/Footer";
 import StrategicFocus from "../components/StrategicFocus";
 import { ArrowUp } from "lucide-react";
 import CountUp from "react-countup";
+import { Helmet } from "react-helmet"; // ✅ Import Helmet
 
 import educationImg from "../assets/education.png";
 import childProtectionImg from "../assets/child-protection.jpg";
@@ -82,6 +82,15 @@ export default function Home() {
   ];
 
   return (
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      {/* ✅ Add Helmet here */}
+      <Helmet>
+        <title>Elimu Community Network | ECN Africa</title>
+        <meta
+          name="description"
+          content="Learn about Elimu Community Network (ECN Africa), our mission, vision, and how we empower communities through education, innovation, and sustainable programs."
+        />
+      </Helmet>
     <div className="min-h-screen flex flex-col bg-white text-gray-800">
       {/* HERO */}
       <header className="relative w-full h-[85vh] md:h-[80vh] lg:h-[75vh] overflow-hidden">
@@ -461,6 +470,7 @@ export default function Home() {
       )}
 
       <Footer />
+    </div>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { Suspense, lazy, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, BookOpen, Heart, Users } from "lucide-react";
+import { Helmet } from "react-helmet";
 import josephImg from "../assets/stories/joseph.jpg";
 import maryImg from "../assets/stories/mary.jpg";
 import eugineImg from "../assets/stories/eugine.jpg";
@@ -124,6 +125,15 @@ export default function Stories() {
   };
 
   return (
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      {/* ✅ Add Helmet here */}
+      <Helmet>
+        <title>Elimu Community Network | ECN Africa</title>
+        <meta
+          name="description"
+          content="Learn about Elimu Community Network (ECN Africa), our mission, vision, and how we empower communities through education, innovation, and sustainable programs."
+        />
+      </Helmet>
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-50 via-white to-green-100">
       {/* HERO */}
       <header className="relative py-20">
@@ -357,6 +367,7 @@ export default function Stories() {
       <Suspense fallback={<div className="text-center py-6 text-gray-500">Loading footer...</div>}>
         <Footer />
       </Suspense>
+    </div>
     </div>
   );
 }
