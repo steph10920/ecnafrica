@@ -1,3 +1,4 @@
+<title>Elimu Community Network | ECN Africa</title>
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 

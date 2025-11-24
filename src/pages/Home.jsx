@@ -1,3 +1,4 @@
+<title>Elimu Community Network | ECN Africa</title>
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";

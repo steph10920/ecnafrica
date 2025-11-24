@@ -1,3 +1,4 @@
+<title>Elimu Community Network | ECN Africa</title>
 import React, { Suspense, lazy, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
