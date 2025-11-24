@@ -15,13 +15,14 @@ const StoryCard = ({ story, onReadMore }) => (
     whileHover={{ y: -5 }}
     className="bg-white rounded-2xl shadow-md border border-green-100 overflow-hidden flex flex-col"
   >
-    <div className="h-48 w-full overflow-hidden rounded-t-2xl bg-gray-100 flex items-center justify-center">
-      <img
-        src={story.img}
-        alt={story.title}
-        className="w-full h-full object-cover"
-      />
-    </div>
+      <div className="h-48 w-full relative overflow-hidden rounded-t-2xl bg-gray-100">
+    <img
+      src={story.img}
+      alt={story.title}
+      className="absolute inset-0 w-full h-full object-cover"
+    />
+  </div>
+
     <div className="p-5 flex-1 flex flex-col justify-between">
       <div>
         <div className="text-sm text-green-700 font-semibold">{story.category}</div>
