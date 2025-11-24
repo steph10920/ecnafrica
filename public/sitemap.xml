@@ -10,15 +10,13 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- About / Brand -->
+  <!-- About / Brand / Elimu Community Network -->
   <url>
     <loc>https://www.ecnafrica.org/about</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-
-  <!-- Elimu Community Network Section -->
   <url>
     <loc>https://www.ecnafrica.org/about#elimu-community-network</loc>
     <lastmod>2025-11-24</lastmod>
@@ -41,26 +39,61 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
-
   <url>
     <loc>https://www.ecnafrica.org/programs/nafasiprogramme</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
-
   <url>
     <loc>https://www.ecnafrica.org/programs/blue-horizons</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
-
   <url>
     <loc>https://www.ecnafrica.org/programs/green-classrooms</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+  </url>
+
+  <!-- Categories -->
+  <url>
+    <loc>https://www.ecnafrica.org/categories/environment</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ecnafrica.org/categories/health</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ecnafrica.org/categories/food-security</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ecnafrica.org/categories/human-rights</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ecnafrica.org/categories/arts-and-sports</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ecnafrica.org/categories/quality-education</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- Stories Main Page -->
@@ -71,72 +104,33 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Example Story Pages -->
+  <!-- Story Pages -->
   <url>
     <loc>https://www.ecnafrica.org/stories/story-1</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://www.ecnafrica.org/stories/story-2</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://www.ecnafrica.org/stories/story-3</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://www.ecnafrica.org/stories/story-4</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://www.ecnafrica.org/stories/story-5</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.ecnafrica.org/stories/story-6</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.ecnafrica.org/stories/story-7</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.ecnafrica.org/stories/story-8</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.ecnafrica.org/stories/story-9</loc>
-    <lastmod>2025-11-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.ecnafrica.org/stories/story-10</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -153,6 +147,14 @@
   <!-- Where We Work -->
   <url>
     <loc>https://www.ecnafrica.org/where-we-work</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Donate -->
+  <url>
+    <loc>https://www.ecnafrica.org/donate</loc>
     <lastmod>2025-11-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
