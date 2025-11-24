@@ -23,7 +23,7 @@ import ArtsAndSports from "./pages/categories/ArtsAndSports";
 import QualityEducation from "./pages/categories/QualityEducation";
 
 // 🔹 Blog Pages
-import Blog from "./pages/Blog";
+import Stories from "./pages/stories";
 import BlogPost from "./pages/BlogPost";
 
 // 🔹 Contact & Jobs
@@ -64,7 +64,7 @@ export default function App() {
           <Route path="/categories/quality-education" element={<QualityEducation />} />
 
           {/* 🔹 Blog Pages */}
-          <Route path="/blog" element={<Blog />} />
+          <Route path="/Stories" element={<Stories />} />
           <Route path="/blog/:id" element={<BlogPost />} />
 
           {/* 🔹 Contact */}

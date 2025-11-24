@@ -143,7 +143,7 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
 
-          <button onClick={() => handleNavClick("/blog")} className="hover:text-green-600">
+          <button onClick={() => handleNavClick("/stories")} className="hover:text-green-600">
             Stories
           </button>
 
@@ -273,7 +273,7 @@ export default function Navbar() {
             </div>
 
             <button
-              onClick={() => handleNavClick("/blog")}
+              onClick={() => handleNavClick("/stories")}
               className="flex items-center gap-2 px-4 py-3 border-b hover:text-green-600"
             >
               <FileText size={18} /> Stories

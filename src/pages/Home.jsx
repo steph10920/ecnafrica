@@ -400,7 +400,7 @@ export default function Home() {
                   do this work.
                 </p>
                 <Link
-                  to="/Blog"
+                  to="/Stories"
                   className="inline-block mt-6 bg-green-700 text-white px-5 py-2 rounded-full font-semibold shadow hover:bg-green-800"
                 >
                   Read more stories
