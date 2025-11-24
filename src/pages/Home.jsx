@@ -91,7 +91,6 @@ export default function Home() {
           name="description"
           content="Learn about Elimu Community Network (ECN Africa), our mission, vision, and how we empower communities through education, innovation, and sustainable programs."
         />
-        <meta name="google-site-verification" content="QfpbOMBuAVHTyoKAbrx2Y929bABWGrqEJB2KN7dIG_0" />
       </Helmet>
     <div className="min-h-screen flex flex-col bg-white text-gray-800">
       {/* HERO */}
