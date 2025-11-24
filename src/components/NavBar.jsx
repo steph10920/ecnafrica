@@ -75,9 +75,6 @@ export default function Navbar() {
   const categories = [
     ["arts-and-sports", "Arts and Sports"],
     ["environment", "Environment"],
-    ["food-security", "Food Security"],
-    ["health", "Health"],
-    ["human-rights", "Human Rights"],
     ["quality-education", "Quality Education"],
   ];
 
