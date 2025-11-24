@@ -1,40 +1,60 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { ArrowUp } from "lucide-react";
 import { Helmet } from "react-helmet";
 
-// ✅ Slide images
+// Slide images
 import Slide1 from "../assets/nafasi1.jpg";
 import Slide2 from "../assets/nafasi2.jpg";
 import Slide3 from "../assets/nafasi3.jpg";
 
+// Section images
+import SectionImage1 from "../assets/nafasi_section1.jpg";
+import SectionImage2 from "../assets/nafasi_section2.jpg";
+import SectionImage3 from "../assets/nafasi_section3.jpg";
+import SectionImage4 from "../assets/nafasi_section4.jpg";
+import SectionImage5 from "../assets/nafasi_section5.jpg";
+import SectionImage6 from "../assets/nafasi_section6.jpg";
+import SectionImage7 from "../assets/nafasi_section7.jpg";
+import SectionImage8 from "../assets/nafasi_section8.jpg";
+
 export default function NafasiProgramme() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [showTopBtn, setShowTopBtn] = useState(false);
 
-  const slides = [
-    { src: Slide1, alt: "Children learning in mobile street school" },
-    { src: Slide2, alt: "Youth participating in sports activities" },
-    { src: Slide3, alt: "Street-connected youth empowerment program" },
-  ];
-
-  // Auto-slide every 5s
+  // Automatic slide change every 5s
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setCurrentIndex((i) => (i + 1) % slides.length);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
 
-  // Show scroll-to-top
   useEffect(() => {
     const handleScroll = () => setShowTopBtn(window.scrollY > 300);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const fadeInUp = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } };
+  const slides = [
+    {
+      img: Slide1,
+      title: "Creating Spaces to Learn and Thrive",
+      desc: "The Nafasi Learning Programme empowers street-connected children with education, mentorship, and opportunities to reclaim their future.",
+    },
+    {
+      img: Slide2,
+      title: "Empowering Youth Through Sports",
+      desc: "Structured sports, life skills, and mentorship transform vulnerable youth into confident and capable leaders.",
+    },
+    {
+      img: Slide3,
+      title: "Pathways from the Streets to Opportunity",
+      desc: "From mobile schools to vocational training, Nafasi creates pathways for youth to gain independence and build sustainable livelihoods.",
+    },
+  ];
 
   const sections = [
     {
@@ -44,6 +64,7 @@ Through mobile street schools, creative arts, and sports for transformation, ECN
 Each child’s story begins in struggle but evolves through education from survival to learning, from learning to leadership. One example is a group of former street boys in Nairobi who, after completing ECN’s vocational program, now operate a community transport service using trollies that supports their families and funds younger children’s school fees.
 Through the Nafasi Programme, ECN journeys with street-connected children and youth by meeting them where they are, listening to their stories, and walking beside them as they discover spaces and opportunities to survive, learn, and thrive.
 “Every child has a right to be safe, to learn, and to dream.”`,
+      image: SectionImage1,
     },
     {
       title: "From the Streets to Safe Spaces",
@@ -55,11 +76,13 @@ The journey follows three stages:
 4. Reintegration – Supporting family reunification and access to long-term educational and vocational pathways.
 Each step is guided by our belief that education is the bridge between vulnerability and opportunity.
 “Education is not a way to escape poverty; it is a way of fighting it.” — Julius Nyerere`,
+      image: SectionImage2,
     },
     {
       title: "Programme Objectives",
       content: `1. To strengthen social protection systems for children and youth living on the streets/ vulnerability by safeguarding their rights and wellbeing.
 2. To increase sustainable reintegration through family-based care and access to education, skills training, and livelihood opportunities.`,
+      image: SectionImage3,
     },
     {
       title: "Key Activities",
@@ -68,6 +91,7 @@ Each step is guided by our belief that education is the bridge between vulnerabi
 • Mobile School — Learning Without Walls: Establishment of a mobile street school as a safe, open, and flexible learning space where children and youth explore their talents, strengthen their self-esteem, and discover the joy of learning.
 • Toolkits for Self-Reliance: Provision of work trollies and tool kits that help youth transition from street life to self-employment and community contribution.
 “When we educate a child, we do not just change a life — we change a generation.”`,
+      image: SectionImage4,
     },
     {
       title: "Mobile Street School",
@@ -76,6 +100,7 @@ Our “mobile street school” is not confined by walls because it travels where
 Through mentorship, creativity, and structured support, each child learns that their circumstances do not define their destiny.
 “The child who is not embraced by the village will burn it down to feel its warmth.”— African Proverb
 At Nafasi, we choose to embrace, to teach, to nurture, and to walk with every child until they can stand on their own.`,
+      image: SectionImage5,
     },
     {
       title: "Join the Journey",
@@ -83,6 +108,7 @@ At Nafasi, we choose to embrace, to teach, to nurture, and to walk with every ch
 “Education is the key to unlock the golden door of freedom.”— George Washington Carver
 Call to Action:
 Join us in this beautiful journey of discovering and expanding learning spaces where every child finds their Nafasi; their space, their opportunity, their future.`,
+      image: SectionImage6,
     },
     {
       title: "Sports for Transformation",
@@ -100,10 +126,12 @@ Achievements
 2. Social Inclusion and Community Cohesion: Street and village sports activities reduced social stigma and strengthened community bonds, transforming how local residents perceive and support vulnerable youth.
 3. Pathways to Opportunity: Through mentorship, talent development, and educational linkages, participating youth accessed new opportunities from school re-entry and vocational training to employment and microenterprise in the sports value chain.
 “When youth play, they learn. When they learn, they lead. And when they lead, communities transform.” — Elimu Community Network`,
+      image: SectionImage7,
     },
     {
       title: "Fishers of Men Initiative",
       content: `Initiative for the empowerment of youth for their participation in the blue economy.`,
+      image: SectionImage8,
     },
   ];
 
@@ -118,89 +146,134 @@ Achievements
       </Helmet>
 
       {/* Hero Section */}
-      <div className="relative w-full h-[75vh] md:h-[80vh] overflow-hidden">
-        <AnimatePresence>
-          <motion.img
-            key={currentSlide}
-            src={slides[currentSlide].src}
-            alt={slides[currentSlide].alt}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </AnimatePresence>
-        <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-center px-4">
-          <motion.h1
-            className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg mb-4"
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            transition={{ duration: 0.8 }}
-          >
-            Nafasi Learning Programme
-          </motion.h1>
-          <motion.p
-            className="max-w-3xl text-lg md:text-xl text-white opacity-90"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            Creating spaces and opportunities for every child to learn, belong, and thrive.
-          </motion.p>
-
-          {/* Slide Dots */}
-          <div className="absolute bottom-6 flex space-x-2">
-            {slides.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrentSlide(i)}
-                className={`w-3 h-3 rounded-full ${
-                  currentSlide === i ? "bg-green-700" : "bg-white bg-opacity-50"
-                }`}
-              />
-            ))}
-          </div>
+      <header className="relative w-full h-[85vh] md:h-[80vh] lg:h-[75vh] overflow-hidden">
+        {/* Background slides */}
+        <div className="absolute inset-0">
+          {slides.map((s, i) => (
+            <motion.img
+              key={i}
+              src={s.img}
+              alt={i === currentIndex ? s.title : ""}
+              aria-hidden={i === currentIndex ? "false" : "true"}
+              initial={{ opacity: 0, scale: 1.02 }}
+              animate={{
+                opacity: i === currentIndex ? 1 : 0,
+                scale: i === currentIndex ? 1 : 1.06,
+              }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              className="absolute inset-0 w-full h-full object-cover object-center"
+              style={{
+                filter: i === currentIndex ? "brightness(0.7)" : "brightness(0.65)",
+              }}
+              loading="lazy"
+            />
+          ))}
         </div>
-      </div>
+
+        {/* Overlay */}
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/10 to-black/45"
+          aria-hidden="true"
+        />
+
+        {/* Content */}
+        <div className="relative z-10 max-w-6xl mx-auto px-6 h-full flex items-center">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-white text-left w-full md:w-3/4"
+          >
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight drop-shadow-lg">
+              {slides[currentIndex].title}
+            </h1>
+
+            <p className="mt-4 text-base sm:text-lg md:text-xl max-w-3xl opacity-90">
+              {slides[currentIndex].desc}
+            </p>
+
+            </motion.div>
+        </div>
+
+        {/* Slide controls */}
+        <div className="absolute left-4 top-1/2 -translate-y-1/2 md:left-8">
+          <button
+            onClick={() =>
+              setCurrentIndex((i) => (i === 0 ? slides.length - 1 : i - 1))
+            }
+            aria-label="Previous slide"
+            className="bg-white/90 text-green-800 p-2 rounded-full shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
+          >
+            ❮
+          </button>
+        </div>
+        <div className="absolute right-4 top-1/2 -translate-y-1/2 md:right-8">
+          <button
+            onClick={() =>
+              setCurrentIndex((i) => (i === slides.length - 1 ? 0 : i + 1))
+            }
+            aria-label="Next slide"
+            className="bg-white/90 text-green-800 p-2 rounded-full shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
+          >
+            ❯
+          </button>
+        </div>
+
+        {/* Dots */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentIndex(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`w-3 h-3 rounded-full transition-transform ${
+                i === currentIndex ? "bg-white scale-125" : "bg-white/40"
+              }`}
+            />
+          ))}
+        </div>
+      </header>
 
       {/* Sections */}
-      <section className="max-w-6xl mx-auto py-16 px-6 space-y-12">
-        {sections.map((section, index) => (
-          <motion.div
-            key={index}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="bg-white shadow-lg rounded-2xl p-8 border-l-4 border-green-700 hover:shadow-2xl transition-shadow duration-300"
+      <section className="max-w-6xl mx-auto py-16 px-6 space-y-16">
+        {sections.map((section, idx) => (
+          <div
+            key={idx}
+            className={`flex flex-col md:flex-row items-center md:space-x-8 ${
+              idx % 2 === 1 ? "md:flex-row-reverse" : ""
+            }`}
           >
-            <h2 className="text-2xl md:text-3xl font-semibold text-green-700 mb-4">
-              {section.title}
-            </h2>
-            <p className="whitespace-pre-line text-gray-700 leading-relaxed text-lg">
-              {section.content}
-            </p>
-          </motion.div>
+            <div className="md:w-1/2 w-full mb-6 md:mb-0">
+              <img
+                src={section.image}
+                alt={section.title}
+                className="rounded-2xl w-full h-full object-cover shadow-lg"
+              />
+            </div>
+            <div className="md:w-1/2 w-full">
+              <h2 className="text-2xl md:text-3xl font-semibold text-green-700 mb-4">
+                {section.title}
+              </h2>
+              <p className="whitespace-pre-line text-gray-700 leading-relaxed text-lg">
+                {section.content}
+              </p>
+            </div>
+          </div>
         ))}
       </section>
 
       {/* Scroll to Top */}
       {showTopBtn && (
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: showTopBtn ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
+        <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="fixed bottom-8 right-8 bg-green-700 text-white p-3 rounded-full shadow-lg hover:bg-green-800 transition duration-300 z-50"
         >
           <ArrowUp size={24} />
-        </motion.button>
+        </button>
       )}
 
       <Footer />
     </div>
-      );
+  );
 }
