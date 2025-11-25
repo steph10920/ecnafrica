@@ -10,6 +10,7 @@ import treePlanting from "../assets/tree-planting.jpg";
 import arts from "../assets/arts.jpg";
 import healthCamp from "../assets/health-camp.jpg";
 import skillsWorkshop from "../assets/skills-workshop.jpg"; 
+import amrefLogo from "../assets/amref.png";
 
 export default function Donate() {
   const donors = [
@@ -38,6 +39,15 @@ export default function Donate() {
     { title: "Tree Planting Initiative", img: treePlanting },
   ];
 
+  const partners = [
+  {
+    name: "Amref Health Africa",
+    url: "https://amref.org/",
+    logo: amrefLogo,
+  },
+];
+
+
   return (
     <div className="min-h-screen bg-green-50 flex flex-col">
       <Helmet>
@@ -53,7 +63,7 @@ export default function Donate() {
         className="bg-green-600 text-white py-24 text-center bg-cover bg-center relative"
         style={{ backgroundImage: `url(${dheader})` }}
       >
-        <div className="absolute inset-0 bg-black/40"></div> {/* Overlay for readability */}
+        <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -195,6 +205,34 @@ export default function Donate() {
             Contact Us to Donate
           </motion.button>
         </section>
+
+        {/* PARTNERS SECTION */}
+        <section className="py-12 px-6 md:px-12">
+          <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">Our Partners</h2>
+          <div className="flex justify-center items-center gap-12 flex-wrap">
+            {partners.map((partner, i) => (
+              <motion.a
+                key={i}
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2 }}
+                whileHover={{ scale: 1.05 }}
+                className="p-4 bg-white rounded-2xl shadow-lg border border-green-100 flex items-center justify-center w-40 h-20"
+              >
+                <img
+                src={partner.logo}
+                alt={partner.name}
+                className="object-contain h-full"
+                />
+
+              </motion.a>
+            ))}
+          </div>
+        </section>
+
       </main>
 
       <Footer />
