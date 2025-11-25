@@ -14,7 +14,7 @@ import amrefLogo from "../assets/amref.png";
 
 export default function Donate() {
   const donors = [
-    { name: "Alice W.", message: "Donating to ECN has changed lives in our community!" },
+    { name: "Emeldah E.", message: "Donating to ECN has changed lives in our community!" },
     { name: "James K.", message: "I love supporting ECN’s programs for education." },
     { name: "Mary T.", message: "Seeing the impact firsthand makes every shilling worth it." },
   ];
