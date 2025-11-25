@@ -76,6 +76,7 @@ export default function Navbar() {
     ["arts-and-sports", "Arts and Sports"],
     ["environment", "Environment"],
     ["quality-education", "Quality Education"],
+    ["careers", "Careers"],
   ];
 
   return (

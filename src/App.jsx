@@ -18,6 +18,7 @@ import BlueHorizons from "./pages/BlueHorizons";
 import Environment from "./pages/categories/Environment";
 import ArtsAndSports from "./pages/categories/ArtsAndSports";
 import QualityEducation from "./pages/categories/QualityEducation";
+import Careers from "./pages/categories/Careers";
 
 // 🔹 Blog Pages
 import Stories from "./pages/stories";
@@ -56,6 +57,7 @@ export default function App() {
           <Route path="/categories/environment" element={<Environment />} />
           <Route path="/categories/arts-and-sports" element={<ArtsAndSports />} />
           <Route path="/categories/quality-education" element={<QualityEducation />} />
+          <Route path="/categories/careers" element={<Careers jobs={jobs} />} />
 
           {/* 🔹 Blog Pages */}
           <Route path="/Stories" element={<Stories />} />
