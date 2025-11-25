@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import Footer from "../components/Footer";
-import LearningPhoto1 from "../assets/learning1.jpg";
+import LearningPhoto1 from "../assets/women_empowerment.jpg";
 import LearningPhoto2 from "../assets/learning2.jpg";
 import { Helmet } from "react-helmet"; // ✅ Added for SEO
 

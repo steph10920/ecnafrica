@@ -100,7 +100,7 @@ export default function Navbar() {
         </button>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center space-x-8 text-gray-800 font-semibold relative">
+        <nav className="hidden md:flex items-center space-x-8 text-blue-800 font-semibold relative">
           <button onClick={() => handleNavClick("/")} className="hover:text-green-600">
             Home
           </button>
@@ -150,7 +150,7 @@ export default function Navbar() {
           </button>
 
           <button onClick={() => handleNavClick("/contact")} className="hover:text-green-600">
-            Contact
+            Contact Us
           </button>
 
           {/* ⭐ NEW DONATE BUTTON */}
@@ -222,14 +222,14 @@ export default function Navbar() {
           >
             <button
               onClick={() => handleNavClick("/")}
-              className="flex items-center gap-2 px-4 py-3 border-b hover:text-green-600"
+              className="flex items-center gap-2 px-4 py-3 border-b hover:text-blue-600"
             >
               <Home size={18} /> Home
             </button>
 
             <button
               onClick={() => handleNavClick("/programs")}
-              className="flex items-center gap-2 px-4 py-3 border-b hover:text-green-600"
+              className="flex items-center gap-2 px-4 py-3 border-b hover:text-blue-600"
             >
               <BookOpen size={18} /> Programs
             </button>
@@ -238,7 +238,7 @@ export default function Navbar() {
             <div className="w-full">
               <button
                 onClick={() => setCategoriesOpen(!categoriesOpen)}
-                className="flex items-center justify-between w-full px-4 py-3 border-b hover:text-green-600"
+                className="flex items-center justify-between w-full px-4 py-3 border-b hover:text-blue-600"
               >
                 <div className="flex items-center gap-2">
                   <Globe2 size={18} /> Categories
@@ -272,23 +272,23 @@ export default function Navbar() {
 
             <button
               onClick={() => handleNavClick("/stories")}
-              className="flex items-center gap-2 px-4 py-3 border-b hover:text-green-600"
+              className="flex items-center gap-2 px-4 py-3 border-b hover:text-blue-600"
             >
               <FileText size={18} /> Stories
             </button>
 
             <button
               onClick={() => handleNavClick("/about")}
-              className="flex items-center gap-2 px-4 py-3 border-b hover:text-green-600"
+              className="flex items-center gap-2 px-4 py-3 border-b hover:text-blue-600"
             >
               <Users2 size={18} /> About Us
             </button>
 
             <button
               onClick={() => handleNavClick("/contact")}
-              className="flex items-center gap-2 px-4 py-3 border-b hover:text-green-600"
+              className="flex items-center gap-2 px-4 py-3 border-b hover:text-blue-600"
             >
-              <Globe2 size={18} /> Contact
+              <Globe2 size={18} /> Contact Us
             </button>
 
             {/* ⭐ NEW MOBILE DONATE BUTTON */}
