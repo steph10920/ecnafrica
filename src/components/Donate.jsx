@@ -227,7 +227,7 @@ export default function Donate() {
                 alt={partner.name}
                 className="object-contain h-full"
                 />
-
+                
               </motion.a>
             ))}
           </div>
