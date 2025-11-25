@@ -4,6 +4,12 @@ import { BookOpen, Heart, Users, Star } from "lucide-react";
 import CountUp from "react-countup";
 import Footer from "../components/Footer";
 
+// Import project images
+import arts from "../assets/arts.jpg";
+import healthCamp from "../assets/health-camp.jpg";
+import skillsWorkshop from "../assets/skills-workshop.jpg";
+import treePlanting from "../assets/tree-planting.jpg";
+
 export default function Donate() {
   const donors = [
     { name: "Alice W.", message: "Donating to ECN has changed lives in our community!" },
@@ -22,6 +28,13 @@ export default function Donate() {
     { label: "Learners reached", value: 4500, icon: <BookOpen size={28} /> },
     { label: "Projects funded", value: 32, icon: <Star size={28} /> },
     { label: "Program satisfaction", value: 98, icon: <Heart size={28} /> },
+  ];
+
+  const projects = [
+    { title: "Arts & Craft", img: arts },
+    { title: "Community Health Camp", img: healthCamp },
+    { title: "Youth Skills Workshop", img: skillsWorkshop },
+    { title: "Tree Planting Initiative", img: treePlanting },
   ];
 
   return (
@@ -128,6 +141,28 @@ export default function Donate() {
           </div>
         </section>
 
+        {/* Projects Completed */}
+        <section>
+          <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">Projects Completed</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {projects.map((project, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2 }}
+                whileHover={{ scale: 1.03 }}
+                className="overflow-hidden rounded-3xl shadow-lg border border-green-100 cursor-pointer"
+              >
+                <img src={project.img} alt={project.title} className="w-full h-48 object-cover" />
+                <div className="p-4 bg-white">
+                  <h3 className="text-lg font-semibold text-green-700">{project.title}</h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
         {/* CALL TO ACTION */}
         <section className="bg-gradient-to-r from-green-600 to-emerald-600 text-white py-16 px-6 text-center rounded-3xl shadow-lg">
           <motion.h3
@@ -138,20 +173,20 @@ export default function Donate() {
             Ready to Make a Difference?
           </motion.h3>
           <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="mt-4 text-lg md:text-xl max-w-2xl mx-auto"
-        >
-        Join us in transforming communities! Reach out today to explore how your support can empower education, health, and youth programs across Africa.
-        </motion.p>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          onClick={() => window.location.href = "mailto:education@ecnafrica.org"}
-          className="mt-8 px-8 py-3 rounded-full bg-white text-green-700 font-bold shadow-lg hover:scale-[1.02] transition"
-        >
-          Contact Us to Donate
-        </motion.button>
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="mt-4 text-lg md:text-xl max-w-2xl mx-auto"
+          >
+            Join us in transforming communities! Reach out today to explore how your support can empower education, health, and youth programs across Africa.
+          </motion.p>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            onClick={() => window.location.href = "mailto:education@ecnafrica.org"}
+            className="mt-8 px-8 py-3 rounded-full bg-white text-green-700 font-bold shadow-lg hover:scale-[1.02] transition"
+          >
+            Contact Us to Donate
+          </motion.button>
         </section>
       </main>
 
