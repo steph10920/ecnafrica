@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Helmet } from "react-helmet"; // ✅ Import Helmet
+import { Helmet } from "react-helmet";
 import {
   BookOpen,
   Globe2,
@@ -32,7 +32,6 @@ export default function About() {
     const name = formData.get("name");
     setUserName(name);
 
-    // ✅ Add your access key
     formData.append("access_key", "74a6f829-9dac-4e22-bf1a-bcd3e916f4d7");
 
     try {
@@ -40,9 +39,7 @@ export default function About() {
         method: "POST",
         body: formData,
       });
-
       const data = await response.json();
-      console.log("Web3Forms Response:", data);
 
       if (data.success) {
         event.target.reset();
@@ -61,7 +58,7 @@ export default function About() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      {/* ✅ Add Helmet here */}
+      {/* ---------- SEO ---------- */}
       <Helmet>
         <title>Elimu Community Network | ECN Africa</title>
         <meta
@@ -69,9 +66,10 @@ export default function About() {
           content="Learn about Elimu Community Network (ECN Africa), our mission, vision, and how we empower communities through education, innovation, and sustainable programs."
         />
       </Helmet>
-    <div className="min-h-screen flex flex-col bg-gray-50">
+
+      {/* ---------- MAIN CONTENT ---------- */}
       <main className="max-w-6xl mx-auto px-6 py-12 space-y-14 animate-fade-in">
-        {/* ---------- INTRODUCTION ---------- */}
+        {/* INTRODUCTION */}
         <section>
           <div className="flex items-center gap-2 mb-4">
             <BookOpen className="text-green-700" size={28} />
@@ -79,119 +77,81 @@ export default function About() {
               About ECN
             </h1>
           </div>
-
           <p className="text-gray-700 mb-4 leading-relaxed">
-            <strong>Elimu Community Network (ECN)</strong> is a Kenyan
-            Non-Governmental Learning Organization founded in 2012. We work to
-            safeguard the rights of vulnerable children and empower families
-            through quality, inclusive education and community-driven innovation.
+            <strong>Elimu Community Network (ECN)</strong> is a Kenyan NGO founded in 2012. We work to safeguard the rights of vulnerable children and empower families through quality education and community-driven innovation.
           </p>
           <p className="text-gray-700 mb-4 leading-relaxed">
-            Our mission is to ensure that education remains a catalyst for
-            sustainable community development — transforming challenges into
-            opportunities and empowering Africa to design her own future.
+            Our mission is to ensure education is a catalyst for sustainable development — transforming challenges into opportunities and empowering Africa to design her own future.
           </p>
         </section>
 
         <Divider />
 
-        {/* ---------- APPROACH ---------- */}
+        {/* APPROACH */}
         <section>
           <div className="flex items-center gap-2 mb-4">
             <HeartHandshake className="text-green-700" size={28} />
-            <h2 className="text-2xl font-semibold text-green-700">
-              Our Approach
-            </h2>
+            <h2 className="text-2xl font-semibold text-green-700">Our Approach</h2>
           </div>
-
           <p className="text-gray-700 mb-4 leading-relaxed">
             <strong>Listen. Learn. Lead.</strong>
           </p>
           <p className="text-gray-700 mb-4 leading-relaxed">
-            We listen deeply to communities, learn collaboratively, and lead
-            with compassion. Our strength-based approach values local wisdom and
-            creativity while promoting gender equality, inclusivity, and
-            innovation.
+            We listen to communities, learn collaboratively, and lead with compassion. Our approach values local wisdom and creativity while promoting gender equality, inclusivity, and innovation.
           </p>
         </section>
 
         <Divider />
 
-        {/* ---------- IMPACT ---------- */}
+        {/* IMPACT */}
         <section>
           <div className="flex items-center gap-2 mb-4">
             <Globe2 className="text-green-700" size={28} />
-            <h2 className="text-2xl font-semibold text-green-700">
-              Impact and Sustainability
-            </h2>
+            <h2 className="text-2xl font-semibold text-green-700">Impact and Sustainability</h2>
           </div>
           <p className="text-gray-700 mb-4 leading-relaxed">
-            Since its founding, ECN has reached over{" "}
-            <strong>10,000 children, youth, and women</strong> across Kenya.
+            Since its founding, ECN has reached over <strong>10,000 children, youth, and women</strong> across Kenya.
           </p>
         </section>
 
         <Divider />
 
-        {/* ---------- VALUES ---------- */}
+        {/* VALUES */}
         <section>
           <div className="flex items-center gap-2 mb-4">
             <HeartHandshake className="text-green-700" size={28} />
-            <h2 className="text-2xl font-semibold text-green-700">
-              Our Core Values
-            </h2>
+            <h2 className="text-2xl font-semibold text-green-700">Our Core Values</h2>
           </div>
           <ul className="list-disc list-inside text-gray-700 space-y-1">
-            <li>
-              <strong>Courage:</strong> We believe in transformation through
-              education.
-            </li>
-            <li>
-              <strong>Integrity:</strong> We act transparently and responsibly.
-            </li>
-            <li>
-              <strong>Creativity:</strong> We innovate for impact.
-            </li>
-            <li>
-              <strong>Collaboration:</strong> We grow stronger together.
-            </li>
+            <li><strong>Courage:</strong> We believe in transformation through education.</li>
+            <li><strong>Integrity:</strong> We act transparently and responsibly.</li>
+            <li><strong>Creativity:</strong> We innovate for impact.</li>
+            <li><strong>Collaboration:</strong> We grow stronger together.</li>
           </ul>
         </section>
 
         <Divider />
 
-        {/* ---------- CONTACT ---------- */}
+        {/* CONTACT */}
         <section>
           <div className="flex items-center gap-2 mb-4">
             <Mail className="text-green-700" size={28} />
-            <h2 className="text-2xl font-semibold text-green-700">
-              Get in Touch
-            </h2>
+            <h2 className="text-2xl font-semibold text-green-700">Get in Touch</h2>
           </div>
           <p className="text-gray-700 leading-relaxed">
             Contact us at{" "}
-            <a
-              href="mailto:education@ecnafrica.org"
-              className="text-green-600 underline hover:text-green-800"
-            >
+            <a href="mailto:education@ecnafrica.org" className="text-green-600 underline hover:text-green-800">
               education@ecnafrica.org
-            </a>{" "}
-            or visit our{" "}
-            <a
-              href="https://www.facebook.com/elimucommunitynetwork/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-green-600 underline hover:text-green-800"
-            >
+            </a>{" "}or visit our{" "}
+            <a href="https://www.facebook.com/elimucommunitynetwork/" target="_blank" rel="noopener noreferrer" className="text-green-600 underline hover:text-green-800">
               Facebook page
-            </a>
-            .
+            </a>.
           </p>
         </section>
 
         <Divider />
 
-        {/* ---------- FEEDBACK FORM ---------- */}
+        {/* FEEDBACK FORM */}
         <section className="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-green-100">
           <h2 className="text-2xl font-semibold text-green-700 mb-4 flex items-center gap-2">
             <Send size={22} className="text-green-700" /> Share Your Feedback
@@ -201,49 +161,18 @@ export default function About() {
           </p>
 
           <form onSubmit={onSubmit} className="space-y-4" id="feedback-form">
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              required
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-600 outline-none"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              required
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-600 outline-none"
-            />
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Your Phone Number (optional)"
-              pattern="[0-9+\-\s()]*"
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-600 outline-none"
-            />
-            <textarea
-              name="message"
-              placeholder="Your Feedback"
-              required
-              rows="5"
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-600 outline-none resize-none"
-            ></textarea>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className={`w-full flex justify-center items-center gap-2 bg-green-700 text-white font-semibold px-6 py-3 rounded-lg transition-all ${
-                loading ? "opacity-70 cursor-not-allowed" : "hover:bg-green-800"
-              }`}
-            >
+            <input type="text" name="name" placeholder="Your Name" required className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-600 outline-none"/>
+            <input type="email" name="email" placeholder="Your Email" required className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-600 outline-none"/>
+            <input type="tel" name="phone" placeholder="Your Phone Number (optional)" pattern="[0-9+\-\s()]*" className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-600 outline-none"/>
+            <textarea name="message" placeholder="Your Feedback" required rows="5" className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-600 outline-none resize-none"></textarea>
+            <button type="submit" disabled={loading} className={`w-full flex justify-center items-center gap-2 bg-green-700 text-white font-semibold px-6 py-3 rounded-lg transition-all ${loading ? "opacity-70 cursor-not-allowed" : "hover:bg-green-800"}`}>
               {loading ? "Sending..." : "Submit Feedback"}
             </button>
           </form>
         </section>
       </main>
 
-      {/* ---------- SUCCESS MODAL ---------- */}
+      {/* SUCCESS MODAL */}
       <AnimatePresence>
         {showModal && (
           <motion.div
@@ -266,10 +195,7 @@ export default function About() {
               <p className="text-gray-600 mb-4">
                 Your feedback has been received successfully. We appreciate your input!
               </p>
-              <button
-                onClick={() => setShowModal(false)}
-                className="bg-green-700 text-white px-5 py-2 rounded-lg hover:bg-green-800 transition"
-              >
+              <button onClick={() => setShowModal(false)} className="bg-green-700 text-white px-5 py-2 rounded-lg hover:bg-green-800 transition">
                 Close
               </button>
             </motion.div>
@@ -277,11 +203,10 @@ export default function About() {
         )}
       </AnimatePresence>
 
-      {/* ---------- FOOTER ---------- */}
+      {/* FOOTER */}
       <Suspense fallback={<div className="text-center py-4 text-gray-500">Loading footer...</div>}>
         <Footer />
       </Suspense>
-    </div>
     </div>
   );
 }
