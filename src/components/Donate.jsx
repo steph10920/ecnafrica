@@ -5,10 +5,11 @@ import CountUp from "react-countup";
 import Footer from "../components/Footer";
 
 // Import project images
+import dheader from "../assets/dheader.png";
+import treePlanting from "../assets/tree-planting.jpg";
 import arts from "../assets/arts.jpg";
 import healthCamp from "../assets/health-camp.jpg";
-import skillsWorkshop from "../assets/skills-workshop.jpg";
-import treePlanting from "../assets/tree-planting.jpg";
+import skillsWorkshop from "../assets/skills-workshop.jpg"; 
 
 export default function Donate() {
   const donors = [
@@ -48,31 +49,37 @@ export default function Donate() {
       </Helmet>
 
       {/* HERO */}
-      <header className="bg-gradient-to-r from-green-600 to-emerald-600 text-white py-24 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-extrabold"
-        >
-          Support ECN Africa
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="mt-4 text-lg md:text-xl max-w-2xl mx-auto"
-        >
-          Your support helps us empower communities through education, health, and youth programs.
-          We invite you to contact us to discuss your contribution.
-        </motion.p>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          onClick={() => window.location.href = "mailto:education@ecnafrica.org"}
-          className="mt-8 px-8 py-3 rounded-full bg-white text-green-700 font-bold shadow-lg hover:scale-[1.02] transition"
-        >
-          Contact Us to Donate
-        </motion.button>
+      <header
+        className="bg-green-600 text-white py-24 text-center bg-cover bg-center relative"
+        style={{ backgroundImage: `url(${dheader})` }}
+      >
+        <div className="absolute inset-0 bg-black/40"></div> {/* Overlay for readability */}
+        <div className="relative z-10">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl font-extrabold"
+          >
+            Support ECN Africa
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="mt-4 text-lg md:text-xl max-w-2xl mx-auto"
+          >
+            Your support helps us empower communities through education, health, and youth programs.
+            We invite you to contact us to discuss your contribution.
+          </motion.p>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            onClick={() => window.location.href = "mailto:education@ecnafrica.org"}
+            className="mt-8 px-8 py-3 rounded-full bg-white text-green-700 font-bold shadow-lg hover:scale-[1.02] transition"
+          >
+            Contact Us to Donate
+          </motion.button>
+        </div>
       </header>
 
       {/* MAIN CONTENT */}
