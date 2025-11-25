@@ -1,4 +1,4 @@
-import { Suspense, lazy, useState, useEffect, useRef } from "react";
+import React, { Suspense, lazy, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, BookOpen, Heart, Users } from "lucide-react";
 import { Helmet } from "react-helmet";
@@ -7,23 +7,21 @@ import maryImg from "../assets/stories/mary.jpg";
 import eugineImg from "../assets/stories/eugine.jpg";
 import opiyoImg from "../assets/stories/opiyo.jpg";
 
-
 const Footer = lazy(() => import("../components/Footer"));
 
-// Story card
+// Story card component
 const StoryCard = ({ story, onReadMore }) => (
   <motion.article
-    whileHover={{ y: -5 }}
-    className="bg-white rounded-2xl shadow-md border border-green-100 overflow-hidden flex flex-col"
+    whileHover={{ y: -5, boxShadow: "0px 8px 20px rgba(0,0,0,0.12)" }}
+    className="bg-white rounded-2xl shadow border border-green-100 overflow-hidden flex flex-col"
   >
-      <div className="h-48 w-full relative overflow-hidden rounded-t-2xl bg-gray-100">
-    <img
-      src={story.img}
-      alt={story.title}
-      className="absolute inset-0 w-full h-full object-cover"
-    />
-  </div>
-
+    <div className="h-48 w-full relative overflow-hidden rounded-t-2xl bg-gray-100">
+      <img
+        src={story.img}
+        alt={story.title}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+    </div>
     <div className="p-5 flex-1 flex flex-col justify-between">
       <div>
         <div className="text-sm text-green-700 font-semibold">{story.category}</div>
@@ -119,22 +117,20 @@ export default function Stories() {
     document.body.style.overflow = "auto";
   };
 
-  // --- SUPPORT HANDLER ---
   const handleSupport = () => {
-    window.location.href = "/donate"; // Link to your existing donate page
+    window.location.href = "/donate";
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      {/* ✅ Add Helmet here */}
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-50 via-white to-green-100">
       <Helmet>
-        <title>Elimu Community Network | ECN Africa</title>
+        <title>ECN Africa | Stories of Impact</title>
         <meta
           name="description"
-          content="Learn about Elimu Community Network (ECN Africa), our mission, vision, and how we empower communities through education, innovation, and sustainable programs."
+          content="Stories of learners, mentors, and communities transformed by ECN Africa."
         />
       </Helmet>
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-50 via-white to-green-100">
+
       {/* HERO */}
       <header className="relative py-20">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8">
@@ -153,8 +149,7 @@ export default function Stories() {
               transition={{ delay: 0.2 }}
               className="mt-4 text-gray-700 max-w-xl"
             >
-              Real stories from our learners, mentors and communities. Read how ECN's
-              programmes transform lives — and how you can support the next success story.
+              Real stories from our learners, mentors, and communities. Discover how ECN programs transform lives.
             </motion.p>
 
             <div className="mt-6 flex flex-wrap gap-3 items-center">
@@ -199,13 +194,14 @@ export default function Stories() {
         {/* Featured + Grid */}
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           <div className="lg:col-span-2 space-y-6">
-            <div className="bg-white rounded-3xl shadow p-6 border border-green-100">
-              <div className="flex items-start gap-6">
+            {/* Featured Story */}
+            <div className="bg-white rounded-3xl shadow p-6 border border-green-100 hover:shadow-2xl transition">
+              <div className="flex flex-col md:flex-row gap-6">
                 <div className="flex-1">
                   <h3 className="text-2xl font-semibold text-gray-800">Featured Story</h3>
                   <p className="text-sm text-green-700 font-medium mt-1">{visible?.category}</p>
                   <p className="mt-4 text-gray-700 leading-relaxed">{visible?.excerpt}</p>
-                  <div className="mt-6 flex gap-3 items-center">
+                  <div className="mt-6 flex gap-3 flex-wrap">
                     <button
                       onClick={() => openStoryModal(visible)}
                       className="px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full shadow"
@@ -220,7 +216,7 @@ export default function Stories() {
                     </button>
                   </div>
                 </div>
-                <div className="w-36">
+                <div className="w-full md:w-36">
                   <img
                     src={visible?.img}
                     alt="featured"
@@ -231,6 +227,7 @@ export default function Stories() {
               </div>
             </div>
 
+            {/* Story Grid */}
             <div className="grid sm:grid-cols-2 gap-6">
               {stories.slice(0, 4).map(story => (
                 <StoryCard key={story.id} story={story} onReadMore={openStoryModal} />
@@ -238,10 +235,12 @@ export default function Stories() {
             </div>
           </div>
 
+          {/* Side Widgets */}
           <aside className="flex flex-col gap-6">
+            {/* Impact Snapshot */}
             <div className="bg-gradient-to-br from-green-600 to-emerald-600 text-green rounded-2xl p-6 shadow-lg">
               <h5 className="font-semibold">Impact Snapshot</h5>
-              <p className="mt-2 text-sm">Quick view of recent achievements and fast facts.</p>
+              <p className="mt-2 text-sm text-white/90">Quick view of achievements</p>
               <div className="mt-4 grid grid-cols-2 gap-3">
                 {[
                   { label: "Volunteers", value: "120+" },
@@ -257,6 +256,7 @@ export default function Stories() {
               </div>
             </div>
 
+            {/* Gallery */}
             <div className="bg-white rounded-2xl shadow p-4 border border-green-100">
               <h6 className="text-sm font-semibold text-gray-800">Gallery</h6>
               <div className="mt-3 grid grid-cols-2 gap-2">
@@ -293,6 +293,7 @@ export default function Stories() {
           </aside>
         </section>
 
+        {/* All Stories */}
         <section className="mb-12">
           <h3 className="text-2xl font-bold text-green-800 mb-6">All Stories</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -344,7 +345,7 @@ export default function Stories() {
                     <span key={idx} className="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full">{it}</span>
                   ))}
                 </div>
-                <div className="mt-6 flex items-center gap-3">
+                <div className="mt-6 flex items-center gap-3 flex-wrap">
                   <button
                     onClick={handleSupport}
                     className="px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full"
@@ -367,7 +368,6 @@ export default function Stories() {
       <Suspense fallback={<div className="text-center py-6 text-gray-500">Loading footer...</div>}>
         <Footer />
       </Suspense>
-    </div>
     </div>
   );
 }
