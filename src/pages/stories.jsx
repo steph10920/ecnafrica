@@ -28,6 +28,13 @@ const StoryCard = ({ story, onReadMore }) => (
       <div>
         <div className="text-sm text-green-700 font-semibold">{story.category}</div>
         <h4 className="mt-2 font-bold text-gray-900 text-lg">{story.title}</h4>
+        <div className="mt-1 text-xs text-gray-400">
+          {new Date(story.date).toLocaleDateString("en-GB", {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+          })}
+        </div>
         <p className="mt-2 text-gray-600 text-sm">{story.excerpt}</p>
       </div>
       <div className="mt-4 flex items-center justify-between text-xs text-gray-500">
@@ -45,19 +52,21 @@ const StoryCard = ({ story, onReadMore }) => (
 
 export default function Stories() {
   const [stories] = useState([
-        {
+    {
       id: "Eugine",
       title: "Eugine: From Learner to Leader",
       category: "Education",
+      date: "2024-05-12",
       excerpt: "After joining the Blue Horizon Programme, Eugine gained fishing and net-making skills and developed a thriving micro-business that supports his community.",
       body: "Eugine joined our Blue Horizon Programme eager to learn skills that could benefit his community. Through hands-on training, he mastered fishing and net-making, and soon started a small business supplying nets and fish locally. With guidance from mentors, Eugine also explored digital tools to manage his enterprise efficiently. Today, he not only runs a successful micro-business but also mentors other youth, inspiring them to develop skills, embrace entrepreneurship, and leverage technology for growth.",
       img: eugineImg,
       impact: ["Mentor", "Micro-business", "Digital Skills"],
     },
-        {
+    {
       id: "joseph",
       title: "Joseph: Youth Entrepreneurship",
       category: "Youth Empowerment",
+      date: "2023-11-20",
       excerpt: "After completing the Youth Employment Program, Joseph launched a thriving local clothing business, creating jobs and inspiring other young entrepreneurs.",
       body: "Joseph was determined to create a better future for himself and his family. Through the Youth Employment Program, he gained practical business skills, mentorship, and access to resources to start his own clothing enterprise. Today, Joseph runs a successful local business, provides apprenticeship opportunities for other youth, and collaborates with community partners to expand economic opportunities. His journey highlights the power of skill development and community support in transforming young lives.",
       img: josephImg,
@@ -67,68 +76,74 @@ export default function Stories() {
       id: "Mary",
       title: "Mary’s Journey Through Flooded Roads",
       category: "Environment",
+      date: "2024-02-15",
       excerpt: "Mary led her community in constructing flood-resilient pathways, ensuring children could safely reach school and promoting sustainable local practices.",
       body: "Mary noticed that during the rainy season, many children struggled to reach school due to flooded and unsafe roads. Determined to find a solution, she mobilized her community to build durable, flood-resilient pathways. Through collaboration with local organizations, they used sustainable materials and techniques, improving access to education and creating small income-generating opportunities along the way. Mary's efforts not only ensured consistent school attendance but also promoted environmental sustainability and strengthened community resilience.",
       img: maryImg,
       impact: ["Sustainability", "School Income", "Nutrition"],
     },
-        {
+    {
       id: "Opiyo",
       title: "Opiyo: The Great Fisherman",
       category: "Environment",
+      date: "2023-08-30",
       excerpt: "Opiyo adopted sustainable fishing practices, preserving his community’s aquatic resources while mentoring young fishers and growing his business.",
       body: "Having grown up in a fishing community, Opiyo was skilled in traditional fishing methods but noticed declining fish stocks over the years. Through training programs and mentorship, he learned sustainable fishing techniques and resource management. Applying these methods, Opiyo not only improved his catch responsibly but also started mentoring younger fishers and secured a startup grant to expand his operations. His dedication demonstrates how environmental stewardship and entrepreneurship can go hand in hand, benefiting both the community and the ecosystem.",
       img: opiyoImg,
       impact: ["Scholarship", "Mentoring", "Startup Grant"],
     },
-      {
-    id: "FOOTBALL",
-    title: "Football: From Dusty Field to Champions",
-    category: "Youth Empowerment",
-    excerpt:
-      "A weekend football program started by ECN Africa in Nairobi grew from a dusty field with no equipment into a community-powered team that reached the champions finals in their first tournament.",
-    body:
-      "In 2023, ECN Africa launched a weekend football program in Nairobi, where young boys and girls trained on a dusty open field with no equipment. Within months, the community came together to donate balls, cones, and jerseys—transforming the small initiative into a real development opportunity.\n\nThe team entered their first district tournament with limited experience but immense determination. Against all odds, they reached the finals and finished as runners-up, marking the best performance the village had ever witnessed.\n\nToday, the team trains weekly under volunteer coaches, and several players have already been scouted by local academies. What began as a simple football camp has now become a symbol of hope, discipline, and unity for the entire community.",
-    img: footballstory1, 
-    impact: ["Team Development", "Youth Training", "Community Support"],
-  },
     {
-    id: "BUSIA_FLOODS",
-    title: "Busia Floods: Rising Above the Waters",
-    category: "Environment",
-    excerpt:
-      "When unexpected floods hit Busia, families were displaced and daily life came to a standstill. But through unity and ECN Africa’s support, the community organized rescue efforts and built long-term mitigation strategies.",
-    body:
-      "In early 2024, heavy rainfall caused the water levels around several villages in Busia County to rise unexpectedly, flooding homesteads, destroying farms, and cutting off access to essential services. What was once a calm riverside area quickly turned into a dangerous zone, forcing families to seek higher ground.\n\nDespite the disruption, the community responded with remarkable unity. Neighbours helped evacuate children and the elderly using wooden boats, while others secured livestock and essential belongings. Women and youth groups created makeshift washing and cooking points along safer dry patches, ensuring affected families could maintain basic hygiene and dignity even amid the chaos.\n\nECN Africa partnered with local leaders to coordinate emergency support, providing clean water containers, food supplies, and essential household items. Trained volunteers also mapped the flooded areas and identified vulnerable households who needed immediate assistance.\n\nAs the water slowly receded, the community worked hand in hand to prevent future disasters. Together with ECN Africa, they planted trees along riverbanks to reduce erosion, created raised communal pathways, and established early-warning systems using local scouts who monitor water levels daily.\n\nWhat began as a moment of crisis became a powerful reminder of the community’s resilience. Through collective action and simple yet effective mitigation strategies, the people of Busia transformed a devastating flood into an opportunity to strengthen safety, preparedness, and unity.",
-    img: busiaFloodImg, 
-    impact: ["Emergency Support", "Tree Planting", "Early Warning Systems"],
-  },
+      id: "FOOTBALL",
+      title: "Football: From Dusty Field to Champions",
+      category: "Youth Empowerment",
+      date: "2023-03-12",
+      excerpt: "A weekend football program started by ECN Africa in Nairobi grew from a dusty field with no equipment into a community-powered team that reached the champions finals in their first tournament.",
+      body: "In 2023, ECN Africa launched a weekend football program in Nairobi, where young boys and girls trained on a dusty open field with no equipment. Within months, the community came together to donate balls, cones, and jerseys—transforming the small initiative into a real development opportunity.\n\nThe team entered their first district tournament with limited experience but immense determination. Against all odds, they reached the finals and finished as runners-up, marking the best performance the village had ever witnessed.\n\nToday, the team trains weekly under volunteer coaches, and several players have already been scouted by local academies. What began as a simple football camp has now become a symbol of hope, discipline, and unity for the entire community.",
+      img: footballstory1,
+      impact: ["Team Development", "Youth Training", "Community Support"],
+    },
+    {
+      id: "BUSIA_FLOODS",
+      title: "Busia Floods: Rising Above the Waters",
+      category: "Environment",
+      date: "2024-01-08",
+      excerpt: "When unexpected floods hit Busia, families were displaced and daily life came to a standstill. But through unity and ECN Africa’s support, the community organized rescue efforts and built long-term mitigation strategies.",
+      body: "In early 2024, heavy rainfall caused the water levels around several villages in Busia County to rise unexpectedly, flooding homesteads, destroying farms, and cutting off access to essential services. What was once a calm riverside area quickly turned into a dangerous zone, forcing families to seek higher ground.\n\nDespite the disruption, the community responded with remarkable unity. Neighbours helped evacuate children and the elderly using wooden boats, while others secured livestock and essential belongings. Women and youth groups created makeshift washing and cooking points along safer dry patches, ensuring affected families could maintain basic hygiene and dignity even amid the chaos.\n\nECN Africa partnered with local leaders to coordinate emergency support, providing clean water containers, food supplies, and essential household items. Trained volunteers also mapped the flooded areas and identified vulnerable households who needed immediate assistance.\n\nAs the water slowly receded, the community worked hand in hand to prevent future disasters. Together with ECN Africa, they planted trees along riverbanks to reduce erosion, created raised communal pathways, and established early-warning systems using local scouts who monitor water levels daily.\n\nWhat began as a moment of crisis became a powerful reminder of the community’s resilience. Through collective action and simple yet effective mitigation strategies, the people of Busia transformed a devastating flood into an opportunity to strengthen safety, preparedness, and unity.",
+      img: busiaFloodImg,
+      impact: ["Emergency Support", "Tree Planting", "Early Warning Systems"],
+    },
   ]);
 
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [storyModal, setStoryModal] = useState({ open: false, story: null });
+  const [yearFilter, setYearFilter] = useState("");
   const modalRef = useRef(null);
 
-  const visible = stories[index % stories.length];
+  // Filter stories by year
+  const filteredStories = yearFilter
+    ? stories.filter(s => new Date(s.date).getFullYear().toString() === yearFilter)
+    : stories;
+
+  const visible = filteredStories[index % filteredStories.length];
 
   // Auto carousel
   useEffect(() => {
     if (paused) return;
-    const timer = setInterval(() => setIndex(i => (i + 1) % stories.length), 5000);
+    const timer = setInterval(() => setIndex(i => (i + 1) % filteredStories.length), 5000);
     return () => clearInterval(timer);
-  }, [paused, stories.length]);
+  }, [paused, filteredStories.length]);
 
   // Keyboard controls
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === "Escape") closeStoryModal();
-      if (e.key === "ArrowRight") setIndex(i => (i + 1) % stories.length);
-      if (e.key === "ArrowLeft") setIndex(i => (i - 1 + stories.length) % stories.length);
+      if (e.key === "ArrowRight") setIndex(i => (i + 1) % filteredStories.length);
+      if (e.key === "ArrowLeft") setIndex(i => (i - 1 + filteredStories.length) % filteredStories.length);
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [stories.length]);
+  }, [filteredStories.length]);
 
   const openStoryModal = (story) => {
     setStoryModal({ open: true, story });
@@ -176,24 +191,21 @@ export default function Stories() {
               Real stories from our learners, mentors, and communities. Discover how ECN programs transform lives.
             </motion.p>
 
+            {/* Year Filter */}
             <div className="mt-6 flex flex-wrap gap-3 items-center">
-              <button
-                onClick={handleSupport}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full shadow"
+              <label className="text-gray-700 text-sm font-medium">Filter by year:</label>
+              <select
+                value={yearFilter}
+                onChange={e => { setYearFilter(e.target.value); setIndex(0); }}
+                className="border rounded-full px-3 py-1 text-gray-700"
               >
-                <Heart size={16} /> Support ECN
-              </button>
-              <button
-                className="inline-flex items-center gap-2 px-4 py-2 border rounded-full text-green-700 bg-white"
-                onClick={() => window.scrollTo({ top: 400, behavior: "smooth" })}
-              >
-                <BookOpen size={16} /> Explore stories
-              </button>
-              <div className="ml-2 inline-flex items-center gap-2 text-sm text-gray-600">
-                <Users size={16} /> <span>{stories.length} stories • updated Nov 2025</span>
-              </div>
+                <option value="">All Years</option>
+                {[...new Set(stories.map(s => new Date(s.date).getFullYear()))].sort((a,b)=>b-a).map(year => (
+                  <option key={year} value={year}>{year}</option>
+                ))}
+              </select>
             </div>
-          </div>
+                      </div>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
@@ -224,6 +236,13 @@ export default function Stories() {
                 <div className="flex-1">
                   <h3 className="text-2xl font-semibold text-gray-800">Featured Story</h3>
                   <p className="text-sm text-green-700 font-medium mt-1">{visible?.category}</p>
+                  <p className="mt-2 text-xs text-gray-400">
+                    {visible && new Date(visible.date).toLocaleDateString("en-GB", {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric"
+                    })}
+                  </p>
                   <p className="mt-4 text-gray-700 leading-relaxed">{visible?.excerpt}</p>
                   <div className="mt-6 flex gap-3 flex-wrap">
                     <button
@@ -253,7 +272,7 @@ export default function Stories() {
 
             {/* Story Grid */}
             <div className="grid sm:grid-cols-2 gap-6">
-              {stories.slice(0, 4).map(story => (
+              {filteredStories.slice(0, 4).map(story => (
                 <StoryCard key={story.id} story={story} onReadMore={openStoryModal} />
               ))}
             </div>
@@ -266,12 +285,10 @@ export default function Stories() {
               <h5 className="font-semibold">Impact Snapshot</h5>
               <p className="mt-2 text-sm text-white/90">Quick view of achievements</p>
               <div className="mt-4 grid grid-cols-2 gap-3">
-                {[
-                  { label: "Volunteers", value: "120+" },
+                {[{ label: "Volunteers", value: "120+" },
                   { label: "Learners reached", value: "4,500" },
                   { label: "Projects funded", value: "32" },
-                  { label: "Program satisfaction", value: "98%" },
-                ].map((item, i) => (
+                  { label: "Program satisfaction", value: "98%" }].map((item, i) => (
                   <div key={i} className="bg-white bg-opacity-10 rounded-lg p-3 text-center">
                     <div className="text-2xl font-bold">{item.value}</div>
                     <div className="text-xs">{item.label}</div>
@@ -284,7 +301,7 @@ export default function Stories() {
             <div className="bg-white rounded-2xl shadow p-4 border border-green-100">
               <h6 className="text-sm font-semibold text-gray-800">Gallery</h6>
               <div className="mt-3 grid grid-cols-2 gap-2">
-                {stories.map(s => (
+                {filteredStories.map(s => (
                   <button
                     key={s.id}
                     onClick={() => openStoryModal(s)}
@@ -301,13 +318,13 @@ export default function Stories() {
               </div>
               <div className="mt-4 flex items-center justify-between">
                 <button
-                  onClick={() => setIndex(i => (i - 1 + stories.length) % stories.length)}
+                  onClick={() => setIndex(i => (i - 1 + filteredStories.length) % filteredStories.length)}
                   className="inline-flex items-center gap-2 px-3 py-2 bg-white rounded-full border"
                 >
                   <ArrowLeft size={16} /> Prev
                 </button>
                 <button
-                  onClick={() => setIndex(i => (i + 1) % stories.length)}
+                  onClick={() => setIndex(i => (i + 1) % filteredStories.length)}
                   className="inline-flex items-center gap-2 px-3 py-2 bg-white rounded-full border"
                 >
                   Next <ArrowRight size={16} />
@@ -321,7 +338,9 @@ export default function Stories() {
         <section className="mb-12">
           <h3 className="text-2xl font-bold text-green-800 mb-6">All Stories</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {stories.map(s => <StoryCard key={s.id} story={s} onReadMore={openStoryModal} />)}
+            {filteredStories.map(s => (
+              <StoryCard key={s.id} story={s} onReadMore={openStoryModal} />
+            ))}
           </div>
         </section>
       </main>
@@ -362,6 +381,13 @@ export default function Stories() {
               </div>
               <div className="p-6">
                 <div className="text-sm text-green-700 font-medium">{storyModal.story?.category}</div>
+                <div className="text-xs text-gray-400 mt-1">
+                  {storyModal.story && new Date(storyModal.story.date).toLocaleDateString("en-GB", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric"
+                  })}
+                </div>
                 <h3 className="text-2xl font-semibold text-gray-800 mt-2">{storyModal.story?.title}</h3>
                 <p className="mt-4 text-gray-700 leading-relaxed">{storyModal.story?.body}</p>
                 <div className="mt-6 flex flex-wrap gap-2">
@@ -377,7 +403,7 @@ export default function Stories() {
                     Support ECN
                   </button>
                   <button
-                    onClick={() => { closeStoryModal(); setIndex(stories.findIndex(s => s.id === storyModal.story.id)); }}
+                    onClick={() => { closeStoryModal(); setIndex(filteredStories.findIndex(s => s.id === storyModal.story.id)); }}
                     className="px-4 py-2 border rounded-full text-green-700"
                   >
                     View in carousel
@@ -395,3 +421,4 @@ export default function Stories() {
     </div>
   );
 }
+
