@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, BookOpen, Heart, Users } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Helmet } from "react-helmet";
 import josephImg from "../assets/stories/joseph.jpg";
 import maryImg from "../assets/stories/mary.jpg";
@@ -52,25 +52,36 @@ const StoryCard = ({ story, onReadMore }) => (
 
 export default function Stories() {
   const [stories] = useState([
-    {
-      id: "Eugine",
-      title: "Eugine: From Learner to Leader",
-      category: "Education",
-      date: "2024-05-12",
-      excerpt: "After joining the Blue Horizon Programme, Eugine gained fishing and net-making skills and developed a thriving micro-business that supports his community.",
-      body: "Eugine joined our Blue Horizon Programme eager to learn skills that could benefit his community. Through hands-on training, he mastered fishing and net-making, and soon started a small business supplying nets and fish locally. With guidance from mentors, Eugine also explored digital tools to manage his enterprise efficiently. Today, he not only runs a successful micro-business but also mentors other youth, inspiring them to develop skills, embrace entrepreneurship, and leverage technology for growth.",
+      {
+    id: "Eugine",
+    title: "Eugine: From Learner to Leader",
+    category: "Education",
+    date: "2024-05-12",
+    excerpt: "After joining the Blue Horizon Programme, Eugine gained fishing and net-making skills, transforming his life and empowering his community.",
+    body: `Eugine joined the Blue Horizon Programme eager to learn new skills that could help his community thrive. 
+    Through hands-on training, he mastered sustainable fishing techniques and net-making, eventually starting a small business supplying fish and handmade nets locally. 
+    With guidance from mentors, he also explored digital tools to manage his enterprise efficiently, keeping records of sales, inventory, and customer orders.  
+    As his business grew, Eugine began mentoring other young learners in his village, sharing both practical skills and the importance of discipline, teamwork, and financial literacy. 
+    He collaborated with local organizations to create small employment opportunities for peers and encouraged the adoption of sustainable practices in fishing and trade.  
+    Today, Eugine is not only a successful entrepreneur but also a recognized youth leader in his community. 
+    His journey demonstrates the transformative power of skill-building, mentorship, and community engagement, inspiring others to pursue education and entrepreneurship with confidence.`,
       img: eugineImg,
-      impact: ["Mentor", "Micro-business", "Digital Skills"],
+      impact: ["Mentor", "Micro-business", "Digital Skills", "Youth Leadership", "Community Development"],
     },
     {
       id: "joseph",
       title: "Joseph: Youth Entrepreneurship",
       category: "Youth Empowerment",
       date: "2023-11-20",
-      excerpt: "After completing the Youth Employment Program, Joseph launched a thriving local clothing business, creating jobs and inspiring other young entrepreneurs.",
-      body: "Joseph was determined to create a better future for himself and his family. Through the Youth Employment Program, he gained practical business skills, mentorship, and access to resources to start his own clothing enterprise. Today, Joseph runs a successful local business, provides apprenticeship opportunities for other youth, and collaborates with community partners to expand economic opportunities. His journey highlights the power of skill development and community support in transforming young lives.",
+      excerpt: "After completing the Youth Employment Program, Joseph launched a thriving local clothing business, creating jobs and inspiring young entrepreneurs in his community.",
+      body: `Joseph was determined to create a better future for himself and his family. Through the Youth Employment Program, he gained practical business skills, mentorship, and access to resources to start his own clothing enterprise. 
+      He learned everything from tailoring and quality control to marketing and customer service, which helped him turn his passion into a profitable business.  
+      With guidance from mentors, Joseph set up a small workshop, employing a few local youth and providing apprenticeship opportunities. 
+      He collaborated with local community groups and suppliers to expand his operations while maintaining high-quality standards.  
+      Today, Joseph’s business has become a hub for young talent, creating jobs, fostering entrepreneurship, and inspiring others to pursue their own ventures. 
+      His journey showcases how skills training, mentorship, and community partnerships can transform lives and empower youth to become self-reliant leaders.`,
       img: josephImg,
-      impact: ["Job Created", "Apprenticeship", "Community Partnership"],
+      impact: ["Job Creation", "Apprenticeship", "Community Partnership", "Youth Empowerment", "Entrepreneurship"],
     },
     {
       id: "Mary",
@@ -78,40 +89,53 @@ export default function Stories() {
       category: "Environment",
       date: "2024-02-15",
       excerpt: "Mary led her community in constructing flood-resilient pathways, ensuring children could safely reach school and promoting sustainable local practices.",
-      body: "Mary noticed that during the rainy season, many children struggled to reach school due to flooded and unsafe roads. Determined to find a solution, she mobilized her community to build durable, flood-resilient pathways. Through collaboration with local organizations, they used sustainable materials and techniques, improving access to education and creating small income-generating opportunities along the way. Mary's efforts not only ensured consistent school attendance but also promoted environmental sustainability and strengthened community resilience.",
+      body: `During the rainy season, Mary observed that many children were unable to attend school because flooded roads made travel unsafe and difficult. Determined to find a lasting solution, she mobilized her community to design and construct durable, flood-resilient pathways using locally sourced, sustainable materials.  
+      Mary collaborated with local organizations and volunteers, integrating simple engineering techniques to elevate walkways and prevent erosion. Alongside improving access to education, the project created small income-generating opportunities for families involved in building and maintaining the paths.  
+      Her efforts not only ensured that children could attend school consistently but also promoted environmental stewardship and strengthened community resilience. Today, the flood-resilient pathways stand as a symbol of collective action, innovation, and Mary’s commitment to creating safer, sustainable spaces for her community.`,
       img: maryImg,
-      impact: ["Sustainability", "School Income", "Nutrition"],
+      impact: ["Sustainability", "Education Access", "Community Resilience", "Income Generation", "Environmental Stewardship"],
     },
     {
-      id: "Opiyo",
-      title: "Opiyo: The Great Fisherman",
-      category: "Environment",
-      date: "2023-08-30",
-      excerpt: "Opiyo adopted sustainable fishing practices, preserving his community’s aquatic resources while mentoring young fishers and growing his business.",
-      body: "Having grown up in a fishing community, Opiyo was skilled in traditional fishing methods but noticed declining fish stocks over the years. Through training programs and mentorship, he learned sustainable fishing techniques and resource management. Applying these methods, Opiyo not only improved his catch responsibly but also started mentoring younger fishers and secured a startup grant to expand his operations. His dedication demonstrates how environmental stewardship and entrepreneurship can go hand in hand, benefiting both the community and the ecosystem.",
+    id: "Opiyo",
+    title: "Opiyo: The Great Fisherman",
+    category: "Environment",
+    date: "2023-08-30",
+    excerpt: "Opiyo adopted sustainable fishing practices, preserving his community’s aquatic resources while mentoring young fishers and growing his business.",
+    body: `Opiyo grew up in a vibrant fishing community, learning traditional fishing techniques from an early age. Over time, he noticed declining fish stocks and
+     realized that continued overfishing could harm both the environment and the livelihoods of his community.  
+    Determined to make a change, Opiyo attended training programs on sustainable fishing practices, resource management, and responsible aquaculture. He implemented 
+    these methods in his daily work, ensuring that his fishing activities replenished rather than depleted local water bodies.  
+    Beyond his personal business, Opiyo became a mentor for younger fishers, sharing knowledge about sustainable practices and 
+    environmental stewardship. With the help of a startup grant, he expanded his operations while creating new employment opportunities. Opiyo’s story exemplifies how environmental awareness, entrepreneurship, and mentorship can coexist, benefiting both the ecosystem and the local community.`,
       img: opiyoImg,
-      impact: ["Scholarship", "Mentoring", "Startup Grant"],
+      impact: ["Sustainable Fishing", "Mentoring Youth", "Environmental Stewardship", "Business Growth", "Community Development"],
     },
     {
-      id: "FOOTBALL",
-      title: "Football: From Dusty Field to Champions",
-      category: "Youth Empowerment",
-      date: "2023-03-12",
-      excerpt: "A weekend football program started by ECN Africa in Nairobi grew from a dusty field with no equipment into a community-powered team that reached the champions finals in their first tournament.",
-      body: "In 2023, ECN Africa launched a weekend football program in Nairobi, where young boys and girls trained on a dusty open field with no equipment. Within months, the community came together to donate balls, cones, and jerseys—transforming the small initiative into a real development opportunity.\n\nThe team entered their first district tournament with limited experience but immense determination. Against all odds, they reached the finals and finished as runners-up, marking the best performance the village had ever witnessed.\n\nToday, the team trains weekly under volunteer coaches, and several players have already been scouted by local academies. What began as a simple football camp has now become a symbol of hope, discipline, and unity for the entire community.",
+    id: "FOOTBALL",
+    title: "Football: From Dusty Field to Champions",
+    category: "Youth Empowerment",
+    date: "2023-03-12",
+    excerpt: "A weekend football program started by ECN Africa in Nairobi grew from a dusty field with no equipment into a community-powered team that reached the champions finals in their first tournament.",
+    body: `In 2023, ECN Africa launched a weekend football program in Nairobi, where young boys and girls trained on a dusty open field with no proper equipment. The community soon rallied to provide donated footballs, cones, jerseys, and basic training gear, transforming a small initiative into a structured development opportunity.  
+    The team entered their first district tournament with little experience but a lot of determination. Against all odds, they advanced to the finals and finished as runners-up, marking a historic achievement for the community.  
+    Today, the team trains weekly under volunteer coaches and emphasizes discipline, teamwork, and sportsmanship. Several players have been scouted by local academies, and the program has inspired other youth-led initiatives. What began as a simple football camp has now become a symbol of hope, resilience, and unity, demonstrating how sports can empower youth and strengthen communities.`,
       img: footballstory1,
-      impact: ["Team Development", "Youth Training", "Community Support"],
+      impact: ["Team Development", "Youth Training", "Community Engagement", "Sports Empowerment", "Discipline & Resilience"],
     },
-    {
-      id: "BUSIA_FLOODS",
-      title: "Busia Floods: Rising Above the Waters",
-      category: "Environment",
-      date: "2024-01-08",
-      excerpt: "When unexpected floods hit Busia, families were displaced and daily life came to a standstill. But through unity and ECN Africa’s support, the community organized rescue efforts and built long-term mitigation strategies.",
-      body: "In early 2024, heavy rainfall caused the water levels around several villages in Busia County to rise unexpectedly, flooding homesteads, destroying farms, and cutting off access to essential services. What was once a calm riverside area quickly turned into a dangerous zone, forcing families to seek higher ground.\n\nDespite the disruption, the community responded with remarkable unity. Neighbours helped evacuate children and the elderly using wooden boats, while others secured livestock and essential belongings. Women and youth groups created makeshift washing and cooking points along safer dry patches, ensuring affected families could maintain basic hygiene and dignity even amid the chaos.\n\nECN Africa partnered with local leaders to coordinate emergency support, providing clean water containers, food supplies, and essential household items. Trained volunteers also mapped the flooded areas and identified vulnerable households who needed immediate assistance.\n\nAs the water slowly receded, the community worked hand in hand to prevent future disasters. Together with ECN Africa, they planted trees along riverbanks to reduce erosion, created raised communal pathways, and established early-warning systems using local scouts who monitor water levels daily.\n\nWhat began as a moment of crisis became a powerful reminder of the community’s resilience. Through collective action and simple yet effective mitigation strategies, the people of Busia transformed a devastating flood into an opportunity to strengthen safety, preparedness, and unity.",
-      img: busiaFloodImg,
-      impact: ["Emergency Support", "Tree Planting", "Early Warning Systems"],
-    },
+   {
+  id: "BUSIA_FLOODS",
+  title: "Busia Floods: Rising Above the Waters",
+  category: "Environment",
+  date: "2024-01-08",
+  excerpt: "When unexpected floods hit Busia, families were displaced and daily life came to a standstill. Through unity and ECN Africa’s support, the community organized rescue efforts and built long-term mitigation strategies.",
+  body: `In early 2024, heavy rainfall caused rivers in Busia County to overflow, flooding homes, destroying crops, and cutting off access to essential services. Families were forced to evacuate to safer grounds as the water levels rose rapidly.  
+  The community responded with remarkable solidarity. Neighbours helped evacuate children and the elderly using wooden boats, while others secured livestock and essential belongings. Women and youth groups set up temporary washing and cooking points along higher ground, ensuring that displaced families could maintain basic hygiene and dignity despite the crisis.  
+  ECN Africa partnered with local leaders to provide emergency relief, including clean water, food supplies, and essential household items. Trained volunteers mapped flooded areas and identified vulnerable households needing urgent support.  
+  As waters receded, the community shifted focus to long-term resilience. Together with ECN Africa, they planted trees along riverbanks to reduce erosion, constructed raised communal pathways, and established early-warning systems with local scouts monitoring water levels daily.  
+  The Busia floods became more than a disaster; they highlighted the power of collective action, planning, and community-led solutions. Through cooperation and guidance from ECN Africa, the community turned a devastating flood into an opportunity for sustainable preparedness, safety, and unity.`,
+    img: busiaFloodImg,
+    impact: ["Emergency Support", "Tree Planting", "Early Warning Systems", "Community Resilience", "Disaster Preparedness"],
+  },
   ]);
 
   const [index, setIndex] = useState(0);
@@ -120,23 +144,22 @@ export default function Stories() {
   const [yearFilter, setYearFilter] = useState("");
   const modalRef = useRef(null);
 
-  // Filter stories by year
   const filteredStories = yearFilter
     ? stories.filter(s => new Date(s.date).getFullYear().toString() === yearFilter)
     : stories;
 
   const visible = filteredStories[index % filteredStories.length];
 
-  // Auto carousel
+  // Carousel auto-advance
   useEffect(() => {
     if (paused) return;
     const timer = setInterval(() => setIndex(i => (i + 1) % filteredStories.length), 5000);
     return () => clearInterval(timer);
   }, [paused, filteredStories.length]);
 
-  // Keyboard controls
+  // Keyboard navigation
   useEffect(() => {
-    const handleKey = (e) => {
+    const handleKey = e => {
       if (e.key === "Escape") closeStoryModal();
       if (e.key === "ArrowRight") setIndex(i => (i + 1) % filteredStories.length);
       if (e.key === "ArrowLeft") setIndex(i => (i - 1 + filteredStories.length) % filteredStories.length);
@@ -145,7 +168,7 @@ export default function Stories() {
     return () => window.removeEventListener("keydown", handleKey);
   }, [filteredStories.length]);
 
-  const openStoryModal = (story) => {
+  const openStoryModal = story => {
     setStoryModal({ open: true, story });
     document.body.style.overflow = "hidden";
     setTimeout(() => modalRef.current?.focus(), 50);
@@ -156,18 +179,13 @@ export default function Stories() {
     document.body.style.overflow = "auto";
   };
 
-  const handleSupport = () => {
-    window.location.href = "/donate";
-  };
+  const handleSupport = () => (window.location.href = "/donate");
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-50 via-white to-green-100">
       <Helmet>
         <title>ECN Africa | Stories of Impact</title>
-        <meta
-          name="description"
-          content="Stories of learners, mentors, and communities transformed by ECN Africa."
-        />
+        <meta name="description" content="Stories of learners, mentors, and communities transformed by ECN Africa." />
       </Helmet>
 
       {/* HERO */}
@@ -196,16 +214,23 @@ export default function Stories() {
               <label className="text-gray-700 text-sm font-medium">Filter by year:</label>
               <select
                 value={yearFilter}
-                onChange={e => { setYearFilter(e.target.value); setIndex(0); }}
+                onChange={e => {
+                  setYearFilter(e.target.value);
+                  setIndex(0);
+                }}
                 className="border rounded-full px-3 py-1 text-gray-700"
               >
                 <option value="">All Years</option>
-                {[...new Set(stories.map(s => new Date(s.date).getFullYear()))].sort((a,b)=>b-a).map(year => (
-                  <option key={year} value={year}>{year}</option>
-                ))}
+                {[...new Set(stories.map(s => new Date(s.date).getFullYear()))]
+                  .sort((a, b) => b - a)
+                  .map(year => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
               </select>
             </div>
-                      </div>
+          </div>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
@@ -237,35 +262,20 @@ export default function Stories() {
                   <h3 className="text-2xl font-semibold text-gray-800">Featured Story</h3>
                   <p className="text-sm text-green-700 font-medium mt-1">{visible?.category}</p>
                   <p className="mt-2 text-xs text-gray-400">
-                    {visible && new Date(visible.date).toLocaleDateString("en-GB", {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric"
-                    })}
+                    {visible && new Date(visible.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
                   </p>
                   <p className="mt-4 text-gray-700 leading-relaxed">{visible?.excerpt}</p>
                   <div className="mt-6 flex gap-3 flex-wrap">
-                    <button
-                      onClick={() => openStoryModal(visible)}
-                      className="px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full shadow"
-                    >
+                    <button onClick={() => openStoryModal(visible)} className="px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full shadow">
                       Read Full Story
                     </button>
-                    <button
-                      onClick={() => setPaused(p => !p)}
-                      className="px-4 py-2 border rounded-full text-green-700 bg-white"
-                    >
+                    <button onClick={() => setPaused(p => !p)} className="px-4 py-2 border rounded-full text-green-700 bg-white">
                       {paused ? "Resume" : "Pause"}
                     </button>
                   </div>
                 </div>
                 <div className="w-full md:w-36">
-                  <img
-                    src={visible?.img}
-                    alt="featured"
-                    className="w-full h-24 object-cover rounded-lg"
-                    loading="lazy"
-                  />
+                  <img src={visible?.img} alt="featured" className="w-full h-24 object-cover rounded-lg" loading="lazy" />
                 </div>
               </div>
             </div>
@@ -421,4 +431,3 @@ export default function Stories() {
     </div>
   );
 }
-
