@@ -45,39 +45,39 @@ const StoryCard = ({ story, onReadMore }) => (
 
 export default function Stories() {
   const [stories] = useState([
-    {
+        {
       id: "Eugine",
       title: "Eugine: From Learner to Leader",
       category: "Education",
-      excerpt: "After joining the Blue Horizon Programme, Eugine gained fishing and net making skills...",
-      body: "Eugine joined our Blue Horizon Programme eager to learn new skills that could help his community...",
+      excerpt: "After joining the Blue Horizon Programme, Eugine gained fishing and net-making skills and developed a thriving micro-business that supports his community.",
+      body: "Eugine joined our Blue Horizon Programme eager to learn skills that could benefit his community. Through hands-on training, he mastered fishing and net-making, and soon started a small business supplying nets and fish locally. With guidance from mentors, Eugine also explored digital tools to manage his enterprise efficiently. Today, he not only runs a successful micro-business but also mentors other youth, inspiring them to develop skills, embrace entrepreneurship, and leverage technology for growth.",
       img: eugineImg,
       impact: ["Mentor", "Micro-business", "Digital Skills"],
     },
-    {
+        {
       id: "joseph",
       title: "Joseph: Youth Entrepreneurship",
       category: "Youth Empowerment",
-      excerpt: "Joseph completed the Youth Employment Program and now runs a local clothing business...",
-      body: "Joseph was determined to create a better future for himself and his family...",
+      excerpt: "After completing the Youth Employment Program, Joseph launched a thriving local clothing business, creating jobs and inspiring other young entrepreneurs.",
+      body: "Joseph was determined to create a better future for himself and his family. Through the Youth Employment Program, he gained practical business skills, mentorship, and access to resources to start his own clothing enterprise. Today, Joseph runs a successful local business, provides apprenticeship opportunities for other youth, and collaborates with community partners to expand economic opportunities. His journey highlights the power of skill development and community support in transforming young lives.",
       img: josephImg,
       impact: ["Job Created", "Apprenticeship", "Community Partnership"],
     },
     {
       id: "Mary",
-      title: "Mary’s journey through flooded roads",
+      title: "Mary’s Journey Through Flooded Roads",
       category: "Environment",
-      excerpt: "Mary led the community in building flood-resilient pathways to school...",
-      body: "Mary noticed that during the rainy season many children struggled to reach school...",
+      excerpt: "Mary led her community in constructing flood-resilient pathways, ensuring children could safely reach school and promoting sustainable local practices.",
+      body: "Mary noticed that during the rainy season, many children struggled to reach school due to flooded and unsafe roads. Determined to find a solution, she mobilized her community to build durable, flood-resilient pathways. Through collaboration with local organizations, they used sustainable materials and techniques, improving access to education and creating small income-generating opportunities along the way. Mary's efforts not only ensured consistent school attendance but also promoted environmental sustainability and strengthened community resilience.",
       img: maryImg,
       impact: ["Sustainability", "School Income", "Nutrition"],
     },
-    {
+        {
       id: "Opiyo",
       title: "Opiyo: The Great Fisherman",
       category: "Environment",
-      excerpt: "Opiyo transformed his fishing practices to be more sustainable...",
-      body: "Having grown up in a fishing community, Opiyo skilled in traditional fishing methods...",
+      excerpt: "Opiyo adopted sustainable fishing practices, preserving his community’s aquatic resources while mentoring young fishers and growing his business.",
+      body: "Having grown up in a fishing community, Opiyo was skilled in traditional fishing methods but noticed declining fish stocks over the years. Through training programs and mentorship, he learned sustainable fishing techniques and resource management. Applying these methods, Opiyo not only improved his catch responsibly but also started mentoring younger fishers and secured a startup grant to expand his operations. His dedication demonstrates how environmental stewardship and entrepreneurship can go hand in hand, benefiting both the community and the ecosystem.",
       img: opiyoImg,
       impact: ["Scholarship", "Mentoring", "Startup Grant"],
     },
@@ -103,7 +103,6 @@ export default function Stories() {
     img: busiaFloodImg, 
     impact: ["Emergency Support", "Tree Planting", "Early Warning Systems"],
   },
-
   ]);
 
   const [index, setIndex] = useState(0);
