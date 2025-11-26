@@ -6,6 +6,8 @@ import josephImg from "../assets/stories/joseph.jpg";
 import maryImg from "../assets/stories/mary.jpg";
 import eugineImg from "../assets/stories/eugine.jpg";
 import opiyoImg from "../assets/stories/opiyo.jpg";
+import footballstory1 from "../assets/stories/footballstory1.jpg";
+import busiaFloodImg from "../assets/stories/busia_floods.jpg";
 
 const Footer = lazy(() => import("../components/Footer"));
 
@@ -79,6 +81,29 @@ export default function Stories() {
       img: opiyoImg,
       impact: ["Scholarship", "Mentoring", "Startup Grant"],
     },
+      {
+    id: "FOOTBALL",
+    title: "Football: From Dusty Field to Champions",
+    category: "Youth Empowerment",
+    excerpt:
+      "A weekend football program started by ECN Africa in Nairobi grew from a dusty field with no equipment into a community-powered team that reached the champions finals in their first tournament.",
+    body:
+      "In 2023, ECN Africa launched a weekend football program in Nairobi, where young boys and girls trained on a dusty open field with no equipment. Within months, the community came together to donate balls, cones, and jerseys—transforming the small initiative into a real development opportunity.\n\nThe team entered their first district tournament with limited experience but immense determination. Against all odds, they reached the finals and finished as runners-up, marking the best performance the village had ever witnessed.\n\nToday, the team trains weekly under volunteer coaches, and several players have already been scouted by local academies. What began as a simple football camp has now become a symbol of hope, discipline, and unity for the entire community.",
+    img: footballstory1, 
+    impact: ["Team Development", "Youth Training", "Community Support"],
+  },
+    {
+    id: "BUSIA_FLOODS",
+    title: "Busia Floods: Rising Above the Waters",
+    category: "Environment",
+    excerpt:
+      "When unexpected floods hit Busia, families were displaced and daily life came to a standstill. But through unity and ECN Africa’s support, the community organized rescue efforts and built long-term mitigation strategies.",
+    body:
+      "In early 2024, heavy rainfall caused the water levels around several villages in Busia County to rise unexpectedly, flooding homesteads, destroying farms, and cutting off access to essential services. What was once a calm riverside area quickly turned into a dangerous zone, forcing families to seek higher ground.\n\nDespite the disruption, the community responded with remarkable unity. Neighbours helped evacuate children and the elderly using wooden boats, while others secured livestock and essential belongings. Women and youth groups created makeshift washing and cooking points along safer dry patches, ensuring affected families could maintain basic hygiene and dignity even amid the chaos.\n\nECN Africa partnered with local leaders to coordinate emergency support, providing clean water containers, food supplies, and essential household items. Trained volunteers also mapped the flooded areas and identified vulnerable households who needed immediate assistance.\n\nAs the water slowly receded, the community worked hand in hand to prevent future disasters. Together with ECN Africa, they planted trees along riverbanks to reduce erosion, created raised communal pathways, and established early-warning systems using local scouts who monitor water levels daily.\n\nWhat began as a moment of crisis became a powerful reminder of the community’s resilience. Through collective action and simple yet effective mitigation strategies, the people of Busia transformed a devastating flood into an opportunity to strengthen safety, preparedness, and unity.",
+    img: busiaFloodImg, 
+    impact: ["Emergency Support", "Tree Planting", "Early Warning Systems"],
+  },
+
   ]);
 
   const [index, setIndex] = useState(0);

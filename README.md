@@ -1,16 +1,46 @@
-# React + Vite
+# ECN Africa Website (ecnafrica.org)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Empowering Communities Network Africa (ECN Africa) is a non-profit initiative focused on education, community development, environmental conservation, youth empowerment, and humanitarian support. This website serves as the organization’s digital platform for outreach, storytelling, volunteer recruitment, and donations.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+### 🌍 Public-Facing Features
+- Responsive landing page with impact statistics.
+- Program pages (Education, Environment, Sports, Women Empowerment, Health Outreach).
+- Dynamic Stories section for community success stories.
+- Donations page (Stripe / Flutterwave / PayPal ready).
+- SEO-ready metadata using React Helmet.
+- Animated UI using Framer Motion.
+- Locally stored images + optimized asset loading.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🛡 Security Features
+- No API keys stored in frontend.
+- Ready for backend integration (Node.js / PHP).
+- Source code is minified in production.
+- Environment variables supported (Vite).
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧱 Tech Stack
+
+### Frontend
+- **React.js**
+- **Vite**
+- **TailwindCSS**
+- **Framer Motion**
+- **Lucide React (icons)**
+- **React Router**
+- **CountUp.js**
+- **React Helmet** (SEO)
+
+### Backend (Proposed)
+- **Node.js + Express** (recommended)
+  or
+- **PHP (XAMPP)** for simpler hosting.
+
+---
+
+## 📂 Project Structure
+
