@@ -417,6 +417,7 @@ export default function Home() {
 
                   Read more stories
                 </Link>
+                
               </div>
               <div>
                 <img
@@ -426,9 +427,9 @@ export default function Home() {
                   loading="lazy"
                 />
               </div>
+              
             </div>
           </section>
-
           {/* Call to Action strip */}
           <section className="rounded-2xl py-8 px-6 bg-gradient-to-r from-green-600 to-emerald-600 text-white">
             <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
