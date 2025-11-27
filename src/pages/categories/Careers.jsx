@@ -85,6 +85,7 @@ export default function Careers() {
         >
           Careers at ECN Africa
         </motion.h1>
+
         <motion.p
           className="mt-4 text-gray-700 text-lg max-w-2xl mx-auto leading-relaxed"
           initial={{ opacity: 0 }}
@@ -94,7 +95,20 @@ export default function Careers() {
           Explore open positions and join our mission to make education
           sustainable and community-driven across Kenya.
         </motion.p>
+
+        {/* Hiring Notice */}
+        <motion.div
+          className="mt-6 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 max-w-2xl mx-auto rounded-xl"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+        >
+          <p className="text-md">
+            <strong>Notice:</strong> We’re currently not hiring. Please keep checking this page for any upcoming opportunities with ECN Africa.
+          </p>
+        </motion.div>
       </header>
+
 
       {/* Job Listings Grid */}
       <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 lg:px-16 pb-20 max-w-7xl mx-auto">
