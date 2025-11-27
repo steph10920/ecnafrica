@@ -1,5 +1,5 @@
 // src/components/Volunteer.jsx
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Footer from "./Footer";
 import volunteerImg from "../assets/volunteer.png";
@@ -9,15 +9,21 @@ export default function Volunteer() {
   const [showModal, setShowModal] = useState(false);
   const [userName, setUserName] = useState("");
 
+  // Ref to safely reset the form
+  const formRef = useRef(null);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
 
-    const formData = new FormData(event.currentTarget);
+    const form = formRef.current;
+    if (!form) return; // safety check
+
+    const formData = new FormData(form);
     const name = formData.get("name");
     setUserName(name);
 
-    formData.append("access_key", "74a6f829-9dac-4e22-bf1a-bcd3e916f4d7"); // acces key
+    formData.append("access_key", "74a6f829-9dac-4e22-bf1a-bcd3e916f4d7"); // replace with your key
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -27,7 +33,7 @@ export default function Volunteer() {
       const data = await response.json();
 
       if (data.success) {
-        event.currentTarget.reset();
+        form.reset(); // safely reset form
         setShowModal(true);
         setTimeout(() => setShowModal(false), 5000);
       } else {
@@ -43,14 +49,14 @@ export default function Volunteer() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Hero Section */}
+      {/* ---------- Hero Section ---------- */}
       <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <motion.img
           src={volunteerImg}
           alt="Volunteers helping the community"
           className="absolute top-0 left-0 w-full h-full object-cover object-center"
-          style={{ y: 0 }} // can be replaced with scroll-based motion if needed
+          style={{ y: 0 }} // parallax can be added
         />
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/50"></div>
@@ -81,7 +87,7 @@ export default function Volunteer() {
         </div>
       </section>
 
-      {/* About Volunteering */}
+      {/* ---------- About Volunteering ---------- */}
       <section className="container mx-auto px-6 py-16">
         <h2 className="text-3xl font-semibold mb-6">Why Volunteer with ECN Africa?</h2>
         <p className="mb-4">
@@ -95,7 +101,7 @@ export default function Volunteer() {
         </p>
       </section>
 
-      {/* Volunteer Opportunities */}
+      {/* ---------- Volunteer Opportunities ---------- */}
       <section className="bg-green-50 py-16">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-semibold mb-10 text-center">Opportunities</h2>
@@ -130,12 +136,14 @@ export default function Volunteer() {
         </div>
       </section>
 
-      {/* Volunteer Form */}
+      {/* ---------- Volunteer Form ---------- */}
       <section id="signup" className="container mx-auto px-6 py-16">
         <h2 className="text-3xl font-semibold mb-6 text-center">Join Us</h2>
-        <p className="text-center mb-8">Fill in the form below to become an ECN Africa volunteer.</p>
+        <p className="text-center mb-8">
+          Fill in the form below to become an ECN Africa volunteer.
+        </p>
 
-        <form onSubmit={handleSubmit} className="max-w-2xl mx-auto grid grid-cols-1 gap-6">
+        <form ref={formRef} onSubmit={handleSubmit} className="max-w-2xl mx-auto grid grid-cols-1 gap-6">
           <input
             type="text"
             name="name"
@@ -176,7 +184,7 @@ export default function Volunteer() {
         </form>
       </section>
 
-      {/* Success Modal */}
+      {/* ---------- Success Modal ---------- */}
       <AnimatePresence>
         {showModal && (
           <motion.div
