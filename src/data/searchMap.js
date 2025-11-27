@@ -17,7 +17,7 @@ export const searchMap = [
   },
   {
     keywords: ["impact", "our impact", "children reached", "families empowered", "community impact", "volunteers", "sustainability"],
-    page: "/impact",
+    page: "/programs#impact", // adjust anchor if needed
   },
   {
     keywords: ["stories", "testimonials", "impact stories", "success stories", "our stories"],
