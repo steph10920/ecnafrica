@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Programs from "./pages/Programs";
 import Donate from "./components/Donate";
+import Volunteer from "./components/volunteer";
 
 // 🔹 Program Subpages
 import GreenClassrooms from "./pages/GreenClassrooms";
@@ -45,6 +46,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/donate" element={<Donate />} />
+          <Route path="/volunteer" element={<Volunteer />} />
 
           {/* 🔹 Program Subpages */}
           <Route path="/programs/green-classrooms" element={<GreenClassrooms />} />
