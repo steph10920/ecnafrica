@@ -216,20 +216,23 @@ export default function Careers() {
       </section>
 
       {/* VOLUNTEER WITH US */}
+      {/* VOLUNTEER WITH US */}
       <section className="py-20 px-6 bg-green-50 border-t border-gray-200">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-green-700">Volunteer With Us</h2>
           <p className="mt-3 text-gray-700 max-w-2xl mx-auto">
             We welcome passionate individuals who want to contribute to community learning,
-            environmental sustainability, and youth empowerment.
+            environmental sustainability, and youth empowerment.  
+            To volunteer, kindly send your CV and COVER LETTER to <strong>education@ecnafrica.org</strong> with the 
+            subject line <strong>"Volunteer"</strong>.
           </p>
 
-          <Link
-            to="/Volunteer"
+          <a
+            href="mailto:education@ecnafrica.org?subject=Volunteer"
             className="inline-block mt-6 bg-green-700 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-800 transition"
           >
             Become a Volunteer
-          </Link>
+          </a>
         </div>
       </section>
 
