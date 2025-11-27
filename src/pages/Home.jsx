@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet"; // ✅ Import Helmet
 import educationImg from "../assets/education.png";
 import childProtectionImg from "../assets/child-protection.jpg";
 import communityImg from "../assets/community.png";
-import img1 from "../assets/img1.jpg";
+import img1 from "../assets/stories/mobischool.jpg";
 import img2 from "../assets/img2.jpg";
 import slide1 from "../assets/education.png";
 import slide2 from "../assets/child-protection.jpg";
@@ -402,18 +402,19 @@ export default function Home() {
           <section className="bg-white rounded-3xl shadow p-8 md:p-12">
             <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
-                <h4 className="text-2xl font-bold text-green-800">A story of change</h4>
-                <p className="mt-4 text-gray-700">
-                  When Amina joined ECN's Nafasi Learning Programme she had limited access to learning
-                  resources. After a year of tailored mentoring, digital-skills classes and a
-                  community-supported micro-project, she is now mentoring other learners and working
-                  with a local cooperative to start a small business. Stories like Amina's are why we
-                  do this work.
-                </p>
-                <Link
-                  to="/Stories"
-                  className="inline-block mt-6 bg-green-700 text-white px-5 py-2 rounded-full font-semibold shadow hover:bg-green-800"
-                >
+               <h4 className="text-2xl font-bold text-green-800">A Story of Hope: Mobile School</h4>
+              <p className="mt-4 text-gray-700">
+                When a young person reaches out to Mobile School, they may have nowhere stable to call home. 
+                Mobile School’s “school-on-wheels” brings learning directly to the streets — offering books, mentoring, 
+                and a safe space where children can begin to believe in themselves again. 
+                Over time, many regain confidence, acquire new skills, and find purpose. 
+                Stories like this remind us why ECN fights for inclusive, accessible education for all.
+              </p>
+              <Link
+                to="/Stories"
+                className="inline-block mt-6 bg-green-700 text-white px-5 py-2 rounded-full font-semibold shadow hover:bg-green-800"
+              >
+
                   Read more stories
                 </Link>
               </div>
