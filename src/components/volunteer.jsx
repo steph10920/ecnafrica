@@ -116,11 +116,11 @@ export default function Volunteer() {
       <section className="container mx-auto px-6 py-16">
         <h2 className="text-3xl font-semibold mb-6">Why Volunteer with ECN Africa?</h2>
         <p className="mb-4">
-          Volunteering allows you to contribute your time and skills to meaningful projects that impact education, environment, and community development across Africa.
-        </p>
+        Volunteering with ECN Africa gives you the chance to use your skills and time to create a real impact in communities across Africa. 
+        Your efforts help improve education, protect the environment, and strengthen local communities.        </p>
         <p>
-          Whether you are passionate about teaching, tree planting, or organizing community events, there is a place for you. Gain experience, meet like-minded people, and make a lasting difference.
-        </p>
+        Whether you love teaching, planting trees, or organizing community events, there’s a place for you. Gain valuable experience, connect with like-minded 
+        individuals, and make a lasting difference in the lives of others.        </p>
       </section>
 
       {/* ---------- Volunteer Opportunities ---------- */}
