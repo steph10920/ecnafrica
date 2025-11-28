@@ -14,7 +14,7 @@ export default function Careers() {
       title: "ICT Officer",
       location: "Nairobi, Kenya",
       type: "Full-Time",
-      closingDate: "CLOSED",
+      closingDate: "2024-11-20",/* Change to "CLOSED" when position is filled */
       salaryRange: "KES (Negotiable)",
       aboutRole:
         "We are seeking an experienced ICT Officer to ensure smooth IT operations, manage infrastructure, and enhance digital capacity across our regional offices.",
@@ -38,7 +38,7 @@ export default function Careers() {
       title: "Program Coordinator – Education",
       location: "Kakamega, Kenya",
       type: "12-month Contract",
-      closingDate: "CLOSED",
+      closingDate: "2024-11-20", /* Change to "CLOSED" when position is filled */
       salaryRange: "KES (Depending on experience)",
       aboutRole:
         "The Program Coordinator will lead education initiatives, manage field officers, oversee budgets, and strengthen partnerships within schools.",
@@ -56,8 +56,15 @@ export default function Careers() {
       ],
       apply:
         "Submit a cover letter and CV to hr@ecnafrica.org by 15th December 2024.",
-    }
+    },
   ];
+
+  // Format date nicely
+  const formatDate = (dateStr) => {
+    if (dateStr === "CLOSED") return "Position Closed";
+    const date = new Date(dateStr);
+    return date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+  };
 
   // Prevent scrolling behind modal
   useEffect(() => {
@@ -73,7 +80,7 @@ export default function Careers() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 via-white to-green-100">
-      
+
       {/* HEADER */}
       <header className="text-center mt-20 mb-12 px-6">
         <motion.h1
@@ -131,15 +138,21 @@ export default function Careers() {
             <p className="text-gray-600 text-sm mb-1">{job.location} • {job.type}</p>
             <p className="text-gray-600 text-sm mb-1">{job.salaryRange}</p>
 
-            <p className="text-gray-700 mt-3 line-clamp-3">
-              {job.aboutRole}
-            </p>
+            {/* Closing Date */}
+            <p className="text-gray-500 text-xs mb-2">📅 Closing Date: {formatDate(job.closingDate)}</p>
+
+            <p className="text-gray-700 mt-3 line-clamp-3">{job.aboutRole}</p>
 
             <button
               onClick={() => setSelectedJob(job)}
-              className="mt-5 bg-green-700 text-white px-4 py-2 rounded-full hover:bg-green-800 transition"
+              className={`mt-5 px-4 py-2 rounded-full transition ${
+                job.closingDate === "CLOSED"
+                  ? "bg-gray-400 text-white cursor-not-allowed"
+                  : "bg-green-700 text-white hover:bg-green-800"
+              }`}
+              disabled={job.closingDate === "CLOSED"}
             >
-              See Details
+              {job.closingDate === "CLOSED" ? "Position Closed" : "See Details"}
             </button>
           </motion.div>
         ))}
@@ -164,13 +177,12 @@ export default function Careers() {
               </button>
 
               <h3 className="text-2xl font-bold text-green-700">{selectedJob.title}</h3>
-              <p className="text-gray-600 text-sm mt-1">
-                {selectedJob.location} • {selectedJob.type}
-              </p>
+              <p className="text-gray-600 text-sm mt-1">{selectedJob.location} • {selectedJob.type}</p>
               <p className="text-gray-600 text-sm">{selectedJob.salaryRange}</p>
+              <p className="text-gray-500 text-xs mt-1">📅 Closing Date: {formatDate(selectedJob.closingDate)}</p>
+
               <p className="text-gray-700 mt-4">{selectedJob.aboutRole}</p>
 
-              {/* Responsibilities */}
               <h4 className="font-semibold text-green-700 mt-6 mb-2">Key Responsibilities</h4>
               <ul className="list-disc list-inside text-gray-700 space-y-1">
                 {selectedJob.responsibilities.map((task, idx) => (
@@ -178,7 +190,6 @@ export default function Careers() {
                 ))}
               </ul>
 
-              {/* Qualifications */}
               <h4 className="font-semibold text-green-700 mt-6 mb-2">Qualifications</h4>
               <ul className="list-disc list-inside text-gray-700 space-y-1">
                 {selectedJob.qualifications.map((q, idx) => (
@@ -186,7 +197,6 @@ export default function Careers() {
                 ))}
               </ul>
 
-              {/* Apply */}
               <h4 className="font-semibold text-green-700 mt-6 mb-2">How to Apply</h4>
               <p className="text-gray-700">{selectedJob.apply}</p>
             </motion.div>
@@ -216,30 +226,29 @@ export default function Careers() {
       </section>
 
       {/* VOLUNTEER WITH US */}
-      {/* VOLUNTEER WITH US */}
       <section className="py-20 px-6 bg-green-50 border-t border-gray-200">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-green-700">Volunteer With Us</h2>
           <p className="mt-3 text-gray-700 max-w-2xl mx-auto">
             We welcome passionate individuals who want to contribute to community learning,
             environmental sustainability, and youth empowerment.  
-            To volunteer, kindly send your <strong> CV and COVER LETTER </strong>to <strong>education@ecnafrica.org</strong> with the 
+            To volunteer, kindly send your <strong>CV and COVER LETTER</strong> to <strong>education@ecnafrica.org</strong> with the 
             subject line <strong>"Volunteer"</strong>.
           </p>
           <br />
-           <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="mailto:education@ecnafrica.org?subject=Volunteer|"
+              href="mailto:education@ecnafrica.org?subject=Volunteer"
               className="bg-white text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-50 transition"
             >
               Volunteer Today
             </a>
-            <a
-              href="/donate"
+            <Link
+              to="/donate"
               className="bg-green-900 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-950 transition"
             >
               Support With a Donation
-            </a>
+            </Link>
           </div>
         </div>
       </section>
