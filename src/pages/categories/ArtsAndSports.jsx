@@ -313,13 +313,9 @@ export default function ArtsAndSports() {
 
           <div className="flex items-center justify-center gap-4">
             <Link to="/donate" className="bg-white text-green-700 font-semibold px-6 py-3 rounded-xl shadow hover:shadow-md transition">
-              Donate Now
+            Volunteer & Donate
             </Link>
-
-            <Link to="/volunteer" className="bg-transparent border border-white/60 px-6 py-3 rounded-xl hover:bg-white/10 transition">
-              Volunteer
-            </Link>
-          </div>
+            </div>
         </motion.section>
       </main>
 

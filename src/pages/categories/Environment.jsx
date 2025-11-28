@@ -4,13 +4,25 @@ import CountUp from "react-countup";
 import Footer from "../../components/Footer";
 import { ArrowUp, TreeDeciduous, Recycle, Sprout, Leaf, Users } from "lucide-react";
 
-import tree1 from "../../assets/trees1.jpg";
-import tree2 from "../../assets/trees2.jpg";
-import tree3 from "../../assets/trees3.jpg";
-import tree4 from "../../assets/trees4.jpg";
+import tree1 from "../../assets/environment/trees1.jpg";
+import tree2 from "../../assets/environment/trees2.jpg";
+import clean1 from "../../assets/environment/clean1.jpg";
+import clean2 from "../../assets/environment/clean2.jpg";
+import climate1 from "../../assets/environment/climate1.jpg";
+import climate2 from "../../assets/environment/climate2.jpg";
+import waste1 from "../../assets/environment/waste1.jpg";
+import waste2 from "../../assets/environment/waste2.jpg";
+import workshop1 from "../../assets/environment/workshop1.jpg";
+import workshop2 from "../../assets/environment/workshop2.jpg";
+import tree3 from "../../assets/environment/trees3.jpg";
+import tree4 from "../../assets/environment/trees4.jpg";
+
+
 
 export default function Environment() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [openActivity, setOpenActivity] = useState(null);
+
   const treeImages = [tree1, tree2, tree3, tree4];
 
   const impactStats = [
@@ -21,11 +33,41 @@ export default function Environment() {
   ];
 
   const activityList = [
-    { text: "Tree planting and greening schools", icon: <TreeDeciduous className="text-green-700 w-5 h-5" /> },
-    { text: "Waste management education", icon: <Recycle className="text-green-700 w-5 h-5" /> },
-    { text: "Climate change advocacy", icon: <Leaf className="text-green-700 w-5 h-5" /> },
-    { text: "Community clean-up initiatives", icon: <Users className="text-green-700 w-5 h-5" /> },
-    { text: "Eco-literacy workshops for youth", icon: <Sprout className="text-green-700 w-5 h-5" /> },
+    {
+      text: "Tree planting and greening schools",
+      icon: <TreeDeciduous className="text-green-700 w-6 h-6" />,
+      description:
+        "We plant trees in schools and community spaces, teaching participants about the importance of urban greenery and biodiversity.",
+      images: [tree1, tree2],
+    },
+    {
+      text: "Waste management education & recycling drives",
+      icon: <Recycle className="text-green-700 w-6 h-6" />,
+      description:
+        "Community workshops and drives to educate on proper waste segregation, recycling, and reducing plastic use.",
+      images: [waste1, waste2],
+    },
+    {
+      text: "Climate change awareness & advocacy",
+      icon: <Leaf className="text-green-700 w-6 h-6" />,
+      description:
+        "Programs to raise awareness on climate change, carbon footprint reduction, and sustainable living practices.",
+      images: [climate1, climate2],
+    },
+    {
+      text: "Community clean-ups & action days",
+      icon: <Users className="text-green-700 w-6 h-6" />,
+      description:
+        "Hands-on clean-up days in local communities to restore rivers, streets, and public spaces.",
+      images: [clean1, clean2],
+    },
+    {
+      text: "Eco-literacy youth workshops",
+      icon: <Sprout className="text-green-700 w-6 h-6" />,
+      description:
+        "Youth-focused workshops to teach environmental literacy, eco-friendly habits, and leadership in sustainability.",
+      images: [workshop1, workshop2],
+    },
   ];
 
   useEffect(() => {
@@ -35,62 +77,105 @@ export default function Environment() {
   }, []);
 
   return (
-    <div className="w-full bg-gray-50 text-gray-800">
+    <div className="w-full bg-gradient-to-b from-green-50 via-white to-green-100 text-gray-800">
       {/* HERO SECTION */}
-      <section className="relative h-[100vh] flex items-center justify-center text-white overflow-hidden bg-green-700">
+      <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1400&q=80')] bg-cover bg-center scale-105 brightness-50"></div>
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="relative z-10 text-center px-4"
+          className="relative z-10 text-center px-6"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-green-100 drop-shadow-lg">
+          <h1 className="text-5xl md:text-7xl font-bold text-white drop-shadow-xl">
             Environment & Sustainability
           </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto">
-            Protecting nature, promoting sustainability, and empowering communities
-            to live in harmony with the planet.
+          <p className="text-lg md:text-2xl text-green-100 max-w-3xl mx-auto mt-4">
+            Empowering communities to restore nature, promote climate awareness, and build a greener future.
           </p>
         </motion.div>
-        <div className="absolute inset-0 bg-black/50" />
       </section>
 
       {/* MAIN CONTENT */}
-      <main className="max-w-6xl mx-auto py-20 px-6 space-y-20">
-        {/* Our Vision */}
+      <main className="max-w-7xl mx-auto py-20 px-6 space-y-24">
+        {/* Vision Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          className="text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-green-700 mb-6 text-center">
-            Our Vision
-          </h2>
-          <p className="text-lg leading-relaxed text-center">
-            ECN envisions a sustainable future where communities actively protect their environment,
-            embrace eco-friendly practices, and create greener, healthier neighborhoods.
+          <h2 className="text-4xl font-extrabold text-green-700 mb-4">Our Vision</h2>
+          <p className="text-xl max-w-4xl mx-auto leading-relaxed text-gray-700">
+            To create thriving communities where environmental sustainability is a shared responsibility and where nature and people coexist in balance.
           </p>
         </motion.div>
 
-        {/* Activities */}
+        {/* Activities Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-green-700 mb-6 text-center">
-            Our Activities
-          </h2>
-          <ul className="grid md:grid-cols-2 gap-4 text-gray-700">
+          <h2 className="text-4xl font-extrabold text-green-700 text-center mb-10">Our Key Activities</h2>
+          <p className="text-center max-w-3xl mx-auto text-lg text-gray-700 mb-10">
+            Our environmental activities are hands-on, interactive, and community-driven. Each program teaches practical sustainability skills while bringing people together.
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {activityList.map((item, i) => (
-              <li key={i} className="flex items-center gap-3 text-lg">
-                {item.icon}
-                {item.text}
-              </li>
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-white shadow-xl rounded-2xl p-6 border border-green-100 hover:shadow-2xl transition cursor-pointer overflow-hidden"
+              >
+                <div
+                  className="flex items-center justify-between gap-4 cursor-pointer"
+                  onClick={() => setOpenActivity(openActivity === i ? null : i)}
+                >
+                  <div className="flex items-center gap-4">
+                    <motion.div whileHover={{ rotate: 10 }} transition={{ duration: 0.3 }}>
+                      {item.icon}
+                    </motion.div>
+                    <p className="text-lg font-semibold">{item.text}</p>
+                  </div>
+                  {/* Plus/minus indicator */}
+                  <span className="text-green-700 font-bold text-2xl select-none">
+                    {openActivity === i ? "-" : "+"}
+                  </span>
+                </div>
+
+                <AnimatePresence>
+                  {openActivity === i && (
+                    <motion.div
+                      key="content"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.5 }}
+                      className="mt-4 overflow-hidden"
+                    >
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {item.images.map((img, idx) => (
+                          <img
+                            key={idx}
+                            src={img}
+                            alt={`${item.text} ${idx + 1}`}
+                            className="rounded-xl shadow-md object-cover w-full h-48"
+                          />
+                        ))}
+                      </div>
+                      <p className="mt-4 text-gray-600 text-sm leading-relaxed">{item.description}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             ))}
-          </ul>
+          </div>
         </motion.div>
 
         {/* Tree Gallery */}
@@ -100,70 +185,70 @@ export default function Environment() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-green-700 mb-8 text-center">
-            Tree Planting Gallery
-          </h2>
+          <h2 className="text-4xl font-extrabold text-green-700 text-center mb-10">Tree Planting Gallery</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {treeImages.map((img, i) => (
               <motion.img
                 key={i}
                 src={img}
                 alt={`Tree planting ${i + 1}`}
-                className="rounded-2xl shadow-lg object-cover w-full h-64"
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.3 }}
+                className="rounded-3xl shadow-lg object-cover w-full h-64 hover:opacity-90 transition"
+                whileHover={{ scale: 1.04 }}
               />
             ))}
           </div>
         </motion.div>
 
-        {/* Impact Stats */}
-        <section className="bg-green-700 text-white py-16 mt-12">
-          <div className="max-w-6xl mx-auto text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Impact</h2>
-            <p className="max-w-3xl mx-auto text-green-100">
-              Our environmental programs reach communities across Kenya — building confidence,
-              inclusion, and hope through sustainability.
+        {/* Impact Section */}
+        <section className="bg-green-700 text-white py-20 rounded-3xl shadow-xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-extrabold mb-4">Our Environmental Impact</h2>
+            <p className="text-green-100 max-w-3xl mx-auto text-lg">
+              Through partnerships, volunteers, and community engagement, we are making measurable progress in environmental restoration.
             </p>
           </div>
-          <div className="grid md:grid-cols-4 gap-8 text-center max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto text-center">
             {impactStats.map((stat, i) => (
-              <div key={i}>
+              <div key={i} className="bg-green-600/40 rounded-2xl p-6 shadow-inner">
                 <CountUp end={stat.value} duration={4} className="text-5xl font-bold" />
-                <p className="text-lg mt-2">{stat.label}</p>
+                <p className="text-xl mt-2 text-green-100">{stat.label}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Call to Action */}
-        <section className="bg-green-600 rounded-2xl py-10 px-6 text-white text-center">
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">
-            Join Us in Greening Our Communities
-          </h3>
-          <p className="mb-6 max-w-2xl mx-auto">
-            Your support helps plant more trees, educate communities, and promote
-            sustainable practices across Africa.
+        {/* CTA Section */}
+        <section className="bg-gradient-to-r from-green-700 to-green-800 rounded-3xl py-14 px-6 text-white text-center shadow-2xl">
+          <h3 className="text-3xl md:text-4xl font-bold mb-4">Be Part of the Green Movement</h3>
+          <p className="mb-8 max-w-2xl mx-auto text-lg text-green-100">
+            Every tree planted and every volunteer effort contributes to a sustainable Africa. Join us today and help build a healthier planet.
           </p>
-          <a
-            href="/donate"
-            className="inline-block bg-white text-green-700 font-semibold px-6 py-3 rounded-full shadow hover:bg-green-50 transition"
-          >
-            Volunteer & Donate
-          </a>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href="mailto:education@ecnafrica.org?subject=Volunteer"
+              className="bg-white text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-50 transition"
+            >
+              Volunteer Today
+            </a>
+            <a
+              href="/donate"
+              className="bg-green-900 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-950 transition"
+            >
+              Support With a Donation
+            </a>
+          </div>
         </section>
       </main>
 
-      {/* SCROLL TO TOP */}
+      {/* Scroll to Top */}
       {showScrollTop && (
         <motion.button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-6 right-6 bg-green-600 text-white p-3 rounded-full shadow-lg hover:bg-green-700 transition"
+          className="fixed bottom-6 right-6 bg-green-700 text-white p-3 rounded-full shadow-lg hover:bg-green-800 transition"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
         >
-          <ArrowUp className="w-5 h-5" />
+          <ArrowUp className="w-6 h-6" />
         </motion.button>
       )}
 
