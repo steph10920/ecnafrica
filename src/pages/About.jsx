@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState } from "react";
+import React, { Suspense, lazy, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet";
 import {
@@ -16,6 +16,26 @@ export default function About() {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [userName, setUserName] = useState("");
+  const [impactStats, setImpactStats] = useState({ children: 0, youth: 0, women: 0 });
+
+  // Animate stats counting up
+  useEffect(() => {
+    const duration = 2000; // 2 seconds
+    const targetStats = { children: 5000, youth: 3000, women: 2000 };
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      setImpactStats({
+        children: Math.floor(progress * targetStats.children),
+        youth: Math.floor(progress * targetStats.youth),
+        women: Math.floor(progress * targetStats.women),
+      });
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+
+    requestAnimationFrame(animate);
+  }, []);
 
   const Divider = () => (
     <div className="flex items-center gap-2 my-8">
@@ -27,7 +47,6 @@ export default function About() {
   const onSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-
     const formData = new FormData(event.target);
     const name = formData.get("name");
     setUserName(name);
@@ -40,17 +59,16 @@ export default function About() {
         body: formData,
       });
       const data = await response.json();
-
       if (data.success) {
         event.target.reset();
         setShowModal(true);
         setTimeout(() => setShowModal(false), 5000);
       } else {
-        alert("⚠️ Submission failed. Please check your access key or form setup.");
+        alert("⚠️ Submission failed. Check your access key or form setup.");
       }
     } catch (error) {
       console.error("Submission Error:", error);
-      alert("❌ Network error — please check your internet connection.");
+      alert("❌ Network error — check your internet connection.");
     } finally {
       setLoading(false);
     }
@@ -58,7 +76,7 @@ export default function About() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      {/* ---------- SEO ---------- */}
+      {/* SEO */}
       <Helmet>
         <title>Elimu Community Network | ECN Africa</title>
         <meta
@@ -67,15 +85,12 @@ export default function About() {
         />
       </Helmet>
 
-      {/* ---------- MAIN CONTENT ---------- */}
       <main className="max-w-6xl mx-auto px-6 py-12 space-y-14 animate-fade-in">
         {/* INTRODUCTION */}
         <section>
           <div className="flex items-center gap-2 mb-4">
             <BookOpen className="text-green-700" size={28} />
-            <h1 className="text-3xl md:text-4xl font-bold text-green-700">
-              About ECN
-            </h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-green-700">About ECN</h1>
           </div>
           <p className="text-gray-700 mb-4 leading-relaxed">
             <strong>Elimu Community Network (ECN)</strong> is a Kenyan NGO founded in 2012. We work to safeguard the rights of vulnerable children and empower families through quality education and community-driven innovation.
@@ -97,21 +112,32 @@ export default function About() {
             <strong>Listen. Learn. Lead.</strong>
           </p>
           <p className="text-gray-700 mb-4 leading-relaxed">
-            We listen to communities, learn collaboratively, and lead with compassion. Our approach values local wisdom and creativity while promoting gender equality, inclusivity, and innovation.
+            We listen to communities, learn collaboratively, and lead with compassion. Our approach values local wisdom, creativity, and inclusivity.
           </p>
         </section>
 
         <Divider />
 
-        {/* IMPACT */}
+        {/* IMPACT / STATISTICS */}
         <section>
           <div className="flex items-center gap-2 mb-4">
             <Globe2 className="text-green-700" size={28} />
-            <h2 className="text-2xl font-semibold text-green-700">Impact and Sustainability</h2>
+            <h2 className="text-2xl font-semibold text-green-700">Impact & Statistics</h2>
           </div>
-          <p className="text-gray-700 mb-4 leading-relaxed">
-            Since its founding, ECN has reached over <strong>10,000 children, youth, and women</strong> across Kenya.
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div className="p-6 bg-white rounded-2xl shadow-md border border-green-100">
+              <h3 className="text-3xl font-bold text-green-700">{impactStats.children}+</h3>
+              <p className="text-gray-600">Children Reached</p>
+            </div>
+            <div className="p-6 bg-white rounded-2xl shadow-md border border-green-100">
+              <h3 className="text-3xl font-bold text-green-700">{impactStats.youth}+</h3>
+              <p className="text-gray-600">Youth Reached</p>
+            </div>
+            <div className="p-6 bg-white rounded-2xl shadow-md border border-green-100">
+              <h3 className="text-3xl font-bold text-green-700">{impactStats.women}+</h3>
+              <p className="text-gray-600">Women Reached</p>
+            </div>
+          </div>
         </section>
 
         <Divider />
@@ -193,7 +219,7 @@ export default function About() {
                 Thank You{userName ? `, ${userName}` : ""}!
               </h3>
               <p className="text-gray-600 mb-4">
-                Your feedback has been received successfully. We appreciate your input!
+                Your feedback has been received successfully.
               </p>
               <button onClick={() => setShowModal(false)} className="bg-green-700 text-white px-5 py-2 rounded-lg hover:bg-green-800 transition">
                 Close
