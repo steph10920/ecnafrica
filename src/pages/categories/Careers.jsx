@@ -103,7 +103,7 @@ export default function Careers() {
           transition={{ delay: 0.6 }}
         >
           <p>
-            <strong>Notice:</strong> We’re currently not hiring. Please keep 
+            <strong>Notice:</strong> We’re currently <strong>NOT</strong> hiring. Please keep 
             checking this page for future opportunities with ECN Africa.
           </p>
         </motion.div>
