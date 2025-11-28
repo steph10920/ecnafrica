@@ -311,11 +311,20 @@ export default function ArtsAndSports() {
           <h3 className="text-3xl md:text-4xl font-bold mb-4">Support Our Sports Programs</h3>
           <p className="text-lg max-w-2xl mx-auto mb-6">Help us reach more young people through sports, mentorship and education.</p>
 
-          <div className="flex items-center justify-center gap-4">
-            <Link to="/donate" className="bg-white text-green-700 font-semibold px-6 py-3 rounded-xl shadow hover:shadow-md transition">
-            Volunteer & Donate
-            </Link>
-            </div>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href="mailto:education@ecnafrica.org?subject=Volunteer|"
+              className="bg-white text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-50 transition"
+            >
+              Volunteer Today
+            </a>
+            <a
+              href="/donate"
+              className="bg-green-900 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-950 transition"
+            >
+              Support With a Donation
+            </a>
+          </div>
         </motion.section>
       </main>
 

@@ -440,20 +440,20 @@ export default function Home() {
                   Your support helps scale programmes, train teachers and provide safe learning spaces.
                 </p>
               </div>
-              <div className="flex gap-3">
-                <a
-                  href="/donate"
-                  className="inline-block bg-white text-green-800 px-4 py-2 rounded-full font-semibold shadow"
-                >
-                  Donate now
-                </a>
-                <Link
-                  to="/contact"
-                  className="inline-block border border-white/60 px-4 py-2 rounded-full font-semibold hover:bg-white/10"
-                >
-                  Volunteer & Partner
-                </Link>
-              </div>
+               <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href="mailto:education@ecnafrica.org?subject=Volunteer|"
+              className="bg-white text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-50 transition"
+            >
+              Volunteer Today
+            </a>
+            <a
+              href="/donate"
+              className="bg-green-900 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-950 transition"
+            >
+              Support With a Donation
+            </a>
+          </div>
             </div>
           </section>
         </div>

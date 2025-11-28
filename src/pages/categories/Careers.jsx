@@ -226,13 +226,21 @@ export default function Careers() {
             To volunteer, kindly send your <strong> CV and COVER LETTER </strong>to <strong>education@ecnafrica.org</strong> with the 
             subject line <strong>"Volunteer"</strong>.
           </p>
-
-          <a
-            href="mailto:education@ecnafrica.org?subject=Volunteer"
-            className="inline-block mt-6 bg-green-700 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-800 transition"
-          >
-            Become a Volunteer
-          </a>
+          <br />
+           <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href="mailto:education@ecnafrica.org?subject=Volunteer|"
+              className="bg-white text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-50 transition"
+            >
+              Volunteer Today
+            </a>
+            <a
+              href="/donate"
+              className="bg-green-900 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-950 transition"
+            >
+              Support With a Donation
+            </a>
+          </div>
         </div>
       </section>
 
