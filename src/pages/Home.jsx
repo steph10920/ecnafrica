@@ -19,6 +19,7 @@ import slide3 from "../assets/women_empowerment.jpg";
 import slide4 from "../assets/img1.jpg";
 import slide5 from "../assets/slide1.jpg";
 import greenclass from "../assets/trees4.jpg";
+import bluezones from "../assets/bluezones.jpg";
 
 
 export default function Home() {
@@ -338,7 +339,7 @@ export default function Home() {
     {/* Blue Horizons */}
     <article className="rounded-2xl bg-white border p-6 shadow-sm hover:shadow-lg transition">
       <img
-        src={img1}
+        src={bluezones}
         alt="IMARA Women Programme"
         className="w-full h-36 object-cover rounded-lg mb-4"
         loading="lazy"
