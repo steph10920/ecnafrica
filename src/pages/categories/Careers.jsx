@@ -223,7 +223,7 @@ export default function Careers() {
           <p className="mt-3 text-gray-700 max-w-2xl mx-auto">
             We welcome passionate individuals who want to contribute to community learning,
             environmental sustainability, and youth empowerment.  
-            To volunteer, kindly send your CV and COVER LETTER to <strong>education@ecnafrica.org</strong> with the 
+            To volunteer, kindly send your <strong> CV and COVER LETTER </strong>to <strong>education@ecnafrica.org</strong> with the 
             subject line <strong>"Volunteer"</strong>.
           </p>
 
