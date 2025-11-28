@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Footer from "../../components/Footer";
 import { FaChalkboardTeacher, FaUsers, FaTree } from "react-icons/fa";
+import CountUp from "react-countup";
 
 export default function QualityEducation() {
   const programs = [
@@ -89,6 +90,54 @@ export default function QualityEducation() {
           “Education is not a way to escape poverty; it is a way of fighting it.” — Julius Nyerere
         </motion.blockquote>
       </section>
+      {/*Impact Section */}
+      <section className="bg-blue-50 py-20 px-6">
+      <h2 className="text-3xl font-bold text-blue-700 mb-12 text-center">Our Impact</h2>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto text-center">
+        {/* Children Reached */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-white rounded-2xl p-8 shadow-lg"
+        >
+          <h3 className="text-5xl font-bold text-blue-700 mb-2">
+            <CountUp start={0} end={1000} duration={2.5} separator="," />
+          </h3>
+          <p className="text-gray-700 font-semibold">Children Reached</p>
+        </motion.div>
+
+        {/* Youth Reached */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="bg-white rounded-2xl p-8 shadow-lg"
+        >
+          <h3 className="text-5xl font-bold text-green-700 mb-2">
+            <CountUp start={0} end={1000} duration={2.5} separator="," />
+          </h3>
+          <p className="text-gray-700 font-semibold">Youth Reached</p>
+        </motion.div>
+
+        {/* Women Reached */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="bg-white rounded-2xl p-8 shadow-lg"
+        >
+          <h3 className="text-5xl font-bold text-yellow-700 mb-2">
+            <CountUp start={0} end={1000} duration={2.5} separator="," />
+          </h3>
+          <p className="text-gray-700 font-semibold">Women Reached</p>
+        </motion.div>
+      </div>
+    </section>
 
       {/* Call to Action */}
       <section className="py-16 px-6 text-center bg-gray-100">
@@ -122,7 +171,7 @@ export default function QualityEducation() {
           </a>
         </motion.div>
       </section>
-
+      
       <Footer />
     </div>
   );
