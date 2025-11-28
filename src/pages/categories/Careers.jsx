@@ -14,7 +14,7 @@ export default function Careers() {
       title: "ICT Officer",
       location: "Nairobi, Kenya",
       type: "Full-Time",
-      closingDate: "2024-11-20",/* Change to "CLOSED" when position is filled */
+      closingDate: "2024-11-20",// Changed to future date
       salaryRange: "KES (Negotiable)",
       aboutRole:
         "We are seeking an experienced ICT Officer to ensure smooth IT operations, manage infrastructure, and enhance digital capacity across our regional offices.",
@@ -38,7 +38,7 @@ export default function Careers() {
       title: "Program Coordinator – Education",
       location: "Kakamega, Kenya",
       type: "12-month Contract",
-      closingDate: "2024-11-20", /* Change to "CLOSED" when position is filled */
+      closingDate: "2024-12-20",// Changed to future date
       salaryRange: "KES (Depending on experience)",
       aboutRole:
         "The Program Coordinator will lead education initiatives, manage field officers, oversee budgets, and strengthen partnerships within schools.",
@@ -59,6 +59,17 @@ export default function Careers() {
     },
   ];
 
+  // Calculate badge: days left or CLOSED
+  const getBadge = (dateStr) => {
+    if (dateStr === "CLOSED") return { text: "CLOSED", color: "bg-gray-400" };
+    const today = new Date();
+    const closing = new Date(dateStr);
+    const diffTime = closing - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    if (diffDays <= 0) return { text: "CLOSED", color: "bg-gray-400" };
+    return { text: `${diffDays} day${diffDays > 1 ? "s" : ""} left`, color: "bg-green-700" };
+  };
+
   // Format date nicely
   const formatDate = (dateStr) => {
     if (dateStr === "CLOSED") return "Position Closed";
@@ -66,12 +77,10 @@ export default function Careers() {
     return date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
   };
 
-  // Prevent scrolling behind modal
   useEffect(() => {
     document.body.style.overflow = selectedJob ? "hidden" : "auto";
   }, [selectedJob]);
 
-  // ESC key closes modal
   useEffect(() => {
     const f = (e) => e.key === "Escape" && setSelectedJob(null);
     window.addEventListener("keydown", f);
@@ -102,7 +111,6 @@ export default function Careers() {
           sustainable and community-driven across Kenya.
         </motion.p>
 
-        {/* HIRING NOTICE */}
         <motion.div
           className="mt-6 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 max-w-2xl mx-auto rounded-xl"
           initial={{ opacity: 0 }}
@@ -116,49 +124,48 @@ export default function Careers() {
         </motion.div>
       </header>
 
-      {/* OPEN POSITIONS TITLE */}
+      {/* OPEN POSITIONS */}
       <section className="px-6 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-green-700 mb-6">
-          Open Positions
-        </h2>
+        <h2 className="text-3xl font-bold text-green-700 mb-6">Open Positions</h2>
       </section>
 
-      {/* JOB CARDS */}
       <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 lg:px-16 pb-20 max-w-7xl mx-auto">
-        {jobListings.map((job, i) => (
-          <motion.div
-            key={job.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            whileHover={{ scale: 1.03 }}
-            className="bg-white rounded-3xl shadow-md p-6 hover:shadow-xl transition"
-          >
-            <h3 className="text-xl font-bold text-green-700 mb-2">{job.title}</h3>
-            <p className="text-gray-600 text-sm mb-1">{job.location} • {job.type}</p>
-            <p className="text-gray-600 text-sm mb-1">{job.salaryRange}</p>
-
-            {/* Closing Date */}
-            <p className="text-gray-500 text-xs mb-2">📅 Closing Date: {formatDate(job.closingDate)}</p>
-
-            <p className="text-gray-700 mt-3 line-clamp-3">{job.aboutRole}</p>
-
-            <button
-              onClick={() => setSelectedJob(job)}
-              className={`mt-5 px-4 py-2 rounded-full transition ${
-                job.closingDate === "CLOSED"
-                  ? "bg-gray-400 text-white cursor-not-allowed"
-                  : "bg-green-700 text-white hover:bg-green-800"
-              }`}
-              disabled={job.closingDate === "CLOSED"}
+        {jobListings.map((job, i) => {
+          const badge = getBadge(job.closingDate);
+          const isClosed = badge.text === "CLOSED";
+          return (
+            <motion.div
+              key={job.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              whileHover={{ scale: 1.03 }}
+              className="relative bg-white rounded-3xl shadow-md p-6 hover:shadow-xl transition"
             >
-              {job.closingDate === "CLOSED" ? "Position Closed" : "See Details"}
-            </button>
-          </motion.div>
-        ))}
+              {/* Badge */}
+              <span className={`absolute top-4 right-4 text-white text-xs font-semibold px-2 py-1 rounded-full ${badge.color}`}>
+                {badge.text}
+              </span>
+
+              <h3 className="text-xl font-bold text-green-700 mb-2">{job.title}</h3>
+              <p className="text-gray-600 text-sm mb-1">{job.location} • {job.type}</p>
+              <p className="text-gray-600 text-sm mb-1">{job.salaryRange}</p>
+              <p className="text-gray-500 text-xs mb-2">📅 Closing Date: {formatDate(job.closingDate)}</p>
+              <p className="text-gray-700 mt-3 line-clamp-3">{job.aboutRole}</p>
+
+              <button
+                onClick={() => setSelectedJob(job)}
+                className={`mt-5 px-4 py-2 rounded-full transition ${isClosed ? "bg-gray-400 text-white cursor-not-allowed" : "bg-green-700 text-white hover:bg-green-800"}`}
+                disabled={isClosed}
+              >
+                {isClosed ? "Position Closed" : "See Details"}
+              </button>
+            </motion.div>
+          );
+        })}
       </main>
 
-      {/* JOB DETAILS MODAL */}
+      {/* JOB MODAL */}
       <AnimatePresence>
         {selectedJob && (
           <motion.div
@@ -180,21 +187,16 @@ export default function Careers() {
               <p className="text-gray-600 text-sm mt-1">{selectedJob.location} • {selectedJob.type}</p>
               <p className="text-gray-600 text-sm">{selectedJob.salaryRange}</p>
               <p className="text-gray-500 text-xs mt-1">📅 Closing Date: {formatDate(selectedJob.closingDate)}</p>
-
               <p className="text-gray-700 mt-4">{selectedJob.aboutRole}</p>
 
               <h4 className="font-semibold text-green-700 mt-6 mb-2">Key Responsibilities</h4>
               <ul className="list-disc list-inside text-gray-700 space-y-1">
-                {selectedJob.responsibilities.map((task, idx) => (
-                  <li key={idx}>{task}</li>
-                ))}
+                {selectedJob.responsibilities.map((task, idx) => <li key={idx}>{task}</li>)}
               </ul>
 
               <h4 className="font-semibold text-green-700 mt-6 mb-2">Qualifications</h4>
               <ul className="list-disc list-inside text-gray-700 space-y-1">
-                {selectedJob.qualifications.map((q, idx) => (
-                  <li key={idx}>{q}</li>
-                ))}
+                {selectedJob.qualifications.map((q, idx) => <li key={idx}>{q}</li>)}
               </ul>
 
               <h4 className="font-semibold text-green-700 mt-6 mb-2">How to Apply</h4>
@@ -204,28 +206,19 @@ export default function Careers() {
         )}
       </AnimatePresence>
 
-      {/* TALENT POOL SIGNUP */}
+      {/* TALENT POOL */}
       <section className="bg-white py-16 px-6 border-t border-gray-200">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-green-700">Join Our Talent Pool</h2>
-          <p className="mt-3 text-gray-700">
-            Not seeing a role that fits you? Sign up to be notified when new opportunities open.
-          </p>
-
+          <p className="mt-3 text-gray-700">Not seeing a role that fits you? Sign up to be notified when new opportunities open.</p>
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
-            <input
-              type="email"
-              placeholder="Enter your email address"
-              className="px-4 py-3 rounded-full border border-gray-300 w-full sm:w-80"
-            />
-            <button className="bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition">
-              Join Talent Pool
-            </button>
+            <input type="email" placeholder="Enter your email address" className="px-4 py-3 rounded-full border border-gray-300 w-full sm:w-80"/>
+            <button className="bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition">Join Talent Pool</button>
           </div>
         </div>
       </section>
 
-      {/* VOLUNTEER WITH US */}
+      {/* VOLUNTEER */}
       <section className="py-20 px-6 bg-green-50 border-t border-gray-200">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-green-700">Volunteer With Us</h2>
@@ -235,28 +228,15 @@ export default function Careers() {
             To volunteer, kindly send your <strong>CV and COVER LETTER</strong> to <strong>education@ecnafrica.org</strong> with the 
             subject line <strong>"Volunteer"</strong>.
           </p>
-          <br />
+          <br/>
           <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="mailto:education@ecnafrica.org?subject=Volunteer"
-              className="bg-white text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-50 transition"
-            >
-              Volunteer Today
-            </a>
-            <Link
-              to="/donate"
-              className="bg-green-900 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-950 transition"
-            >
-              Support With a Donation
-            </Link>
+            <a href="mailto:education@ecnafrica.org?subject=Volunteer" className="bg-white text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-50 transition">Volunteer Today</a>
+            <Link to="/donate" className="bg-green-900 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-950 transition">Support With a Donation</Link>
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <Suspense fallback={<div className="text-center py-4">Loading...</div>}>
-        <Footer />
-      </Suspense>
+      <Suspense fallback={<div className="text-center py-4">Loading...</div>}><Footer /></Suspense>
     </div>
   );
 }
