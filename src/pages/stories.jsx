@@ -42,7 +42,7 @@ const StoryCard = ({ story, onReadMore }) => (
           onClick={() => onReadMore(story)}
           className="text-green-700 font-medium hover:underline"
         >
-          Read more
+          <strong>Read more</strong>
         </button>
         <div>Impact: {story.impact.join(", ")}</div>
       </div>
@@ -206,8 +206,7 @@ export default function Stories() {
               transition={{ delay: 0.2 }}
               className="mt-4 text-gray-700 max-w-xl"
             >
-              Real stories from our learners, mentors, and communities. Discover how ECN programs transform lives.
-            </motion.p>
+            Hear the stories behind the numbers—real journeys from learners, mentors, and communities transformed by ECN Africa.</motion.p>
 
             {/* Year Filter */}
             <div className="mt-6 flex flex-wrap gap-3 items-center">
