@@ -244,7 +244,7 @@ export default function StrategicFocus() {
                 <p className="text-gray-600 mb-2">
                   <strong>Discover how we make a lasting impact in this area.</strong>
                 </p>
-                <p className="text-gray-600 italic">Click to read more →</p>
+                <p className="text-green-600 italic">Click to read more →</p>
               </div>
             </div>
           ))}
