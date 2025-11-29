@@ -9,6 +9,7 @@ import {
   FileText,
   ChevronDown,
 } from "lucide-react";
+
 import Logo from "../assets/ecnlogo.jpg";
 import { searchMap } from "../data/searchMap";
 
@@ -19,55 +20,54 @@ export default function Navbar() {
   const [suggestions, setSuggestions] = useState([]);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const handleNavClick = (path = null) => {
+  const navigate = (path) => {
     setMobileOpen(false);
     setCategoriesOpen(false);
     setSuggestions([]);
-    if (path) window.location.href = path;
-    else window.scrollTo({ top: 0, behavior: "smooth" });
+    window.location.href = path || "/";
   };
 
-  // SMART SEARCH
+  // SMART SEARCH SYSTEM
   useEffect(() => {
     if (!searchQuery) {
       setSuggestions([]);
       return;
     }
 
-    const query = searchQuery.toLowerCase();
+    const q = searchQuery.toLowerCase();
 
-    const matches = searchMap
+    const matched = searchMap
       .map((item) => {
-        const matchedKeywords = item.keywords.filter((keyword) =>
-          keyword.toLowerCase().includes(query)
+        const keywords = item.keywords.filter((k) =>
+          k.toLowerCase().includes(q)
         );
-        if (matchedKeywords.length === 0) return null;
+        if (!keywords.length) return null;
 
-        const score = matchedKeywords.reduce(
-          (acc, k) => acc + (k.toLowerCase().startsWith(query) ? 2 : 1),
+        const score = keywords.reduce(
+          (acc, k) => acc + (k.toLowerCase().startsWith(q) ? 2 : 1),
           0
         );
 
-        return { ...item, score, matchedKeywords };
+        return { ...item, score, keywords };
       })
       .filter(Boolean)
       .sort((a, b) => b.score - a.score)
       .slice(0, 5);
 
-    setSuggestions(matches);
+    setSuggestions(matched);
   }, [searchQuery]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    if (suggestions.length > 0) {
-      handleNavClick(suggestions[0].page);
+    if (suggestions.length) {
+      navigate(suggestions[0].page);
     } else {
       alert("No matching page or section found!");
     }
     setSearchQuery("");
   };
 
-  // NAVBAR SCROLL SHADOW
+  // NAVBAR SHADOW ON SCROLL
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 30);
     window.addEventListener("scroll", onScroll);
@@ -81,6 +81,14 @@ export default function Navbar() {
     ["careers", "Careers"],
   ];
 
+  const desktopLinks = [
+    ["Home", "/", Home],
+    ["Programmes", "/programs", BookOpen],
+    ["Stories", "/stories", FileText],
+    ["About Us", "/about", Users2],
+    ["Contact Us", "/contact", Globe2],
+  ];
+
   return (
     <header
       className={`fixed w-full z-50 backdrop-blur-md transition-all duration-300 ${
@@ -90,7 +98,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-5 flex items-center justify-between">
         {/* LOGO */}
         <button
-          onClick={() => handleNavClick("/")}
+          onClick={() => navigate("/")}
           className="flex items-center gap-3 group"
         >
           <img
@@ -105,18 +113,12 @@ export default function Navbar() {
           </span>
         </button>
 
-        {/* DESKTOP MENU */}
+        {/* DESKTOP NAVIGATION */}
         <nav className="hidden md:flex items-center space-x-8 font-medium text-gray-800">
-          {[
-            ["Home", "/"],
-            ["Programmes", "/programs"],
-            ["Stories", "/stories"],
-            ["About Us", "/about"],
-            ["Contact Us", "/contact"],
-          ].map(([label, path]) => (
+          {desktopLinks.map(([label, path]) => (
             <button
               key={label}
-              onClick={() => handleNavClick(path)}
+              onClick={() => navigate(path)}
               className="hover:text-green-600 transition-colors"
             >
               {label}
@@ -144,7 +146,7 @@ export default function Navbar() {
                   {categories.map(([path, label]) => (
                     <button
                       key={path}
-                      onClick={() => handleNavClick(`/categories/${path}`)}
+                      onClick={() => navigate(`/categories/${path}`)}
                       className="block w-full text-left px-5 py-3 hover:bg-green-50 hover:text-green-700 transition"
                     >
                       {label}
@@ -173,28 +175,30 @@ export default function Navbar() {
               </div>
             </form>
 
-            {/* Search Suggestions */}
+            {/* SEARCH SUGGESTIONS */}
             {suggestions.length > 0 && (
               <div className="absolute top-full left-0 right-0 mt-1 bg-white border rounded-md shadow-xl z-50 max-h-60 overflow-y-auto">
                 {suggestions.map((item, i) => (
                   <button
                     key={i}
-                    onClick={() => handleNavClick(item.page)}
+                    onClick={() => navigate(item.page)}
                     className="w-full text-left px-4 py-3 hover:bg-green-50 transition"
                   >
                     {item.keywords.map((keyword, idx) => {
-                      const index = keyword
+                      const start = keyword
                         .toLowerCase()
                         .indexOf(searchQuery.toLowerCase());
-                      if (index === -1)
+
+                      if (start === -1)
                         return <span key={idx}>{keyword}</span>;
+
                       return (
                         <span key={idx}>
-                          {keyword.slice(0, index)}
+                          {keyword.slice(0, start)}
                           <span className="bg-green-200 text-green-900 font-semibold">
-                            {keyword.slice(index, index + searchQuery.length)}
+                            {keyword.slice(start, start + searchQuery.length)}
                           </span>
-                          {keyword.slice(index + searchQuery.length)}
+                          {keyword.slice(start + searchQuery.length)}
                         </span>
                       );
                     })}
@@ -204,9 +208,9 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* DONATE BUTTON */}
+          {/* DONATE */}
           <button
-            onClick={() => handleNavClick("/donate")}
+            onClick={() => navigate("/donate")}
             className="bg-green-600 text-white px-5 py-2 rounded-full shadow hover:bg-green-700 hover:shadow-lg transition-all"
           >
             Donate
@@ -231,16 +235,10 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -20 }}
             className="md:hidden bg-white shadow-xl border-t flex flex-col"
           >
-            {[
-              ["Home", "/", Home],
-              ["Programmes", "/programs", BookOpen],
-              ["Stories", "/stories", FileText],
-              ["About Us", "/about", Users2],
-              ["Contact Us", "/contact", Globe2],
-            ].map(([label, path, Icon]) => (
+            {desktopLinks.map(([label, path, Icon]) => (
               <button
                 key={label}
-                onClick={() => handleNavClick(path)}
+                onClick={() => navigate(path)}
                 className="px-5 py-4 flex items-center gap-3 border-b hover:bg-green-50 transition"
               >
                 <Icon size={18} /> {label}
@@ -271,7 +269,7 @@ export default function Navbar() {
                   {categories.map(([path, label]) => (
                     <button
                       key={path}
-                      onClick={() => handleNavClick(`/categories/${path}`)}
+                      onClick={() => navigate(`/categories/${path}`)}
                       className="px-8 py-3 w-full text-left hover:bg-green-50 transition"
                     >
                       {label}
@@ -281,9 +279,9 @@ export default function Navbar() {
               )}
             </AnimatePresence>
 
-            {/* MOBILE DONATE */}
+            {/* DONATE */}
             <button
-              onClick={() => handleNavClick("/donate")}
+              onClick={() => navigate("/donate")}
               className="px-5 py-4 bg-green-600 text-white font-semibold text-center hover:bg-green-700 transition"
             >
               Donate
@@ -310,7 +308,7 @@ export default function Navbar() {
                   {suggestions.map((item, i) => (
                     <button
                       key={i}
-                      onClick={() => handleNavClick(item.page)}
+                      onClick={() => navigate(item.page)}
                       className="px-4 py-3 w-full text-left hover:bg-green-50 transition"
                     >
                       {item.keywords.join(", ")}
