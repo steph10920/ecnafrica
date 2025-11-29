@@ -15,7 +15,6 @@ export default function StrategicFocus() {
     {
       icon: <Heart className="text-green-600 w-10 h-10" />,
       title: "Child Protection and Education Alternatives",
-      teaser: "Empowering children through education and safe environments.",
       image: childImg,
       content: (
         <>
@@ -197,7 +196,6 @@ export default function StrategicFocus() {
     },
   ];
 
-  // Filter based on search query
   const filteredFocuses = focuses.filter((focus) =>
     focus.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -242,6 +240,10 @@ export default function StrategicFocus() {
                   {focus.icon}
                   <h3 className="text-2xl font-bold text-green-700">{focus.title}</h3>
                 </div>
+                {/* Opening teaser text */}
+                <p className="text-gray-600 mb-2">
+                  <strong>Discover how we make a lasting impact in this area.</strong>
+                </p>
                 <p className="text-gray-600 italic">Click to read more →</p>
               </div>
             </div>
