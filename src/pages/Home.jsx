@@ -20,6 +20,7 @@ import slide4 from "../assets/img1.jpg";
 import slide5 from "../assets/slide1.jpg";
 import greenclass from "../assets/trees4.jpg";
 import bluezones from "../assets/bluezones.jpg";
+import whoweareVideo from "../assets/weare_video.mp4";
 
 
 export default function Home() {
@@ -208,60 +209,63 @@ export default function Home() {
         </div>
       </header>
 
-      {/* MAIN CONTENT */}
-      <main className="flex-1">
-        <div className="max-w-7xl mx-auto px-6 py-16 space-y-12">
-          {/* About (concise, prominent) */}
-          <section
-            className="bg-white rounded-3xl shadow-lg p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
-            aria-labelledby="about-heading"
+    {/* MAIN CONTENT */}
+    <main className="flex-1">
+      <div className="max-w-7xl mx-auto px-6 py-16 space-y-12">
+
+        {/* About (concise, prominent) */}
+        <section
+          className="bg-white rounded-3xl shadow-lg p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+          aria-labelledby="about-heading"
+    >
+      <div className="space-y-4">
+        <h2 id="about-heading" className="text-2xl md:text-3xl font-extrabold text-green-800">
+          Who We Are
+        </h2>
+        <p className="text-gray-700 leading-relaxed">
+          Elimu Community Network (ECN) is an African-led organization founded in Kenya (2012),
+          working to expand quality, contextual and inclusive education that empowers learners,
+          teachers and communities. Our model blends practical learning, digital skills, and
+          community-led solutions to create lasting opportunity.
+        </p>
+
+        <blockquote className="border-l-4 border-green-200 pl-4 text-gray-600 italic">
+          “Education must be relevant, liberatory and rooted in community realities.”
+        </blockquote>
+
+        <div className="flex gap-3 mt-4">
+          <Link
+            to="/about"
+            className="inline-block bg-green-700 text-white px-5 py-2 rounded-full font-semibold shadow hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-200"
           >
-            <div className="space-y-4">
-              <h2 id="about-heading" className="text-2xl md:text-3xl font-extrabold text-green-800">
-                Who We Are
-              </h2>
-              <p className="text-gray-700 leading-relaxed">
-                Elimu Community Network (ECN) is an African-led organization founded in Kenya (2012),
-                working to expand quality, contextual and inclusive education that empowers learners,
-                teachers and communities. Our model blends practical learning, digital skills, and
-                community-led solutions to create lasting opportunity.
-              </p>
-
-              <blockquote className="border-l-4 border-green-200 pl-4 text-gray-600 italic">
-                “Education must be relevant, liberatory and rooted in community realities.”
-              </blockquote>
-
-              <div className="flex gap-3 mt-4">
-                <Link
-                  to="/about"
-                  className="inline-block bg-green-700 text-white px-5 py-2 rounded-full font-semibold shadow hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-200"
-                >
-                  Learn More
-                </Link>
-                <Link
-                  to="/contact"
-                  className="inline-block border border-green-700 text-green-700 px-5 py-2 rounded-full font-semibold hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-200"
-                >
-                  Get Involved
-                </Link>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <img
-                src={img1}
-                alt="Learners in a classroom"
-                className="w-full h-40 object-cover rounded-2xl shadow-sm"
-                loading="lazy"
-              />
-              <img
-                src={img2}
-                alt="Community school activity"
-                className="w-full h-40 object-cover rounded-2xl shadow-sm"
-                loading="lazy"
-              />
-            </div>
-          </section>
+            Learn More
+          </Link>
+          <Link
+            to="/contact"
+            className="inline-block border border-green-700 text-green-700 px-5 py-2 rounded-full font-semibold hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-200"
+          >
+            Get Involved
+          </Link>
+        </div>
+      </div>
+          {/* VIDEO WITH FADE + SCALE ANIMATION */}
+      <motion.div
+        className="w-full"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.1, ease: "easeOut" }}
+      >
+        <video
+          src={whoweareVideo}
+          className="w-full h-64 object-cover rounded-2xl shadow-sm"
+          controls
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+      </motion.div>
+    </section>
 {/* Programmes (NEW, MATCHING OFFICIAL PROGRAMS) */}
 <section aria-labelledby="programs-heading">
   <div className="text-center mb-8">
