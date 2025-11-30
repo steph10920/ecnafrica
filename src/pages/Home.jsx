@@ -83,6 +83,15 @@ export default function Home() {
     { label: "Schools Supported", value: 25 },
     { label: "Volunteers Engaged", value: 120 },
   ];
+      const [hoverPos, setHoverPos] = useState({ x: 0, y: 0 });
+
+    const handleMouseMove = (e) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      setHoverPos({ x, y });
+    };
+
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -248,23 +257,43 @@ export default function Home() {
           </Link>
         </div>
       </div>
-          {/* VIDEO WITH FADE + SCALE ANIMATION */}
-      <motion.div
-        className="w-full"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.1, ease: "easeOut" }}
-      >
-        <video
-          src={whoweareVideo}
-          className="w-full h-64 object-cover rounded-2xl shadow-sm"
-          controls
-          autoPlay
-          loop
-          muted
-          playsInline
-        />
-      </motion.div>
+         {/* ADVANCED 3D PARALLAX VIDEO */}
+<motion.div
+  className="w-full"
+  onMouseMove={handleMouseMove}
+  onMouseLeave={() => setHoverPos({ x: 0, y: 0 })}
+  initial={{ opacity: 0, scale: 0.9 }}
+  animate={{
+    opacity: 1,
+    scale: 1,
+    rotateX: hoverPos.y * -8,
+    rotateY: hoverPos.x * 8,
+    boxShadow: hoverPos.x !== 0 || hoverPos.y !== 0
+      ? "0 15px 40px rgba(0, 128, 0, 0.25)"
+      : "0 8px 20px rgba(0,0,0,0.15)"
+  }}
+  transition={{
+    duration: 1.1,
+    ease: "easeOut",
+    rotateX: { type: "spring", stiffness: 120, damping: 12 },
+    rotateY: { type: "spring", stiffness: 120, damping: 12 },
+    scale: { duration: 0.8, ease: "easeOut" }
+  }}
+  style={{
+    transformStyle: "preserve-3d",
+    borderRadius: "1rem",
+  }}
+>
+  <video
+    src={whoweareVideo}
+    className="w-full h-64 object-cover rounded-2xl"
+    autoPlay
+    loop
+    muted
+    playsInline
+  />
+</motion.div>
+
     </section>
 {/* Programmes (NEW, MATCHING OFFICIAL PROGRAMS) */}
 <section aria-labelledby="programs-heading">
