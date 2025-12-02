@@ -7,7 +7,7 @@ import { X } from "lucide-react";
 export default function Newsroom() {
   const [selectedNews, setSelectedNews] = useState(null);
   const [activeCategory, setActiveCategory] = useState("All");
-  const [dateOrder, setDateOrder] = useState("Newest"); // "Newest" or "Oldest"
+  const [dateOrder, setDateOrder] = useState("Newest");
 
   const newsItems = [
     {
@@ -49,11 +49,11 @@ export default function Newsroom() {
       : newsItems.filter((item) => item.category === activeCategory);
 
   // Sort by date
-  filteredNews.sort((a, b) => {
-    return dateOrder === "Newest"
+  filteredNews.sort((a, b) =>
+    dateOrder === "Newest"
       ? new Date(b.date) - new Date(a.date)
-      : new Date(a.date) - new Date(b.date);
-  });
+      : new Date(a.date) - new Date(b.date)
+  );
 
   const cardVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
   const modalVariants = { hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1 }, exit: { opacity: 0, scale: 0.95 } };
@@ -68,8 +68,8 @@ export default function Newsroom() {
         />
       </Helmet>
 
-      <main className="flex-grow py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="flex-grow py-20">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.h2
             className="text-3xl md:text-4xl font-extrabold text-green-700 text-center mb-4"
             initial={{ opacity: 0, y: -20 }}
@@ -78,20 +78,20 @@ export default function Newsroom() {
             Newsroom
           </motion.h2>
           <motion.p
-            className="text-center text-gray-600 max-w-2xl mx-auto mb-8"
+            className="text-center text-gray-600 max-w-2xl mx-auto mb-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
             Stay up to date with the latest news and announcements from ECN Africa.
           </motion.p>
 
-          {/* Categories */}
-          <div className="flex gap-3 overflow-x-auto no-scrollbar mb-6 py-2">
+          {/* Filters */}
+          <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3 mb-6">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`flex-shrink-0 px-4 py-2 rounded-full font-semibold transition whitespace-nowrap ${
+                className={`px-5 py-2 rounded-full font-semibold transition ${
                   activeCategory === cat
                     ? "bg-green-600 text-white shadow-lg"
                     : "bg-gray-200 text-gray-700 hover:bg-green-100"
@@ -100,37 +100,41 @@ export default function Newsroom() {
                 {cat}
               </button>
             ))}
+
+            {/* Date order filter */}
             <select
               value={dateOrder}
               onChange={(e) => setDateOrder(e.target.value)}
-              className="flex-shrink-0 px-4 py-2 rounded-full border text-gray-700"
+              className="px-4 py-2 rounded-full border text-gray-700 mt-3 sm:mt-0 sm:ml-2"
             >
               <option value="Newest">Newest First</option>
               <option value="Oldest">Oldest First</option>
             </select>
           </div>
 
-          {/* Horizontal News Feed */}
-          <div className="flex gap-4 overflow-x-auto no-scrollbar pb-4">
-            {filteredNews.map((item, index) => (
-              <motion.div
-                key={index}
-                className="flex-shrink-0 w-72 sm:w-64 bg-white shadow-md rounded-xl overflow-hidden hover:shadow-xl cursor-pointer"
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                onClick={() => setSelectedNews(item)}
-              >
-                <img src={item.image} alt={item.title} className="w-full h-40 object-cover" />
-                <div className="p-4">
-                  <div className="text-xs text-green-700 font-semibold mb-1">{item.category}</div>
-                  <h3 className="text-sm font-bold text-gray-800 mb-1">{item.title}</h3>
-                  <p className="text-xs text-gray-500 mb-2">{new Date(item.date).toLocaleDateString()}</p>
-                  <span className="text-green-700 font-semibold text-xs hover:underline">Read More →</span>
-                </div>
-              </motion.div>
-            ))}
+          {/* News Grid */}
+          <div className="overflow-x-auto sm:overflow-x-visible">
+            <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 snap-x snap-mandatory sm:snap-none">
+              {filteredNews.map((item, index) => (
+                <motion.div
+                  key={index}
+                  className="min-w-[250px] sm:min-w-0 bg-white shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition transform hover:-translate-y-1 cursor-pointer snap-start"
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  onClick={() => setSelectedNews(item)}
+                >
+                  <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
+                  <div className="p-4 sm:p-6">
+                    <div className="text-sm text-green-700 font-semibold mb-1">{item.category}</div>
+                    <h3 className="text-lg font-bold text-gray-800 mb-2">{item.title}</h3>
+                    <p className="text-sm text-gray-500 mb-4">{item.date}</p>
+                    <span className="text-green-700 font-semibold hover:underline">Read More →</span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </main>
@@ -156,7 +160,7 @@ export default function Newsroom() {
               <img src={selectedNews.image} alt={selectedNews.title} className="w-full h-64 object-cover" />
               <div className="p-6">
                 <h3 className="text-2xl font-bold text-gray-800 mb-4">{selectedNews.title}</h3>
-                <p className="text-sm text-gray-500 mb-2">{new Date(selectedNews.date).toLocaleDateString()}</p>
+                <p className="text-sm text-gray-500 mb-2">{selectedNews.date}</p>
                 <p className="text-gray-700 whitespace-pre-line">{selectedNews.content}</p>
               </div>
               <button
