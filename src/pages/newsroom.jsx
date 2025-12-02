@@ -68,8 +68,8 @@ export default function Newsroom() {
         />
       </Helmet>
 
-      <main className="flex-grow py-20">
-        <div className="max-w-7xl mx-auto px-6">
+      <main className="flex-grow py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             className="text-3xl md:text-4xl font-extrabold text-green-700 text-center mb-4"
             initial={{ opacity: 0, y: -20 }}
@@ -78,15 +78,15 @@ export default function Newsroom() {
             Newsroom
           </motion.h2>
           <motion.p
-            className="text-center text-gray-600 max-w-2xl mx-auto mb-12"
+            className="text-center text-gray-600 max-w-2xl mx-auto mb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
             Stay up to date with the latest news and announcements from ECN Africa.
           </motion.p>
 
-          {/* Filters */}
-          <div className="flex items-center gap-3 mb-6 overflow-x-auto py-2 px-1 no-scrollbar">
+          {/* Categories */}
+          <div className="flex gap-3 overflow-x-auto no-scrollbar mb-6 py-2">
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -100,36 +100,34 @@ export default function Newsroom() {
                 {cat}
               </button>
             ))}
-
-            {/* Date order filter */}
             <select
               value={dateOrder}
               onChange={(e) => setDateOrder(e.target.value)}
-              className="flex-shrink-0 px-4 py-2 rounded-full border text-gray-700 ml-2"
+              className="flex-shrink-0 px-4 py-2 rounded-full border text-gray-700"
             >
               <option value="Newest">Newest First</option>
               <option value="Oldest">Oldest First</option>
             </select>
           </div>
 
-          {/* News Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Horizontal News Feed */}
+          <div className="flex gap-4 overflow-x-auto no-scrollbar pb-4">
             {filteredNews.map((item, index) => (
               <motion.div
                 key={index}
-                className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-xl transition transform hover:-translate-y-1 cursor-pointer"
+                className="flex-shrink-0 w-72 sm:w-64 bg-white shadow-md rounded-xl overflow-hidden hover:shadow-xl cursor-pointer"
                 variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 onClick={() => setSelectedNews(item)}
               >
-                <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
-                <div className="p-6">
-                  <div className="text-sm text-green-700 font-semibold mb-2">{item.category}</div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">{item.title}</h3>
-                  <p className="text-sm text-gray-500 mb-4">{new Date(item.date).toLocaleDateString()}</p>
-                  <span className="text-green-700 font-semibold hover:underline">Read More →</span>
+                <img src={item.image} alt={item.title} className="w-full h-40 object-cover" />
+                <div className="p-4">
+                  <div className="text-xs text-green-700 font-semibold mb-1">{item.category}</div>
+                  <h3 className="text-sm font-bold text-gray-800 mb-1">{item.title}</h3>
+                  <p className="text-xs text-gray-500 mb-2">{new Date(item.date).toLocaleDateString()}</p>
+                  <span className="text-green-700 font-semibold text-xs hover:underline">Read More →</span>
                 </div>
               </motion.div>
             ))}
