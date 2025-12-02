@@ -296,113 +296,111 @@ export default function Home() {
 
     </section>
     {/* Programmes (NEW, MATCHING OFFICIAL PROGRAMS) */}
-    <section aria-labelledby="programs-heading" className="py-12">
-      <div className="text-center mb-10">
-        <h3
-          id="programs-heading"
-          className="text-2xl md:text-3xl font-bold text-green-800"
-        >
-          Our Programmes
-        </h3>
-        <p className="max-w-2xl mx-auto text-gray-600 mt-3">
-          ECN Education Africa delivers impactful programmes designed to strengthen
-          learning, empower youth, and build resilient community-driven education
-          systems across Africa.
-        </p>
-      </div>
+<section aria-labelledby="programs-heading" className="py-12">
+  <div className="text-center mb-10">
+    <h3
+      id="programs-heading"
+      className="text-2xl md:text-3xl font-bold text-green-800"
+    >
+      Our Programmes
+    </h3>
+    <p className="max-w-2xl mx-auto text-gray-600 mt-3">
+      ECN Education Africa delivers impactful programmes designed to strengthen
+      learning, empower youth, and build resilient community-driven education
+      systems across Africa.
+    </p>
+  </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-        {/* Green Classrooms */}
-        <Link
-          to="/programs/green-classrooms"
-          className="block rounded-2xl bg-white border p-6 shadow-sm hover:shadow-lg transition"
-        >
-          <img
-            src={greenclass}
-            alt="Green Classrooms Programme"
-            className="w-full h-36 object-cover rounded-lg mb-4"
-            loading="lazy"
-          />
-          <h4 className="font-semibold text-lg text-green-800">Green Classrooms</h4>
-          <p className="mt-2 text-gray-600 text-sm">
-            Education for a greener, sustainable future — community-driven learning
-            for climate resilience.
-          </p>
-          <span className="mt-4 inline-block text-green-700 font-semibold">
-            Learn more →
-          </span>
-        </Link>
+    {/* Green Classrooms */}
+    <Link
+      to="/programs/green-classrooms"
+      className="ripple block rounded-2xl bg-white border p-6 shadow-sm hover:shadow-lg active:scale-[0.98] transition focus:outline-none focus:ring-4 focus:ring-green-300"
+    >
+      <img
+        src={greenclass}
+        alt="Green Classrooms Programme"
+        className="w-full h-36 object-cover rounded-lg mb-4"
+        loading="lazy"
+      />
+      <h4 className="font-semibold text-lg text-green-800">Green Classrooms</h4>
+      <p className="mt-2 text-gray-600 text-sm">
+        Education for a greener, sustainable future — community-driven learning
+        for climate resilience.
+      </p>
+      <span className="mt-4 inline-block text-green-700 font-semibold">
+        Learn more →
+      </span>
+    </Link>
 
-        {/* Nafasi Learning Programme */}
-        <Link
-          to="/programs/nafasi-learning"
-          className="block rounded-2xl bg-white border p-6 shadow-sm hover:shadow-lg transition"
-        >
-          <img
-            src={childProtectionImg}
-            alt="Nafasi Learning Programme"
-            className="w-full h-36 object-cover rounded-lg mb-4"
-            loading="lazy"
-          />
-          <h4 className="font-semibold text-lg text-green-800">
-            Nafasi Learning Programme
-          </h4>
-          <p className="mt-2 text-gray-600 text-sm">
-            Creating safe learning spaces, mentoring, digital skills and
-            youth-driven innovation.
-          </p>
-          <span className="mt-4 inline-block text-green-700 font-semibold">
-            Learn more →
-          </span>
-        </Link>
+    {/* Nafasi Learning Programme */}
+    <Link
+      to="/programs/nafasiprogramme"
+      className="ripple block rounded-2xl bg-white border p-6 shadow-sm hover:shadow-lg active:scale-[0.98] transition focus:outline-none focus:ring-4 focus:ring-green-300"
+    >
+      <img
+        src={childProtectionImg}
+        alt="Nafasi Learning Programme"
+        className="w-full h-36 object-cover rounded-lg mb-4"
+        loading="lazy"
+      />
+      <h4 className="font-semibold text-lg text-green-800">
+        Nafasi Learning Programme
+      </h4>
+      <p className="mt-2 text-gray-600 text-sm">
+        Creating safe learning spaces, mentoring, digital skills and
+        youth-driven innovation.
+      </p>
+      <span className="mt-4 inline-block text-green-700 font-semibold">
+        Learn more →
+      </span>
+    </Link>
 
-        {/* IMARA Women */}
-        <Link
-          to="/programs/imara-women"
-          className="block rounded-2xl bg-white border p-6 shadow-sm hover:shadow-lg transition"
-        >
-          <img
-            src={slide3}
-            alt="IMARA Women Programme"
-            className="w-full h-36 object-cover rounded-lg mb-4"
-            loading="lazy"
-          />
-          <h4 className="font-semibold text-lg text-green-800">IMARA Women</h4>
-          <p className="mt-2 text-gray-600 text-sm">
-            Strengthening women's leadership, economic agency, and innovation
-            through knowledge.
-          </p>
-          <span className="mt-4 inline-block text-green-700 font-semibold">
-            Learn more →
-          </span>
-        </Link>
+    {/* IMARA Women */}
+    <Link
+      to="/programs/imara-women"
+      className="ripple block rounded-2xl bg-white border p-6 shadow-sm hover:shadow-lg active:scale-[0.98] transition focus:outline-none focus:ring-4 focus:ring-green-300"
+    >
+      <img
+        src={slide3}
+        alt="IMARA Women Programme"
+        className="w-full h-36 object-cover rounded-lg mb-4"
+        loading="lazy"
+      />
+      <h4 className="font-semibold text-lg text-green-800">IMARA Women</h4>
+      <p className="mt-2 text-gray-600 text-sm">
+        Strengthening women's leadership, economic agency, and innovation
+        through knowledge.
+      </p>
+      <span className="mt-4 inline-block text-green-700 font-semibold">
+        Learn more →
+      </span>
+    </Link>
 
-        {/* Blue Horizons */}
-        <Link
-          to="/programs/blue-horizons"
-          className="block rounded-2xl bg-white border p-6 shadow-sm hover:shadow-lg transition"
-        >
-          <img
-            src={bluezones}
-            alt="Blue Horizons Programme"
-            className="w-full h-36 object-cover rounded-lg mb-4"
-            loading="lazy"
-          />
-          <h4 className="font-semibold text-lg text-green-800">Blue Horizons</h4>
-          <p className="mt-2 text-gray-600 text-sm">
-            Youth-led sustainable fishing, marine conservation and innovation for
-            coastal communities.
-          </p>
-          <span className="mt-4 inline-block text-green-700 font-semibold">
-            Learn more →
-          </span>
-        </Link>
+    {/* Blue Horizons */}
+    <Link
+      to="/programs/blue-horizons"
+      className="ripple block rounded-2xl bg-white border p-6 shadow-sm hover:shadow-lg active:scale-[0.98] transition focus:outline-none focus:ring-4 focus:ring-green-300"
+    >
+      <img
+        src={bluezones}
+        alt="Blue Horizons Programme"
+        className="w-full h-36 object-cover rounded-lg mb-4"
+        loading="lazy"
+      />
+      <h4 className="font-semibold text-lg text-green-800">Blue Horizons</h4>
+      <p className="mt-2 text-gray-600 text-sm">
+        Youth-led sustainable fishing, marine conservation and innovation for
+        coastal communities.
+      </p>
+      <span className="mt-4 inline-block text-green-700 font-semibold">
+        Learn more →
+      </span>
+    </Link>
 
-      </div>
-    </section>
-
-
+  </div>
+</section>
 
           {/* Strategic Focus (component preserved) */}
           <StrategicFocus />
