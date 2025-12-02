@@ -86,12 +86,12 @@ export default function Newsroom() {
           </motion.p>
 
           {/* Filters */}
-          <div className="flex flex-wrap justify-center gap-3 mb-6">
+          <div className="flex items-center gap-3 mb-6 overflow-x-auto py-2 px-1 no-scrollbar">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2 rounded-full font-semibold transition ${
+                className={`flex-shrink-0 px-4 py-2 rounded-full font-semibold transition whitespace-nowrap ${
                   activeCategory === cat
                     ? "bg-green-600 text-white shadow-lg"
                     : "bg-gray-200 text-gray-700 hover:bg-green-100"
@@ -105,7 +105,7 @@ export default function Newsroom() {
             <select
               value={dateOrder}
               onChange={(e) => setDateOrder(e.target.value)}
-              className="px-4 py-2 rounded-full border text-gray-700 ml-2"
+              className="flex-shrink-0 px-4 py-2 rounded-full border text-gray-700 ml-2"
             >
               <option value="Newest">Newest First</option>
               <option value="Oldest">Oldest First</option>
@@ -113,11 +113,11 @@ export default function Newsroom() {
           </div>
 
           {/* News Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredNews.map((item, index) => (
               <motion.div
                 key={index}
-                className="bg-white shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition transform hover:-translate-y-1 cursor-pointer"
+                className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-xl transition transform hover:-translate-y-1 cursor-pointer"
                 variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -126,9 +126,9 @@ export default function Newsroom() {
               >
                 <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
                 <div className="p-6">
-                  <div className="text-sm text-green-700 font-semibold mb-1">{item.category}</div>
+                  <div className="text-sm text-green-700 font-semibold mb-2">{item.category}</div>
                   <h3 className="text-lg font-bold text-gray-800 mb-2">{item.title}</h3>
-                  <p className="text-sm text-gray-500 mb-4">{item.date}</p>
+                  <p className="text-sm text-gray-500 mb-4">{new Date(item.date).toLocaleDateString()}</p>
                   <span className="text-green-700 font-semibold hover:underline">Read More →</span>
                 </div>
               </motion.div>
@@ -158,7 +158,7 @@ export default function Newsroom() {
               <img src={selectedNews.image} alt={selectedNews.title} className="w-full h-64 object-cover" />
               <div className="p-6">
                 <h3 className="text-2xl font-bold text-gray-800 mb-4">{selectedNews.title}</h3>
-                <p className="text-sm text-gray-500 mb-2">{selectedNews.date}</p>
+                <p className="text-sm text-gray-500 mb-2">{new Date(selectedNews.date).toLocaleDateString()}</p>
                 <p className="text-gray-700 whitespace-pre-line">{selectedNews.content}</p>
               </div>
               <button
