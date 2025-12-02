@@ -7,68 +7,56 @@ import { X } from "lucide-react";
 export default function Newsroom() {
   const [selectedNews, setSelectedNews] = useState(null);
   const [activeCategory, setActiveCategory] = useState("All");
+  const [dateOrder, setDateOrder] = useState("Newest"); // "Newest" or "Oldest"
 
   const newsItems = [
     {
       title: "ECN Partners with Schools to Expand Green Classrooms Initiative",
       image: "/images/news/green-classroom.jpg",
-      date: "Feb 2025",
+      date: "2024-11-05",
       category: "Education",
-      content: `ECN has partnered with multiple schools to expand the Green Classrooms Initiative, promoting sustainable education and environmental awareness...`
+      content: `ECN has partnered with multiple schools to expand the Green Classrooms Initiative, promoting sustainable education and environmental awareness...`,
     },
     {
       title: "IMARA Women Train 200 Young Mothers on Digital Business Skills",
       image: "/images/news/imara-training.jpg",
-      date: "Jan 2025",
+      date: "2025-01-15",
       category: "Women Empowerment",
-      content: `IMARA Women conducted a series of training sessions for young mothers to improve digital literacy, business skills, and entrepreneurship opportunities...`
+      content: `IMARA Women conducted a series of training sessions for young mothers to improve digital literacy, business skills, and entrepreneurship opportunities...`,
     },
     {
       title: "Nafasi Learning Programme Launches Community Innovation Labs",
       image: "/images/news/nafasi-labs.jpg",
-      date: "Dec 2024",
+      date: "2024-12-10",
       category: "Youth",
-      content: `The Nafasi Learning Programme has launched innovation labs in local communities to encourage youth creativity, technology skills, and collaborative projects...`
+      content: `The Nafasi Learning Programme has launched innovation labs in local communities to encourage youth creativity, technology skills, and collaborative projects...`,
     },
     {
       title: "ECN Africa Hosts Annual Environmental Awareness Summit",
       image: "/images/news/environment-summit.jpg",
-      date: "Nov 2024",
+      date: "2024-11-05",
       category: "Environment",
-      content: `ECN Africa hosted its annual Environmental Awareness Summit, bringing together policymakers, educators, students, and environmental advocates...`
-    },
-    {
-      title: "Digital Literacy Campaign Reaches 1,000 Students",
-      image: "/images/news/digital-literacy.jpg",
-      date: "Oct 2024",
-      category: "Education",
-      content: `Through a collaborative effort with local schools, ECN Africa's Digital Literacy Campaign successfully reached 1,000 students...`
-    },
-    {
-      title: "Youth Innovation Challenge Awards 50 Young Innovators",
-      image: "/images/news/youth-challenge.jpg",
-      date: "Sep 2024",
-      category: "Youth",
-      content: `The Youth Innovation Challenge celebrated 50 young innovators who presented solutions in areas such as renewable energy, sustainable farming, and community health...`
+      content: `ECN Africa hosted its annual Environmental Awareness Summit, bringing together policymakers, educators, students, and environmental advocates...`,
     },
   ];
 
   const categories = ["All", ...new Set(newsItems.map((item) => item.category))];
 
-  const filteredNews = activeCategory === "All"
-    ? newsItems
-    : newsItems.filter((item) => item.category === activeCategory);
+  // Filter by category
+  let filteredNews =
+    activeCategory === "All"
+      ? [...newsItems]
+      : newsItems.filter((item) => item.category === activeCategory);
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
+  // Sort by date
+  filteredNews.sort((a, b) => {
+    return dateOrder === "Newest"
+      ? new Date(b.date) - new Date(a.date)
+      : new Date(a.date) - new Date(b.date);
+  });
 
-  const modalVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: { opacity: 1, scale: 1 },
-    exit: { opacity: 0, scale: 0.95 },
-  };
+  const cardVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
+  const modalVariants = { hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1 }, exit: { opacity: 0, scale: 0.95 } };
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
@@ -89,7 +77,6 @@ export default function Newsroom() {
           >
             Newsroom
           </motion.h2>
-
           <motion.p
             className="text-center text-gray-600 max-w-2xl mx-auto mb-12"
             initial={{ opacity: 0 }}
@@ -98,8 +85,8 @@ export default function Newsroom() {
             Stay up to date with the latest news and announcements from ECN Africa.
           </motion.p>
 
-          {/* Category Filters */}
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
+          {/* Filters */}
+          <div className="flex flex-wrap justify-center gap-3 mb-6">
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -113,6 +100,16 @@ export default function Newsroom() {
                 {cat}
               </button>
             ))}
+
+            {/* Date order filter */}
+            <select
+              value={dateOrder}
+              onChange={(e) => setDateOrder(e.target.value)}
+              className="px-4 py-2 rounded-full border text-gray-700 ml-2"
+            >
+              <option value="Newest">Newest First</option>
+              <option value="Oldest">Oldest First</option>
+            </select>
           </div>
 
           {/* News Grid */}
@@ -127,22 +124,12 @@ export default function Newsroom() {
                 viewport={{ once: true }}
                 onClick={() => setSelectedNews(item)}
               >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-48 object-cover"
-                />
+                <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
                 <div className="p-6">
-                  <div className="text-sm text-green-700 font-semibold mb-1">
-                    {item.category}
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">
-                    {item.title}
-                  </h3>
+                  <div className="text-sm text-green-700 font-semibold mb-1">{item.category}</div>
+                  <h3 className="text-lg font-bold text-gray-800 mb-2">{item.title}</h3>
                   <p className="text-sm text-gray-500 mb-4">{item.date}</p>
-                  <span className="text-green-700 font-semibold hover:underline">
-                    Read More →
-                  </span>
+                  <span className="text-green-700 font-semibold hover:underline">Read More →</span>
                 </div>
               </motion.div>
             ))}
@@ -168,15 +155,9 @@ export default function Newsroom() {
               exit="exit"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
-                src={selectedNews.image}
-                alt={selectedNews.title}
-                className="w-full h-64 object-cover"
-              />
+              <img src={selectedNews.image} alt={selectedNews.title} className="w-full h-64 object-cover" />
               <div className="p-6">
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                  {selectedNews.title}
-                </h3>
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">{selectedNews.title}</h3>
                 <p className="text-sm text-gray-500 mb-2">{selectedNews.date}</p>
                 <p className="text-gray-700 whitespace-pre-line">{selectedNews.content}</p>
               </div>
