@@ -230,7 +230,7 @@ export default function Careers() {
           </p>
           <br/>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="mailto:education@ecnafrica.org?subject=Volunteer" className="bg-white text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-50 transition">Volunteer Today</a>
+            <a href="mailto:education@ecnafrica.org?subject=Volunteer – [Position Name] – [Your Full Name]" className="bg-white text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-50 transition">Volunteer Today</a>
             <Link to="/donate" className="bg-green-900 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-950 transition">Support With a Donation</Link>
           </div>
         </div>
