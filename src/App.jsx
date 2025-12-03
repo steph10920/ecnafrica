@@ -14,6 +14,7 @@ import GreenClassrooms from "./pages/GreenClassrooms";
 import NafasiProgramme from "./pages/NafasiProgramme";
 import ImaraWomen from "./pages/imarawomen";
 import BlueHorizons from "./pages/BlueHorizons";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 // 🔹 Category Pages
 import Environment from "./pages/categories/Environment";
@@ -33,6 +34,9 @@ import { jobs } from "./pages/Jobs";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
+// 🔹 Cookie Consent
+import CookieConsent from "./components/CookieConsent";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -50,9 +54,10 @@ export default function App() {
           {/* 🔹 Program Subpages */}
           <Route path="/programs/green-classrooms" element={<GreenClassrooms />} />
           <Route path="/programs/nafasiprogramme" element={<NafasiProgramme />} />
-
           <Route path="/programs/imara-women" element={<ImaraWomen />} />
           <Route path="/programs/blue-horizons" element={<BlueHorizons />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
 
           {/* 🔹 Category Pages */}
           <Route path="/categories/environment" element={<Environment />} />
@@ -63,6 +68,7 @@ export default function App() {
           {/* 🔹 Blog Pages */}
           <Route path="/Stories" element={<Stories />} />
           <Route path="/blog/:id" element={<BlogPost />} />
+
           {/* 🔹 Newsroom */}
           <Route path="/newsroom" element={<Newsroom />} />
 
@@ -73,6 +79,9 @@ export default function App() {
 
       {/* 🔹 Vercel Analytics */}
       <Analytics />
+
+      {/* 🔹 Cookie Consent Banner */}
+      <CookieConsent />
 
       {/* 🔹 Speed Insights (development only) */}
       {process.env.NODE_ENV === "development" && (
