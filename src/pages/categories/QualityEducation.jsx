@@ -42,7 +42,7 @@ export default function QualityEducation() {
           <p className="mt-4 font-semibold text-yellow-100">Inclusive. Transformative. Future-ready.</p>
           <div className="mt-8 flex justify-center gap-4">
             <a
-              href="mailto:education@ecnafrica.org?subject=Volunteer|"
+              href="mailto:education@ecnafrica.org?subject=Volunteer – [Position Name] – [Your Full Name]"
               className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-blue-50 transition"
             >
               Volunteer Today

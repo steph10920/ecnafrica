@@ -484,7 +484,7 @@ export default function Home() {
               </div>
                <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="mailto:education@ecnafrica.org?subject=Volunteer|"
+              href="mailto:education@ecnafrica.org?subject=Volunteer – [Position Name] – [Your Full Name]|"
               className="bg-white text-green-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-green-50 transition"
             >
               Volunteer Today
