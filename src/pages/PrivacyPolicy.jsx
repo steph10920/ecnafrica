@@ -120,8 +120,8 @@ export default function PrivacyPolicy() {
 
         <p className="text-gray-700 mt-3">
           Contact us anytime at:{" "}
-          <a href="mailto:info@ecnafrica.org" className="text-green-600 underline">
-            info@ecnafrica.org
+          <a href="mailto:education@ecnafrica.org" className="text-green-600 underline">
+            education@ecnafrica.org
           </a>
         </p>
 
@@ -158,7 +158,7 @@ export default function PrivacyPolicy() {
           For questions, requests, or complaints regarding your data, please contact:
         </p>
         <p className="text-gray-700 font-semibold mt-1">
-          📧 Email: <a href="mailto:info@ecnafrica.org" className="underline text-green-600">info@ecnafrica.org</a>
+          📧 Email: <a href="mailto:education@ecnafrica.org" className="underline text-green-600">education@ecnafrica.org</a>
         </p>
         <p className="text-gray-700 mt-1">
           🌍 Website: https://ecnafrica.org
