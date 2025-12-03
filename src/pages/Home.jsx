@@ -473,13 +473,13 @@ export default function Home() {
           >
             Impact Report 2025
           </a>
-          <a
+          {/*<a
             href="/downloads/Impact_Report_2024.pdf"
             download
             className="block px-6 py-3 text-gray-800 font-medium hover:bg-green-50 hover:text-green-700 transition-all duration-200"
           >
             Impact Report 2024
-          </a>
+          </a>*/}
           {/* Add more reports here */}
         </div>
       )}
