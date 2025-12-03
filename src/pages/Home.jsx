@@ -91,6 +91,8 @@ export default function Home() {
       const y = (e.clientY - rect.top) / rect.height - 0.5;
       setHoverPos({ x, y });
     };
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
 
 
   return (
@@ -405,41 +407,89 @@ export default function Home() {
           {/* Strategic Focus (component preserved) */}
           <StrategicFocus />
 
-          {/* Impact counters (prominent, accessible) */}
-          <section
-            className="rounded-3xl overflow-hidden"
-            aria-labelledby="impact-heading"
-          >
-            <div className="bg-gradient-to-br from-emerald-700 via-green-700 to-emerald-800 text-white py-12 px-6">
-              <div className="max-w-6xl mx-auto text-center space-y-4">
-                <h3 id="impact-heading" className="text-2xl md:text-3xl font-extrabold">
-                  Our Impact
-                </h3>
-                <p className="max-w-2xl mx-auto text-gray-100/90">
-                  Numbers below represent learners, teachers and communities whose lives have been
-                  touched by ECN programmes. These are real people with real progress.
-                </p>
+{/* Impact counters (prominent, accessible) */}
+{/* Impact counters (prominent, accessible) */}
+<section
+  className="rounded-3xl overflow-visible" // Changed from overflow-hidden to visible
+  aria-labelledby="impact-heading"
+>
+  <div className="bg-gradient-to-br from-emerald-700 via-green-700 to-emerald-800 text-white py-12 px-6 relative">
+    <div className="max-w-6xl mx-auto text-center space-y-4">
+      <h3 id="impact-heading" className="text-2xl md:text-3xl font-extrabold">
+        Our Impact
+      </h3>
+      <p className="max-w-2xl mx-auto text-gray-100/90">
+        Numbers below represent learners, teachers, and communities whose lives have been
+        touched by ECN programmes. These are real people with real progress.
+      </p>
 
-                <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
-                  {impactStats.map((s, i) => (
-                    <div
-                      key={i}
-                      className="bg-white/10 rounded-xl p-6 backdrop-blur-sm border border-white/10"
-                      role="group"
-                      aria-label={`${s.label}: ${s.value}`}
-                    >
-                      <div className="text-3xl md:text-4xl font-extrabold">
-                        <CountUp end={s.value} duration={2.5} separator="," />+
-                      </div>
-                      <div className="mt-2 text-sm md:text-base text-gray-100">
-                        {s.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+      <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
+        {impactStats.map((s, i) => (
+          <div
+            key={i}
+            className="bg-white/10 rounded-xl p-6 backdrop-blur-sm border border-white/10"
+            role="group"
+            aria-label={`${s.label}: ${s.value}`}
+          >
+            <div className="text-3xl md:text-4xl font-extrabold">
+              <CountUp end={s.value} duration={2.5} separator="," />+
             </div>
-          </section>
+            <div className="mt-2 text-sm md:text-base text-gray-100">
+              {s.label}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Downloadable Impact Reports Dropdown */}
+        <div className="mt-8 flex justify-center relative z-50">
+      <button
+        onClick={() => setDropdownOpen(!dropdownOpen)}
+        className="inline-flex items-center gap-2 rounded-2xl bg-green-700 text-white px-6 py-3 font-semibold shadow-lg hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-300 transition-all duration-200"
+      >
+        Download Impact Report
+        <motion.svg
+          className="h-5 w-5"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          animate={{ rotate: dropdownOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <path
+            fillRule="evenodd"
+            d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01.02-1.06z"
+            clipRule="evenodd"
+          />
+        </motion.svg>
+      </button>
+
+      {dropdownOpen && (
+        <div className="absolute top-full mt-2 w-64 bg-white border border-gray-200 rounded-2xl shadow-2xl overflow-hidden ring-1 ring-black ring-opacity-5">
+          <a
+            href="/downloads/Impact_Report_2025.pdf"
+            download
+            className="block px-6 py-3 text-gray-800 font-medium hover:bg-green-50 hover:text-green-700 transition-all duration-200"
+          >
+            Impact Report 2025
+          </a>
+          <a
+            href="/downloads/Impact_Report_2024.pdf"
+            download
+            className="block px-6 py-3 text-gray-800 font-medium hover:bg-green-50 hover:text-green-700 transition-all duration-200"
+          >
+            Impact Report 2024
+          </a>
+          {/* Add more reports here */}
+        </div>
+      )}
+    </div>
+
+    </div>
+  </div>
+</section>
+
+
 
           {/* Story / Testimonial */}
           <section className="bg-white rounded-3xl shadow p-8 md:p-12">

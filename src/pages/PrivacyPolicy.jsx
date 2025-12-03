@@ -1,14 +1,16 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Helmet } from "react-helmet";
+
+const Footer = lazy(() => import("../components/Footer"));
 
 export default function PrivacyPolicy() {
   return (
-    <div className="bg-white py-20 px-6">
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <Helmet>
         <title>Privacy Policy | ECN Africa</title>
       </Helmet>
 
-      <div className="max-w-4xl mx-auto">
+      <main className="flex-1 max-w-6xl mx-auto px-6 py-12">
         <h1 className="text-4xl md:text-5xl font-extrabold text-green-700 mb-6">
           Privacy Policy
         </h1>
@@ -27,13 +29,9 @@ export default function PrivacyPolicy() {
         </p>
 
         {/* SECTION 2 */}
-        <h2 className="text-2xl font-bold text-green-700 mt-8">
-          2. Information We Collect
-        </h2>
+        <h2 className="text-2xl font-bold text-green-700 mt-8">2. Information We Collect</h2>
 
-        <h3 className="text-xl font-semibold text-green-600 mt-4">
-          2.1 Personal Information You Provide
-        </h3>
+        <h3 className="text-xl font-semibold text-green-600 mt-4">2.1 Personal Information You Provide</h3>
         <p className="text-gray-700 mt-2">
           When contacting us, subscribing, applying for programs, or donating, you may
           provide details such as:
@@ -46,9 +44,7 @@ export default function PrivacyPolicy() {
           <li>Any additional voluntary information you submit</li>
         </ul>
 
-        <h3 className="text-xl font-semibold text-green-600 mt-5">
-          2.2 Automatically Collected Information (Cookies & Analytics)
-        </h3>
+        <h3 className="text-xl font-semibold text-green-600 mt-5">2.2 Automatically Collected Information (Cookies & Analytics)</h3>
         <p className="text-gray-700 mt-2">
           We collect anonymous usage data to improve our website experience, such as:
         </p>
@@ -60,12 +56,7 @@ export default function PrivacyPolicy() {
         </ul>
 
         {/* SECTION 3 */}
-        <h2 className="text-2xl font-bold text-green-700 mt-8">
-          3. How We Use Your Information
-        </h2>
-        <p className="text-gray-700 mt-3">
-          We use your information to:
-        </p>
+        <h2 className="text-2xl font-bold text-green-700 mt-8">3. How We Use Your Information</h2>
         <ul className="list-disc pl-6 text-gray-700 mt-2 space-y-1">
           <li>Respond to messages and inquiries</li>
           <li>Improve website functionality</li>
@@ -75,18 +66,14 @@ export default function PrivacyPolicy() {
         </ul>
 
         {/* SECTION 4 */}
-        <h2 className="text-2xl font-bold text-green-700 mt-8">
-          4. Legal Basis for Processing
-        </h2>
+        <h2 className="text-2xl font-bold text-green-700 mt-8">4. Legal Basis for Processing</h2>
         <p className="text-gray-700 mt-3">
           We process data based on consent, legitimate interest, or compliance with
           Kenya’s Data Protection Act (KDPA).
         </p>
 
         {/* SECTION 5 */}
-        <h2 className="text-2xl font-bold text-green-700 mt-8">
-          5. Sharing Your Information
-        </h2>
+        <h2 className="text-2xl font-bold text-green-700 mt-8">5. Sharing Your Information</h2>
         <p className="text-gray-700 mt-3">
           We do <strong>not</strong> sell or trade personal data. Information may only be
           shared with:
@@ -98,11 +85,9 @@ export default function PrivacyPolicy() {
         </ul>
 
         {/* SECTION 6 */}
-        <h2 className="text-2xl font-bold text-green-700 mt-8">
-          6. Data Security
-        </h2>
+        <h2 className="text-2xl font-bold text-green-700 mt-8">6. Data Security</h2>
         <p className="text-gray-700 mt-3">
-          We use secure servers, encryption (HTTPS), limited staff access, and follow
+          We use secure servers, HTTPS encryption, limited staff access, and follow
           strict data protection guidelines to keep your information safe.
         </p>
 
@@ -117,7 +102,6 @@ export default function PrivacyPolicy() {
           <li>Withdrawal of consent</li>
           <li>Restriction of processing</li>
         </ul>
-
         <p className="text-gray-700 mt-3">
           Contact us anytime at:{" "}
           <a href="mailto:education@ecnafrica.org" className="text-green-600 underline">
@@ -133,41 +117,43 @@ export default function PrivacyPolicy() {
         </p>
 
         {/* SECTION 9 */}
-        <h2 className="text-2xl font-bold text-green-700 mt-8">
-          9. External Links
-        </h2>
+        <h2 className="text-2xl font-bold text-green-700 mt-8">9. External Links</h2>
         <p className="text-gray-700 mt-3">
           Our website may contain links to external websites. ECN is not responsible for
           their privacy practices or content.
         </p>
 
         {/* SECTION 10 */}
-        <h2 className="text-2xl font-bold text-green-700 mt-8">
-          10. Updates to This Policy
-        </h2>
+        <h2 className="text-2xl font-bold text-green-700 mt-8">10. Updates to This Policy</h2>
         <p className="text-gray-700 mt-3">
           We may update this Privacy Policy periodically. The updated version will always
           be posted on this page.
         </p>
 
         {/* SECTION 11 */}
-        <h2 className="text-2xl font-bold text-green-700 mt-8">
-          11. Contact Us
-        </h2>
+        <h2 className="text-2xl font-bold text-green-700 mt-8">11. Contact Us</h2>
         <p className="text-gray-700 mt-3">
           For questions, requests, or complaints regarding your data, please contact:
         </p>
         <p className="text-gray-700 font-semibold mt-1">
-          📧 Email: <a href="mailto:education@ecnafrica.org" className="underline text-green-600">education@ecnafrica.org</a>
+          📧 Email:{" "}
+          <a href="mailto:education@ecnafrica.org" className="underline text-green-600">
+            education@ecnafrica.org
+          </a>
         </p>
         <p className="text-gray-700 mt-1">
-          🌍 Website: https://ecnafrica.org
+          🌍 Website: <a href="https://ecnafrica.org" className="underline text-green-600">https://ecnafrica.org</a>
         </p>
 
         <p className="text-gray-700 mt-8 italic">
           Thank you for trusting ECN Education Africa.
         </p>
-      </div>
+      </main>
+
+      {/* FOOTER */}
+      <Suspense fallback={<div className="text-center py-4 text-gray-500">Loading footer...</div>}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }
