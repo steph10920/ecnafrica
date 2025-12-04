@@ -288,31 +288,41 @@ export default function StrategicFocus() {
 
       {/* Modal */}
       {selectedFocus && (
+      <div
+        className="fixed inset-0 bg-black/50 flex justify-center items-center z-50 px-4"
+        onClick={() => setSelectedFocus(null)}
+      >
         <div
-          className="fixed inset-0 bg-black/50 flex justify-center items-center z-50 px-4"
-          onClick={() => setSelectedFocus(null)}
+          className="bg-white w-full max-w-2xl p-6 rounded-2xl shadow-xl relative overflow-y-auto max-h-[85vh]"
+          onClick={(e) => e.stopPropagation()}
         >
-          <div
-            className="bg-white w-full max-w-2xl p-6 rounded-2xl shadow-xl relative overflow-y-auto max-h-[85vh]"
-            onClick={(e) => e.stopPropagation()}
+          <button
+            onClick={() => setSelectedFocus(null)}
+            className="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
           >
-            <button
-              onClick={() => setSelectedFocus(null)}
-              className="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
-            >
-              ✕
-            </button>
+            ✕
+          </button>
 
-            <h3 className="text-2xl font-bold text-green-700 mb-4">
-              {selectedFocus.title}
-            </h3>
+          {/* IMAGE SHOWN INSIDE MODAL */}
+          {selectedFocus.image && (
+            <img
+              src={selectedFocus.image}
+              alt={selectedFocus.title}
+              className="w-full h-56 object-cover rounded-xl mb-4"
+            />
+          )}
 
-            <div className="space-y-3 text-gray-700 text-sm">
-              {selectedFocus.content}
-            </div>
+          <h3 className="text-2xl font-bold text-green-700 mb-4">
+            {selectedFocus.title}
+          </h3>
+
+          <div className="space-y-3 text-gray-700 text-sm">
+            {selectedFocus.content}
           </div>
         </div>
-      )}
+      </div>
+    )}
+
     </section>
   );
 }
