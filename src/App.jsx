@@ -7,7 +7,6 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Programs from "./pages/Programs";
 import Donate from "./components/Donate";
-import Newsroom from "./pages/newsroom";
 
 // 🔹 Program Subpages
 import GreenClassrooms from "./pages/GreenClassrooms";
@@ -69,8 +68,6 @@ export default function App() {
           <Route path="/Stories" element={<Stories />} />
           <Route path="/blog/:id" element={<BlogPost />} />
 
-          {/* 🔹 Newsroom */}
-          <Route path="/newsroom" element={<Newsroom />} />
 
           {/* 🔹 Contact */}
           <Route path="/contact" element={<Contact jobs={jobs} />} />

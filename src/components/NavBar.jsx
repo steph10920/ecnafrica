@@ -72,7 +72,6 @@ export default function Navbar() {
     ["Home", "/"],
     ["Programs", "/programs"],
     ["Stories", "/stories"],
-    ["Newsroom", "/newsroom"],
     ["About Us", "/about"],
     ["Contact Us", "/contact"],
   ];
