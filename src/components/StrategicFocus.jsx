@@ -305,12 +305,12 @@ export default function StrategicFocus() {
 
           {/* IMAGE SHOWN INSIDE MODAL */}
           {selectedFocus.image && (
-            <img
-              src={selectedFocus.image}
-              alt={selectedFocus.title}
-              className="w-full h-56 object-cover rounded-xl mb-4"
-            />
-          )}
+        <img
+          src={selectedFocus.image}
+          alt={selectedFocus.title}
+          className="w-full h-56 object-cover rounded-xl mb-4"
+        />
+      )}
 
           <h3 className="text-2xl font-bold text-green-700 mb-4">
             {selectedFocus.title}
