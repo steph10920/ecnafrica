@@ -358,7 +358,7 @@ The Busia floods became more than a disaster; they highlighted the power of coll
           {/* Side Widgets */}
           <aside className="flex flex-col gap-6">
             {/* Impact Snapshot */}
-            <div className="bg-gradient-to-br from-green-600 to-emerald-600 text-white rounded-2xl p-6 shadow-lg">
+            <div className="bg-gradient-to-br from-green-600 to-emerald-600 text-black rounded-2xl p-6 shadow-lg">
               <h5 className="font-semibold text-lg">Impact Snapshot</h5>
               <p className="mt-2 text-sm text-white/90">Quick view of achievements</p>
               <div className="mt-4 grid grid-cols-2 gap-3">
