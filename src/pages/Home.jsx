@@ -7,6 +7,8 @@ import StrategicFocus from "../components/StrategicFocus";
 import { ArrowUp } from "lucide-react";
 import CountUp from "react-countup";
 import { Helmet } from "react-helmet"; // ✅ Import Helmet
+import inukaForm from "../assets/news/INUKA 2026 SCHOLARSHIPS.pdf";
+
 
 import educationImg from "../assets/education.png";
 import childProtectionImg from "../assets/child-protection.jpg";
@@ -136,6 +138,36 @@ export default function Home() {
           className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/10 to-black/45"
           aria-hidden="true"
         />
+        {/* Scholarship Card */}
+
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="absolute top-6 right-6 z-20 max-w-xs bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-green-100 p-5"
+        >
+          <h3 className="text-lg font-extrabold text-green-800">
+            🎓 Scholarships Open
+          </h3>
+
+          <p className="mt-2 text-sm text-gray-700 leading-snug">
+            Inuka Senior School Scholarships 2026 for learners with disabilities who sat
+            the 2025 KJSEA.
+          </p>
+
+          <a
+          href={inukaForm}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mt-4 text-sm font-semibold text-white bg-green-700 px-4 py-2 rounded-full hover:bg-green-800 transition"
+        >
+          View Details →
+        </a>
+                    
+                </motion.div>
+
+
+
 
         {/* Content */}
         <div className="relative z-10 max-w-6xl mx-auto px-6 h-full flex items-center">
