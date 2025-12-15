@@ -91,7 +91,7 @@
         { label: "Schools Supported", value: 25 },
         { label: "Volunteers Engaged", value: 120 },
         ];
-
+       
         return (
         <div className="min-h-screen flex flex-col bg-gray-50">
         <Helmet>
@@ -176,6 +176,7 @@
         </div>
         </div>
         )}
+        
 
         {/* Header content */}
         <div className="relative z-10 max-w-6xl mx-auto px-6 h-full flex items-center">
