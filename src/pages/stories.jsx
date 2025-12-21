@@ -9,6 +9,7 @@ import eugineImg from "../assets/stories/eugine.jpg";
 import opiyoImg from "../assets/stories/opiyo.jpg";
 import footballstory1 from "../assets/stories/footballstory1.jpg";
 import busiaFloodImg from "../assets/stories/busia_floods.jpg";
+import sportsdec21 from "../assets/stories/sportsdec21.jpg";
 
 const Footer = lazy(() => import("../components/Footer"));
 
@@ -53,6 +54,23 @@ const StoryCard = ({ story, onReadMore }) => (
 
 export default function Stories() {
   const [stories] = useState([
+    {
+      id: "SPORTS",
+      title: "FOOTBALL FOR YOUTH",
+      category: "Youth Empowerment",
+      date: "2025-12-20",
+      excerpt:
+        "Xmass spirit is in the air. Had a great moment with our young people as we enjoy the festive season",
+      body: `We had a very wonderfull time with the youth during our final football sport on 20th December 2025. The boys show cased their skills and had alot fun during this event.`,
+      img: sportsdec21,
+      impact: [
+        "Mentor",
+        "Micro-business",
+        "Digital Skills",
+        "Youth Leadership",
+        "Community Development",
+      ],
+    },
     {
       id: "Eugine",
       title: "Eugine: From Learner to Leader",
