@@ -61,7 +61,12 @@ export default function Stories() {
       date: "2025-12-20",
       excerpt:
         "Xmass spirit is in the air. Had a great moment with our young people as we enjoy the festive season",
-      body: `We had a very wonderfull time with the youth during our final football sport on 20th December 2025. The boys show cased their skills and had alot fun during this event.`,
+      body: `The Christmas spirit was truly in the air! 🎄⚽
+      We had a great time with our young people as we celebrated the festive season through our Football for Youth initiative.
+
+      Our final football event of the year, held on 20th December 2025, was a huge success. The boys showcased impressive skills, teamwork, and sportsmanship, and most importantly, they had a lot of fun. The event brought joy, unity, and positive energy as we wrapped up the year on a high note.
+
+      We are proud to continue empowering the youth through sports and community engagement.`,
       img: sportsdec21,
       impact: [
         "Mentor",
