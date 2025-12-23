@@ -10,6 +10,7 @@ import opiyoImg from "../assets/stories/opiyo.jpg";
 import footballstory1 from "../assets/stories/footballstory1.jpg";
 import busiaFloodImg from "../assets/stories/busia_floods.jpg";
 import sportsdec21 from "../assets/stories/sportsdec21.jpg";
+import clothesDonationVideo from "../assets/stories/clothes-donation-youth.mp4";
 
 const Footer = lazy(() => import("../components/Footer"));
 
@@ -19,13 +20,28 @@ const StoryCard = ({ story, onReadMore }) => (
     whileHover={{ y: -5, boxShadow: "0px 8px 20px rgba(0,0,0,0.12)" }}
     className="bg-white rounded-2xl shadow border border-green-100 overflow-hidden flex flex-col"
   >
-    <div className="h-48 w-full relative overflow-hidden rounded-t-2xl bg-gray-100">
-      <img
-        src={story.img}
-        alt={story.title}
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-    </div>
+  <div className="h-48 w-full relative overflow-hidden rounded-t-2xl bg-gray-100">
+  {story.video ? (
+    <video
+      src={story.video}
+      autoPlay
+      muted
+      loop
+      className="absolute inset-0 w-full h-full object-cover"
+    >
+      <source src={story.video} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  ) : (
+    <img
+      src={story.img}
+      alt={story.title}
+      className="absolute inset-0 w-full h-full object-cover"
+    />
+  )}
+  </div>
+
+
     <div className="p-5 flex-1 flex flex-col justify-between">
       <div>
         <div className="text-sm text-green-700 font-semibold">{story.category}</div>
@@ -54,6 +70,30 @@ const StoryCard = ({ story, onReadMore }) => (
 
 export default function Stories() {
   const [stories] = useState([
+            {
+      id: "DONATION-DEC-2025",
+      title: "Festive Clothing Donation to Youth",
+      category: "Youth Empowerment",
+      date: "2025-12-20",
+      excerpt:
+        "Sharing the Christmas spirit by donating clothes to young people during the festive season",
+      body: `The Christmas spirit was truly in the air as we came together to support our young people through a festive clothing donation initiative.
+
+    During this outreach, we distributed clothes to the youth as a way of showing care, compassion, and solidarity during the holiday season. The smiles, excitement, and gratitude from the young people clearly reflected the impact of this simple but meaningful act of giving.
+
+    This initiative aimed to promote dignity, inclusion, and well-being among the youth, especially during the festive period.`,
+      video: clothesDonationVideo, // ✅ ONLY media
+      videoCaption: "Clothing donation to youth during the Christmas festive season",
+      impact: [
+        "Youth Welfare Support",
+        "Community Giving",
+        "Social Responsibility",
+        "Youth Empowerment",
+        "Community Development",
+      ],
+      
+    },
+
     {
       id: "SPORTS",
       title: "FOOTBALL FOR YOUTH",
@@ -74,6 +114,7 @@ export default function Stories() {
         "Digital Skills",
         "Youth Leadership",
         "Community Development",
+        
       ],
     },
     {
@@ -312,14 +353,14 @@ The Busia floods became more than a disaster; they highlighted the power of coll
             transition={{ duration: 0.6 }}
             className="flex-1"
           >
-            <div className="rounded-2xl overflow-hidden shadow-lg border border-green-100">
-              <img
-                src={visible?.img}
-                alt={visible?.title}
-                className="w-full h-72 md:h-80 object-contain rounded-2xl border p-2"
-                loading="lazy"
-              />
-            </div>
+          <div className="rounded-2xl overflow-hidden shadow-lg border border-green-100">
+                  
+            <img
+              src={visible?.img}
+              alt={visible?.title}
+              className="w-full h-72 md:h-80 object-contain rounded-2xl border p-2"
+              loading="lazy"
+            /></div>              
           </motion.div>
         </div>
       </header>
@@ -535,12 +576,24 @@ The Busia floods became more than a disaster; they highlighted the power of coll
               className="bg-white rounded-2xl shadow-xl max-w-4xl w-full z-50 overflow-auto max-h-[90vh] border border-green-50 outline-none"
             >
               <div className="relative">
-                <img
-                  src={storyModal.story?.img}
-                  alt={storyModal.story?.title}
+                {storyModal.story?.video ? (
+                  <video
+                  controls
                   className="w-full h-56 md:h-72 object-contain rounded-t-2xl"
-                  loading="lazy"
-                />
+                >
+                  <source src={storyModal.story.video} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+
+                ) : (
+                  <img
+                    src={storyModal.story?.img}
+                    alt={storyModal.story?.title}
+                    className="w-full h-56 md:h-72 object-contain rounded-t-2xl"
+                    loading="lazy"
+                  />
+                )}
+
                 <button
                   onClick={closeStoryModal}
                   className="absolute top-4 right-4 bg-white rounded-full p-2 shadow"

@@ -158,7 +158,9 @@
         </button>
         </motion.div>
 
-        {/* PDF Modal */}
+        {/* PDF Modal */
+        
+        }
         {showModal && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
         <div className="bg-white rounded-xl w-11/12 md:w-4/5 h-4/5 relative p-4">
