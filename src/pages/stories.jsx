@@ -27,11 +27,10 @@ const StoryCard = ({ story, onReadMore }) => (
       autoPlay
       muted
       loop
+      playsInline
+      preload="metadata"
       className="absolute inset-0 w-full h-full object-cover"
-    >
-      <source src={story.video} type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+    />
   ) : (
     <img
       src={story.img}
@@ -39,7 +38,9 @@ const StoryCard = ({ story, onReadMore }) => (
       className="absolute inset-0 w-full h-full object-cover"
     />
   )}
-  </div>
+</div>
+
+
 
 
     <div className="p-5 flex-1 flex flex-col justify-between">
@@ -354,25 +355,25 @@ The Busia floods became more than a disaster; they highlighted the power of coll
             className="flex-1"
           >
           <div className="h-48 w-full relative overflow-hidden rounded-t-2xl bg-gray-100">
-          {story.video ? (
-            <video
-              src={story.video}
-              autoPlay
-              muted
-              loop
-              className="absolute inset-0 w-full h-full object-cover"
-            >
-              <source src={story.video} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          ) : (
-            <img
-              src={story.img}
-              alt={story.title}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-          )}
-          </div>
+  {visible?.video ? (
+    <video
+      src={visible.video}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      className="absolute inset-0 w-full h-full object-cover"
+    />
+  ) : (
+    <img
+      src={visible?.img}
+      alt={visible?.title}
+      className="absolute inset-0 w-full h-full object-cover"
+    />
+  )}
+</div>
+
 
             
           </motion.div>
