@@ -353,25 +353,26 @@ The Busia floods became more than a disaster; they highlighted the power of coll
             transition={{ duration: 0.6 }}
             className="flex-1"
           >
-          <div className="rounded-2xl overflow-hidden shadow-lg border border-green-100">
-          {visible?.video ? (
+          <div className="h-48 w-full relative overflow-hidden rounded-t-2xl bg-gray-100">
+          {story.video ? (
             <video
-              src={visible.video}
-              controls
-              className="w-full h-72 md:h-80 object-contain rounded-2xl border p-2"
+              src={story.video}
+              autoPlay
+              muted
+              loop
+              className="absolute inset-0 w-full h-full object-cover"
             >
-              <source src={visible.video} type="video/mp4" />
+              <source src={story.video} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           ) : (
             <img
-              src={visible?.img}
-              alt={visible?.title}
-              className="w-full h-72 md:h-80 object-contain rounded-2xl border p-2"
-              loading="lazy"
+              src={story.img}
+              alt={story.title}
+              className="absolute inset-0 w-full h-full object-cover"
             />
           )}
-        </div>
+          </div>
 
             
           </motion.div>
