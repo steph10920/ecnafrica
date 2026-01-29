@@ -2,7 +2,6 @@ import { Suspense, lazy, useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 
 import { storiesData } from "../data/storiesData";
-
 import StoriesHero from "../components/stories/StoriesHero";
 import FeaturedStory from "../components/stories/FeaturedStory";
 import StoriesGrid from "../components/stories/StoriesGrid";
@@ -18,12 +17,9 @@ const Footer = lazy(() => import("../components/Footer"));
 export default function Stories() {
   const [yearFilter, setYearFilter] = useState("");
   const [paused, setPaused] = useState(false);
-  const [storyModal, setStoryModal] = useState({
-    open: false,
-    story: null,
-  });
+  const [storyModal, setStoryModal] = useState({ open: false, story: null });
 
-  /* ---------------- FILTER STORIES ---------------- */
+  // ---------------- Filter Stories by Year ----------------
   const filteredStories = useMemo(() => {
     if (!yearFilter) return storiesData;
     return storiesData.filter(
@@ -31,11 +27,11 @@ export default function Stories() {
     );
   }, [yearFilter]);
 
-  /* ---------------- CAROUSEL ---------------- */
+  // ---------------- Carousel Hook ----------------
   const { index, setIndex } = useStoryCarousel(filteredStories, paused);
   const featuredStory = filteredStories[index];
 
-  /* ---------------- YEARS ---------------- */
+  // ---------------- Extract Unique Years ----------------
   const years = useMemo(
     () =>
       [...new Set(storiesData.map((s) => new Date(s.date).getFullYear()))].sort(
@@ -48,13 +44,9 @@ export default function Stories() {
     <div className="min-h-screen bg-gradient-to-b from-green-50 via-white to-green-100">
       <Helmet>
         <title>ECN Africa | Stories of Impact</title>
-        <meta
-          name="description"
-          content="Real stories of impact from learners, mentors, and communities supported by ECN Africa."
-        />
       </Helmet>
 
-      {/* ================= HERO ================= */}
+      {/* HERO + Year Filter */}
       <StoriesHero
         years={years}
         yearFilter={yearFilter}
@@ -64,62 +56,43 @@ export default function Stories() {
         }}
       />
 
-      {/* ================= MAIN ================= */}
       <main className="max-w-7xl mx-auto px-6 pb-20">
-        {/* FEATURED + SIDEBAR */}
-        <section className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-14">
-          {/* LEFT COLUMN */}
+        {/* FEATURED + GRID + SIDEBAR */}
+        <section className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+          {/* Left Column */}
           <div className="lg:col-span-2 space-y-6">
             <FeaturedStory
               story={featuredStory}
               paused={paused}
-              onRead={(story) =>
-                setStoryModal({ open: true, story })
-              }
+              onRead={(story) => setStoryModal({ open: true, story })}
               onTogglePause={() => setPaused((p) => !p)}
             />
 
-            {/* TOP STORIES GRID */}
+            {/* Grid: 4 columns on large screens */}
             <StoriesGrid
-              stories={filteredStories.slice(0, 4)}
-              onReadMore={(story) =>
-                setStoryModal({ open: true, story })
-              }
+              stories={filteredStories.slice(0, 8)} // Show top 8 stories in grid
+              onReadMore={(story) => setStoryModal({ open: true, story })}
             />
           </div>
 
-          {/* RIGHT COLUMN */}
+          {/* Right Column */}
           <aside className="flex flex-col gap-6">
             <ImpactSnapshot />
 
             <StoriesGallery
               stories={filteredStories}
-              onSelect={(story) =>
-                setStoryModal({ open: true, story })
-              }
+              onSelect={(story) => setStoryModal({ open: true, story })}
               onPrev={() =>
-                setIndex(
-                  (i) =>
-                    (i - 1 + filteredStories.length) %
-                    filteredStories.length
-                )
+                setIndex((i) => (i - 1 + filteredStories.length) % filteredStories.length)
               }
-              onNext={() =>
-                setIndex(
-                  (i) =>
-                    (i + 1) % filteredStories.length
-                )
-              }
+              onNext={() => setIndex((i) => (i + 1) % filteredStories.length)}
             />
 
-            {/* FACEBOOK FEED */}
-            <div className="hidden lg:block">
-              <FacebookFeed />
-            </div>
+            <FacebookFeed />
           </aside>
         </section>
 
-        {/* ================= ALL STORIES ================= */}
+        {/* ALL STORIES */}
         <section>
           <h3 className="text-2xl font-bold text-green-800 mb-6">
             All Stories
@@ -127,30 +100,19 @@ export default function Stories() {
 
           <StoriesGrid
             stories={filteredStories}
-            onReadMore={(story) =>
-              setStoryModal({ open: true, story })
-            }
+            onReadMore={(story) => setStoryModal({ open: true, story })}
           />
         </section>
       </main>
 
-      {/* ================= MODAL ================= */}
+      {/* MODAL */}
       <StoryModal
         modal={storyModal}
-        onClose={() =>
-          setStoryModal({ open: false, story: null })
-        }
+        onClose={() => setStoryModal({ open: false, story: null })}
         onSupport={() => (window.location.href = "/donate")}
       />
 
-      {/* ================= FOOTER ================= */}
-      <Suspense
-        fallback={
-          <div className="text-center py-6 text-gray-500">
-            Loading footer…
-          </div>
-        }
-      >
+      <Suspense fallback={<div className="text-center py-6">Loading footer…</div>}>
         <Footer />
       </Suspense>
     </div>
