@@ -57,7 +57,7 @@ export default function Contact() {
           <h2 className="text-2xl font-semibold mb-6 text-center">Contact Us</h2>
           <div className="space-y-4">
             <p className="flex items-center gap-3 text-lg font-medium">
-              <MapPin size={20} /> ECN – Education Africa, P.O BOX 1234-00200, Nairobi, Kenya
+              <MapPin size={20} /> ECN – Education Africa, P.O BOX , Nairobi, Kenya
             </p>
             <p className="flex items-center gap-3">
               <Phone size={20} /> 
