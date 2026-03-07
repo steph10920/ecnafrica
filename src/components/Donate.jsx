@@ -4,15 +4,18 @@ import { BookOpen, Heart, Users, Star } from "lucide-react";
 import CountUp from "react-countup";
 import Footer from "../components/Footer";
 
-// Import project images
 import dheader from "../assets/dheader.png";
 import treePlanting from "../assets/tree-planting.jpg";
 import arts from "../assets/arts.jpg";
 import healthCamp from "../assets/health-camp.jpg";
-import skillsWorkshop from "../assets/skills-workshop.jpg"; 
+import skillsWorkshop from "../assets/skills-workshop.jpg";
 import amrefLogo from "../assets/amref.png";
 
+import { useEffect, useRef } from "react";
+import * as d3 from "d3";
+
 export default function Donate() {
+  // ------------------- DATA -------------------
   const donors = [
     { name: "Emeldah E.", message: "Donating to ECN has changed lives in our community!" },
     { name: "James K.", message: "I love supporting ECN’s programs for education." },
@@ -40,22 +43,79 @@ export default function Donate() {
   ];
 
   const partners = [
-  {
-    name: "Amref Health Africa",
-    url: "https://amref.org/",
-    logo: amrefLogo,
-  },
-];
+    { name: "Amref Health Africa", url: "https://amref.org/", logo: amrefLogo },
+  ];
 
+  // ------------------- D3 Refs -------------------
+  const donationChartRef = useRef();
+  const programChartRef = useRef();
 
+  // ------------------- D3 Chart Rendering -------------------
+  useEffect(() => {
+    if (!donationChartRef.current || !programChartRef.current) return;
+
+    const donationData = [
+      { month: "Jan", value: 1200 },
+      { month: "Feb", value: 1500 },
+      { month: "Mar", value: 1800 },
+      { month: "Apr", value: 1300 },
+      { month: "May", value: 2000 },
+    ];
+
+    const programData = [
+      { program: "Education", value: 4500 },
+      { program: "Health", value: 3000 },
+      { program: "Youth", value: 2500 },
+    ];
+
+    const drawBarChart = (svgRef, data, xKey, yKey, width = 400, height = 250) => {
+      const margin = { top: 20, right: 20, bottom: 40, left: 60 };
+      const svg = d3.select(svgRef.current)
+        .attr("width", width)
+        .attr("height", height)
+        .style("background", "#f0fdf4");
+
+      svg.selectAll("*").remove();
+
+      const x = d3.scaleBand()
+        .domain(data.map(d => d[xKey]))
+        .range([margin.left, width - margin.right])
+        .padding(0.4);
+
+      const y = d3.scaleLinear()
+        .domain([0, d3.max(data, d => d[yKey])])
+        .nice()
+        .range([height - margin.bottom, margin.top]);
+
+      svg.selectAll(".bar")
+        .data(data)
+        .join("rect")
+        .attr("class", "bar")
+        .attr("x", d => x(d[xKey]))
+        .attr("y", d => y(d[yKey]))
+        .attr("width", x.bandwidth())
+        .attr("height", d => y(0) - y(d[yKey]))
+        .attr("fill", "#16a34a");
+
+      svg.append("g")
+        .attr("transform", `translate(0,${height - margin.bottom})`)
+        .call(d3.axisBottom(x));
+
+      svg.append("g")
+        .attr("transform", `translate(${margin.left},0)`)
+        .call(d3.axisLeft(y));
+    };
+
+    drawBarChart(donationChartRef, donationData, "month", "value");
+    drawBarChart(programChartRef, programData, "program", "value");
+  }, []);
+
+  // ------------------- RENDER -------------------
   return (
     <div className="min-h-screen bg-green-50 flex flex-col">
       <Helmet>
         <title>Donate | ECN Africa</title>
-        <meta
-          name="description"
-          content="Support ECN Africa and help transform communities through education, health, and youth empowerment programs."
-        />
+        <meta name="description" content="Support ECN Africa and help transform communities through education, health, and youth empowerment programs." />
       </Helmet>
 
       {/* HERO */}
@@ -65,25 +125,18 @@ export default function Donate() {
       >
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl font-extrabold"
           >
             Support ECN Africa
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
             className="mt-4 text-lg md:text-xl max-w-2xl mx-auto"
           >
             Your support helps us empower communities through education, health, and youth programs.
             We invite you to contact us to discuss your contribution.
           </motion.p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
+          <motion.button whileHover={{ scale: 1.05 }}
             onClick={() => window.location.href = "mailto:education@ecnafrica.org"}
             className="mt-8 px-8 py-3 rounded-full bg-white text-green-700 font-bold shadow-lg hover:scale-[1.02] transition"
           >
@@ -92,20 +145,15 @@ export default function Donate() {
         </div>
       </header>
 
-      {/* MAIN CONTENT */}
       <main className="flex-1 max-w-7xl mx-auto p-6 md:p-12 flex flex-col gap-16">
 
-        {/* Causes Section */}
+        {/* Causes */}
         <section>
           <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">Donation Causes</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {causes.map((cause, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.2 }}
-                whileHover={{ scale: 1.03 }}
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2 }} whileHover={{ scale: 1.03 }}
                 className="bg-white p-6 rounded-3xl shadow-lg border border-green-100 hover:shadow-xl transition flex flex-col items-start gap-4"
               >
                 {cause.icon}
@@ -121,12 +169,8 @@ export default function Donate() {
           <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">What Donors Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {donors.map((donor, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.2 }}
-                whileHover={{ scale: 1.02, shadow: "0 10px 20px rgba(0,0,0,0.12)" }}
+              <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2 }} whileHover={{ scale: 1.02 }}
                 className="bg-white p-6 rounded-2xl shadow border border-green-100"
               >
                 <p className="text-gray-700">"{donor.message}"</p>
@@ -136,15 +180,12 @@ export default function Donate() {
           </div>
         </section>
 
-        {/* Impact Snapshot */}
+        {/* Impact Stats */}
         <section>
           <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">Impact Snapshot</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {impactStats.map((stat, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+              <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.2 }}
                 className="bg-gradient-to-br from-green-600 to-emerald-600 text-white rounded-2xl p-6 shadow-lg flex flex-col items-center gap-2"
               >
@@ -156,19 +197,27 @@ export default function Donate() {
               </motion.div>
             ))}
           </div>
+
+          {/* D3 Charts */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+            <div className="bg-white p-6 rounded-3xl shadow-lg">
+              <h3 className="text-xl font-bold text-green-800 mb-4 text-center">Donation Trend</h3>
+              <svg ref={donationChartRef}></svg>
+            </div>
+            <div className="bg-white p-6 rounded-3xl shadow-lg">
+              <h3 className="text-xl font-bold text-green-800 mb-4 text-center">Program Impact</h3>
+              <svg ref={programChartRef}></svg>
+            </div>
+          </div>
         </section>
 
-        {/* Projects Completed */}
+        {/* Projects */}
         <section>
           <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">Projects Completed</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {projects.map((project, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.2 }}
-                whileHover={{ scale: 1.03 }}
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2 }} whileHover={{ scale: 1.03 }}
                 className="overflow-hidden rounded-3xl shadow-lg border border-green-100 cursor-pointer"
               >
                 <img src={project.img} alt={project.title} className="w-full h-48 object-cover" />
@@ -180,25 +229,19 @@ export default function Donate() {
           </div>
         </section>
 
-        {/* CALL TO ACTION */}
+        {/* Call to Action */}
         <section className="bg-gradient-to-r from-green-600 to-emerald-600 text-white py-16 px-6 text-center rounded-3xl shadow-lg">
-          <motion.h3
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+          <motion.h3 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
             className="text-2xl md:text-3xl font-bold mb-4"
           >
             Ready to Make a Difference?
           </motion.h3>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
             className="mt-4 text-lg md:text-xl max-w-2xl mx-auto"
           >
             Join us in transforming communities! Reach out today to explore how your support can empower education, health, and youth programs across Africa.
           </motion.p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
+          <motion.button whileHover={{ scale: 1.05 }}
             onClick={() => window.location.href = "mailto:education@ecnafrica.org"}
             className="mt-8 px-8 py-3 rounded-full bg-white text-green-700 font-bold shadow-lg hover:scale-[1.02] transition"
           >
@@ -206,28 +249,17 @@ export default function Donate() {
           </motion.button>
         </section>
 
-        {/* PARTNERS SECTION */}
+        {/* Partners */}
         <section className="py-12 px-6 md:px-12">
           <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">Our Partners</h2>
           <div className="flex justify-center items-center gap-12 flex-wrap">
             {partners.map((partner, i) => (
-              <motion.a
-                key={i}
-                href={partner.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.2 }}
-                whileHover={{ scale: 1.05 }}
+              <motion.a key={i} href={partner.url} target="_blank" rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2 }} whileHover={{ scale: 1.05 }}
                 className="p-4 bg-white rounded-2xl shadow-lg border border-green-100 flex items-center justify-center w-40 h-20"
               >
-                <img
-                src={partner.logo}
-                alt={partner.name}
-                className="object-contain h-full"
-                />
-                
+                <img src={partner.logo} alt={partner.name} className="object-contain h-full" />
               </motion.a>
             ))}
           </div>
