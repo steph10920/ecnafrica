@@ -32,9 +32,9 @@
         const slides = [
         {
         img: slide1,
-        title: "Transforming Education Across Africa",
+        title: "Empowering Vulnerable Children Through Education",
         desc:
-        "Empowering learners, teachers and communities with practical skills and opportunities.",
+        "ECN Africa works with communities to support street children, promote education, and strengthen families across Kenya.",
         },
         {
         img: slide2,
@@ -95,11 +95,23 @@
         return (
         <div className="min-h-screen flex flex-col bg-gray-50">
         <Helmet>
-        <title>Elimu Community Network | ECN Africa</title>
+        <title>ECN Africa | Empowering Communities Through Education</title>
+
         <meta
         name="description"
-        content="Learn about Elimu Community Network (ECN Africa), our mission, vision, and how we empower communities through education, innovation, and sustainable programs."
+        content="ECN Africa empowers vulnerable children and communities through inclusive education, youth empowerment, and community-driven solutions."
         />
+
+        <meta
+        name="keywords"
+        content="ECN Africa, education NGO Kenya, community education Africa, youth empowerment Kenya"
+        />
+
+        <meta property="og:title" content="ECN Africa" />
+        <meta property="og:description" content="Empowering communities through education and innovation." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://ecnafrica.org" />
+        <meta property="og:image" content="/preview.jpg" />
         </Helmet>
 
         <div className="min-h-screen flex flex-col bg-white text-gray-800">
