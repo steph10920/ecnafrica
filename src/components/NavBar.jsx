@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
-  BookOpen,
   Globe2,
+  BookOpen,
   Users2,
   FileText,
   Menu,
@@ -21,115 +22,134 @@ export default function Navbar() {
   const [suggestions, setSuggestions] = useState([]);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Navigation handler
-  const navigate = (path) => {
-    setMobileOpen(false);
-    setCategoriesOpen(false);
-    setSuggestions([]);
-    window.location.href = path || "/";
-  };
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dropdownRef = useRef();
 
-  // Search suggestions logic
+  // Close dropdown outside click
   useEffect(() => {
-    if (!searchQuery) return setSuggestions([]);
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setCategoriesOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
-    const q = searchQuery.toLowerCase();
-    const matched = searchMap
-      .map((item) => {
-        const keywords = item.keywords.filter((k) =>
-          k.toLowerCase().includes(q)
-        );
-        if (!keywords.length) return null;
-        const score = keywords.reduce(
-          (acc, k) => acc + (k.toLowerCase().startsWith(q) ? 2 : 1),
-          0
-        );
-        return { ...item, score, keywords };
-      })
-      .filter(Boolean)
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 5);
-
-    setSuggestions(matched);
-  }, [searchQuery]);
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    if (suggestions.length) navigate(suggestions[0].page);
-    else alert("No matching page or section found!");
-    setSearchQuery("");
-  };
-
-  // Navbar shadow on scroll
+  // Scroll effect
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Menu structure
+  // Debounced search
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (!searchQuery) return setSuggestions([]);
+
+      const q = searchQuery.toLowerCase();
+      const matched = searchMap
+        .map((item) => {
+          const keywords = item.keywords.filter((k) =>
+            k.toLowerCase().includes(q)
+          );
+          if (!keywords.length) return null;
+          return { ...item, keywords };
+        })
+        .filter(Boolean)
+        .slice(0, 5);
+
+      setSuggestions(matched);
+    }, 200);
+
+    return () => clearTimeout(timeout);
+  }, [searchQuery]);
+
+  const handleNavigate = (path) => {
+    setMobileOpen(false);
+    setCategoriesOpen(false);
+    setSuggestions([]);
+    navigate(path || "/");
+  };
+
   const links = [
-    ["Home", "/"],
-    ["Programs", "/programs"],
-    ["Stories", "/stories"],
-    ["About Us", "/about"],
-    ["Contact Us", "/contact"],
+    ["Home", "/", <Globe2 size={16} />],
+    ["Programs", "/programs", <BookOpen size={16} />],
+    ["Stories", "/stories", <FileText size={16} />],
+    ["About", "/about", <Users2 size={16} />],
   ];
 
   const categories = [
     ["arts-and-sports", "Arts & Sports"],
     ["environment", "Environment"],
-    ["quality-education", "Quality Education"],
+    ["education", "Education"],
     ["careers", "Careers"],
   ];
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 backdrop-blur-md transition-all duration-300 ${
-        isScrolled ? "bg-white/90 shadow-md py-2" : "bg-white py-4"
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/80 backdrop-blur-lg shadow-md py-2"
+          : "bg-white/70 backdrop-blur py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
-        <button onClick={() => navigate("/")} className="flex items-center gap-3">
-          <img src={Logo} alt="ECN Africa Logo" className="h-14 w-25 object-contain rounded-full" />
-          <span className="text-green-700 font-bold text-2xl tracking-wide">ECN</span>
-        </button>
+        <div
+          onClick={() => handleNavigate("/")}
+          className="flex items-center gap-3 cursor-pointer"
+        >
+          <img
+            src={Logo}
+            alt="logo"
+            className={`rounded-full transition-all ${
+              isScrolled ? "h-10" : "h-14"
+            }`}
+          />
+          <span className="text-green-700 font-bold text-xl">ECN</span>
+        </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6 font-medium text-gray-700">
-          {links.map(([label, path]) => (
+        {/* Desktop */}
+        <nav className="hidden md:flex items-center gap-6 text-gray-700">
+          {links.map(([label, path, icon]) => (
             <button
               key={label}
-              onClick={() => navigate(path)}
-              className="hover:text-green-600 transition"
+              onClick={() => handleNavigate(path)}
+              className={`flex items-center gap-2 transition ${
+                location.pathname === path
+                  ? "text-green-600 font-semibold"
+                  : "hover:text-green-600"
+              }`}
             >
-              {label}
+              {icon} {label}
             </button>
           ))}
 
-          {/* Categories Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setCategoriesOpen(true)}
-            onMouseLeave={() => setCategoriesOpen(false)}
-          >
-            <button className="flex items-center gap-1 hover:text-green-600 transition">
+          {/* Categories */}
+          <div ref={dropdownRef} className="relative">
+            <button
+              onClick={() => setCategoriesOpen(!categoriesOpen)}
+              className="flex items-center gap-1 hover:text-green-600"
+            >
               Categories <ChevronDown size={16} />
             </button>
+
             <AnimatePresence>
               {categoriesOpen && (
                 <motion.div
-                  initial={{ opacity: 0, y: -5 }}
+                  initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -5 }}
-                  className="absolute top-full mt-2 bg-white border rounded-xl shadow-lg w-52 overflow-hidden"
+                  exit={{ opacity: 0, y: -10 }}
+                  className="absolute top-full mt-2 bg-white shadow-xl rounded-2xl p-4 w-64"
                 >
                   {categories.map(([path, label]) => (
                     <button
                       key={path}
-                      onClick={() => navigate(`/categories/${path}`)}
-                      className="block w-full text-left px-4 py-3 hover:bg-green-50 hover:text-green-700 transition"
+                      onClick={() => handleNavigate(`/categories/${path}`)}
+                      className="block w-full text-left px-3 py-2 rounded-lg hover:bg-green-50"
                     >
                       {label}
                     </button>
@@ -140,117 +160,107 @@ export default function Navbar() {
           </div>
 
           {/* Search */}
-          <div className="relative ml-4">
-            <form onSubmit={handleSearchSubmit}>
-              <div className="relative">
-                <Search size={18} className="absolute left-3 top-2.5 text-gray-400" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search..."
-                  className="pl-10 pr-3 py-2 rounded-full border bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 transition text-sm w-56"
-                />
-              </div>
-            </form>
-            {suggestions.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-1 bg-white border rounded-lg shadow-xl z-50 max-h-60 overflow-y-auto">
-                {suggestions.map((item, i) => (
-                  <button
-                    key={i}
-                    onClick={() => navigate(item.page)}
-                    className="w-full text-left px-4 py-3 hover:bg-green-50 transition"
-                  >
-                    {item.keywords.join(", ")}
-                  </button>
-                ))}
+          <div className="relative">
+            <div className="flex items-center bg-white border rounded-full px-3 shadow-sm">
+              <Search size={16} className="text-gray-400" />
+              <input
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search..."
+                className="px-2 py-1 outline-none text-sm"
+              />
+            </div>
+
+            {searchQuery && (
+              <div className="absolute w-full bg-white shadow-lg rounded-lg mt-2 z-50">
+                {suggestions.length > 0 ? (
+                  suggestions.map((item, i) => (
+                    <button
+                      key={i}
+                      onClick={() => handleNavigate(item.page)}
+                      className="block w-full text-left px-4 py-2 hover:bg-green-50"
+                    >
+                      {item.keywords[0]}
+                    </button>
+                  ))
+                ) : (
+                  <div className="px-4 py-2 text-sm text-gray-500">
+                    No results found
+                  </div>
+                )}
               </div>
             )}
           </div>
 
-          {/* Donate Button */}
+          {/* Donate */}
           <button
-            onClick={() => navigate("/donate")}
-            className="ml-4 bg-green-600 text-white px-5 py-2 rounded-full shadow hover:bg-green-700 transition"
+            onClick={() => handleNavigate("/donate")}
+            className="bg-green-600 text-white px-5 py-2 rounded-full shadow-md hover:scale-105 hover:bg-green-700 transition"
           >
             Donate
           </button>
         </nav>
 
-        {/* Mobile menu toggle */}
-        <button className="md:hidden text-green-700" onClick={() => setMobileOpen(!mobileOpen)}>
-          {mobileOpen ? <X size={28} /> : <Menu size={28} />}
+        {/* Mobile Toggle */}
+        <button
+          className="md:hidden"
+          onClick={() => setMobileOpen(!mobileOpen)}
+        >
+          {mobileOpen ? <X /> : <Menu />}
         </button>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Overlay */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
+      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden bg-white shadow-xl border-t flex flex-col"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            className="fixed right-0 top-0 h-full w-72 bg-white shadow-xl z-50 p-5 flex flex-col gap-4"
           >
             {links.map(([label, path]) => (
               <button
                 key={label}
-                onClick={() => navigate(path)}
-                className="px-5 py-4 border-b hover:bg-green-50 transition text-left"
+                onClick={() => handleNavigate(path)}
+                className="text-left py-2 border-b"
               >
                 {label}
               </button>
             ))}
 
-            {/* Categories */}
             <button
               onClick={() => setCategoriesOpen(!categoriesOpen)}
-              className="px-5 py-4 flex justify-between items-center border-b hover:bg-green-50 transition"
+              className="flex justify-between py-2"
             >
-              Categories <ChevronDown className={`transition-transform ${categoriesOpen ? "rotate-180" : ""}`} />
+              Categories <ChevronDown />
             </button>
-            <AnimatePresence>
-              {categoriesOpen && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="overflow-hidden border-b"
-                >
-                  {categories.map(([path, label]) => (
-                    <button
-                      key={path}
-                      onClick={() => navigate(`/categories/${path}`)}
-                      className="px-8 py-3 w-full text-left hover:bg-green-50 transition"
-                    >
-                      {label}
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
 
-            {/* Mobile Search */}
-            <div className="p-4">
-              <form
-                onSubmit={handleSearchSubmit}
-                className="flex items-center border rounded-full px-3"
-              >
-                <Search size={18} className="text-gray-500" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search..."
-                  className="w-full px-3 py-2 text-sm focus:outline-none"
-                />
-              </form>
-            </div>
+            {categoriesOpen && (
+              <div className="pl-3">
+                {categories.map(([path, label]) => (
+                  <button
+                    key={path}
+                    onClick={() => handleNavigate(`/categories/${path}`)}
+                    className="block py-1 text-left"
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            )}
 
-            {/* Mobile Donate */}
             <button
-              onClick={() => navigate("/donate")}
-              className="mx-5 mb-5 bg-green-600 text-white px-5 py-2 rounded-full shadow hover:bg-green-700 transition"
+              onClick={() => handleNavigate("/donate")}
+              className="mt-auto bg-green-600 text-white py-2 rounded-full"
             >
               Donate
             </button>
