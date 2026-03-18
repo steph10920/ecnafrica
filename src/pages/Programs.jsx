@@ -33,7 +33,7 @@ function ProgramCard({ program }) {
 
         {/* Optional inner button for visual cue */}
         <div className="z-10 text-white bg-green-700 px-5 py-2.5 rounded-full text-sm sm:text-base font-semibold shadow-md hover:shadow-lg transition">
-          See Details →
+          Explore Program →
         </div>
       </motion.div>
     </Link>
