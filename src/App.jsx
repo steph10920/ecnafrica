@@ -29,6 +29,9 @@ import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import { jobs } from "./pages/Jobs";
 
+// 🔹 Components
+import WhatsAppButton from "./components/WhatsAppButton";
+
 // 🔹 Vercel Analytics & Speed Insights
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -57,7 +60,6 @@ export default function App() {
           <Route path="/programs/blue-horizons" element={<BlueHorizons />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
-
           {/* 🔹 Category Pages */}
           <Route path="/categories/environment" element={<Environment />} />
           <Route path="/categories/arts-and-sports" element={<ArtsAndSports />} />
@@ -68,11 +70,13 @@ export default function App() {
           <Route path="/Stories" element={<Stories />} />
           <Route path="/blog/:id" element={<BlogPost />} />
 
-
           {/* 🔹 Contact */}
           <Route path="/contact" element={<Contact jobs={jobs} />} />
         </Routes>
       </div>
+
+      {/* 🔹 Global WhatsApp Chat Button */}
+      <WhatsAppButton />
 
       {/* 🔹 Vercel Analytics */}
       <Analytics />
