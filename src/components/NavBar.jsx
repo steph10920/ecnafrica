@@ -72,6 +72,7 @@ export default function Navbar() {
     ["Programs", "/programs"],
     ["Stories", "/stories"],
     ["About", "/about"],
+    ["Contact", "/contact"],
   ];
 
   const categories = [
