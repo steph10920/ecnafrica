@@ -61,8 +61,8 @@ export default function App() {
           {/* 🔹 Category Pages */}
           <Route path="/categories/environment" element={<Environment />} />
           <Route path="/categories/arts-and-sports" element={<ArtsAndSports />} />
-          <Route path="/categories/quality-education" element={<QualityEducation />} />
           <Route path="/categories/careers" element={<Careers jobs={jobs} />} />
+          <Route path="/categories/education" element={<QualityEducation />} />
 
           {/* 🔹 Blog Pages */}
           <Route path="/Stories" element={<Stories />} />
