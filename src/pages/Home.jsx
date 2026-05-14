@@ -6,8 +6,7 @@
         import { ArrowUp } from "lucide-react";
         import CountUp from "react-countup";
         import { Helmet } from "react-helmet";
-        import inukaForm from "../assets/news/INUKA 2026 SCHOLARSHIPS.pdf";
-
+        import HighlightBanner from "../components/HighlightBanner";
         import educationImg from "../assets/education.png";
         import childProtectionImg from "../assets/child-protection.jpg";
         import communityImg from "../assets/community.png";
@@ -146,53 +145,16 @@
         aria-hidden="true"
         />
 
-        {/* Scholarship Card */}
-        {/* <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-        className="absolute top-6 right-6 z-20 max-w-xs bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-green-100 p-5"
-        >
-        <h3 className="text-lg font-extrabold text-green-800">
-        🎓 Scholarships Open
-        </h3>
+  {/* Highlight Banner */}
+  <HighlightBanner />
 
-        <p className="mt-2 text-sm text-gray-700 leading-snug">
-        Inuka Senior School Scholarships 2026 for learners with disabilities
-        who sat the 2025 KJSEA.
-        </p>
-
-        <button
-        onClick={() => setShowModal(true)}
-        className="inline-block mt-4 text-sm font-semibold text-white bg-green-700 px-4 py-2 rounded-full hover:bg-green-800 transition"
-        >
-        View Details →
-        </button>
-        </motion.div>
-
-        {/* PDF Modal */
-        
-        }
-        {showModal && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-        <div className="bg-white rounded-xl w-11/12 md:w-4/5 h-4/5 relative p-4">
-        <button
-          onClick={() => setShowModal(false)}
-          className="absolute top-4 right-4 text-white bg-red-600 rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-700"
-        >
-          ✕
-        </button>
-        <iframe
-          src={inukaForm}
-          className="w-full h-full rounded-lg"
-          title="Inuka 2026 Scholarship Form"
-        />
-        </div>
-        </div>
-        )}
+  {/* Existing slides */}
+  <div className="absolute inset-0"></div>
+ 
         
 
         {/* Header content */}
+        
         <div className="relative z-10 max-w-6xl mx-auto px-6 h-full flex items-center">
         <motion.div
         key={currentIndex}
