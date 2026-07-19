@@ -128,7 +128,7 @@ export default function About() {
   // Animate stats counting up
   useEffect(() => {
     const duration = 2000;
-    const targetStats = { children: 5000, youth: 3000, women: 2000 };
+    const targetStats = { children: 782, youth: 542, women: 623 };
     const startTime = performance.now();
 
     const animate = (currentTime) => {
