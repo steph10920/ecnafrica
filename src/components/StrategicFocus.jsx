@@ -56,6 +56,8 @@ export default function StrategicFocus() {
       accent: "var(--clay)",
       title: "Child Protection and Education Alternatives",
       image: childImg,
+      teaser:
+        "From Nairobi's streets to villages across Kenya, restoring children's rights to education, protection, and belonging.",
       content: (
         <>
           <p className="text-[var(--ink)]/80 text-base leading-relaxed">
@@ -107,6 +109,8 @@ export default function StrategicFocus() {
       accent: "var(--sky)",
       title: "Youth Engagement: Skills, Leadership, and Innovation",
       image: youthImg,
+      teaser:
+        "Technical training, entrepreneurship, and mentorship that move young people from vulnerability to leadership.",
       content: (
         <>
           <p className="text-[var(--ink)]/80 text-base leading-relaxed">
@@ -149,6 +153,8 @@ export default function StrategicFocus() {
       accent: "var(--gold)",
       title: "Women Empowerment: Education for Equality and Progress",
       image: womenImg,
+      teaser:
+        "Literacy, entrepreneurship, and leadership programmes that help women shape decisions, livelihoods, and communities.",
       content: (
         <>
           <p className="text-[var(--ink)]/80 text-base leading-relaxed">
@@ -190,6 +196,8 @@ export default function StrategicFocus() {
       accent: "var(--chalk)",
       title: "System Strengthening: Innovative Learning Opportunities",
       image: systemImg,
+      teaser:
+        "Turning schools into hubs of creativity and lifelong learning, rooted in local culture and Africa's realities.",
       content: (
         <>
           <p className="text-[var(--ink)]/80 text-base leading-relaxed">
@@ -240,6 +248,8 @@ export default function StrategicFocus() {
       accent: "var(--sky)",
       title: "Community Development: Health, Food Security, and Environment",
       image: communityImg,
+      teaser:
+        "Pairing learning with action — practical knowledge that improves health, food security, and the environment.",
       content: (
         <>
           <p className="text-[var(--ink)]/80 text-base leading-relaxed">
@@ -347,9 +357,7 @@ export default function StrategicFocus() {
                   </h3>
                 </div>
 
-                <p className="text-[var(--ink)]/70 text-sm">
-                  <strong>Discover how we make a lasting impact.</strong>
-                </p>
+                <p className="text-[var(--ink)]/70 text-sm leading-relaxed">{focus.teaser}</p>
 
                 <p className="italic text-xs mt-1" style={{ color: focus.accent }}>
                   Click to read more →
