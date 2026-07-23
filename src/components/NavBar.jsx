@@ -254,7 +254,8 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileOpen(false)}
-              className="fixed inset-0 bg-[var(--ink)]/70 backdrop-blur-sm z-40"
+              className="fixed inset-0 backdrop-blur-sm z-40"
+              style={{ backgroundColor: "rgba(27, 42, 34, 0.7)" }}
               aria-hidden="true"
             />
             <motion.div
@@ -262,8 +263,8 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.25 }}
-              className="fixed right-0 top-0 h-full w-72 bg-[var(--paper)] shadow-xl z-50 p-6 flex flex-col gap-5"
-              style={{ fontFamily: "var(--font-body)" }}
+              className="fixed right-0 top-0 h-full w-72 max-w-[85vw] shadow-xl z-50 p-6 flex flex-col gap-5"
+              style={{ fontFamily: "var(--font-body)", backgroundColor: "#F1EDD9" }}
             >
               <div className="flex justify-end">
                 <button
