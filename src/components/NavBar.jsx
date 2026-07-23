@@ -233,8 +233,10 @@ export default function Navbar() {
         </nav>
 
         {/* Mobile Toggle */}
+        {/* relative z-50 keeps this above the mobile overlay (z-40) so the
+            icon stays crisp/tappable instead of being dimmed by the scrim. */}
         <button
-          className="md:hidden text-[var(--chalk)]"
+          className="md:hidden relative z-50 text-[var(--chalk)]"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
@@ -252,7 +254,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileOpen(false)}
-              className="fixed inset-0 bg-[var(--ink)]/50 z-40"
+              className="fixed inset-0 bg-[var(--ink)]/70 backdrop-blur-sm z-40"
               aria-hidden="true"
             />
             <motion.div
